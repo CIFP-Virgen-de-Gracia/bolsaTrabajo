@@ -1,0 +1,37 @@
+footer{
+  background-color: var(--colorOscuro);
+  .logo{
+    img{
+      width: 50%;
+    }
+    h5{
+      color: var(--colorSecundario);
+    }
+    h6{
+      color: var(--colorSecundario);
+    }
+  }
+  .info, .redes{
+    h6{
+      border-bottom: 1px solid var(--colorSecundario);
+      color: var(--colorSecundario);
+    }
+    li{
+      color: var(--colorClaro);
+      span{
+        font-size: 13pt;
+        color: var(--colorSecundario);
+        .fa-mobile::before{
+          font-size: 15pt;
+        }
+        .fa-envelope::before{
+          font-size: 12pt;
+          margin: auto;
+        }
+      }
+    }
+    p{
+      color: var(--colorClaro);
+    }
+  }
+}

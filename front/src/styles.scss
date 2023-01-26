@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+@use "sass:map";
+
+@import 'bootstrap/scss/bootstrap';
+
+/* @font-face {
+  font-family: font-titulos;
+  //src: url();
+}
+
+@font-face {
+  font-family: font-texto;
+  //src: url();
+}
+
+@font-face {
+  font-family: font-enlaces;
+  //src: url();
+} */
+
+:root {
+    --colorPrimario:#6897E5;
+    --colorSecundario:#FCB541;
+    --colorOscuro:#140740;
+    --colorClaro:#F8F8F8;
+    --colorSecundarioClaro:#ffcb77;
+
+
+}
