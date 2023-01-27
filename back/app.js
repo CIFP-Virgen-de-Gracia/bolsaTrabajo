@@ -5,6 +5,4 @@ const server = new Server();
 
 server.listen();
 
-
-console.log(`Datos de conexión: ${process.env.DB_NAME} ${process.env.DB_USER} ${process.env.DB_PASSWORD}`);
-
+console.log(`Datos de conexión: ${process.env.DB_DATABASE} ${process.env.DB_USER} ${process.env.DB_PASSWORD}`);
