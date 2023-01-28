@@ -56,7 +56,7 @@ class Conexion {
         let resultado = [];
         this.conectar();
         try { 
-            resultado = await this.query('SELECT * FROM persona')
+            resultado = await this.query('SELECT * FROM empresas')
             this.desconectar();
         } catch (error) {
             this.desconectar();
