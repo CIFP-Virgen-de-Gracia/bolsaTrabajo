@@ -1,37 +1,74 @@
-<nav class="ps-5 pe-5 p-3 d-flex align-items-center justify-content-between">
-  <div class="justify-content-start d-flex">
-    <div class="me-4">
-      <img src="../../../assets/image/logo.png">
+<nav class="navbar">
+  <div class="p-0 ps-lg-5 pe-lg-5 d-flex justify-content-between align-items-center contenedor-menu">
+    <div class="justify-content-start d-flex align-items-center ms-3">
+      <div class="logo-menu me-2">
+        <img src="../../../assets/image/logo.png">
+      </div>
+      <div>
+        <h5 class="mb-1">CIFP Virgen de Gracia</h5>
+        <h6>Bolsa de empleo</h6>
+      </div>
     </div>
-    <div>
-      <h5>CIFP Virgen de Gracia</h5>
-      <h6>Bolsa de empleo</h6>
-    </div>
+    <button class="navbar-toggler collapsed me-3 aparecepequenio" type="button" data-bs-toggle="collapse" data-bs-target="#navbarExample04" aria-controls="navbarExample04" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fa-solid fa-bars"></i>
+    </button>
   </div>
-  <div>
-    <ul class="nav">
-      <!-- <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Active</a>
+  <div class="navbar-collapse collapse menu mt-2 aparecepequenio" id="navbarExample04" style>
+    <div class="info-perfil justify-content-start d-flex align-items-center ms-5 me-5 pb-4 pt-4 mb-4">
+      <div>
+        <img>
+      </div>
+      <div>
+        <h5 class="mb-1">User name</h5>
+      </div>
+    </div>
+    <ul class="navbar-nav me-auto mb-md-0">
+      <li class="nav-item pt-1 pb-1 ps-5 pe-3">
+        <a class="nav-link" href="#"><i class="fa-solid fa-house me-3"></i>&nbsp;&nbsp;&nbsp;Inicio</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+      <li class="nav-item pt-1 pb-1 ps-5 pe-3">
+        <a class="nav-link" href="#"><i class="fa-solid fa-building me-3"></i>&nbsp;&nbsp;&nbsp;Empresas</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+      <li class="nav-item pt-1 pb-1 ps-5 pe-3">
+        <a class="nav-link" href="#"><i class="fa-solid fa-briefcase me-3"></i>&nbsp;&nbsp;&nbsp;Ofertas</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled">Disabled</a>
-      </li> -->
-      <li class="nav-item pestania-submenu pt-1 pb-1 ps-3 pe-3 ms-3 rounded-5 d-flex align-items-center">User name&nbsp;&nbsp;
-        <i class="fa fa-user fa-1x" aria-hidden="true"></i>
-        <i class="fa fa-caret-up flecha" aria-hidden="true"></i>
-          <ul class="submenu mt-4 text-center">
-            <li class="p-1"><a class="p-1">Mis datos</a></li>
-            <li class="p-1"><a class="p-1">Mis ofertas</a></li>
-            <li class="p-1"><a class="p-1">Contacto</a></li>
-            <li class="p-1"><a class="p-1">Cerrar Sesión</a></li>
-          </ul>
+      <li class="nav-item pt-1 pb-1 ps-5 pe-3">
+        <a class="nav-link"><i class="fa-solid fa-file me-3"></i>&nbsp;&nbsp;&nbsp;Curriculum</a>
+      </li>
+      <li class="nav-item dropdown-toggle pestania-submenu pt-1 pb-1 ps-5 pe-3 d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false"><a class="nav-link"><i class="fa-solid fa-user me-3"></i>&nbsp;&nbsp;&nbsp;Mi perfil</a>&nbsp;&nbsp;</li>
+        <ul class="submenu p-0 m-0 mt-md-4 dropdown-menu border-end-0 border-start-0 box-shadow-sm" data-bs-popper="static">
+          <li class="p-2 ps-5"><a class="p-1 ps-5 ms-4 text-decoration-none">Mis datos</a></li>
+          <li class="p-2 ps-5"><a class="p-1 ps-5 ms-4 text-decoration-none">Mis ofertas</a></li>
+          <li class="p-2 ps-5"><a class="p-1 ps-5 ms-4 text-decoration-none">Contacto</a></li>
+        </ul>
+      <li class="nav-item pt-1 pb-1 ps-5 pe-3">
+        <a class="nav-link"><i class="fa-solid fa-right-to-bracket  me-3"></i>&nbsp;&nbsp;&nbsp;Cerrar Sesión</a>
       </li>
     </ul>
   </div>
+  <div class="desaparecepequenio menu-pc">
+    <ul class="navbar text-decoration-none d-flex justify-content-end m-0 pe-lg-5">
+      <li class="nav-item p-1">
+        <a class="nav-link" href="#">Inicio</a>
+      </li>
+      <li class="nav-item p-1 m-2">
+        <a class="nav-link" href="#">Empresas</a>
+      </li>
+      <li class="nav-item p-1 m-2">
+        <a class="nav-link" href="#">Ofertas</a>
+      </li>
+      <li class="nav-item p-1 m-2">
+        <a class="nav-link">Curriculum</a>
+      </li>
+      <li class="nav-item dropdown-toggle rounded-4 pestania-submenu pt-1 pb-1 ps-3 pe-3 m-2 d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false"><a class="nav-link"><i class="fa-solid fa-user me-3"></i>User Name</a>&nbsp;</li>
+      <i class="fa fa-caret-up flecha desaparecepequenio" aria-hidden="true"></i>
+      <ul class="submenu pt-lg-3 pb-lg-3 box-shadow-sm text-center text-decoration-none" data-bs-popper="static">
+        <li class="p-lg-1"><a class="text-decoration-none">Mis datos</a></li>
+        <li class="p-lg-1"><a class="text-decoration-none">Mis ofertas</a></li>
+        <li class="p-lg-1"><a class="text-decoration-none">Contacto</a></li>
+        <li class="p-lg-1"><a class="text-decoration-none">Cerrar Sesión</a></li>
+      </ul>
+    </ul>
+  </div>
 </nav>
+
