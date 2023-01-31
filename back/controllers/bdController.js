@@ -31,7 +31,22 @@ const verListadoSequelize =  (req, res = response) => {
         });
 }
 
+const verListadoOfertas = (req, res = response) => {
+    const conex = new ConexionSequelize();
+
+    conex.getListadoOfertas()
+        .then( msg => {
+                console.log('Listado correcto!');
+                res.status(200).json(msg);
+        })
+        .catch(err => {
+            console.log('No hay registros');
+            res.status(203).json({'msg':'No se han encontrado registros'});
+        })
+}
+
 module.exports = {
     verListado,
-    verListadoSequelize
+    verListadoSequelize,
+    verListadoOfertas
 }

@@ -5,5 +5,6 @@ const mid = require('../middlewares/pruebaMiddleware');
 
 router.get('/', controlador.verListado);
 router.get('/sequelize', controlador.verListadoSequelize);
+router.get('/ofertas', controlador.verListadoOfertas);
 
 module.exports = router;

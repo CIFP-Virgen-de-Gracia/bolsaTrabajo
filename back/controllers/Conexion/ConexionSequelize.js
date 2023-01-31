@@ -1,5 +1,6 @@
 const { Sequelize } = require('sequelize');
 const Persona = require('../../models/modeloPrueba');
+const Ofertas = require('../../models/Ofertas');
 require('dotenv').config();
 
 class ConexionSequilze {
@@ -37,6 +38,15 @@ class ConexionSequilze {
         this.desconectar();
         return resultado;
     }
+
+    getListadoOfertas = async() => {
+        let resultado = [];
+        this.conectar();
+        resultado = await Ofertas.findAll();
+        this.desconectar();
+        return resultado;
+    }
+
 }
 
 module.exports = ConexionSequilze;
