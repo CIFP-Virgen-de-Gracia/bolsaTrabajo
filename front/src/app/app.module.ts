@@ -6,6 +6,8 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { OfertasAlumnoComponent } from './ofertas-alumno/ofertas-alumno.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,7 +16,8 @@ import { OfertasAlumnoComponent } from './ofertas-alumno/ofertas-alumno.componen
     OfertasAlumnoComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
