@@ -31,7 +31,7 @@ class ConexionSequelize {
         process.on('SIGINT', () => conn.close())
     }
 
-    //Para prueba con persona
+    //Para prueba con persona --------------------------------------------------------
     getlistado = async() => {
         let resultado = [];
         this.conectar();
@@ -40,6 +40,7 @@ class ConexionSequelize {
         return resultado;
     }
 
+    //Métodos CRUD Empresas -------------------------------------------------------------
     getEmpresaListado = async() => {
         let resultado = [];
         this.conectar();
