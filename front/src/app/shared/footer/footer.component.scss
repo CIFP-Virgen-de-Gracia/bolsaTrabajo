@@ -29,6 +29,9 @@ footer{
         font-size: var(--tamTextoFooter);
         a{
           color: var(--colorClaro);
+          &:hover{
+            color: var(--colorSecundario);
+          }
         }
         span{
           font-size: 13pt;

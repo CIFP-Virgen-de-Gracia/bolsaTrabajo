@@ -1,4 +1,7 @@
 const mysql = require('mysql2');
+require('dotenv').config();
+
+const conexion = new Conexion();
 
 /**
  * En esta clase encapsularemos la comunicación con la base de datos.
@@ -68,63 +71,6 @@ class Conexion {
         }
         return resultado;
     }
-
-    getUsuario = async(dni) => {
-        let resultado = [];
-        this.conectar();
-        try {
-            resultado = await this.query('SELECT * FROM personas WHERE DNI = ?', [dni]);
-            // console.log('Y aquí');
-            this.desconectar();
-        } catch (error) {
-            this.desconectar();
-            throw error;
-        }
-        return resultado;
-    }
-
-    registrarUsuario = async(dni, nombre, clave, tfno) => {
-        let resultado = 0;
-        this.conectar();
-        try {
-            resultado = await this.query('INSERT INTO personas VALUES (?,?,?,?)', [dni, nombre, clave, tfno]);
-            // console.log('Y aquí');
-            this.desconectar();
-        } catch (error) {
-            this.desconectar();
-            throw error;
-        }
-        return resultado;
-    }
-
-    modificarUsuario = async(dni, nombre, clave, tfno) => {
-        let resultado = 0;
-        this.conectar();
-        try {
-            resultado = await this.query('UPDATE personas SET Nombre=?,Clave=?,Tfno=? WHERE DNI = ?', [nombre, clave, tfno, dni]);
-            // console.log('Y aquí');
-            this.desconectar();
-        } catch (error) {
-            this.desconectar();
-            throw error;
-        }
-        return resultado;
-    }
-
-    borrarUsuario = async(dni) => {
-        let resultado = 0;
-        this.conectar();
-        try {
-            resultado = await this.query('DELETE FROM  personas  WHERE DNI = ?', [dni]);
-            // console.log('Y aquí');
-            this.desconectar();
-        } catch (error) {
-            this.desconectar();
-            throw error;
-        }
-        return resultado;
-    }
-
     
 }
 
