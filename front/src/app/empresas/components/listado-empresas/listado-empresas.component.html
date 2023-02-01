@@ -3,7 +3,7 @@
 <table class="table table-hover table-striped">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">id</th>
       <th scope="col">Nombre empresa</th>
       <th scope="col">Persona contacto</th>
       <th scope="col">Cargo que ocupa</th>
@@ -12,13 +12,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Empresa Dummie, S.A.</td>
-      <td>Pepito Piñas</td>
-      <td>Jefe de RRHH</td>
-      <td>926 123 456</td>
-      <td>pepepiñas@gmail.com</td>
+    <tr *ngFor="let empresa of empresas; index as i">
+      <th scope="row">{{ empresa.id }}</th>
+      <td>{{ empresa.nombre }}</td>
+      <td>{{ empresa.contacto }}</td>
+      <td>{{ empresa.cargo }}</td>
+      <td>{{ empresa.telefono }}</td>
+      <td>{{ empresa.email }}</td>
     </tr>
   </tbody>
 </table>
