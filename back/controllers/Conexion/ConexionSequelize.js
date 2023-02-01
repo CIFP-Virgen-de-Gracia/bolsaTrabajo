@@ -1,6 +1,5 @@
 const { Sequelize } = require('sequelize');
-const Persona = require('../../models/modeloPrueba');
-const Ofertas = require('../../models/Ofertas');
+const Oferta = require('../../models/Ofertas');
 require('dotenv').config();
 
 class ConexionSequilze {
@@ -31,19 +30,19 @@ class ConexionSequilze {
         process.on('SIGINT', () => conn.close())
     }
 
-    getlistado = async() => {
+    getListadoOfertas = async() => {
         let resultado = [];
         this.conectar();
-        resultado = await Persona.findAll();
+        resultado = await Oferta.findAll();
         this.desconectar();
         return resultado;
     }
 
-    getListadoOfertas = async() => {
-        let resultado = [];
+    crearOferta = async(body) => {
+        let resultado = 0;
         this.conectar();
-        resultado = await Ofertas.findAll();
-        this.desconectar();
+        const nuevaOferta = new Oferta(body);
+        await nuevaOferta.save();
         return resultado;
     }
 
