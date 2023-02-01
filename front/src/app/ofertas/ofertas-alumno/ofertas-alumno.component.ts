@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RestBolsaService } from '../apiRest/services/rest-bolsa.service';
-import { OfertasResponse } from './models/req-resp';
+import { OfertasResponse } from '../models/req-resp';
 
 @Component({
   selector: 'app-ofertas-alumno',
