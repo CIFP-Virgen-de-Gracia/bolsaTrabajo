@@ -1,0 +1,20 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: 'ofertas',
+    loadChildren:() => import('./ofertas/ofertas.module').then((m) => m.OfertasModule),
+  },
+  {
+    //Para redireccionar a inicio por si teclean una ruta que no sea correcta
+    path: '**',
+    redirectTo: ''
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

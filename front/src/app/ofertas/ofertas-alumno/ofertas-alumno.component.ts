@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RestBolsaService } from '../apiRest/services/rest-bolsa.service';
 import { OfertasResponse } from '../models/req-resp';
 
@@ -7,7 +7,7 @@ import { OfertasResponse } from '../models/req-resp';
   templateUrl: './ofertas-alumno.component.html',
   styleUrls: ['./ofertas-alumno.component.scss']
 })
-export class OfertasAlumnoComponent {
+export class OfertasAlumnoComponent implements OnInit {
 
   public ofertas: any = [];
   constructor(private restBolsaService: RestBolsaService) { }

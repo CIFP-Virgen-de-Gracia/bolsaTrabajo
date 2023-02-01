@@ -35,19 +35,19 @@ a {
       }
 }
 
-@media (max-width: 838px) {
+@media (max-width: 910px) {
     .seccion-ofertas {
         grid-template-columns: auto;
     }
 }
 
-@media (min-width: 839px) and (max-width: 1168px) {
+@media (min-width: 911px) and (max-width: 1375px) {
     .seccion-ofertas {
         grid-template-columns: auto auto;
     }
 }
 
-@media (min-width: 1006px) {
+@media (min-width: 1376px) {
     .oferta {
         width: 80%;
     }

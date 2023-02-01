@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OfertasAlumnoComponent } from './ofertas-alumno/ofertas-alumno.component';
-
-
+import { OfertasRoutingModule } from './ofertas-routing.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +11,9 @@ import { OfertasAlumnoComponent } from './ofertas-alumno/ofertas-alumno.componen
     OfertasAlumnoComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    OfertasRoutingModule
   ]
 })
+
 export class OfertasModule { }
