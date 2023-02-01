@@ -16,6 +16,20 @@ const verListadoOfertas = (req, res = response) => {
         })
 }
 
+const verOferta = (req, res = response) => {
+    const conex = new ConexionSequelize();
+
+    conex.getOferta(req.params.id)
+        .then( msg => {
+            console.log('Listado correcto!');
+            res.status(200).json(msg);
+        })
+        .catch( err => {
+            console.log('No hay registro!');
+            res.status(203).json({'msg':'No se ha encontrado el registro'});
+        })
+}
+
 const crearOferta = (req = request, res = response) => {
     const conex = new ConexionSequelize();
 
@@ -32,5 +46,6 @@ const crearOferta = (req = request, res = response) => {
 
 module.exports = {
     verListadoOfertas,
+    verOferta,
     crearOferta
 }

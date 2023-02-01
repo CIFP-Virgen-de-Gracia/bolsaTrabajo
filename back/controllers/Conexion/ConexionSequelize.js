@@ -38,6 +38,17 @@ class ConexionSequilze {
         return resultado;
     }
 
+    getOferta = async(id) => {
+        let resultado = [];
+        this.conectar();
+        resultado = await Oferta.findByPk(id);
+        this.desconectar();
+        if (!resultado) {
+            throw error;
+        }
+        return resultado;
+    }
+
     crearOferta = async(body) => {
         let resultado = 0;
         this.conectar();
