@@ -1,0 +1,42 @@
+.card{
+  .tarjeta{
+    background-color: var(--colorClaro);
+    .contenedor-foto{
+      background-color: var(--colorClaro);
+      img{
+        width: 200px;
+        z-index: 1;
+        display: block;
+      }
+      button{
+        z-index: 1;
+      }
+    }
+  }
+  .info-perfil{
+    .card-body{
+      background-color: #fff;
+      .timeline {
+        border-left: 1px solid #ebebeb;
+        position: relative;
+        list-style: none;
+        .timeline-item {
+          position: relative;
+          &:after{
+            position: absolute;
+            display: block;
+            top: 5px;
+            background-color: var(--colorSecundario);
+            left: -18px;
+            border-radius: 50%;
+            height: 12px;
+            width: 12px;
+            content: "";
+          }
+        }
+      }
+    }
+  }
+}
+
+
