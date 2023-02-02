@@ -6,11 +6,10 @@ import { ListadoEmpresasComponent } from './components/listado-empresas/listado-
 const routes: Routes = [
   {
     path: '',
-    component: FormularioEmpresaComponent
-  },
-  {
-    path: 'listado',
-    component: ListadoEmpresasComponent
+    children: [
+      { path: 'datos', component: FormularioEmpresaComponent },
+      { path: 'listado', component: ListadoEmpresasComponent }
+    ]
   }
 ];
 

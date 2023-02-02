@@ -1,5 +1,5 @@
-export interface ListadoResponse {
-  id:        number;
+export interface Empresa {
+  id?:        number;
   nombre:    string;
   direccion: string;
   contacto:  string;
