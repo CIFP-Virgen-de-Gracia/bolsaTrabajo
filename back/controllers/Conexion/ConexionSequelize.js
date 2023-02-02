@@ -1,8 +1,11 @@
 const { Sequelize } = require('sequelize');
-const Persona = require('../../models/modeloPrueba');
+const User= require('../../models/User')
+const RolAsignado = require('../../models/RolesAsignados');
+const Roles = require('../../models/Roles');
+const bycript = require('bcryptjs');
 require('dotenv').config();
 
-class ConexionSequilze {
+class ConexionSequelize {
 
     constructor() {
         this.db = new Sequelize(process.env.DB_DATABASE, process.env.DB_USER, process.env.DB_PASSWORD, {
@@ -33,10 +36,108 @@ class ConexionSequilze {
     getlistado = async() => {
         let resultado = [];
         this.conectar();
-        resultado = await Persona.findAll();
+        resultado = await User.findAll();
         this.desconectar();
         return resultado;
     }
-}
+    getUsuario = async(email) => {
+        let resultado = [];
+        this.conectar();
+        resultado = await User.findOne({where: {email: email}});
+        this.desconectar();
+        if (!resultado){
+            throw error;
+        }
+        return resultado;
+    }
 
-module.exports = ConexionSequilze;
+    //registrarUsuario = async(dni, nombre, clave, tfno) => {
+        //AQUÍ TENGO QUE ACTUALIZAR PARA QUE SE CREEN LOS ROLES????
+    registrarUsuario = async(body) => {
+        let resultado = 0;
+        this.conectar();
+        const usuarioNuevo = new User(body); //Con esto añade los timeStamps.
+        await usuarioNuevo.save();
+        this.desconectar();
+        return resultado;
+    }
+
+    //modificarUsuario = async(dni, nombre, clave, tfno) => {
+    modificarUsuario = async(dni, body) => {
+        this.conectar();
+        let resultado = await User.findByPk(dni);
+        if (!resultado){
+            this.desconectar();
+            throw error;
+        }
+        await resultado.update(body);
+        this.desconectar();
+        return resultado;
+    }
+
+    borrarUsuario = async(dni) => {
+        this.conectar();
+        let resultado = await User.findByPk(dni);
+        if (!resultado){
+            this.desconectar();
+            throw error;
+        }
+        await resultado.destroy();
+        this.desconectar();
+        return resultado;
+    }
+
+    //----------------------------------------
+    getRoles = async() => {
+        let resultado = [];
+        this.conectar();
+        //console.log('Accediendo a los datos...')
+        resultado = await Roles.findAll();
+        this.desconectar();
+        return resultado;
+    }
+
+    getRolesAsignados = async() => {
+        let resultado = [];
+        this.conectar();
+        //console.log('Accediendo a los datos...')
+        resultado = await RolAsignado.findAll();
+        this.desconectar();
+        return resultado;
+    }
+
+    getRolesAsignadosDNI = async(dn) => {
+        let resultado = [];
+        this.conectar();
+        resultado = await User.findOne({ where: { dni: dn } , include: ["RolesAsignados"]});
+        this.desconectar();
+        return resultado;
+    }
+
+    getUsuarioRegistrado = async(email, password) => {
+     let Npassword= bycript.hashSync(password, 10);
+        let resultado = [];
+        this.conectar();
+        console.log(email);
+            resultado= await User.findOne({ where: { 'email': email} });
+            // console.log(resultado);
+            if (!resultado){
+                this.desconectar();
+                throw error;
+            }
+            const passCorrecto = await bycript.compare(password, Npassword);
+            console.log (passCorrecto);
+            if (!passCorrecto){
+                this.desconectar();
+                throw error;
+            }
+        this.conectar();
+        // console.log(resultado.dataValues);
+        return resultado;
+    }
+        
+        };
+
+
+
+module.exports = ConexionSequelize;

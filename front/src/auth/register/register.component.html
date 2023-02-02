@@ -1,0 +1,83 @@
+<form [formGroup]="registerForm">
+    <div class="container mt-5">
+      <div class="d-flex justify-content-center p-3">
+        <button type="button" class="btn btn-outline-dark col-sm-1" [routerLink]="['/']">Volver</button>
+      </div>
+        <div class="d-flex justify-content-center display-5 font-weight-bold p-4"><b>Registro</b></div>
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-2">
+                <label class="col-form-label">dni</label>
+            </div>
+            <div class="col-3">
+                <input type="text" class="form-control border border-dark" formControlName="dni"
+                    [ngClass]="{'is-invalid': (registerForm.get('dni')?.touched) && !registerForm.get('dni')?.valid}"
+                    placeholder="DNI (required)">
+
+                <!-- Mensajes de error -->
+                <span class="invalid-feedback">
+                    <span *ngIf="registerForm.get('dni')?.errors?.['required']">Por favor introduce tu dni</span>
+                </span>
+            </div>
+        </div>
+        <br>
+        <div class="row d-flex justify-content-center">
+            <div class="col-2">
+                <label class="col-form-label">Email</label>
+            </div>
+            <div class="col-3">
+                <input type="text" class="form-control border border-dark" formControlName="email"
+                    [ngClass]="{'is-invalid': (registerForm.get('email')?.touched) && !registerForm.get('email')?.valid}"
+                    placeholder="Email (required)">
+
+                <!-- Error Messages for Empty Email field -->
+                <span class="invalid-feedback">
+                    <span *ngIf="registerForm.get('email')?.errors?.['required']">Por favor introduce tu email</span>
+                    <span *ngIf="registerForm.get('email')?.errors?.['pattern']">Por favor introduce un email válido</span>
+                </span>
+            </div>
+        </div>
+        <br>
+        <div class="row d-flex justify-content-center ">
+            <div class="col-2 ">
+                <label class="col-form-label ">Password</label>
+            </div>
+            <div class="col-3">
+                <input type="password" class="form-control border border-dark" formControlName="password"
+                    [ngClass]="{'is-invalid': (registerForm.get('password')?.touched) && !registerForm.get('password')?.valid}"
+                    placeholder="Password (required)">
+
+                <!-- Error Messages for Empty Password field -->
+                <span class="invalid-feedback">
+                    <span *ngIf="registerForm.get('password')?.errors?.['required']">Por favor introduce tu password</span>
+                </span>
+
+            </div>
+        </div>
+        <br>
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-2">
+                <label class="col-form-label">Confirmación del Password</label>
+            </div>
+            <div class="col-3">
+                <input type="password" class="form-control border border-dark" formControlName="confirmPassword"
+                    [ngClass]="{'is-invalid': (registerForm.get('confirmPassword')?.touched) && !registerForm.get('confirmPassword')?.valid}"
+                    placeholder="Confirm Password (required)">
+
+                <span class="invalid-feedback">
+                    <!-- Error Messages for Empty confirm Password field -->
+                    <span *ngIf="f['confirmPassword'].getError('required')!=null">Por favor introduce un password de confirmación</span>
+                    <!-- Error Messages for Not match Password field -->
+                    <span *ngIf="f['confirmPassword'].getError('passwordMatch')!=null">Los passwords no coinciden</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center p-4">
+            <button type="submit" class="btn btn-outline-dark col-sm-1" [disabled]="!registerForm.valid"
+                [routerLink]="['/registerSuccessful']" (click)='register()'>Registro</button>
+        </div>
+    </div>
+
+</form>
