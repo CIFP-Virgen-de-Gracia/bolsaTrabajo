@@ -22,7 +22,7 @@
                     [ngClass]="{'is-invalid': (logInForm.get('email')?.touched) && !logInForm.get('email')?.valid}"
                     placeholder="Email (required)">
 
-                <!-- Error Messages for Empty Email field -->
+                <!-- Mensajes de error -->
                 <span class="invalid-feedback">
                     <span *ngIf="logInForm.get('email')?.errors?.['required']">Por favor introduce tu email</span>
                     <span *ngIf="logInForm.get('email')?.errors?.['pattern']">Por favor introduce una cuenta válida</span>
@@ -39,7 +39,7 @@
                     [ngClass]="{'is-invalid': (logInForm.get('password')?.touched) && !logInForm.get('password')?.valid}"
                     class="form-control border border-dark" placeholder="Password (required)">
 
-                <!-- Error Messages for Empty Password field -->
+                <!-- Mensajes de error y control -->
                 <span class="invalid-feedback">
                     <span *ngIf="logInForm.get('password')?.errors?.['required']">Por favor introduce tu password</span>
                 </span>

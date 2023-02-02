@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.registerForm =this.fb.group({
-      dni:[new FormControl('', Validators.required),[Validators.required, Validators.pattern('[0-9]{8}[A-Z]')]] ,
+      dni:new FormControl('', Validators.pattern('[0-9]{8}[A-Z]' || '[0-9]{8}')),
       email: ['', [Validators.required, Validators.pattern('[a-z0-9]+@[a-z]+\.[a-z]{2,3}')]],
       password: new FormControl('', Validators.required),
       confirmPassword: new FormControl('', Validators.required)
