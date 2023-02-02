@@ -1,5 +1,4 @@
 const express = require('express');
-// const body_parser = require('body-parser');
 const cors = require('cors');
 class Server {
 
@@ -18,14 +17,10 @@ class Server {
     }
 
     middlewares() {
-        //En esta sección cargamos una serie de herramientas necesarias para todas las rutas.
-        //Para los middlewares como estamos acostumbrados a usarlos en Laravel ver userRoutes y userMiddlewares.
-        //Para cors
+       // this.app.use(body_parser.urlencoded({extended: false}));
         this.app.use(cors());
-        //Para poder recibir la información que venga del body y parsearla de JSON, necesitamos importar lo siguiente.
         this.app.use(express.json());
-        // this.app.use(body_parser.json());
-        // this.app.use(body_parser.urlencoded({ extended: false }));
+       
     }
 
     routes(){

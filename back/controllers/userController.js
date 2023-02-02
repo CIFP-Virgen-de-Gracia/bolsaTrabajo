@@ -1,5 +1,4 @@
 const {response,request} = require('express');
-// const Conexion = require('./Conexion');
 const Conexion = require('./Conexion/ConexionSequelize');
 
 const usuariosGet =  (req, res = response) => {
@@ -32,8 +31,7 @@ const usuarioGet =  (req, res = response) => {
 
 const usuariosPost =  (req = request, res = response) => {
     const conx = new Conexion();
-    
-    //conx.registrarUsuario(req.body.DNI, req.body.Nombre, req.body.Clave, req.body.Tfno)    
+       
     conx.registrarUsuario(req.body)    
         .then( msg => {
             console.log('Insertado correctamente!');

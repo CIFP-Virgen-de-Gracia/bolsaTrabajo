@@ -7,15 +7,12 @@ const mid = require('../middlewares/pruebaMiddleware');
 const midsJWT = require("../middlewares/validarJWT");
 const midsRoles = require("../middlewares/validarRoles");
 
-// router.get('/', controlador.verListado);
-// router.get('/sequelize', controlador.verListadoSequelize);
 router.get('/', userController.usuariosGet);
 router.get('/:dni', userController.usuarioGet);
-// router.post('/', userController.usuariosPost);
 router.put('/:dni?', userController.usuariosPut);
 router.delete('/:dni', userController.usuariosDelete);
-// router.post('/login',[midsJWT.validarJWT, midsRoles.esUser] ,controladorAuth.login);
-router.post('/login', controladorAuth.login);
+router.post('/login',[midsJWT.validarJWT],controladorAuth.login);
+// router.post('/login', controladorAuth.login);
 router.post('/register', controladorAuth.register);
 //-------------------------
 router.get('/roles', userController.rolesGet);

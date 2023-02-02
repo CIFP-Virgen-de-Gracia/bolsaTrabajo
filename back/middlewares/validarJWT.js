@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
-const {response, request} = require('express')  //Incorporamos esto aquí porque vamos a añadir elementos a req que sacaremos del token.
+const {response, request} = require('express')  
 
-const validarJWT = (req , res , next) => {  //Estas asignaciones son necesarias para almacenar en el request los datos que extraigamos del token.
-    const token = req.header('x-token');  //Este nombre será establecido en el cliente también.
+const validarJWT = (req , res , next) => {  
+    const token = req.header('x-token');  //TODO:recordar este nombre de header
 
     if (!token){
         return res.status(401).json({'msg':'No hay token en la petición.'});

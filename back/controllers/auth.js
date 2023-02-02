@@ -21,8 +21,8 @@ const login =  (req, res = response) => {
                 }
                 else{
                     //Generar el JWT.
-                    // const token = generarJWT(usu.dni, usu.nombre, usu.email, usu.rol);
-                    // console.log(token);
+                    const token = generarJWT(usu.dni, usu.nombre, usu.email, usu.status, usu.rol);
+                    console.log(token);
                     res.status(200).json({'msg':'Login correcto.'});
                 }
                 // res.status(200).json({'msg':'Login correcto.'});
@@ -39,8 +39,6 @@ const login =  (req, res = response) => {
     }
    
 }
-
-
 
    const register= (req, res = response) => {
     const {dni, nombre, email, password, status, rol} = req.body;
