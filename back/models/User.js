@@ -5,7 +5,7 @@ const Roles = require('./Roles');
 
 
 const User= db.define('users', {
-    dni: {
+    nif: {
         type: DataTypes.STRING,
         primaryKey: true,
         allowNull:false,
@@ -13,6 +13,14 @@ const User= db.define('users', {
         validate: {
             notEmpty: true,
             is: /^[0-9]{8}[A-Z]$/i
+        }
+    },
+    nick: {
+        type: DataTypes.STRING,
+        allowNull:false,
+        unique: true,
+        validate: {
+            notEmpty: true,
         }
     },
     
@@ -44,17 +52,7 @@ const User= db.define('users', {
             max: 1
     }
 },
-    rol:{
-        type: DataTypes.BIGINT,
-        allowNull:false,
-        validate: {
-            notEmpty: true,
-            isInt: true,
-            min: 1,
-            max: 3
-        }
-    },
-
+  
 },
 { 
     timestamps: false, 
@@ -65,6 +63,6 @@ const User= db.define('users', {
 });
 
 
-User.hasMany(RolesAsignados, {as: 'RolesAsignados', foreignKey: 'userDni'});
+User.hasMany(RolesAsignados, {as: 'RolesAsignados', foreignKey: 'userNif'});
 
 module.exports = User;

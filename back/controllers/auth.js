@@ -21,7 +21,7 @@ const login =  (req, res = response) => {
                 }
                 else{
                     //Generar el JWT.
-                    const token = generarJWT(usu.dni, usu.nombre, usu.email, usu.status, usu.rol);
+                    const token = generarJWT(usu.nif, usu.nick, usu.email, usu.status, usu.rol);
                     console.log(token);
                     res.status(200).json({'msg':'Login correcto.'});
                 }
@@ -41,7 +41,7 @@ const login =  (req, res = response) => {
 }
 
    const register= (req, res = response) => {
-    const {dni, nombre, email, password, status, rol} = req.body;
+    const {nif, nick, email, password, status, rol} = req.body;
     try{
         //Verificar si existe el usuario.
         const conx = new Conexion();
@@ -67,8 +67,69 @@ const login =  (req, res = response) => {
         }
         
     }
+//TODO:REGISTRO DE ADMINISTRADOR?
+    const registerAdmin= (req, res = response) => {
+        const {nif, nick, email, password, status, rol} = req.body;
+        try{
+            //Verificar si existe el usuario.
+            const conx = new Conexion();
+            u = conx.getUsuario(email)
+
+                .then( usu => {
+                    console.log('Usuario existente!'+ usu);
+                    res.status(500).json({'msg':'Este usuario ya existe en nuestra base.'});
+                })
+                .catch( err => {
+                    console.log('Usuario nuevo, correcto!');
+                    //Registrar usuario.
+                    const conx = new Conexion();
+                    u = conx.registrarUsuario(req.body)
+
+                        .then( usu => {
+                            console.log('Usuario registrado!');
+                            res.status(200).json({'msg':'Usuario registrado.'});
+                        })
+                    });
+                }
+            catch(error){
+                console.log(error);
+                res.status(500).json({'msg':'Error en el servidor.'});
+            }
+
+        }
+const registerEmpresa= (req, res = response) => {
+    const {nif, nick, email, password, status, rol} = req.body;
+    try{
+        //Verificar si existe el usuario.
+        const conx = new Conexion();
+        u = conx.getUsuario(email)
+
+            .then( usu => {
+                console.log('Usuario existente!'+ usu);
+                res.status(500).json({'msg':'Este usuario ya existe en nuestra base.'});
+            })
+            .catch( err => {
+                console.log('Usuario nuevo, correcto!');
+                //Registrar usuario.
+                const conx = new Conexion();
+                u = conx.registrarUsuario(req.body)
+
+                    .then( usu => {
+                        console.log('Usuario registrado!');
+                        res.status(200).json({'msg':'Usuario registrado.'});
+                    })
+                });
+            }
+        catch(error){
+            console.log(error);
+            res.status(500).json({'msg':'Error en el servidor.'});
+        }
+
+    }
 
 module.exports = {
     login,
     register,
+    registerAdmin,
+    registerEmpresa
 }
