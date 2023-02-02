@@ -1,5 +1,7 @@
 const { Sequelize } = require('sequelize');
-const Oferta = require('../../models/Ofertas');
+const Oferta = require('../../models/ofertas');
+const EmpresasOfertas = require('../../models/empresas-ofertas');
+const Empresa = require('../../models/empresa');
 require('dotenv').config();
 
 class ConexionSequilze {
@@ -54,6 +56,28 @@ class ConexionSequilze {
         this.conectar();
         const nuevaOferta = new Oferta(body);
         await nuevaOferta.save();
+        const dataAsigacion = {
+            'id_oferta' : nuevaOferta.id,
+            'nif_empresa': body.nif_empresa
+        };
+        const nuevaAsignacion = new EmpresasOfertas(dataAsigacion);
+        await nuevaAsignacion.save();
+        return resultado;
+    }
+
+    getEmpresaAsignada = async(id) => {
+        let resultado = [];
+        this.conectar();
+        resultado = await Oferta.findOne({where: { id: id }, include: ["EmpresasOfertas"] });
+        this.desconectar();
+        return resultado;
+    }
+
+    getDatosEmpresaAsignada = async(nif) => {
+        let resultado = []
+        this.conectar();
+        resultado = await Empresa.findByPk(nif);
+        this.desconectar();
         return resultado;
     }
 

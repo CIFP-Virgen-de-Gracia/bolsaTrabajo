@@ -18,7 +18,8 @@ export class OfertasAlumnoComponent implements OnInit {
 
   public getOfertas() {
     this.restBolsaService.getOfertas().subscribe((response: OfertasResponse) => {
-      this.ofertas = response;
+      this.ofertas = response
+      console.log(response);
     })
   }
 

@@ -2,7 +2,7 @@
     <h1>Ofertas publicadas</h1>
     <div class="seccion-ofertas">
         <div *ngFor="let oferta of ofertas; index as i" class="oferta">
-            <a href="#">
+            <a outerLinkActive="active" routerLink="testing">
                 <h3>{{oferta.titulo}}</h3>
                 <p>{{oferta.descripcion}}</p>
             </a>

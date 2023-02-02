@@ -2,25 +2,24 @@ const { Sequelize, DataTypes, Model }= require('sequelize');
 const db = require('../controllers/Conexion/connection');
 const EmpresasOfertas = require('./empresas-ofertas');
 
-const Ofertas = db.define('ofertas', {
-    id: {
-        type: DataTypes.BIGINT,
-        autoIncrement: true,
+const Empresas = db.define('empresas', {
+    nif: {
+        type: DataTypes.STRING,
         primaryKey: true
     },
-    titulo: {
+    nombre: {
         type: DataTypes.STRING
     },
-    descripcion: {
+    direccion: {
         type: DataTypes.STRING
     },
-    lugar: {
+    contacto: {
         type: DataTypes.STRING
     },
-    presencial: {
+    cargo: {
         type: DataTypes.INTEGER
     },
-    jornada: {
+    telefono: {
         type: DataTypes.STRING
     }
 },
@@ -29,9 +28,9 @@ const Ofertas = db.define('ofertas', {
     freezeTableName: true
 },
 {
-    tableName: 'ofertas'
+    tableName: 'empresas'
 });
 
-Ofertas.hasMany(EmpresasOfertas, {as: 'EmpresasOfertas', foreignKey: 'id_oferta'});
+Empresas.hasMany(EmpresasOfertas, {as: 'EmpresasOfertas', foreignKey: 'nif_empresa'});
 
-module.exports = Ofertas;
+module.exports = Empresas;
