@@ -1,3 +1,7 @@
+svg{
+  position: absolute;
+  z-index: -1;
+}
 .card{
   .tarjeta{
     background-color: var(--colorClaro);
@@ -8,14 +12,48 @@
         z-index: 1;
         display: block;
       }
+      h4{
+        font-family: var(--titulo);
+        position: relative;
+        display: inline;
+	      z-index: 1;
+        &:after{
+          position: absolute;
+          content: '';
+          display: block;
+          z-index: -1;
+          background: var(--colorSecundario);
+          width: calc(100% + 12px);
+          height: 12px;
+          bottom: 1px;
+          left: calc(12px / -2);
+          transition: 0.3s cubic-bezier(.03,.3,.4,.96);
+          transform: skew(-10deg);
+        }
+      }
+      h6{
+        font-family:var(--tipoSubtitulo);
+      }
       button{
         z-index: 1;
+        background-color: var(--colorSecundarioClaro);
+        border: none;
+        &:hover{
+          background-color: var(--colorSecundario);
+        }
       }
     }
   }
   .info-perfil{
     .card-body{
       background-color: #fff;
+      .etiqueta{
+        background-color: var(--colorSecundario);
+        h5{
+          font-family: var(--titulo);
+          color: var(--colorClaro);
+        }
+      }
       .timeline {
         border-left: 1px solid #ebebeb;
         position: relative;
