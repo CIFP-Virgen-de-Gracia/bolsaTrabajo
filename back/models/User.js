@@ -52,7 +52,7 @@ const User= db.define('users', {
             max: 1
     }
 },
-rol: {
+/* rol: {
     type: DataTypes.INTEGER,
     allowNull:false,
     validate: {
@@ -62,7 +62,7 @@ rol: {
         max: 3
     }
 
-}
+} */
 },
   
 { 

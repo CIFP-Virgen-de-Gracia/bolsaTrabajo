@@ -5,6 +5,7 @@ class Server {
     constructor() {
         this.app = express();
         this.authPath = '/';
+        this.alumnosPath = '/alumnos';
         this.authPath= '/api/auth';
         this.rolesPath = '/api/roles';
         this.rolesAsignados = '/api/rolesasignados';
@@ -34,6 +35,7 @@ class Server {
         this.app.use(this.rolesPath , require('../routes/rolesRoutes'));
         this.app.use(this.rolesAsignados, require('../routes/rolesAsignadosRoutes'));
         this.app.use(this.empresaOFertaPath, require('../routes/empresaOfertasRoute'));
+        this.app.use(this.alumnosPath , require('../routes/alumnoRoutes'));
     }
 
     listen() {

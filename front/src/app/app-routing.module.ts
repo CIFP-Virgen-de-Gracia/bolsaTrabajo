@@ -3,8 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'alumno',
+    loadChildren: () => import('./alumno/alumno.module').then( m => m.AlumnoModule )
+  },
+  {
     path: 'welcome',
-    loadChildren:() => import('../app/auth/auth.module').then((m) => m.AuthModule),
+    loadChildren:() => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: 'empresas',
@@ -22,7 +26,11 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
+
+
+
+
 

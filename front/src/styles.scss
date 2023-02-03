@@ -37,6 +37,12 @@
   font-weight: 700;
 }
 
+@font-face{
+  font-family: subtitulo;
+  src: url(./assets/tipografia/Raleway-VariableFont_wght.ttf) format("woff2");
+  font-weight: 500;
+}
+
 @font-face {
   font-family: nomenclatura;
   src: url(./assets/tipografia/Roboto-Bold.ttf) format("woff2");
@@ -58,6 +64,7 @@
     --tamFooterTitulo:16pt
     --tipoNombre: font-name;
     --tipoTitulo: titulo;
+    --tipoSubtitulo: subtitulo;
     --textoFooter: text-footer;
     --tipoNomenclatura: nomenclatura;
     --BottomOffset: -6px;
