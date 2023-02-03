@@ -6,6 +6,7 @@ class Server {
     constructor() {
         this.app = express();
         this.usuariosPath = '/';
+        this.alumnosPath = '/alumnos';
 
         //Middlewares
         this.middlewares();
@@ -21,12 +22,11 @@ class Server {
         this.app.use(cors());
         //Para poder recibir la información que venga del body y parsearla de JSON, necesitamos importar lo siguiente.
         this.app.use(express.json());
-        // this.app.use(body_parser.json());
-        // this.app.use(body_parser.urlencoded({ extended: false }));
     }
 
     routes(){
         this.app.use(this.usuariosPath , require('../routes/Routes'));
+        this.app.use(this.alumnosPath , require('../routes/alumnoRoutes'));
     }
 
     listen() {

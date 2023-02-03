@@ -1,6 +1,11 @@
 const { Sequelize } = require('sequelize');
-const Persona = require('../../models/modeloPrueba');
+const Alumno = require('../../models/Alumno');
+const User = require('../../models/User');
+const CicloAlumno = require('../../models/CicloAlumno');
+const Ciclo = require('../../models/Ciclo');
+const {Op} = require('sequelize');
 require('dotenv').config();
+const concatenate = require('../../helpers/concatenate'); 
 
 class ConexionSequilze {
 
@@ -30,12 +35,39 @@ class ConexionSequilze {
         process.on('SIGINT', () => conn.close())
     }
 
-    getlistado = async() => {
-        let resultado = [];
-        this.conectar();
-        resultado = await Persona.findAll();
-        this.desconectar();
+    getAlumno = async(nif) => {
+        let resultado = {};
+        let ciclos = {};
+        let idCiclos = [];
+        let u = await User.findByPk(nif);
+        let a = await Alumno.findByPk(nif);
+        let c = await CicloAlumno.findAll({ 
+            attributes: ['id_ciclos'],
+            where: { nif_alumno: nif } });
+        c.forEach(ciclo => idCiclos.push(ciclo.dataValues.id_ciclos));
+        let ciclo = await this.getCiclosAlumno(idCiclos); 
+        resultado = concatenate.jsonConcat(resultado, u.dataValues);
+        resultado = concatenate.jsonConcat(resultado, a.dataValues);
+        ciclo.forEach(cicl => ciclos[cicl.dataValues.sigla] = (cicl.dataValues));
+        resultado['ciclos'] = ciclos;
+        if (!resultado){
+            throw error;
+        }
         return resultado;
+    }
+
+
+    getCiclosAlumno = async(idCiclo) => {
+        let ciclo = {};
+        ciclo = await Ciclo.findAll({
+                attributes: ['sigla','nombre','fecha'],
+                where: {
+                  id: {
+                    [Op.in]: idCiclo
+                  }
+                }
+            });
+        return ciclo;
     }
 }
 
