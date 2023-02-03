@@ -1,25 +1,19 @@
-//Ines
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { WelcomeComponent } from 'src/auth/welcome/welcome.component';
-import { LoginComponent } from 'src/auth/login/login.component';
-import { RegisterComponent } from 'src/auth/register/register.component';
+import { AuthModule } from './auth/auth.module';
 import { AppRoutingModule } from './app-routing.module';
-
 @NgModule({
   declarations: [
-    AppComponent,
-    WelcomeComponent,
-    LoginComponent,
-    RegisterComponent
+    AppComponent
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
+    AuthModule,
+    AppRoutingModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
