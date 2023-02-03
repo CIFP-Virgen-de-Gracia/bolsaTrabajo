@@ -5,8 +5,12 @@
     justify-items: center;
     align-items: center;
     gap: 2%;
+    a {
+        all: unset;
+    }
     .opciones {
         width: 50%;
+        cursor: pointer;
         img {
             height: 80%;
             width: 100%;
