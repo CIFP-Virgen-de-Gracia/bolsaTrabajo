@@ -37,6 +37,4 @@ const verListadoSequelize =  (req, res = response) => {
 module.exports = {
     verListado,
     verListadoSequelize
-    verListado,
-    verListadoSequelize
 }
