@@ -52,8 +52,19 @@ const User= db.define('users', {
             max: 1
     }
 },
-  
+rol: {
+    type: DataTypes.INTEGER,
+    allowNull:false,
+    validate: {
+        notEmpty: true,
+        isInt: true,
+        min: 1,
+        max: 3
+    }
+
+}
 },
+  
 { 
     timestamps: false, 
     freezeTableName: true
@@ -63,6 +74,6 @@ const User= db.define('users', {
 });
 
 
-User.hasMany(RolesAsignados, {as: 'RolesAsignados', foreignKey: 'userNif'});
+User.hasOne(RolesAsignados, {as: 'RolesAsignados', foreignKey: 'userNif'});
 
 module.exports = User;

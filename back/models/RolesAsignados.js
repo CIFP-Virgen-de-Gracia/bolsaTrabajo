@@ -28,5 +28,6 @@ const RolesAsignados = db.define('rolesasignados', {
     tableName: 'rolesasignados'
 });
 
-
+// RolesAsignados.belongsTo(User, {foreignKey: 'userNif'});
+// RolesAsignados.belongsTo(Rol, {foreignKey: 'roleId'});
 module.exports = RolesAsignados;

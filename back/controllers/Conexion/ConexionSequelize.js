@@ -3,6 +3,7 @@ const User = require("../../models/User");
 const RolAsignado = require("../../models/RolesAsignados");
 const Roles = require("../../models/Roles");
 const bycript = require("bcryptjs");
+const RolesAsignados = require("../../models/RolesAsignados");
 require("dotenv").config();
 
 class ConexionSequelize {
@@ -59,12 +60,17 @@ class ConexionSequelize {
     return resultado;
   };
 
-  //TODO:MIRAR EJEMPLOS CON ROLES QUE GESTIONAN VARIOS TIPOS DE USUARIO
+  //TODO:hecho...falta frontend
   registrarUsuario = async (body) => {
     let resultado = 0;
     this.conectar();
     const usuarioNuevo = new User(body); //Con esto añade los timeStamps.
     await usuarioNuevo.save();
+    resultado = await usuarioNuevo.save();
+    this.AsignarRol({      //Asigna el rol de usuario por defecto o el que se le pase por el body
+      userNif: body.nif,
+      roleId: body.rol,
+    });
     this.desconectar();
     return resultado;
   };
@@ -122,7 +128,7 @@ class ConexionSequelize {
     this.desconectar();
     return resultado;
   };
-
+  
   getUsuarioRegistrado = async (email, password) => {
     let Npassword = bycript.hashSync(password, 10);
     let resultado = [];
@@ -144,6 +150,16 @@ class ConexionSequelize {
     // console.log(resultado.dataValues)funciona!!!!;
     return resultado;
   };
+  AsignarRol = async (body) => {
+    let resultado = 0;
+    this.conectar();
+    const rolNuevo = new RolAsignado(body); 
+    await rolNuevo.save();
+    resultado = await rolNuevo.save();
+    this.desconectar();
+    return resultado;
+  }
+
 }
 
 module.exports = ConexionSequelize;

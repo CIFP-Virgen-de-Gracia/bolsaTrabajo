@@ -3,6 +3,7 @@ const Conexion = require("./Conexion/ConexionSequelize");
 const { generarJWT } = require("../helpers/generate_jwt");
 const jwt = require("jsonwebtoken");
 const { User } = require("../models/User");
+const RolesAsignados = require("../models/RolesAsignados");
 
 const login = (req, res = response) => {
   const { email, password } = req.body;
@@ -58,7 +59,7 @@ const register = (req, res = response) => {
           .json({ msg: "Este usuario ya existe en nuestra base." });
       })
       .catch((err) => {
-        console.log("Usuario nuevo, correcto!");
+        // console.log("Usuario nuevo, correcto!");
         //Registrar usuario.
         const conx = new Conexion();
         u = conx.registrarUsuario(req.body).then((usu) => {
@@ -134,10 +135,17 @@ const registerEmpresa = (req, res = response) => {
     res.status(500).json({ msg: "Error en el servidor." });
   }
 };
-
+const logout = (req, res = response) => {
+  const conx = new Conexion();
+  conx.desconectar();
+  res.status(200).json({ msg: "Logout correcto." });
+};
+  
 module.exports = {
   login,
   register,
+  logout,
   registerAdmin,
-  registerEmpresa,
+  registerEmpresa
+ 
 };
