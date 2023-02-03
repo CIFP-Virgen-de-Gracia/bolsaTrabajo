@@ -4,8 +4,8 @@ const db = require('../controllers/Conexion/connection');
 //const Roles = require('./Roles');
 
 const Empresa = db.define('empresa', {
-    id: {
-        type: DataTypes.BIGINT,
+    nif: {
+        type: DataTypes.STRING,
         primaryKey: true      //La establecemos como PK. En lugar de id por defecto.
     },
     nombre: {
@@ -21,9 +21,6 @@ const Empresa = db.define('empresa', {
         type: DataTypes.STRING
     },
     telefono: {
-        type: DataTypes.STRING
-    },
-    email: {
         type: DataTypes.STRING
     },
 },

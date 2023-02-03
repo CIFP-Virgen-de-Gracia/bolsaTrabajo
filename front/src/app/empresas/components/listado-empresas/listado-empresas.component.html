@@ -4,22 +4,20 @@
   <table class="table table-hover table-striped">
   <thead>
     <tr>
-      <th scope="col">id</th>
+      <th scope="col">nif</th>
       <th scope="col">Nombre empresa</th>
       <th scope="col">Persona contacto</th>
       <th scope="col">Cargo que ocupa</th>
       <th scope="col">Teléfono</th>
-      <th scope="col">Email</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let empresa of empresas; index as i">
-      <th scope="row">{{ empresa.id }}</th>
+      <th scope="row">{{ empresa.nif }}</th>
       <td>{{ empresa.nombre }}</td>
       <td>{{ empresa.contacto }}</td>
       <td>{{ empresa.cargo }}</td>
       <td>{{ empresa.telefono }}</td>
-      <td>{{ empresa.email }}</td>
     </tr>
   </tbody>
 </table>

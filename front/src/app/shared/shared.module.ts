@@ -1,15 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { SharedRoutingModule } from './shared-routing.module';
-import { FooterComponent } from './components/footer/footer.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { MenuComponent } from './menu/menu.component';
+import { FooterComponent } from './footer/footer.component';
+import { MenuAdministradorComponent } from './menu-administrador/menu-administrador.component';
+import { MenuAlumnoComponent } from './menu-alumno/menu-alumno.component';
+import { MenuEmpresaComponent } from './menu-empresa/menu-empresa.component';
 
+import { SharedRoutingModule } from './shared-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    NavbarComponent,
-    FooterComponent
+    MenuComponent,
+    FooterComponent,
+    MenuAdministradorComponent,
+    MenuAlumnoComponent,
+    MenuEmpresaComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +24,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   ],
   exports: [
     CommonModule,
-    NavbarComponent,
+    MenuComponent,
+    MenuAdministradorComponent,
+    MenuEmpresaComponent,
     FooterComponent
   ]
 })

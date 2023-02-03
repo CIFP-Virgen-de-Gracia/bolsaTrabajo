@@ -5,7 +5,7 @@ import { ListadoEmpresasComponent } from './components/listado-empresas/listado-
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'formularioEmpresa',
     component: FormularioEmpresaComponent
   },
   {
