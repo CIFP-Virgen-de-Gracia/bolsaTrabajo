@@ -1,6 +1,5 @@
 require('dotenv').config()
 
-const Conexion = require('./controllers/Conexion');
 const Server = require('./models/server');
 const server = new Server();
 
