@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { EmpresasModule } from './empresas/empresas.module';
 import { OfertasModule } from './ofertas/ofertas.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     SharedModule,
     FormsModule,
+    AppRoutingModule,
     EmpresasModule,
     HttpClientModule,
     SharedModule,
