@@ -1,8 +1,15 @@
-const { Sequelize } = require('sequelize');
+const { Sequelize } = require("sequelize");
+const User = require("../../models/User");
+const RolAsignado = require("../../models/RolesAsignados");
+const Roles = require("../../models/Roles");
+const bycript = require("bcryptjs");
+const RolesAsignados = require("../../models/RolesAsignados");
+require("dotenv").config();
+
 const Oferta = require('../../models/ofertas');
 const EmpresasOfertas = require('../../models/empresas-ofertas');
 const Empresa = require('../../models/Empresa');
-require('dotenv').config();
+
 
 class ConexionSequelize {
 
@@ -20,140 +27,81 @@ class ConexionSequelize {
           });
     }
 
-    conectar = () => {
-        this.db.authenticate().then(() => {
-            console.log('Connection has been established successfully.');
-        }).catch((error) => {
-            console.error('Unable to connect to the database: ', error);
-        });
+  conectar = () => {
+    this.db
+      .authenticate()
+      .then(() => {
+        console.log("Connection has been established successfully.");
+      })
+      .catch((error) => {
+        console.error("Unable to connect to the database: ", error);
+      });
+  };
+
+  desconectar = () => {
+    process.on("SIGINT", () => conn.close());
+  };
+
+  getlistado = async () => {
+    let resultado = [];
+    this.conectar();
+    resultado = await User.findAll();
+    this.desconectar();
+    return resultado;
+  };
+  getUsuario = async (email) => {
+    let resultado = [];
+    this.conectar();
+    resultado = await User.findOne({ where: { email: email } });
+    this.desconectar();
+    if (!resultado) {
+      throw error;
+    }
+    return resultado;
+  };
+
+  //TODO:hecho...falta frontend
+  registrarUsuario = async (body) => {
+    let resultado = 0;
+    this.conectar();
+    const usuarioNuevo = new User(body); //Con esto añade los timeStamps.
+    await usuarioNuevo.save();
+    resultado = await usuarioNuevo.save();
+    this.AsignarRol({      //Asigna el rol de usuario por defecto o el que se le pase por el body
+      userNif: body.nif,
+      roleId: body.rol,
+    });
+    this.desconectar();
+    return resultado;
+  };
+
+  modificarUsuario = async (nif, body) => {
+    this.conectar();
+    let resultado = await User.findByPk(nif);
+    if (!resultado) {
+      this.desconectar();
+      throw error;
+    }
+    await resultado.update(body);
+    this.desconectar();
+    return resultado;
+  };
+
+  borrarUsuario = async (nif) => {
+    this.conectar();
+    let resultado = await User.findByPk(nif);
+    if (!resultado) {
+      this.desconectar();
+      throw error;
     }
 
-    desconectar = () => {
-        process.on('SIGINT', () => conn.close())
-    }
-
-    //Para prueba con persona --------------------------------------------------------
-    getListadoOfertas = async() => {
+    getlistado = async() => {
         let resultado = [];
         this.conectar();
-        resultado = await Oferta.findAll();
+        resultado = await Persona.findAll();
         this.desconectar();
         return resultado;
     }
-
-    getOferta = async(id) => {
-        let resultado = [];
-        this.conectar();
-        resultado = await Oferta.findByPk(id);
-        this.desconectar();
-        if (!resultado) {
-            throw error;
-        }
-        return resultado;
-    }
-
-    crearOferta = async(body) => {
-        let resultado = 0;
-        this.conectar();
-        const nuevaOferta = new Oferta(body);
-        await nuevaOferta.save();
-        const dataAsigacion = {
-            'id_oferta' : nuevaOferta.id,
-            'nif_empresa': body.nif_empresa
-        };
-        const nuevaAsignacion = new EmpresasOfertas(dataAsigacion);
-        await nuevaAsignacion.save();
-        return resultado;
-    }
-
-    eliminarOferta = async(id) => {
-        this.conectar();
-        let resultado = await Oferta.findByPk(id);
-        if (!resultado) {
-            this.desconectar();
-            throw error;
-        }
-        await resultado.destroy();
-        return resultado;
-    }
-
-    getEmpresaAsignada = async(id) => {
-        let resultado = [];
-        this.conectar();
-        resultado = await Oferta.findOne({where: { id: id }, include: ["EmpresasOfertas"] });
-        this.desconectar();
-        return resultado;
-    }
-
-    getDatosEmpresaAsignada = async(nif) => {
-        let resultado = []
-        this.conectar();
-        resultado = await Empresa.findByPk(nif);
-        this.desconectar();
-        return resultado;
-    }
-
-    getOfertasEmpresa = async(nif) => {
-        let resultado = []
-        this.conectar();
-        resultado = await Empresa.findOne({where: {nif: nif}, include: ["EmpresasOfertas"] });
-        this.desconectar();
-        return resultado;
-    }
-
-    //Métodos CRUD Empresas -------------------------------------------------------------
-    getEmpresaListado = async() => {
-        let resultado = [];
-        this.conectar();
-        resultado = await Empresa.findAll();
-        this.desconectar();
-        return resultado;
-    }
-
-    getEmpresa = async(id) => {
-        let resultado = [];
-        this.conectar();
-        resultado = await Empresa.findByPk(id);
-        this.desconectar();
-        if (!resultado){
-            throw error;
-        }
-        return resultado;
-    }
-
-    registrarEmpresa = async(body) => {
-        let resultado = 0;
-        this.conectar();
-        const empresaNueva = new Empresa(body); //Con esto añade los timeStamps.
-        await empresaNueva.save();
-        this.desconectar();
-        return resultado;
-    }
-
-    modificarEmpresa = async(id, body) => {
-        this.conectar();
-        let resultado = await Empresa.findByPk(id);
-        if (!resultado){
-            this.desconectar();
-            throw error;
-        }
-        await resultado.update(body);
-        this.desconectar();
-        return resultado;
-    }
-
-    borrarEmpresa = async(id) => {
-        this.conectar();
-        let resultado = await Empresa.findByPk(id);
-        if (!resultado){
-            this.desconectar();
-            throw error;
-        }
-        await resultado.destroy();
-        this.desconectar();
-        return resultado;
-    }
-
 }
 
 module.exports = ConexionSequelize;

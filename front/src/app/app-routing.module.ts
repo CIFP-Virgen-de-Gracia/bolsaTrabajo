@@ -3,6 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'welcome',
+    loadChildren:() => import('../app/auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
     path: '',
     loadChildren:() => import('./empresas/empresas.module').then((m) => m.EmpresasModule),
   },
@@ -15,14 +19,15 @@ const routes: Routes = [
     loadChildren:() => import('./ofertas/ofertas.module').then((m) => m.OfertasModule),
   },
   {
-    //Para redireccionar a inicio por si teclean una ruta que no sea correcta
     path: '**',
-    redirectTo: ''
-  }
+    redirectTo: '',
+  },
+
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
+

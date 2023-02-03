@@ -1,0 +1,17 @@
+.datos{
+  background-color: var(--colorPrimario);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  border-color: var(--colorSecundarioClaro);
+  border-style: solid;
+  border-width: 13px;
+  box-shadow: 0px 0px 10px var(--colorOscuroSombra);
+  }
+
+  .datos h1{
+    color: var(--colorClaro);
+    font-family: var(--tipoNombre);
+    font-size: 30pt;
+    text-align: center;
+  }
