@@ -5,8 +5,10 @@ class Server {
 
     constructor() {
         this.app = express();
-        this.usuariosPath = '/';
+        this.authPath = '/';
         this.empresasPath = '/api/empresa';
+        this.ofertasPath = '/ofertas';
+        this.empresaOFertaPath = '/empresaoferta';
 
         //Middlewares
         this.middlewares();
@@ -27,8 +29,10 @@ class Server {
     }
 
     routes(){
-        this.app.use(this.usuariosPath , require('../routes/routes'));
-        this.app.use(this.empresasPath , require('../routes/empresaRoutes'));
+        this.app.use(this.authPath , require('../routes/routes'));
+        this.app.use(this.empresasPath , require('../routes/empresaroutes'));
+        this.app.use(this.ofertasPath, require('../routes/ofertasRoutes'));
+        this.app.use(this.empresaOFertaPath, require('../routes/empresaOfertasRoute'));
     }
 
     listen() {

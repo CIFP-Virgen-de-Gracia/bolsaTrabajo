@@ -5,7 +5,6 @@ import { FooterComponent } from './footer/footer.component';
 import { MenuAdministradorComponent } from './menu-administrador/menu-administrador.component';
 import { MenuAlumnoComponent } from './menu-alumno/menu-alumno.component';
 import { MenuEmpresaComponent } from './menu-empresa/menu-empresa.component';
-
 import { SharedRoutingModule } from './shared-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
