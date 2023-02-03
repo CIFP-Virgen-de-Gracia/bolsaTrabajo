@@ -4,7 +4,7 @@ import { PerfilAlumnoComponent } from './pages/perfil-alumno/perfil-alumno.compo
 
 const routes: Routes = [
   {
-    path: 'perfil',
+    path: '',
     component: PerfilAlumnoComponent,
     children: [
       { path: 'perfil', component: PerfilAlumnoComponent },
