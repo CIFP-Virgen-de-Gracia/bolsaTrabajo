@@ -5,7 +5,6 @@ const Roles = require("../../models/Roles");
 const bycript = require("bcryptjs");
 const RolesAsignados = require("../../models/RolesAsignados");
 require("dotenv").config();
-
 const Oferta = require('../../models/ofertas');
 const EmpresasOfertas = require('../../models/empresas-ofertas');
 const Empresa = require('../../models/Empresa');
@@ -94,14 +93,191 @@ class ConexionSequelize {
       this.desconectar();
       throw error;
     }
+    await resultado.destroy();
+    this.desconectar();
+    return resultado;
+  };
 
-    getlistado = async() => {
-        let resultado = [];
-        this.conectar();
-        resultado = await Persona.findAll();
-        this.desconectar();
-        return resultado;
+  //----------------------------------------
+  getRoles = async () => {
+    let resultado = [];
+    this.conectar();
+    //console.log('Accediendo a los datos...')
+    resultado = await Roles.findAll();
+    this.desconectar();
+    return resultado;
+  };
+
+  getRolesAsignados = async () => {
+    let resultado = [];
+    this.conectar();
+    //console.log('Accediendo a los datos...')
+    resultado = await RolAsignado.findAll();
+    this.desconectar();
+    return resultado;
+  };
+
+  getRolesAsignadosNif = async (nf) => {
+    let resultado = [];
+    this.conectar();
+    resultado = await User.findOne({
+      where: { nif: nf },
+      include: ["RolesAsignados"],
+    });
+    this.desconectar();
+    return resultado;
+  };
+  
+  getUsuarioRegistrado = async (email, password) => {
+    let Npassword = bycript.hashSync(password, 10);
+    let resultado = [];
+    this.conectar();
+    console.log(email);
+    resultado = await User.findOne({ where: { email: email } });
+    // console.log(resultado);
+    if (!resultado) {
+      this.desconectar();
+      throw error;
     }
+    const passCorrecto = await bycript.compare(password, Npassword);
+    console.log(passCorrecto);
+    if (!passCorrecto) {
+      this.desconectar();
+      throw error;
+    }
+    this.conectar();
+    // console.log(resultado.dataValues)funciona!!!!;
+    return resultado;
+  };
+  AsignarRol = async (body) => {
+    let resultado = 0;
+    this.conectar();
+    const rolNuevo = new RolAsignado(body); 
+    await rolNuevo.save();
+    resultado = await rolNuevo.save();
+    this.desconectar();
+    return resultado;
+  }
+  getListadoOfertas = async() => {
+    let resultado = [];
+    this.conectar();
+    resultado = await Oferta.findAll();
+    this.desconectar();
+    return resultado;
+  }
+
+  getOferta = async(id) => {
+      let resultado = [];
+      this.conectar();
+      resultado = await Oferta.findByPk(id);
+      this.desconectar();
+      if (!resultado) {
+          throw error;
+      }
+      return resultado;
+  }
+
+  crearOferta = async(body) => {
+      let resultado = 0;
+      this.conectar();
+      const nuevaOferta = new Oferta(body);
+      await nuevaOferta.save();
+      const dataAsigacion = {
+          'id_oferta' : nuevaOferta.id,
+          'nif_empresa': body.nif_empresa
+      };
+      const nuevaAsignacion = new EmpresasOfertas(dataAsigacion);
+      await nuevaAsignacion.save();
+      return resultado;
+  }
+
+  eliminarOferta = async(id) => {
+      this.conectar();
+      let resultado = await Oferta.findByPk(id);
+      if (!resultado) {
+          this.desconectar();
+          throw error;
+      }
+      await resultado.destroy();
+      return resultado;
+  }
+
+  getEmpresaAsignada = async(id) => {
+      let resultado = [];
+      this.conectar();
+      resultado = await Oferta.findOne({where: { id: id }, include: ["EmpresasOfertas"] });
+      this.desconectar();
+      return resultado;
+  }
+
+  getDatosEmpresaAsignada = async(nif) => {
+      let resultado = []
+      this.conectar();
+      resultado = await Empresa.findByPk(nif);
+      this.desconectar();
+      return resultado;
+  }
+
+  getOfertasEmpresa = async(nif) => {
+      let resultado = []
+      this.conectar();
+      resultado = await Empresa.findOne({where: {nif: nif}, include: ["EmpresasOfertas"] });
+      this.desconectar();
+      return resultado;
+  }
+
+  //Métodos CRUD Empresas -------------------------------------------------------------
+  getEmpresaListado = async() => {
+      let resultado = [];
+      this.conectar();
+      resultado = await Empresa.findAll();
+      this.desconectar();
+      return resultado;
+  }
+
+  getEmpresa = async(id) => {
+      let resultado = [];
+      this.conectar();
+      resultado = await Empresa.findByPk(id);
+      this.desconectar();
+      if (!resultado){
+          throw error;
+      }
+      return resultado;
+  }
+
+  registrarEmpresa = async(body) => {
+      let resultado = 0;
+      this.conectar();
+      const empresaNueva = new Empresa(body); //Con esto añade los timeStamps.
+      await empresaNueva.save();
+      this.desconectar();
+      return resultado;
+  }
+
+  modificarEmpresa = async(id, body) => {
+      this.conectar();
+      let resultado = await Empresa.findByPk(id);
+      if (!resultado){
+          this.desconectar();
+          throw error;
+      }
+      await resultado.update(body);
+      this.desconectar();
+      return resultado;
+  }
+
+  borrarEmpresa = async(id) => {
+      this.conectar();
+      let resultado = await Empresa.findByPk(id);
+      if (!resultado){
+          this.desconectar();
+          throw error;
+      }
+      await resultado.destroy();
+      this.desconectar();
+      return resultado;
+  }
 }
 
 module.exports = ConexionSequelize;

@@ -21,8 +21,4 @@ router.post('/registerEmpresa',[midsRoles.esEmpresa], controladorAuth.registerEm
 router.get('/roles', userController.rolesGet);
 router.get('/roles/:nif', userController.rolesAsignadosNifGet);
 
-
-
-router.get('/', controlador.verListado); 
-
 module.exports = router;

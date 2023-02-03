@@ -7,7 +7,7 @@ const routes: Routes = [
     loadChildren:() => import('../app/auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path: '',
+    path: 'empresas',
     loadChildren:() => import('./empresas/empresas.module').then((m) => m.EmpresasModule),
   },
   {
@@ -17,12 +17,7 @@ const routes: Routes = [
   {
     path: 'ofertas',
     loadChildren:() => import('./ofertas/ofertas.module').then((m) => m.OfertasModule),
-  },
-  {
-    path: '**',
-    redirectTo: '',
-  },
-
+  }
 ];
 
 @NgModule({
