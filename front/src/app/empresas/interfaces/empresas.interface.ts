@@ -1,5 +1,5 @@
 export interface Empresa {
-  nif:       string;
+  id?:        number;
   nombre:    string;
   direccion: string;
   contacto:  string;

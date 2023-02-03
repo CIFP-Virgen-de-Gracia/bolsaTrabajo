@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RestEmpresasListadoService } from '../../services/rest-empresas-listado.service';
-import { ListadoResponse } from '../../models/req-resp';
+import { EmpresasService } from '../../services/empresas.service';
 
 @Component({
   selector: 'app-listado-empresas',
@@ -11,7 +10,7 @@ export class ListadoEmpresasComponent implements OnInit {
 
   public empresas: any = [];
 
-  constructor(private restListadoService: RestEmpresasListadoService) { }
+  constructor(private empresasService: EmpresasService) { }
 
   ngOnInit(): void {
     this.getListado();
@@ -19,7 +18,7 @@ export class ListadoEmpresasComponent implements OnInit {
 
   public getListado() {
 
-    this.restListadoService.getListado().subscribe((response) => {
+    this.empresasService.getListado().subscribe((response) => {
         this.empresas = response;
       });
   }
