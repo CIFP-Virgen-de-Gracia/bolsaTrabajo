@@ -1,0 +1,24 @@
+
+<h1>Listado de empresas</h1>
+<div *ngIf="empresas.length > 0" class="table-responsive">
+  <table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th scope="col">nif</th>
+      <th scope="col">Nombre empresa</th>
+      <th scope="col">Persona contacto</th>
+      <th scope="col">Cargo que ocupa</th>
+      <th scope="col">Teléfono</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let empresa of empresas; index as i">
+      <th scope="row">{{ empresa.nif }}</th>
+      <td>{{ empresa.nombre }}</td>
+      <td>{{ empresa.contacto }}</td>
+      <td>{{ empresa.cargo }}</td>
+      <td>{{ empresa.telefono }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>

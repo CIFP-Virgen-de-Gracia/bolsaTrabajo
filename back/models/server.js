@@ -1,12 +1,17 @@
 const express = require('express');
-// const body_parser = require('body-parser');
 const cors = require('cors');
 class Server {
 
     constructor() {
         this.app = express();
-        this.usuariosPath = '/';
+        this.authPath = '/';
         this.alumnosPath = '/alumnos';
+        this.authPath= '/api/auth';
+        this.rolesPath = '/api/roles';
+        this.rolesAsignados = '/api/rolesasignados';
+        this.empresasPath = '/api/empresa';
+        this.ofertasPath = '/ofertas';
+        this.empresaOFertaPath = '/empresaoferta';
 
         //Middlewares
         this.middlewares();
@@ -16,16 +21,20 @@ class Server {
     }
 
     middlewares() {
-        //En esta sección cargamos una serie de herramientas necesarias para todas las rutas.
-        //Para los middlewares como estamos acostumbrados a usarlos en Laravel ver userRoutes y userMiddlewares.
-        //Para cors
+       // this.app.use(body_parser.urlencoded({extended: false}));
         this.app.use(cors());
-        //Para poder recibir la información que venga del body y parsearla de JSON, necesitamos importar lo siguiente.
         this.app.use(express.json());
+       
     }
 
     routes(){
-        this.app.use(this.usuariosPath , require('../routes/Routes'));
+        this.app.use(this.authPath , require('../routes/auth'));
+        this.app.use(this.authPath , require('../routes/routes'));
+        this.app.use(this.empresasPath , require('../routes/empresaroutes'));
+        this.app.use(this.ofertasPath, require('../routes/ofertasRoutes'));
+        this.app.use(this.rolesPath , require('../routes/rolesRoutes'));
+        this.app.use(this.rolesAsignados, require('../routes/rolesAsignadosRoutes'));
+        this.app.use(this.empresaOFertaPath, require('../routes/empresaOfertasRoute'));
         this.app.use(this.alumnosPath , require('../routes/alumnoRoutes'));
     }
 
