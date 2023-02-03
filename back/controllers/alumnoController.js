@@ -9,6 +9,7 @@ const alumnoGet =  (req, res = response) => {
             res.status(200).json(msg);
         })
         .catch( err => {
+            console.log(err);
             res.status(203).json({'msg':'No se ha encontrado el registro'});
         });
 }
