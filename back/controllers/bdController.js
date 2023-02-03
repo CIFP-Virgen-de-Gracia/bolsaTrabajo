@@ -1,6 +1,8 @@
 const {response,request} = require('express');
 const Conexion = require('./Conexion/Conexion');
 const ConexionSequelize = require('./Conexion/ConexionSequelize');
+const Conexion = require('./Conexion/Conexion');
+const ConexionSequelize = require('./Conexion/ConexionSequelize');
 
 
 const verListado =  (req, res = response) => {
@@ -33,6 +35,8 @@ const verListadoSequelize =  (req, res = response) => {
 }
 
 module.exports = {
+    verListado,
+    verListadoSequelize
     verListado,
     verListadoSequelize
 }
