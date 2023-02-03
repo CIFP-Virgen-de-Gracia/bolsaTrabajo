@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 const Oferta = require('../../models/ofertas');
 const EmpresasOfertas = require('../../models/empresas-ofertas');
-const Empresa = require('../../models/empresa');
+const Empresa = require('../../models/Empresa');
 require('dotenv').config();
 
 class ConexionSequilze {

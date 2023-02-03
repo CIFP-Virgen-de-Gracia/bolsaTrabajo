@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestBolsaService } from '../../apiRest/services/rest-bolsa.service';
-import { OfertasResponse } from '../../models/req-resp';
+import { OfertasResponse } from '../../interfaces/req-resp';
 
 @Component({
   selector: 'app-listado-ofertas-empresa',
