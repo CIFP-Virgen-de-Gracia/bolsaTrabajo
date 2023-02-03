@@ -1,11 +1,12 @@
 const { Sequelize, DataTypes, Model }= require('sequelize');
 const db = require('../controllers/Conexion/connection');
-const EmpresasOfertas = require('./empresas-ofertas');
+//const RolesAsignados = require('./RolesAsignados');
+//const Roles = require('./Roles');
 
-const Empresas = db.define('empresas', {
+const Empresa = db.define('empresa', {
     nif: {
         type: DataTypes.STRING,
-        primaryKey: true
+        primaryKey: true      //La establecemos como PK. En lugar de id por defecto.
     },
     nombre: {
         type: DataTypes.STRING
@@ -17,20 +18,23 @@ const Empresas = db.define('empresas', {
         type: DataTypes.STRING
     },
     cargo: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
     },
     telefono: {
         type: DataTypes.STRING
-    }
+    },
 },
 { 
-    timestamps: false,
-    freezeTableName: true
+    timestamps: false 
 },
 {
     tableName: 'empresas'
 });
 
-Empresas.hasMany(EmpresasOfertas, {as: 'EmpresasOfertas', foreignKey: 'nif_empresa'});
 
-module.exports = Empresas;
+//Roles.hasMany(RolesAsignados, {as: 'RolesAsignados', foreignKey: 'idRol'});
+
+// Roles.belongsToMany(Persona, { through: RolesAsignados, foreignKey: 'idRol' });
+
+
+module.exports =  Empresa;
