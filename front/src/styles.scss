@@ -1,1 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
+@use "sass:map";
+
+@import 'bootstrap/scss/bootstrap';
+
+@font-face {
+  font-family: font-submenu;
+  src: url(./assets/tipografia/Raleway-VariableFont_wght.ttf) format("woff2");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: font-menu;
+  src: url(./assets/tipografia/Raleway-VariableFont_wght.ttf) format("woff2");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: font-menu-hover;
+  src: url(./assets/tipografia/Raleway-VariableFont_wght.ttf) format("woff2");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: font-name;
+  src: url(./assets/tipografia/Roboto-Black.ttf) format("woff2");
+}
+
+@font-face {
+  font-family: text-footer;
+  src: url(./assets/tipografia/Roboto-Regular.ttf) format("woff2");
+}
+
+@font-face{
+  font-family: titulo;
+  src: url(./assets/tipografia/Raleway-VariableFont_wght.ttf) format("woff2");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: nomenclatura;
+  src: url(./assets/tipografia/Roboto-Bold.ttf) format("woff2");
+}
+
+
+:root {
+    --colorPrimario:#6897E5;
+    --colorSecundario:#FCB541;
+    --colorOscuro:#140740;
+    --colorClaro:#F8F8F8;
+    --colorSecundarioClaro:#ffcb77;
+    --colorOscuroSombra: #241950;
+    --pesoMenu: font-menu;
+    --pesoSubmenu: font-submenu;
+    --pesoMenuHover: font-menu-hover;
+    --tamMenuEnlace: 10pt;
+    --tamTextoFooter: 10pt;
+    --tamFooterTitulo:16pt
+    --tipoNombre: font-name;
+    --tipoTitulo: titulo;
+    --textoFooter: text-footer;
+    --tipoNomenclatura: nomenclatura;
+    --BottomOffset: -6px;
+    --LineHeight: 5px;
+}
