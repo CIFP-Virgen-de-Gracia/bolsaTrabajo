@@ -1,7 +1,9 @@
 export interface IRegisterUser {
-    id:number;
-    dni: string;
+    nif:string;
+    nick: string;
     email: string;
     password: string;
     confirmPassword: string;
 }
+
+// Path: register.ts

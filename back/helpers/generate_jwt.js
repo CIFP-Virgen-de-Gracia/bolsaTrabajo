@@ -8,6 +8,7 @@ const generarJWT = (uid = '') => {
     var token = jwt.sign({ uid }, process.env.SECRETORPRIVATEKEY, {
         expiresIn: '24h' // 24 hours
       });
+      console.log("Token:" + token)
     return token;
 }
 

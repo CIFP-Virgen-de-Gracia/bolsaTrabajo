@@ -14,7 +14,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.registerForm =this.fb.group({
-      dni:new FormControl('', Validators.pattern('[0-9]{8}[A-Z]' || '[0-9]{8}')),
+      nif:['',[Validators.required, Validators.pattern('[0-9]{8}[A-Z]' || '[0-9]{8}')]],
+      nick: new FormControl('', Validators.required),
       email: ['', [Validators.required, Validators.pattern('[a-z0-9]+@[a-z]+\.[a-z]{2,3}')]],
       password: new FormControl('', Validators.required),
       confirmPassword: new FormControl('', Validators.required)
@@ -31,8 +32,8 @@ export class RegisterComponent implements OnInit {
 
   register() {
     const registerInfo: IRegisterUser = {
-      id: Number(new Date()),
-      'dni': this.registerForm.value.dni,
+      'nif': this.registerForm.value.nif,
+      'nick': this.registerForm.value.nick,
       'email': this.registerForm.value.email,
       'password': this.registerForm.value.password,
       'confirmPassword': this.registerForm.value.confirmPassword,

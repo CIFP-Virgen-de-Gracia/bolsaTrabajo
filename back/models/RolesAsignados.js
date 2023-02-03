@@ -4,19 +4,17 @@ const db = require('../controllers/Conexion/connection');
 // const Rol = require('./Roles');
 
 const RolesAsignados = db.define('rolesasignados', {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true      //La establecemos como PK. En lugar de id por defecto.
-    },
-    DNIRol: {
+    userNif: {
         type: DataTypes.STRING,
+        primaryKey: true,
         // references: {
         //     model: User,
-        //     key: 'DNI'
+        //     key: 'nif'
         //   }
     },
-    idRol: {
+    roleId: {
         type: DataTypes.INTEGER,
+        primaryKey: true,
         // references: {
         //     model: Rol,
         //     key: 'id'
@@ -29,15 +27,6 @@ const RolesAsignados = db.define('rolesasignados', {
 {
     tableName: 'rolesasignados'
 });
-
-
-// RolesAsignados.belongsTo(Rol);
-// RolesAsignados.belongsTo(User);
-
-// RolesAsignados.belongsToMany(Rol, {as: 'Rol', foreignKey: 'id'});
-
-// RolesAsignados.hasMany(Rol, {as: 'RolA', foreignKey: 'idRol'});
-// RolesAsignados.hasMany(User, {as: 'UserA', foreignKey: 'DNIRol'});
 
 
 module.exports = RolesAsignados;
