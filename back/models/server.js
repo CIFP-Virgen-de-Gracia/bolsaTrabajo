@@ -7,6 +7,7 @@ class Server {
         this.app = express();
         this.authPath = '/';
         this.ofertasPath = '/ofertas';
+        this.empresaOFertaPath = '/empresaoferta';
 
         //Middlewares
         this.middlewares();
@@ -29,6 +30,7 @@ class Server {
     routes(){
         this.app.use(this.authPath , require('../routes/routes'));
         this.app.use(this.ofertasPath, require('../routes/ofertasRoutes'));
+        this.app.use(this.empresaOFertaPath, require('../routes/empresaOfertasRoute'));
     }
 
     listen() {

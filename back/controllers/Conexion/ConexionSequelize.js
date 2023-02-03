@@ -65,6 +65,17 @@ class ConexionSequilze {
         return resultado;
     }
 
+    eliminarOferta = async(id) => {
+        this.conectar();
+        let resultado = await Oferta.findByPk(id);
+        if (!resultado) {
+            this.desconectar();
+            throw error;
+        }
+        await resultado.destroy();
+        return resultado;
+    }
+
     getEmpresaAsignada = async(id) => {
         let resultado = [];
         this.conectar();
@@ -77,6 +88,14 @@ class ConexionSequilze {
         let resultado = []
         this.conectar();
         resultado = await Empresa.findByPk(nif);
+        this.desconectar();
+        return resultado;
+    }
+
+    getOfertasEmpresa = async(nif) => {
+        let resultado = []
+        this.conectar();
+        resultado = await Empresa.findOne({where: {nif: nif}, include: ["EmpresasOfertas"] });
         this.desconectar();
         return resultado;
     }

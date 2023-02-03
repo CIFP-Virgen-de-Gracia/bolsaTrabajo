@@ -44,31 +44,17 @@ const crearOferta = (req = request, res = response) => {
         })
 }
 
-const getEmpresaAsignada = (req, res = response) => {
+const eliminarOferta = (req = request, res = response) => {
     const conex = new ConexionSequelize();
 
-    conex.getEmpresaAsignada(req.params.id)
+    conex.eliminarOferta(req.params.id)
         .then( msg => {
-            console.log('Listado correcto!');
-            res.status(200).json(msg);
+            console.log('Eliminado correctamente!');
+            res.status(201).json({'msg':'Eliminado correctamente!'});
         })
         .catch( err => {
-            console.log('No hay registros');
-            res.status(203).json({'msg':'No se han encontrado registros'});
-        })
-}
-
-const getDatosEmpresaAsignada = (req, res = response) => {
-    const conex = new ConexionSequelize();
-
-    conex.getDatosEmpresaAsignada(req.params.id)
-        .then( msg => {
-            console.log('Listado correcto!');
-            res.status(200).json(msg);
-        })
-        .catch( err => {
-            console.log('No hay registros');
-            res.status(203).json({'msg':'No se han encontrado registros'});
+            console.log('Fallo en el registro!');
+            res.status(203).json(err);
         })
 }
 
@@ -76,6 +62,5 @@ module.exports = {
     verListadoOfertas,
     verOferta,
     crearOferta,
-    getEmpresaAsignada,
-    getDatosEmpresaAsignada
+    eliminarOferta
 }

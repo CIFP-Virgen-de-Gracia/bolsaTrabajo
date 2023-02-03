@@ -5,7 +5,6 @@ const router = Router();
 router.get('/', controlador.verListadoOfertas);
 router.get('/:id', controlador.verOferta);
 router.post('/crear', controlador.crearOferta);
-router.get('/empresa/:id', controlador.getEmpresaAsignada);
-router.get('/empresa/datos/:id', controlador.getDatosEmpresaAsignada);
+router.delete('/:id', controlador.eliminarOferta);
 
 module.exports = router;
