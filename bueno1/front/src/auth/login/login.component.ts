@@ -23,26 +23,26 @@ export class LoginComponent implements OnInit {
     const loginEmail = (document.getElementById("inputEmail") as HTMLInputElement).value;
     const loginPass = (document.getElementById("inputPassword") as HTMLInputElement).value;
 
-    // Comprobamos que existe el ususario en el local storage
+    // Checking for already registered user
     if (localStorage.getItem('registerUsersLocalStorage')) {
 
       const allStoredUsers = JSON.parse(localStorage.getItem('registerUsersLocalStorage')!);
-      // Comprobamos el password y el email
+      // Finding same Email and Password data from local storage
       const matchedUser = allStoredUsers.filter((registerInfo: any) => {
         return loginEmail === registerInfo.email && loginPass === registerInfo.password;
       });
 
-      // Localizamos los datos
+      // Finding same Email and Password object from local storage for accessing login user Id
       const loginUserData = allStoredUsers.filter((x: any) => {
         if (loginEmail === x.email && loginPass === x.password) {
           return x;
         }
       });
 
-      //Guardamos los datos en una variable
+      //Storing current user id in variable
       const loginUserID = loginUserData[0].id;
 
-      // Condición para redirigir a la página de login
+      // Condition for Route
       if (matchedUser.length) {
         this.router.navigate(['/loginSuccessful', loginUserID]);
         return loginUserID;

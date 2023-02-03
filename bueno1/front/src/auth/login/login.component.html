@@ -1,0 +1,53 @@
+
+<div class="header_logo">
+  <img src="../../assets/Maestría.png" />
+  <h3 class="text-primary">CIFP Virgen de Gracia</h3>
+</div>
+<!-- Formulario de login -->
+<form [formGroup]="logInForm" (ngSubmit)="logIn()">
+    <div class="container mt-5 datos">
+      <div class="d-flex p-3">
+        <button type="button" class="btn btn-light col-sm-1" [routerLink]="['/']">Volver</button>
+      </div>
+        <div class="d-flex justify-content-center display-5 font-weight-bold p-4 text-light "><b>Login</b></div>
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-2">
+                <label class="col-form-label text-light p-2">Email</label>
+            </div>
+            <div class="col-3">
+                <input type="text" id="inputEmail" formControlName="email" class="form-control border border-dark"
+                    [ngClass]="{'is-invalid': (logInForm.get('email')?.touched) && !logInForm.get('email')?.valid}"
+                    placeholder="Email (required)">
+
+                <!-- Mensajes de error -->
+                <span class="invalid-feedback">
+                    <span *ngIf="logInForm.get('email')?.errors?.['required']">Por favor introduce tu email</span>
+                    <span *ngIf="logInForm.get('email')?.errors?.['pattern']">Por favor introduce una cuenta válida</span>
+                </span>
+            </div>
+        </div>
+        <br>
+        <div class="row d-flex justify-content-center">
+            <div class="col-2">
+                <label class="col-form-label text-light p-2">Password</label>
+            </div>
+            <div class="col-3">
+                <input type="password" id="inputPassword" formControlName="password"
+                    [ngClass]="{'is-invalid': (logInForm.get('password')?.touched) && !logInForm.get('password')?.valid}"
+                    class="form-control border border-dark" placeholder="Password (required)">
+
+                <!-- Mensajes de error y control -->
+                <span class="invalid-feedback">
+                    <span *ngIf="logInForm.get('password')?.errors?.['required']">Por favor introduce tu password</span>
+                </span>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center p-4">
+            <button type="submit" class="btn btn-light" [disabled]="!logInForm.valid"
+                (click)='logIn()'>Login</button>
+        </div>
+
+    </div>
+
+</form>

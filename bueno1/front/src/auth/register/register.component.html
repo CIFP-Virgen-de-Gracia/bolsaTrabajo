@@ -3,16 +3,15 @@
   <h3 class="text-primary">CIFP Virgen de Gracia</h3>
 </div>
 <div class="registro">
+  <div class="d-flex justify-content-center display-4 font-weight-bold p-1 text-primary "><b>Registro</b></div>
   <form [formGroup]="registerForm">
     <div class="container mt-5">
       <div class="d-flex p-3">
         <button type="button" class="btn btn-light col-sm-2" [routerLink]="['/']">Volver</button>
       </div>
-      <div class="d-flex justify-content-center display-4 font-weight-bold p-1 text-light datos "><b>Registro</b></div>
-      <br>
       <div class="row d-flex justify-content-center">
         <div class="col-2">
-          <label class="col-form-label font-weight-bold p-1 text-primary titulo datos2">NIF</label>
+          <label class="col-form-label font-weight-bold p-1 text-primary titulo">NIF</label>
         </div>
         <div class="col-3">
           <input type="text" class="form-control border border-dark" formControlName="nif"
@@ -25,9 +24,10 @@
           </span>
         </div>
       </div>
+      <br>
       <div class="row d-flex justify-content-center">
         <div class="col-2 ">
-          <label class="col-form-label font-weight-bold p-1 text-primary  datos2 ">SEUDÓNIMO</label>
+          <label class="col-form-label font-weight-bold p-1 text-primary ">Nick</label>
         </div>
         <div class="col-3">
           <input type="nick" class="form-control border border-dark" formControlName="nick"
@@ -39,14 +39,16 @@
           </span>
         </div>
       </div>
+      <br>
       <div class="row d-flex justify-content-center">
         <div class="col-2">
-          <label class="col-form-label font-weight-bold p-1 text-primary titulo datos2">EMAIL</label>
+          <label class="col-form-label font-weight-bold p-1 text-primary titulo">Email</label>
         </div>
         <div class="col-3">
           <input type="text" class="form-control border border-dark" formControlName="email"
             [ngClass]="{'is-invalid': (registerForm.get('email')?.touched) && !registerForm.get('email')?.valid}"
             placeholder="Email (required)">
+
           <!-- Error mensajes alerta campos vacios -->
           <span class="invalid-feedback">
             <span *ngIf="registerForm.get('email')?.errors?.['required']">Por favor introduce tu email</span>
@@ -54,9 +56,10 @@
           </span>
         </div>
       </div>
+      <br>
       <div class="row d-flex justify-content-center">
         <div class="col-2 ">
-          <label class="col-form-label font-weight-bold p-1 text-primary titulo datos2">PASSWORD</label>
+          <label class="col-form-label font-weight-bold p-1 text-primary titulo">Password</label>
         </div>
         <div class="col-3">
           <input type="password" class="form-control border border-dark" formControlName="password"
@@ -67,30 +70,33 @@
           <span class="invalid-feedback">
             <span *ngIf="registerForm.get('password')?.errors?.['required']">Por favor introduce tu password</span>
           </span>
-        </div>
-        <div class="row d-flex justify-content-center">
-          <div class="col-2">
-            <label class="col-form-label font-weight-bold p-1 text-primary titulo datos2">REPITE EL PASSWORD</label>
-          </div>
-          <div class="col-3">
-            <input type="password" class="form-control border border-dark" formControlName="confirmPassword"
-              [ngClass]="{'is-invalid': (registerForm.get('confirmPassword')?.touched) && !registerForm.get('confirmPassword')?.valid}"
-              placeholder="Confirm Password (required)">
+      </div>
+      <br>
 
-            <span class="invalid-feedback">
-              <!-- Campos obligatorios -->
-              <span *ngIf="f['confirmPassword'].getError('required')!=null">Por favor introduce un password de
-                confirmación</span>
-              <!-- Campos obligatorios -->
-              <span *ngIf="f['confirmPassword'].getError('passwordMatch')!=null">Los passwords no coinciden</span>
-            </span>
-          </div>
+      <div class="row d-flex justify-content-center">
+        <div class="col-2">
+          <label class="col-form-label font-weight-bold p-1 text-primary titulo">Confirma tu Password</label>
         </div>
-        <div class="d-flex justify-content-center p-4">
-          <button type="submit" class="btn btn-light col-sm-2" [disabled]="!registerForm.valid"
-            [routerLink]="['/registerSuccessful']" (click)='register()'>REGISTRO</button>
+        <div class="col-3">
+          <input type="password" class="form-control border border-dark" formControlName="confirmPassword"
+            [ngClass]="{'is-invalid': (registerForm.get('confirmPassword')?.touched) && !registerForm.get('confirmPassword')?.valid}"
+            placeholder="Confirm Password (required)">
+
+          <span class="invalid-feedback">
+            <!-- Campos obligatorios -->
+            <span *ngIf="f['confirmPassword'].getError('required')!=null">Por favor introduce un password de
+              confirmación</span>
+            <!-- Campos obligatorios -->
+            <span *ngIf="f['confirmPassword'].getError('passwordMatch')!=null">Los passwords no coinciden</span>
+          </span>
         </div>
       </div>
+
+      <div class="d-flex justify-content-center p-4">
+        <button type="submit" class="btn btn-light col-sm-2" [disabled]="!registerForm.valid"
+          [routerLink]="['/registerSuccessful']" (click)='register()'>Registro</button>
+      </div>
+    </div>
     </div>
   </form>
 </div>
