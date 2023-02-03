@@ -1,11 +1,14 @@
 .seccion {
-    margin: 2%;
+    margin: 5%;
     display: grid;
     grid-template-columns: 50% 50%;
     justify-items: center;
+    align-items: center;
+    gap: 2%;
     .opciones {
         width: 50%;
         img {
+            height: 80%;
             width: 100%;
         }
         transition: 1s;
@@ -21,5 +24,11 @@
         padding: 10px;
         text-align: center;
         width: 100%;
+    }
+}
+
+@media (max-width: 859px) {
+    .seccion {
+        grid-template-columns: 100%;
     }
 }
