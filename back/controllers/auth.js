@@ -5,12 +5,51 @@ const jwt = require("jsonwebtoken");
 const { User } = require("../models/User");
 const RolesAsignados = require("../models/RolesAsignados");
 
+// const login = (req, res = response) => {
+//   const { email, password } = req.body;
+//   try {
+//     //Verificar si existe el usuario.
+//     const conx = new Conexion();
+//     console.log(email);
+//     u = conx
+//       .getUsuarioRegistrado(email, password)
+//       .then((usu) => {
+//         console.log("Usuario existente!" + password);
+
+//         //Verificar si el password es correcto.
+//         if (usu.password != password) {
+//           res.status(500).json({ msg: "Password incorrecto." });
+//         } else {
+//           //Generar el JWT.
+//           const token = generarJWT(
+//             usu.nif,
+//             usu.nick,
+//             usu.email,
+//             usu.password,
+//             usu.rol
+//           );
+//           console.log(token);
+//           res.status(200).json({ msg: "Login correcto." });
+//         }
+//         // res.status(200).json({'msg':'Login correcto.'});
+//       })
+//       .catch((err) => {
+//         console.log("Usuario no existente!");
+//         res
+//           .status(500)
+//           .json({ msg: "Este usuario no existe en nuestra base." });
+//       });
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json({ msg: "Error en el servidor." });
+//   }
+// };
 const login = (req, res = response) => {
   const { email, password } = req.body;
   try {
     //Verificar si existe el usuario.
     const conx = new Conexion();
-    console.log(email);
+    // console.log(email);
     u = conx
       .getUsuarioRegistrado(email, password)
       .then((usu) => {
@@ -20,13 +59,12 @@ const login = (req, res = response) => {
         if (usu.password != password) {
           res.status(500).json({ msg: "Password incorrecto." });
         } else {
-          //Generar el JWT.
+          // //Generar el JWT.
           const token = generarJWT(
             usu.nif,
             usu.nick,
             usu.email,
-            usu.avatar,
-            usu.validateAt,
+            usu.status,
             usu.rol
           );
           console.log(token);

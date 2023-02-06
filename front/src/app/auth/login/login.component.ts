@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import {AuthService}from '../service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,8 +10,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  logInForm!: FormGroup; // property form
-  constructor(private fb: FormBuilder, private router: Router) { }
+  logInForm!: FormGroup;
+  constructor(private authService:AuthService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.logInForm = this.fb.group({
@@ -23,38 +24,39 @@ export class LoginComponent implements OnInit {
     const loginEmail = (document.getElementById("inputEmail") as HTMLInputElement).value;
     const loginPass = (document.getElementById("inputPassword") as HTMLInputElement).value;
 
-    // Checking for already registered user
+    // Mirar si está registrado
     if (localStorage.getItem('registerUsersLocalStorage')) {
 
       const allStoredUsers = JSON.parse(localStorage.getItem('registerUsersLocalStorage')!);
-      // Finding same Email and Password data from local storage
+      // Encontrar si el email y la contraseña coinciden con los datos guardados en el local storage
       const matchedUser = allStoredUsers.filter((registerInfo: any) => {
         return loginEmail === registerInfo.email && loginPass === registerInfo.password;
       });
 
-      // Finding same Email and Password object from local storage for accessing login user Id
+      //Encontrar el usuario que ha iniciado sesión
       const loginUserData = allStoredUsers.filter((x: any) => {
         if (loginEmail === x.email && loginPass === x.password) {
           return x;
         }
       });
 
-      //Storing current user id in variable
+      //Guardar el id del usuario en una variable
       const loginUserID = loginUserData[0].id;
 
-      // Condition for Route
+      // TODO: FALTA HACER LA PÁGINA LOGIN SUCCESS
       if (matchedUser.length) {
-        this.router.navigate(['/loginSuccessful', loginUserID]);
+        this.authService.login(loginUserID);
+        // this.router.navigate(['/loginSuccessful', loginUserID]);
         return loginUserID;
       }
       else {
-        window.alert("wrong crendential");
+        window.alert("Datos erróneos");
       }
 
     }
     else {
-      // console.log('Wrong credentials');
-      window.alert("Database not exist");
+      // console.log('error');
+      window.alert("No hay Datos");
 
     }
   }

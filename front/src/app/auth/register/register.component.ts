@@ -18,7 +18,8 @@ export class RegisterComponent implements OnInit {
       nick: new FormControl('', Validators.required),
       email: ['', [Validators.required, Validators.pattern('[a-z0-9]+@[a-z]+\.[a-z]{2,3}')]],
       password: new FormControl('', Validators.required),
-      confirmPassword: new FormControl('', Validators.required)
+      confirmPassword: new FormControl('', Validators.required),
+      rol: new FormControl('', Validators.required),
     },
       {
         validators: this.passwordMatch('password', 'confirmPassword')
@@ -37,6 +38,10 @@ export class RegisterComponent implements OnInit {
       'email': this.registerForm.value.email,
       'password': this.registerForm.value.password,
       'confirmPassword': this.registerForm.value.confirmPassword,
+      'status': 0,
+      'verifiedAt': new Date(),
+      'avatar': 'https://www.w3schools.com/howto/img_avatar.png',
+      'rol': 2,
     };
 
     this.getItemFromLocalStorage = JSON.parse(localStorage.getItem('registerUsersLocalStorage')!);

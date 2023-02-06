@@ -1,14 +1,14 @@
-const { Sequelize, DataTypes, Model }= require('sequelize');
+const { Sequelize, DataTypes, Model } = require('sequelize');
 const db = require('../controllers/Conexion/connection');
 const RolesAsignados = require('./RolesAsignados');
 const Roles = require('./Roles');
 
 
-const User= db.define('users', {
+const User = db.define('users', {
     nif: {
         type: DataTypes.STRING,
         primaryKey: true,
-        allowNull:false,
+        allowNull: false,
         unique: true,
         validate: {
             notEmpty: true,
@@ -17,16 +17,16 @@ const User= db.define('users', {
     },
     nick: {
         type: DataTypes.STRING,
-        allowNull:false,
+        allowNull: false,
         unique: true,
         validate: {
             notEmpty: true,
         }
     },
-    
+
     email: {
         type: DataTypes.STRING,
-        allowNull:false,
+        allowNull: false,
         unique: true,
         validate: {
             notEmpty: true,
@@ -35,51 +35,56 @@ const User= db.define('users', {
     },
     password: {
         type: DataTypes.STRING,
-        allowNull:false,
+        allowNull: false,
         validate: {
             notEmpty: true,
             len: [4, 20]
         }
 
     },
-    validatedAt: {
-        type: DataTypes.DATETIME,
-        allowNull:true,
+    status: {
+        type: DataTypes.DATE,
+        allowNull: true,
         validate: {
             notEmpty: false
+        },
+    },
+    verificatedAt: {
+        type: DataTypes.DATE,
+        allowNull: true,
+    },
+
+    avatar: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        validate: {
+            notEmpty: true,
+        }
+    },
+
+    rol: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+            notEmpty: true,
+            isInt: true,
+            min: 1,
+            max: 3
+        }
+
     }
 },
- avatar: {
-    type: DataTypes.STRING,
-    allowNull:true,
-    validate: {
-        notEmpty: true,
-    }
-},
 
-rol: {
-    type: DataTypes.INTEGER,
-    allowNull:false,
-    validate: {
-        notEmpty: true,
-        isInt: true,
-        min: 1,
-        max: 3
-    }
-
-} 
-},
-  
-{ 
-    timestamps: false, 
-    freezeTableName: true
-},
-{
-    tableName: 'users'
-});
+    {
+        timestamps: false,
+        freezeTableName: true
+    },
+    {
+        tableName: 'users'
+    });
 
 
-User.hasOne(RolesAsignados, {as: 'RolesAsignados', foreignKey: 'userNif'});
-Roles.belongsTo(RolesAsignados, {as: 'RolesAsignados', foreignKey: 'rolId'});
+User.hasOne(RolesAsignados, { as: 'RolesAsignados', foreignKey: 'userNif' });
+// Roles.belongsTo(RolesAsignados, {as: 'RolesAsignados', foreignKey: 'rolId'});
 
 module.exports = User;

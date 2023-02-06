@@ -8,30 +8,33 @@ require("dotenv").config();
 const Oferta = require('../../models/ofertas');
 const EmpresasOfertas = require('../../models/empresas-ofertas');
 const Empresa = require('../../models/Empresa');
-
-
 const Alumno = require('../../models/Alumno');
 const CicloAlumno = require('../../models/CicloAlumno');
 const Ciclo = require('../../models/Ciclo');
-const {Op} = require('sequelize');
+const { Op } = require('sequelize');
 
 const concatenate = require('../../helpers/concatenate'); 
 
 class ConexionSequelize {
 
-    constructor() {
-        this.db = new Sequelize(process.env.DB_DATABASE, process.env.DB_USER, process.env.DB_PASSWORD, {
-            host: process.env.DB_HOST,
-            port: process.env.DB_PORT,
-            dialect:'mysql', /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
-            pool: {
-                max: 5,
-                min: 0,
-                acquire: 30000,
-                idle: 10000
-             },
-          });
-    }
+  constructor() {
+    this.db = new Sequelize(
+      process.env.DB_DATABASE,
+      process.env.DB_USER,
+      process.env.DB_PASSWORD,
+      {
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        dialect: 'mysql', /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
+        pool: {
+          max: 5,
+          min: 0,
+          acquire: 30000,
+          idle: 10000
+        },
+      }
+    );
+  }
 
   conectar = () => {
     this.db
@@ -134,7 +137,7 @@ class ConexionSequelize {
     this.desconectar();
     return resultado;
   };
-  
+
   getUsuarioRegistrado = async (email, password) => {
     let Npassword = bycript.hashSync(password, 10);
     let resultado = [];
@@ -153,19 +156,20 @@ class ConexionSequelize {
       throw error;
     }
     this.conectar();
-    // console.log(resultado.dataValues)funciona!!!!;
+    // console.log(resultado.dataValues);
     return resultado;
   };
+
   AsignarRol = async (body) => {
     let resultado = 0;
     this.conectar();
-    const rolNuevo = new RolAsignado(body); 
+    const rolNuevo = new RolAsignado(body);
     await rolNuevo.save();
     resultado = await rolNuevo.save();
     this.desconectar();
     return resultado;
   }
-  getListadoOfertas = async() => {
+  getListadoOfertas = async () => {
     let resultado = [];
     this.conectar();
     resultado = await Oferta.findAll();
@@ -173,151 +177,152 @@ class ConexionSequelize {
     return resultado;
   }
 
-  getOferta = async(id) => {
-      let resultado = [];
-      this.conectar();
-      resultado = await Oferta.findByPk(id);
+  getOferta = async (id) => {
+    let resultado = [];
+    this.conectar();
+    resultado = await Oferta.findByPk(id);
+    this.desconectar();
+    if (!resultado) {
+      throw error;
+    }
+    return resultado;
+  }
+
+  crearOferta = async (body) => {
+    let resultado = 0;
+    this.conectar();
+    const nuevaOferta = new Oferta(body);
+    await nuevaOferta.save();
+    const dataAsigacion = {
+      'id_oferta': nuevaOferta.id,
+      'nif_empresa': body.nif_empresa
+    };
+    const nuevaAsignacion = new EmpresasOfertas(dataAsigacion);
+    await nuevaAsignacion.save();
+    return resultado;
+  }
+
+  eliminarOferta = async (id) => {
+    this.conectar();
+    let resultado = await Oferta.findByPk(id);
+    if (!resultado) {
       this.desconectar();
-      if (!resultado) {
-          throw error;
-      }
-      return resultado;
+      throw error;
+    }
+    await resultado.destroy();
+    return resultado;
   }
 
-  crearOferta = async(body) => {
-      let resultado = 0;
-      this.conectar();
-      const nuevaOferta = new Oferta(body);
-      await nuevaOferta.save();
-      const dataAsigacion = {
-          'id_oferta' : nuevaOferta.id,
-          'nif_empresa': body.nif_empresa
-      };
-      const nuevaAsignacion = new EmpresasOfertas(dataAsigacion);
-      await nuevaAsignacion.save();
-      return resultado;
+  getEmpresaAsignada = async (id) => {
+    let resultado = [];
+    this.conectar();
+    resultado = await Oferta.findOne({ where: { id: id }, include: ["EmpresasOfertas"] });
+    this.desconectar();
+    return resultado;
   }
 
-  eliminarOferta = async(id) => {
-      this.conectar();
-      let resultado = await Oferta.findByPk(id);
-      if (!resultado) {
-          this.desconectar();
-          throw error;
-      }
-      await resultado.destroy();
-      return resultado;
+  getDatosEmpresaAsignada = async (nif) => {
+    let resultado = []
+    this.conectar();
+    resultado = await Empresa.findByPk(nif);
+    this.desconectar();
+    return resultado;
   }
 
-  getEmpresaAsignada = async(id) => {
-      let resultado = [];
-      this.conectar();
-      resultado = await Oferta.findOne({where: { id: id }, include: ["EmpresasOfertas"] });
-      this.desconectar();
-      return resultado;
-  }
-
-  getDatosEmpresaAsignada = async(nif) => {
-      let resultado = []
-      this.conectar();
-      resultado = await Empresa.findByPk(nif);
-      this.desconectar();
-      return resultado;
-  }
-
-  getOfertasEmpresa = async(nif) => {
-      let resultado = []
-      this.conectar();
-      resultado = await Empresa.findOne({where: {nif: nif}, include: ["EmpresasOfertas"] });
-      this.desconectar();
-      return resultado;
+  getOfertasEmpresa = async (nif) => {
+    let resultado = []
+    this.conectar();
+    resultado = await Empresa.findOne({ where: { nif: nif }, include: ["EmpresasOfertas"] });
+    this.desconectar();
+    return resultado;
   }
 
   //Métodos CRUD Empresas -------------------------------------------------------------
-  getEmpresaListado = async() => {
-      let resultado = [];
-      this.conectar();
-      resultado = await Empresa.findAll();
-      this.desconectar();
-      return resultado;
+  getEmpresaListado = async () => {
+    let resultado = [];
+    this.conectar();
+    resultado = await Empresa.findAll();
+    this.desconectar();
+    return resultado;
   }
 
-    getAlumno = async(nif) => {
-        let resultado = {};
-        let ciclos = {};
-        let idCiclos = [];
-        let u = await User.findByPk(nif);
-        let a = await Alumno.findByPk(nif);
-        let c = await CicloAlumno.findAll({ 
-            attributes: ['id_ciclos'],
-            where: { nif_alumno: nif } });
-        c.forEach(ciclo => idCiclos.push(ciclo.dataValues.id_ciclos));
-        let ciclo = await this.getCiclosAlumno(idCiclos); 
-        resultado = concatenate.jsonConcat(resultado, u.dataValues);
-        resultado = concatenate.jsonConcat(resultado, a.dataValues);
-        ciclo.forEach(cicl => ciclos[cicl.dataValues.sigla] = (cicl.dataValues));
-        resultado['ciclos'] = ciclos;
-        if (!resultado){
-            throw error;
+  getAlumno = async (nif) => {
+    let resultado = {};
+    let ciclos = {};
+    let idCiclos = [];
+    let u = await User.findByPk(nif);
+    let a = await Alumno.findByPk(nif);
+    let c = await CicloAlumno.findAll({
+      attributes: ['id_ciclos'],
+      where: { nif_alumno: nif }
+    });
+    c.forEach(ciclo => idCiclos.push(ciclo.dataValues.id_ciclos));
+    let ciclo = await this.getCiclosAlumno(idCiclos);
+    resultado = concatenate.jsonConcat(resultado, u.dataValues);
+    resultado = concatenate.jsonConcat(resultado, a.dataValues);
+    ciclo.forEach(cicl => ciclos[cicl.dataValues.sigla] = (cicl.dataValues));
+    resultado['ciclos'] = ciclos;
+    if (!resultado) {
+      throw error;
+    }
+    return resultado;
+  }
+
+
+  getCiclosAlumno = async (idCiclo) => {
+    let ciclo = {};
+    ciclo = await Ciclo.findAll({
+      attributes: ['sigla', 'nombre', 'fecha'],
+      where: {
+        id: {
+          [Op.in]: idCiclo
         }
-        return resultado;
+      }
+    });
+    return ciclo;
+  }
+  getEmpresa = async (id) => {
+    let resultado = [];
+    this.conectar();
+    resultado = await Empresa.findByPk(id);
+    this.desconectar();
+    if (!resultado) {
+      throw error;
     }
+    return resultado;
+  }
 
+  registrarEmpresa = async (body) => {
+    let resultado = 0;
+    this.conectar();
+    const empresaNueva = new Empresa(body); //Con esto añade los timeStamps.
+    await empresaNueva.save();
+    this.desconectar();
+    return resultado;
+  }
 
-    getCiclosAlumno = async(idCiclo) => {
-        let ciclo = {};
-        ciclo = await Ciclo.findAll({
-                attributes: ['sigla','nombre','fecha'],
-                where: {
-                  id: {
-                    [Op.in]: idCiclo
-                  }
-                }
-            });
-        return ciclo;
+  modificarEmpresa = async (id, body) => {
+    this.conectar();
+    let resultado = await Empresa.findByPk(id);
+    if (!resultado) {
+      this.desconectar();
+      throw error;
     }
-  getEmpresa = async(id) => {
-      let resultado = [];
-      this.conectar();
-      resultado = await Empresa.findByPk(id);
-      this.desconectar();
-      if (!resultado){
-          throw error;
-      }
-      return resultado;
+    await resultado.update(body);
+    this.desconectar();
+    return resultado;
   }
 
-  registrarEmpresa = async(body) => {
-      let resultado = 0;
-      this.conectar();
-      const empresaNueva = new Empresa(body); //Con esto añade los timeStamps.
-      await empresaNueva.save();
+  borrarEmpresa = async (id) => {
+    this.conectar();
+    let resultado = await Empresa.findByPk(id);
+    if (!resultado) {
       this.desconectar();
-      return resultado;
-  }
-
-  modificarEmpresa = async(id, body) => {
-      this.conectar();
-      let resultado = await Empresa.findByPk(id);
-      if (!resultado){
-          this.desconectar();
-          throw error;
-      }
-      await resultado.update(body);
-      this.desconectar();
-      return resultado;
-  }
-
-  borrarEmpresa = async(id) => {
-      this.conectar();
-      let resultado = await Empresa.findByPk(id);
-      if (!resultado){
-          this.desconectar();
-          throw error;
-      }
-      await resultado.destroy();
-      this.desconectar();
-      return resultado;
+      throw error;
+    }
+    await resultado.destroy();
+    this.desconectar();
+    return resultado;
   }
 }
 
