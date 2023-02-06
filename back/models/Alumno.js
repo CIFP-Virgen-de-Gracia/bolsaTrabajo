@@ -30,6 +30,6 @@ const Alumno = db.define('alumnos', {
     tableName: 'alumnos'
 });
 
-Alumno.hasMany(CicloAlumno, {as: 'CicloAlumno', foreignKey: 'nif_alumno'});
+// Alumno.hasMany(CicloAlumno, {as: 'CicloAlumno', foreignKey: 'nif_alumno'});
 
 module.exports = Alumno;
