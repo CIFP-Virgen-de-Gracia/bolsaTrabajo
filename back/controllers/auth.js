@@ -25,6 +25,7 @@ const login = (req, res = response) => {
             usu.nif,
             usu.nick,
             usu.email,
+            usu.avatar,
             usu.validateAt,
             usu.rol
           );
