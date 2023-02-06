@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlumnoService } from '../../services/alumno.service';
-import { Alumno } from '../../interfaces/alumno.interface';
+import { Alumno} from '../../interfaces/alumno.interface';
 import { switchMap } from 'rxjs';
 
 
@@ -12,7 +12,15 @@ import { switchMap } from 'rxjs';
 })
 export class PerfilAlumnoComponent implements OnInit {
 
-  alumno!: Alumno;
+  alumno: Alumno = {
+    nick: '',
+    nombre: '',
+    password: '',
+    apellido1: '',
+    apellido2: '',
+    email: '',
+    ciclos: []
+  }
 
   constructor(private alumnoService: AlumnoService,
               private activatedRoute: ActivatedRoute,
@@ -25,6 +33,7 @@ export class PerfilAlumnoComponent implements OnInit {
       .subscribe(
         (alumno) => {
           this.alumno = alumno;
+          this.alumno.ciclos = Object.values(alumno.ciclos);
         }
       );
     }

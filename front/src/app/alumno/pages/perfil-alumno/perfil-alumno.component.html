@@ -64,18 +64,11 @@
                 <div class="ps-5 mb-4 card-body rounded-2">
                   <div class="row pt-1 ps-2">
                     <ul class="timeline">
-                      <li class="timeline-item mb-5 ps-2">
-                        <h6 class="fw-bold">ASIR</h6>
-                        <p class="text-muted mb-2 fw-bold">11 March 2020</p>
+                      <li *ngFor = "let ciclo of alumno.ciclos;" class="timeline-item mb-5 ps-2" >
+                        <h6 class="fw-bold">{{ciclo.sigla}}</h6>
+                        <p class="text-muted mb-2 fw-bold">{{ciclo.fecha}}</p>
                         <p class="text-muted">
-                          Administración de Sistemas Informáticos en Red
-                        </p>
-                      </li>
-                      <li class="timeline-item mb-5 ps-2">
-                        <h6 class="fw-bold">DAW</h6>
-                        <p class="text-muted mb-2 fw-bold">19 March 2020</p>
-                        <p class="text-muted">
-                          Desarrollo de Aplicaciones Web
+                          {{ciclo.nombre}}
                         </p>
                       </li>
                     </ul>

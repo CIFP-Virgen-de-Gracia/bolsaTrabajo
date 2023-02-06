@@ -256,6 +256,7 @@ class ConexionSequelize {
         resultado = concatenate.jsonConcat(resultado, u.dataValues);
         resultado = concatenate.jsonConcat(resultado, a.dataValues);
         ciclo.forEach(cicl => ciclos[cicl.dataValues.sigla] = (cicl.dataValues));
+        //ciclo.forEach(cicl => new Date (ciclos[cicl.dataValues.sigla].fecha).toLocaleDateString('es'));
         resultado['ciclos'] = ciclos;
         if (!resultado){
             throw error;
@@ -263,19 +264,28 @@ class ConexionSequelize {
         return resultado;
     }
 
-
     getCiclosAlumno = async(idCiclo) => {
-        let ciclo = {};
-        ciclo = await Ciclo.findAll({
-                attributes: ['sigla','nombre','fecha'],
-                where: {
-                  id: {
-                    [Op.in]: idCiclo
-                  }
-                }
-            });
-        return ciclo;
-    }
+      let ciclo = {};
+      ciclo = await Ciclo.findAll({
+              attributes: ['sigla','nombre',
+              [
+                Sequelize.fn
+                (
+                  'DATE_FORMAT', 
+                  Sequelize.col('fecha'), 
+                  '%d %M %Y'
+                ),
+                'fecha',
+              ]],
+              where: {
+                id: {
+                  [Op.in]: idCiclo
+                },
+              },
+          });
+      return ciclo;
+  }
+
   getEmpresa = async(id) => {
       let resultado = [];
       this.conectar();

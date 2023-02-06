@@ -16,6 +16,14 @@ const Ciclo = db.define('ciclos', {
     },
     fecha: {
         type: DataTypes.DATE,
+        
+/*         get() {
+            return this.getDataValue('fecha').toLocaleString('es-ES');
+        } */
+        /* get() {
+            const rawValue = this.getDataValue('fecha');
+            return rawValue.toLocaleString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+          } */
     },
 },
 { 
