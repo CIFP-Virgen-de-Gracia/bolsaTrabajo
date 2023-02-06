@@ -42,17 +42,22 @@ const User= db.define('users', {
         }
 
     },
-    status: {
-        type: DataTypes.INTEGER,
-        allowNull:false,
+    validatedAt: {
+        type: DataTypes.DATETIME,
+        allowNull:true,
         validate: {
-            notEmpty: true,
-            isInt: true,
-            min: 0,
-            max: 1
+            notEmpty: false
     }
 },
-/* rol: {
+ avatar: {
+    type: DataTypes.STRING,
+    allowNull:true,
+    validate: {
+        notEmpty: true,
+    }
+},
+
+rol: {
     type: DataTypes.INTEGER,
     allowNull:false,
     validate: {
@@ -62,7 +67,7 @@ const User= db.define('users', {
         max: 3
     }
 
-} */
+} 
 },
   
 { 
@@ -75,5 +80,6 @@ const User= db.define('users', {
 
 
 User.hasOne(RolesAsignados, {as: 'RolesAsignados', foreignKey: 'userNif'});
+Roles.belongsTo(RolesAsignados, {as: 'RolesAsignados', foreignKey: 'rolId'});
 
 module.exports = User;

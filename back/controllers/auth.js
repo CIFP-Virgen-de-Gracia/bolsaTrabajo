@@ -25,7 +25,7 @@ const login = (req, res = response) => {
             usu.nif,
             usu.nick,
             usu.email,
-            usu.status,
+            usu.validateAt,
             usu.rol
           );
           console.log(token);

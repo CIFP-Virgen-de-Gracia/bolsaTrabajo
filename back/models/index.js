@@ -8,7 +8,10 @@ const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
-
+const user= require('./User');
+const roles= require('./Roles');
+const rolesAsignados= require('./RolesAsignados');
+const users={};
 let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
@@ -37,7 +40,12 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
+users.roles= roles;
+users.rolesAsignados= rolesAsignados;
+users.user= user;
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
+module.exports = users;
