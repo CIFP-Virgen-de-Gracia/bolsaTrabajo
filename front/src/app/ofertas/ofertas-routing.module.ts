@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { OfertasAlumnoComponent } from './pages/ofertas-alumno/ofertas-alumno.component';
-import { OfertasEmpresaComponent } from './pages/ofertas-empresa/ofertas-empresa.component';
-import { CreacionOfertaComponent } from './pages/creacion-oferta/creacion-oferta.component';
-import { ListadoOfertasEmpresa } from './pages/listado-ofertas-empresa/listado-ofertas-empresa.component';
+import { OfertasAlumnoComponent } from './pages/alumno/ofertas-alumno/ofertas-alumno.component';
+import { OfertasEmpresaComponent } from './pages/empresa/ofertas-empresa/ofertas-empresa.component';
+import { CreacionOfertaComponent } from './pages/empresa/creacion-oferta/creacion-oferta.component';
+import { ListadoOfertasEmpresa } from './pages/empresa/listado-ofertas-empresa/listado-ofertas-empresa.component';
+import { OfertaDetallesComponent } from './pages/alumno/oferta-detalles/oferta-detalles.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'testing/listado',
     component: ListadoOfertasEmpresa
+  },
+  {
+    path: ':id',
+    component: OfertaDetallesComponent
   },
   {
     path: '**',

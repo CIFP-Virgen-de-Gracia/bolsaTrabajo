@@ -14,4 +14,8 @@ export class RestBolsaService {
   public getOfertas() {
     return this.http.get<OfertasResponse>(this.urlOfertas);
   }
+
+  public getOferta(id: string) {
+    return this.http.get<OfertasResponse>(this.urlOfertas+'/'+id);
+  }
 }

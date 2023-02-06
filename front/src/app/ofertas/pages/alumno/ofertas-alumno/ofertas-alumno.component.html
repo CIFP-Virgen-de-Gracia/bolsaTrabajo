@@ -1,0 +1,9 @@
+<div class="pagina">
+    <h1>Ofertas publicadas</h1>
+    <div class="seccion-ofertas">
+        <div *ngFor="let oferta of ofertas; index as i" class="oferta" outerLinkActive="active" [routerLink]="[oferta.id]">
+            <h3>{{oferta.titulo}}</h3>
+            <p>{{oferta.descripcion}}</p>
+        </div>
+    </div>
+</div>
