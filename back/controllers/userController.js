@@ -1,5 +1,5 @@
 const { response, request } = require("express");
-const Conexion = require("./Conexion/ConexionSequelize");
+const Conexion = require("./Conexion/ConexionUsuario");
 
 const usuariosGet = (req, res = response) => {
   const conx = new Conexion();

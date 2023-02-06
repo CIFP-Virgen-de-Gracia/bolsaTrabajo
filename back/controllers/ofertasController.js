@@ -1,6 +1,6 @@
 const {response,request} = require('express');
 const Conexion = require('./Conexion/Conexion');
-const ConexionSequelize = require('./Conexion/ConexionSequelize');
+const ConexionSequelize = require('./Conexion/ConexionOferta');
 
 const verListadoOfertas = (req, res = response) => {
     const conex = new ConexionSequelize();
