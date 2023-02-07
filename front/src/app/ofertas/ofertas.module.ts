@@ -1,17 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OfertasAlumnoComponent } from './pages/ofertas-alumno/ofertas-alumno.component';
+import { OfertasAlumnoComponent } from './pages/alumno/ofertas-alumno/ofertas-alumno.component';
 import { OfertasRoutingModule } from './ofertas-routing.module';
-import { OfertasEmpresaComponent } from './pages/ofertas-empresa/ofertas-empresa.component';
-import { CreacionOfertaComponent } from './pages/creacion-oferta/creacion-oferta.component';
-import { ListadoOfertasEmpresa } from './pages/listado-ofertas-empresa/listado-ofertas-empresa.component';
+import { OfertasEmpresaComponent } from './pages/empresa/ofertas-empresa/ofertas-empresa.component';
+import { CreacionOfertaComponent } from './pages/empresa/creacion-oferta/creacion-oferta.component';
+import { ListadoOfertasEmpresa } from './pages/empresa/listado-ofertas-empresa/listado-ofertas-empresa.component';
+import { OfertaDetallesComponent } from './pages/alumno/oferta-detalles/oferta-detalles.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     OfertasAlumnoComponent,
     OfertasEmpresaComponent,
     CreacionOfertaComponent,
-    ListadoOfertasEmpresa
+    ListadoOfertasEmpresa,
+    OfertaDetallesComponent
   ],
   exports: [
     OfertasAlumnoComponent,
@@ -21,7 +24,8 @@ import { ListadoOfertasEmpresa } from './pages/listado-ofertas-empresa/listado-o
   ],
   imports: [
     CommonModule,
-    OfertasRoutingModule
+    OfertasRoutingModule,
+    FormsModule
   ]
 })
 

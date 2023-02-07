@@ -49,3 +49,16 @@ module.exports = {
     getEmpresaAsignada,
     getDatosEmpresaAsignada
 }
+
+// this.getEmpresaAsignada(req.params.id)
+//         .then( resul => {
+//             conex.getDatosEmpresaAsignada(resul[0].nif_empresa)
+//             .then( msg => {
+//                 console.log('Listado correcto!');
+//                 res.status(200).json(msg);
+//             })
+//             .catch( err => {
+//                 console.log('No hay registros');
+//                 res.status(203).json({'msg':'No se han encontrado registros'});
+//             })
+//         })   
