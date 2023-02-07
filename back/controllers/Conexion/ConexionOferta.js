@@ -53,6 +53,18 @@ class ConexionOferta extends ConexionSequelize {
       return resultado;
   }
 
+  modificarOferta = async(id, body) => {
+    this.conectar();
+    let resultado = await Oferta.findByPk(id);
+    if (!resultado) {
+      this.desconectar();
+      throw error;
+    }
+    await resultado.update(body);
+    this.desconectar();
+    return ;
+  }
+
   getEmpresaAsignada = async(id) => {
       let resultado = [];
       this.conectar();
