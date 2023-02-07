@@ -1,5 +1,5 @@
 const { response, request } = require("express");
-const Conexion = require("./Conexion/ConexionSequelize");
+const Conexion = require("./Conexion/ConexionUsuario");
 const { generarJWT } = require("../helpers/generate_jwt");
 const jwt = require("jsonwebtoken");
 const { User } = require("../models/User");

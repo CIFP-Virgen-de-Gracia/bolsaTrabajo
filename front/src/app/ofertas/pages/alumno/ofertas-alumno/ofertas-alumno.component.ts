@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { RestBolsaService } from '../../apiRest/services/rest-bolsa.service';
-import { OfertasResponse } from '../../interfaces/req-resp';
+import { RestBolsaService } from '../../../apiRest/services/rest-bolsa.service';
+import { OfertasResponse } from '../../../interfaces/req-resp';
 
 @Component({
-  selector: 'app-listado-ofertas-empresa',
-  templateUrl: '../ofertas-alumno/ofertas-alumno.component.html',
-  styleUrls: ['../ofertas-alumno/ofertas-alumno.component.scss']
+  selector: 'app-ofertas-alumno',
+  templateUrl: './ofertas-alumno.component.html',
+  styleUrls: ['./ofertas-alumno.component.scss']
 })
-export class ListadoOfertasEmpresa implements OnInit {
+export class OfertasAlumnoComponent implements OnInit {
 
   public ofertas: any = [];
   constructor(private restBolsaService: RestBolsaService) { }
