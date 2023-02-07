@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { OfertasResponse } from '../../interfaces/req-resp';
 
 @Injectable({
@@ -17,5 +18,9 @@ export class RestBolsaService {
 
   public getOferta(id: string) {
     return this.http.get<OfertasResponse>(this.urlOfertas+'/'+id);
+  }
+
+  public crearOferta(oferta: OfertasResponse) {
+    return this.http.post<any>(this.urlOfertas+'/crear', oferta);
   }
 }

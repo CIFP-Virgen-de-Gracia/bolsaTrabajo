@@ -1,5 +1,5 @@
 export interface OfertasResponse {
-    id:          number;
+    id?:          number;
     titulo:      string;
     descripcion: string;
     lugar:       string;

@@ -4,19 +4,23 @@
     <form class="row g-3">
       <div class="col-md-4">
         <label for="titulo" class="form-label fw-bold">Titulo</label>
-        <input type="text" class="form-control" id="titulo" required placeholder="Titulo">
+        <input type="text" class="form-control" id="titulo" [(ngModel)]="oferta.titulo" [ngModelOptions]="{standalone: true}"
+         required placeholder="Titulo">
       </div>
       <div class="col-md-4">
         <label for="direccion" class="form-label fw-bold">Dirección</label>
-        <input type="text" class="form-control" id="direccion" required placeholder="Calle, Numero, Localidad">
+        <input type="text" class="form-control" id="direccion" [(ngModel)]="oferta.lugar" [ngModelOptions]="{standalone: true}"
+         required placeholder="Calle, Numero, Localidad">
       </div>
       <div class="col-md-4">
         <label for="jornada" class="form-label fw-bold">Jornada</label>
-        <input type="text" class="form-control" id="jornada" required placeholder="Tipo de jornada">
+        <input type="text" class="form-control" id="jornada" [(ngModel)]="oferta.jornada" [ngModelOptions]="{standalone: true}"
+        required placeholder="Tipo de jornada">
       </div>
       <div class="col-md-12">
         <label for="descripcion" class="form-label fw-bold">Descripcion</label>
-        <textarea class="form-control" id="descripcion" rows="3" required></textarea>
+        <textarea class="form-control" id="descripcion" rows="3" [(ngModel)]="oferta.descripcion" [ngModelOptions]="{standalone: true}"
+         required></textarea>
       </div>
       <div class="col-md-4">
         <label for="presencial" class="form-label fw-bold">Presencial</label>
@@ -34,7 +38,7 @@
         </div>
       </div>
       <div class="col-md-12">
-        <button type="submit" class="btn btn-primary">Publicar</button>
+        <button type="submit" (click)="guardar()" class="btn btn-primary">Publicar</button>
       </div>
     </form>
   </div>

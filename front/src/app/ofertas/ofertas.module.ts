@@ -6,6 +6,7 @@ import { OfertasEmpresaComponent } from './pages/empresa/ofertas-empresa/ofertas
 import { CreacionOfertaComponent } from './pages/empresa/creacion-oferta/creacion-oferta.component';
 import { ListadoOfertasEmpresa } from './pages/empresa/listado-ofertas-empresa/listado-ofertas-empresa.component';
 import { OfertaDetallesComponent } from './pages/alumno/oferta-detalles/oferta-detalles.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { OfertaDetallesComponent } from './pages/alumno/oferta-detalles/oferta-d
   ],
   imports: [
     CommonModule,
-    OfertasRoutingModule
+    OfertasRoutingModule,
+    FormsModule
   ]
 })
 
