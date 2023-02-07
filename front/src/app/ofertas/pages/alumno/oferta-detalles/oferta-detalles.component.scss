@@ -1,20 +1,35 @@
 .pagina {
-    display: grid;
-    grid-template-columns: 100%;
-    gap: 40px;
-    justify-items: center;
-    margin: 2%;
+    background-image: url('../../../../../assets/image/fondo.png');
+    background-size: 100% 100%;
     h1 {
-        text-align: center;
+        -webkit-text-stroke: 1.3px var(--colorOscuroSombra);
+        color: var(--colorSecundario);
     }
-    .oferta {
-        width: 70%;
-        height: 520px;
+    .table {
+        margin-bottom: 2em;
+        td {
+            padding-top: 1.5%;
+            padding-bottom: 1.5%;
+        }
+        padding: 23rem;
+        border-radius: 1em;
+        border-collapse: collapse;
         background-color: white;
-        border-radius: 20px;
-        border: 1px solid rgba(0, 0, 0, 0.8);
-        padding: 10px;
-        text-align: center;
-        transition: 1s;
+        border-left: 2px solid var(--colorOscuro);
+        border-right: 2px solid var(--colorSecundario);
+        border-top: 2px solid var(--colorSecundario);
+        .ultimo {
+            border-bottom: 2px solid var(--colorOscuro);
+        }
+    }
+
+    table tr:last-child td:first-child {
+        border: 2px solid orange;
+        border-bottom-left-radius: 10px;
+    }
+        
+    table tr:last-child td:last-child {
+        border: 2px solid green;
+        border-bottom-right-radius: 10px;
     }
 }

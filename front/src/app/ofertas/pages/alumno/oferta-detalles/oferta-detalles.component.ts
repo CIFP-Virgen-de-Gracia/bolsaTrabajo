@@ -25,6 +25,7 @@ export class OfertaDetallesComponent implements OnInit {
         this.oferta = oferta;
       }
     )
+    
   }
 
 }
