@@ -61,16 +61,12 @@ class ConexionOferta extends ConexionSequelize {
       return resultado;
   }
 
-  getDatosEmpresaAsignada = async(id) => {
-      this.getEmpresaAsignada(id)
-      .then( async resul => {
-        const empresa = resul.EmpresasOfertas[0];
+  getDatosEmpresaAsignada = async(nif) => {
         let resultado = []
         this.conectar();
-        resultado = await Empresa.findByPk(empresa.nif_empresa);
+        resultado = await Empresa.findByPk(nif);
         this.desconectar();
         return resultado;
-      });
   }
 
   getOfertasEmpresa = async(nif) => {

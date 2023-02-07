@@ -1,81 +1,41 @@
-<div class="row g-5">
-    <div class="col-md-2"></div>
-    <div class="col-md-10 col-lg-8">
-      <h4 class="my-3">Publicacion oferta</h4>
-      <form class="needs-validation" novalidate>
-        <div class="row g-3">
-  
-          <div class="col-12">
-            <label for="titulo" class="form-label">Titulo</label>
-            <input
-              type="text"
-              class="form-control"
-              id="titulo"
-              placeholder=""
-              value=""
-              required
-            />
-            <div class="invalid-feedback">Se requiere un nombre válido.</div>
-          </div>
-  
-          <div class="col-12">
-            <label for="descripcion" class="form-label">Descripcion</label>
-            <input
-              type="text"
-              class="form-control"
-              id="descripcion"
-              placeholder=""
-              required
-            />
-            <div class="invalid-feedback">
-            </div>
-          </div>
-  
-          <div class="col-12">
-            <label for="ubicacion" class="form-label">Ubicacion</label>
-            <input
-              type="text"
-              class="form-control"
-              id="ubicacion"
-              placeholder="Calle, num. - Código Postal, Población (Provincia)"
-              value=""
-              required
-            />
-            <div class="invalid-feedback"></div>
-          </div>
-  
-          <div class="col-12">
-            <label for="jornada" class="form-label">Tipo de jornada</label>
-            <input
-              type="text"
-              class="form-control"
-              id="contactPerson"
-              placeholder=""
-              value=""
-              required
-            />
-            <div class="invalid-feedback">Se requiere un nombre válido.</div>
-          </div>
-
-          <div class="col-12">
-            <label for="presencial" class="form-label">Presencial</label>
-            <input
-              type="text"
-              class="form-control"
-              id="presencial"
-              placeholder=""
-              value=""
-              required
-            />
-          </div>
-
-          <div class="col-4 mb-4">
-            <button class="btn btn-primary btn-lg" type="submit">
-              Publicar oferta
-            </button>
-          </div>
-  
+<div class="pagina pb-5">
+  <h1 class="text-center mb-4 pt-2">Creación de oferta</h1>
+  <div class="container p-5 formulario">
+    <form class="row g-3">
+      <div class="col-md-4">
+        <label for="titulo" class="form-label fw-bold">Titulo</label>
+        <input type="text" class="form-control" id="titulo" required placeholder="Titulo">
+      </div>
+      <div class="col-md-4">
+        <label for="direccion" class="form-label fw-bold">Dirección</label>
+        <input type="text" class="form-control" id="direccion" required placeholder="Calle, Numero, Localidad">
+      </div>
+      <div class="col-md-4">
+        <label for="jornada" class="form-label fw-bold">Jornada</label>
+        <input type="text" class="form-control" id="jornada" required placeholder="Tipo de jornada">
+      </div>
+      <div class="col-md-12">
+        <label for="descripcion" class="form-label fw-bold">Descripcion</label>
+        <textarea class="form-control" id="descripcion" rows="3" required></textarea>
+      </div>
+      <div class="col-md-4">
+        <label for="presencial" class="form-label fw-bold">Presencial</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+          <label class="form-check-label" for="flexRadioDefault1">
+            Si
+          </label>
         </div>
-      </form>
-    </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+          <label class="form-check-label" for="flexRadioDefault2">
+            No
+          </label>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <button type="submit" class="btn btn-primary">Publicar</button>
+      </div>
+    </form>
   </div>
+</div>
