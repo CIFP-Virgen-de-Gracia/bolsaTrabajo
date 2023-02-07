@@ -27,6 +27,16 @@
 }
 
 @font-face {
+  font-family: text-medium;
+  src: url(./assets/tipografia/Roboto-Medium.ttf) format("woff2");
+}
+
+@font-face {
+  font-family: text-regular;
+  src: url(./assets/tipografia/Roboto-Regular.ttf) format("woff2");
+}
+
+@font-face {
   font-family: text-footer;
   src: url(./assets/tipografia/Roboto-Regular.ttf) format("woff2");
 }
@@ -69,4 +79,6 @@
     --tipoNomenclatura: nomenclatura;
     --BottomOffset: -6px;
     --LineHeight: 5px;
+    --tipoTextoMedium: text-medium;
+    --tipoTextoRegular: text-regular;
 }
