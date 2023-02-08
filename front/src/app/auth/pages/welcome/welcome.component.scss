@@ -1,0 +1,84 @@
+:root {
+  --colorPrimario:#6897E5;
+  --colorSecundario:#FCB541;
+  --colorOscuro:#140740;
+  --colorClaro:#F8F8F8;
+  --colorSecundarioClaro:#ffcb77;
+  --colorOscuroSombra: #241950;
+  --pesoMenu: font-menu;
+  --pesoSubmenu: font-submenu;
+  --pesoMenuHover: font-menu-hover;
+  --tamMenuEnlace: 11pt;
+  --tamTextoFooter: 10pt;
+  --tamFooterTitulo:16pt
+  --tipoNombre: font-name;
+  --tipoTitulo: titulo;
+  --textoFooter: text-footer;
+  --tipoNomenclatura: nomenclatura;
+  --BottomOffset: -6px;
+  --LineHeight: 5px;
+}
+
+#welcome{
+  background-image: url("../../../../assets/logosemp.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+}
+.datos{
+background-color: var(--colorPrimario);
+border-radius: 10px;
+padding: 20px;
+margin: 20px;
+border-color: var(--colorSecundarioClaro);
+border-style: solid;
+border-width: 23px;
+box-shadow: 0px 0px 10px var(--colorOscuroSombra);
+width: 50%;
+}
+
+.datos h1{
+  color: var(--colorClaro);
+  font-family: var(--tipoNombre);
+  font-size: 30pt;
+  text-align: center;
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .datos{
+    width: 100%;
+
+  }
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .datos{
+    width: 90%;
+  }
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .datos{
+    width: 70%;
+  }
+}
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .datos{
+    width: 60%;
+  }
+}
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) {
+  .datos{
+    width: 80%;
+    text-size-adjust: 100%;
+  }
+ }

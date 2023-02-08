@@ -1,0 +1,55 @@
+nav {
+  background-color: var(--colorSecundario);
+}
+nav div div .logo-menu {
+  width: 28%;
+}
+nav div div .logo-menu img {
+  width: 100%;
+}
+nav div div div h5 {
+  color: var(--colorOscuro);
+  font-size: 12pt;
+  font-family: var(--tipoNomenclatura);
+}
+nav div div div h6 {
+  color: var(--colorOscuro);
+  font-size: 10pt;
+  font-family: var(--tipoNomenclatura);
+  margin: 0;
+}
+nav button.navbar-toggler {
+  color: var(--colorOscuro);
+  border: none;
+}
+nav button.navbar-toggler:focus {
+  box-shadow: none;
+}
+nav .contenedor-menu {
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  nav .contenedor-menu {
+    width: auto;
+  }
+  nav .desaparecepequenio {
+    display: block;
+  }
+  nav div .aparecepequenio {
+    display: none;
+  }
+  nav div div .logo-menu {
+    width: 28%;
+  }
+  nav div div .logo-menu img {
+    width: 100%;
+  }
+  nav div div div h5 {
+    color: var(--colorOscuro);
+  }
+  nav div div div h6 {
+    color: var(--colorOscuro);
+    margin: 0;
+  }
+}/*# sourceMappingURL=menu.component.css.map */
