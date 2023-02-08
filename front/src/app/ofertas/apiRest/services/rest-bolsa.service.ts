@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { OfertasResponse } from '../../interfaces/req-resp';
+import { OfertasResponse, EmpresaResponse } from '../../interfaces/req-resp';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,7 @@ import { OfertasResponse } from '../../interfaces/req-resp';
 export class RestBolsaService {
 
   public urlOfertas: string = 'http://127.0.0.1:9090/ofertas';
+  public urlOfertasEmpresas: string = 'http://127.0.0.1:9090/empresaoferta';
 
   constructor(private http: HttpClient) { }
 
@@ -18,6 +19,10 @@ export class RestBolsaService {
 
   public getOferta(id: string) {
     return this.http.get<OfertasResponse>(this.urlOfertas+'/'+id);
+  }
+
+  public getDatosEmpresa(id: string) {
+    return this.http.get<EmpresaResponse>(this.urlOfertasEmpresas+'/datosempresa/'+id);
   }
 
   public crearOferta(oferta: OfertasResponse) {

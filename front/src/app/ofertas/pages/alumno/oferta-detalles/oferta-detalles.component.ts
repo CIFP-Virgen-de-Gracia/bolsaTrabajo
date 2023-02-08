@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { RestBolsaService } from '../../../apiRest/services/rest-bolsa.service';
-import { OfertasResponse } from '../../../interfaces/req-resp';
+import { OfertasResponse, EmpresaResponse } from '../../../interfaces/req-resp';
 
 @Component({
   selector: 'app-oferta-detalles',
@@ -12,6 +12,7 @@ import { OfertasResponse } from '../../../interfaces/req-resp';
 export class OfertaDetallesComponent implements OnInit {
 
   oferta!: OfertasResponse;
+  datos!: EmpresaResponse;
 
   constructor(private activatedRoute: ActivatedRoute,
               private restBolsaService: RestBolsaService) {}
@@ -23,6 +24,15 @@ export class OfertaDetallesComponent implements OnInit {
       (oferta) => {
         console.log(oferta);
         this.oferta = oferta;
+      }
+    )
+
+    this.activatedRoute.params
+    .pipe(switchMap(({id}) => this.restBolsaService.getDatosEmpresa(id)))
+    .subscribe(
+      (datos) => {
+        console.log(datos);
+        this.datos = datos;
       }
     )
     

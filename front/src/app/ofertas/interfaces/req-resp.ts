@@ -6,3 +6,12 @@ export interface OfertasResponse {
     presencial:  number;
     jornada:     string;
 }
+
+export interface EmpresaResponse {
+    id?:        number;
+    nombre:     string;
+    direccion:  string;
+    contacto:   string;
+    cargo:      string;
+    telefono:   string;
+}
