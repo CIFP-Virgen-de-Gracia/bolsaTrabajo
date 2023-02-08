@@ -58,6 +58,18 @@ class ConexionAlumno extends ConexionSequelize {
     return ciclo;
     }
 
+    modificarAlumno = async(nif, body) => {
+        this.conectar();
+        let resultado = await User.findByPk(nif);
+        if (!resultado){
+            this.desconectar();
+            throw error;
+        }
+        await resultado.update(body);
+        this.desconectar();
+        return resultado;
+    }
+
 }
 
 module.exports = ConexionAlumno;

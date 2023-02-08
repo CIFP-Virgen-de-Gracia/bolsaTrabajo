@@ -14,10 +14,10 @@ const alumnoGet =  (req, res = response) => {
         });
 }
 
-/* const alumnoPut =  (req, res = response) => {
+const alumnoPut =  (req, res = response) => {
     const conx = new ConexionSequelize();
     
-    conx.modificarAlumno(req.params.dni, req.body)    
+    conx.modificarAlumno(req.params.nif, req.body)    
         .then( msg => {
             console.log('Modificado correctamente!');
             res.status(202).json(msg);
@@ -26,9 +26,9 @@ const alumnoGet =  (req, res = response) => {
             console.log('Fallo en la modificación!');
             res.status(203).json(err);
         });
-} */
+}
 
 module.exports = {
     alumnoGet,
-    //alumnoPut
+    alumnoPut
 }
