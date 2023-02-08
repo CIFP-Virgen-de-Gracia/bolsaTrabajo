@@ -36,11 +36,11 @@ const crearOferta = (req = request, res = response) => {
     conex.crearOferta(req.body)
         .then( msg => {
             console.log('Insertado correctamente!');
-            res.status(201).json({'msg':'Insertado correctamente!'});
+            res.status(201).json({'success':true});
         })
         .catch( err => {
             console.log('Fallo en el registro!');
-            res.status(203).json(err);
+            res.status(203).json({'success':false});
         })
 }
 
@@ -50,11 +50,25 @@ const eliminarOferta = (req = request, res = response) => {
     conex.eliminarOferta(req.params.id)
         .then( msg => {
             console.log('Eliminado correctamente!');
-            res.status(201).json({'msg':'Eliminado correctamente!'});
+            res.status(201).json({'success':true});
         })
         .catch( err => {
             console.log('Fallo en el registro!');
-            res.status(203).json(err);
+            res.status(203).json({'success':false});
+        })
+}
+
+const actualizarOferta = (req = request, res = response) => {
+    const conex = new ConexionSequelize();
+
+    conex.modificarOferta(req.params.id, req.body)
+        .then( msg => {
+            console.log('Modificado correctamente!');
+            res.status(202).json({'success':true});
+        })
+        .catch( err => {
+            console.log('Fallo en la modificacion!');
+            res.status(203).json({'success':false});
         })
 }
 
@@ -62,5 +76,6 @@ module.exports = {
     verListadoOfertas,
     verOferta,
     crearOferta,
-    eliminarOferta
+    eliminarOferta,
+    actualizarOferta
 }
