@@ -11,16 +11,6 @@ const routes: Routes = [
     path: 'welcome',
     loadChildren:() => import('./auth/auth.module').then((m) => m.AuthModule),
   },
-  // {
-  //   path: 'dashboard',
-  //   loadChildren: () => import('./protected/protected.module').then( m => m.ProtectedModule ),
-  //   canDeactivate: [ ValidarTokenGuard ],
-  //   canLoad: [ ValidarTokenGuard ]
-  // },
-  // {
-  //   path: '**',
-  //   redirectTo: 'dashboard'
-  // },
   {
     path: 'alumno',
     loadChildren: () => import('./alumno/alumno.module').then( m => m.AlumnoModule )
