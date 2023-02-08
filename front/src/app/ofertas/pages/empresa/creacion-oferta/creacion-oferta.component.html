@@ -25,13 +25,13 @@
       <div class="col-md-4">
         <label for="presencial" class="form-label fw-bold">Presencial</label>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+          <input class="form-check-input" type="radio" name="presencial" [(ngModel)]="oferta.presencial" value="1" id="flexRadioDefault1">
           <label class="form-check-label" for="flexRadioDefault1">
             Si
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+          <input class="form-check-input" type="radio" name="presencial" [(ngModel)]="oferta.presencial" value="0" id="flexRadioDefault2">
           <label class="form-check-label" for="flexRadioDefault2">
             No
           </label>
