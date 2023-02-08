@@ -1,18 +1,18 @@
 .seccion {
-    margin: 5%;
+    background-image: url('../../../../../assets/image/fondo.png');
+    background-size: 100% 100%;
     display: grid;
     grid-template-columns: 50% 50%;
     justify-items: center;
     align-items: center;
-    gap: 2%;
     a {
         all: unset;
     }
     .opciones {
-        width: 50%;
+        width: 25rem;
         cursor: pointer;
         img {
-            height: 80%;
+            height: 21rem;
             width: 100%;
         }
         transition: 1s;
@@ -23,11 +23,23 @@
           }
     }
     .opcion {
-        background-color: white;
-        border: 1px solid rgba(0, 0, 0, 0.8);
+        border: 1.5px solid var(--colorSecundario);
         padding: 10px;
         text-align: center;
         width: 100%;
+    }
+    .opciones1 {
+        border: 1.5px solid var(--colorSecundario);
+    }
+    .opciones2 {
+        border: 1.5px solid var(--colorOscuro);
+    }
+    .opcion1 {
+        background-color: var(--colorOscuro);
+        color: white;
+    }
+    .opcion2 {
+        background-color: var(--colorSecundario);
     }
 }
 
