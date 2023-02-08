@@ -32,15 +32,13 @@ const getEmpresaAsignada = (req, res = response) => {
 
 const getDatosEmpresaAsignada = (req, res = response) => {
     const conex = new ConexionSequelize();
-
-    conex.getDatosEmpresaAsignada(req.params.id)
-        .then( msg => {
-            console.log('Listado correcto!');
-            res.status(200).json(msg);
-        })
-        .catch( err => {
-            console.log('No hay registros');
-            res.status(203).json({'msg':'No se han encontrado registros'});
+    
+    conex.getEmpresaAsignada(req.params.id)
+        .then( resul => {
+            conex.getDatosEmpresaAsignada(resul.EmpresasOfertas[0].nif_empresa)
+                .then( datos => {
+                    res.status(200).json(datos);
+                })
         })
 }
 
@@ -49,16 +47,3 @@ module.exports = {
     getEmpresaAsignada,
     getDatosEmpresaAsignada
 }
-
-// this.getEmpresaAsignada(req.params.id)
-//         .then( resul => {
-//             conex.getDatosEmpresaAsignada(resul[0].nif_empresa)
-//             .then( msg => {
-//                 console.log('Listado correcto!');
-//                 res.status(200).json(msg);
-//             })
-//             .catch( err => {
-//                 console.log('No hay registros');
-//                 res.status(203).json({'msg':'No se han encontrado registros'});
-//             })
-//         })   
