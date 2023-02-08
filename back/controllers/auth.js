@@ -73,7 +73,6 @@ const register = (req, res = response) => {
     res.status(500).json({ msg: "Error en el servidor." });
   }
 };
-//TODO:REGISTRO DE ADMINISTRADOR?
 const registerAdmin = (req, res = response) => {
   const { nif, nick, email, password, status, rol } = req.body;
   try {
@@ -141,12 +140,12 @@ const logout = (req, res = response) => {
   conx.desconectar();
   res.status(200).json({ msg: "Logout correcto." });
 };
-  
+
 module.exports = {
   login,
   register,
   logout,
   registerAdmin,
   registerEmpresa
- 
+
 };
