@@ -43,28 +43,18 @@ const User = db.define('users', {
 
     },
     status: {
-        type: DataTypes.DATE,
-        allowNull: true,
-        validate: {
-            notEmpty: false
-        },
-    },
-    verificatedAt: {
-        type: DataTypes.DATE,
-        allowNull: true,
-    },
-
-    avatar: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: true,
         validate: {
             notEmpty: true,
+            isInt: true,
+            min: 0,
+            max: 1
         }
     },
-
     rol: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         validate: {
             notEmpty: true,
             isInt: true,
@@ -85,6 +75,5 @@ const User = db.define('users', {
 
 
 User.hasOne(RolesAsignados, { as: 'RolesAsignados', foreignKey: 'userNif' });
-// Roles.belongsTo(RolesAsignados, {as: 'RolesAsignados', foreignKey: 'rolId'});
 
 module.exports = User;

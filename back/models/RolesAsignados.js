@@ -7,18 +7,12 @@ const RolesAsignados = db.define('rolesasignados', {
     userNif: {
         type: DataTypes.STRING,
         primaryKey: true,
-        // references: {
-        //     model: User,
-        //     key: 'nif'
-        //   }
+        
     },
     roleId: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        // references: {
-        //     model: Rol,
-        //     key: 'id'
-        //   }
+        defaultValue: 2,
     },
 },
 { 
@@ -28,6 +22,4 @@ const RolesAsignados = db.define('rolesasignados', {
     tableName: 'rolesasignados'
 });
 
-// RolesAsignados.belongsTo(User, {foreignKey: 'userNif'});
-// RolesAsignados.belongsTo(Rol, {foreignKey: 'roleId'});
 module.exports = RolesAsignados;

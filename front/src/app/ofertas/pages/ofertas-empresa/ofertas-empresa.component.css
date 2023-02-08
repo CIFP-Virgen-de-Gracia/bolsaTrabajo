@@ -1,0 +1,38 @@
+.seccion {
+  margin: 5%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  justify-items: center;
+  align-items: center;
+  gap: 2%;
+}
+.seccion a {
+  all: unset;
+}
+.seccion .opciones {
+  width: 50%;
+  cursor: pointer;
+  transition: 1s;
+}
+.seccion .opciones img {
+  height: 80%;
+  width: 100%;
+}
+.seccion .opciones:hover {
+  transform: scale(1.05);
+  z-index: 2;
+  box-shadow: 2px 2px 2px #000;
+}
+.seccion .opcion {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+@media (max-width: 859px) {
+  .seccion {
+    grid-template-columns: 100%;
+  }
+}/*# sourceMappingURL=ofertas-empresa.component.css.map */

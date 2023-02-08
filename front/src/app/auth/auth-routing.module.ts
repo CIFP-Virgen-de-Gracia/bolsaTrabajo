@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from '../auth/login/login.component';
-import { RegisterComponent } from '../auth/register/register.component';
-import { WelcomeComponent } from '../auth/welcome/welcome.component';
-
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { WelcomeComponent } from './pages/welcome/welcome.component';
+import { MainComponent } from './main/main.component';
 
 const routes: Routes = [
   {
@@ -11,14 +11,23 @@ const routes: Routes = [
     component: WelcomeComponent,
   },
   {
+    path: '',
+    component: MainComponent,
+    children: [
+  {
     path: 'login',
     component: LoginComponent,
   },
   {
     path: 'register',
     component: RegisterComponent,
+  },
+  {
+    path: '**',
+    redirectTo: 'welcome',
+  },
+    ]
   }
-
 ];
 
 @NgModule({

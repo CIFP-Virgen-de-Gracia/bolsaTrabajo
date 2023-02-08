@@ -3,7 +3,13 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('RolesAsignados', {
-      dni: {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      userDni: {
         type: Sequelize.STRING,
         primaryKey: true,
     //     references:{
@@ -11,13 +17,6 @@ module.exports = {
     //       key: 'dni'
     // },
     // onDelete: 'CASCADE',
-    },
-    nick: {
-      type: Sequelize.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      }
     },
       roleId: {
         type: Sequelize.INTEGER,
@@ -27,12 +26,6 @@ module.exports = {
       //     key: 'id'
       // },
       // onDelete: 'CASCADE',
-    },
-    //TODO: FALTAN DATOS DE USUARIO Y PASSWORD
-
-    validateAt: {
-      type: Sequelize.DATETIME,
-      allowNull: true,
     },
       createdAt: {
         allowNull: false,

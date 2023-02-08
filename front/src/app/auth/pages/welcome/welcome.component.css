@@ -19,66 +19,59 @@
   --LineHeight: 5px;
 }
 
-#welcome{
-  background-image: url("../../../assets/logosemp.jpg");
+#welcome {
+  background-image: url("../../../../assets/logosemp.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   height: 100vh;
   width: 100vw;
 }
-.datos{
-background-color: var(--colorPrimario);
-border-radius: 10px;
-padding: 20px;
-margin: 20px;
-border-color: var(--colorSecundarioClaro);
-border-style: solid;
-border-width: 23px;
-box-shadow: 0px 0px 10px var(--colorOscuroSombra);
-width: 50%;
+
+.datos {
+  background-color: var(--colorPrimario);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  border-color: var(--colorSecundarioClaro);
+  border-style: solid;
+  border-width: 23px;
+  box-shadow: 0px 0px 10px var(--colorOscuroSombra);
+  width: 50%;
 }
 
-.datos h1{
+.datos h1 {
   color: var(--colorClaro);
   font-family: var(--tipoNombre);
   font-size: 30pt;
   text-align: center;
 }
 
-// Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
-  .datos{
+  .datos {
     width: 100%;
-
   }
- }
-
-// Medium devices (tablets, 768px and up)
+}
 @media (min-width: 768px) {
-  .datos{
+  .datos {
     width: 90%;
   }
- }
-
-// Large devices (desktops, 992px and up)
+}
 @media (min-width: 992px) {
-  .datos{
+  .datos {
     width: 70%;
   }
 }
-
-// X-Large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
-  .datos{
+  .datos {
     width: 60%;
   }
 }
-
-// XX-Large devices (larger desktops, 1400px and up)
 @media (min-width: 1400px) {
-  .datos{
+  .datos {
     width: 80%;
-    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+       -moz-text-size-adjust: 100%;
+            text-size-adjust: 100%;
   }
- }
+}/*# sourceMappingURL=welcome.component.css.map */

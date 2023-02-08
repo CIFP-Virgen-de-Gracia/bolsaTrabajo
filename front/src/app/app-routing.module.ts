@@ -1,14 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ValidarTokenGuard } from './guards/validar-token.guard';
 
 const routes: Routes = [
   {
-    path: 'alumno',
-    loadChildren: () => import('./alumno/alumno.module').then( m => m.AlumnoModule )
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule )
   },
   {
     path: 'welcome',
     loadChildren:() => import('./auth/auth.module').then((m) => m.AuthModule),
+  },
+  // {
+  //   path: 'dashboard',
+  //   loadChildren: () => import('./protected/protected.module').then( m => m.ProtectedModule ),
+  //   canDeactivate: [ ValidarTokenGuard ],
+  //   canLoad: [ ValidarTokenGuard ]
+  // },
+  // {
+  //   path: '**',
+  //   redirectTo: 'dashboard'
+  // },
+  {
+    path: 'alumno',
+    loadChildren: () => import('./alumno/alumno.module').then( m => m.AlumnoModule )
   },
   {
     path: 'empresas',
@@ -29,7 +44,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-
 
 
 

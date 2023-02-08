@@ -1,6 +1,6 @@
 const {Router } = require('express');
 // const controlador = require('../controllers/bdController');
-const userController=require('../controllers/userController');
+/* const userController=require('../controllers/userController'); */
 const controladorAuth = require('../controllers/auth');
 const midsJWT = require("../middlewares/validarJWT");
 const midsRoles = require("../middlewares/validarRoles");
