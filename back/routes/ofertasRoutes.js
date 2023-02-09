@@ -15,7 +15,7 @@ router.post('/crear',
         check('lugar').not().isEmpty(),
         check('presencial').not().isEmpty(),
         check('jornada').not().isEmpty(),
-        check('id_empresa').custom(empresaExiste),
+        check('nif_empresa').custom(empresaExiste),
         validarCampos
     ]
     ,controlador.crearOferta);

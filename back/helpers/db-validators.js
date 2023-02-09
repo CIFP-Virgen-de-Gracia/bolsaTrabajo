@@ -2,9 +2,9 @@
 const Empresa = require('../models/Empresa');
 
 const empresaExiste = async(nif = '') => {
-    const existeEmpresa = await Empresa.findByPk({nif});
+    const existeEmpresa = await Empresa.findOne({nif});
     if (!existeEmpresa) {
-        throw new Error(`La empresa con id ${nif} no existe`);
+        throw new Error(`La empresa con nif ${nif} no existe`);
     }
 }
 
