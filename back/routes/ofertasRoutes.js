@@ -1,7 +1,10 @@
+//Realizado por Khattari
 const { Router } = require('express');
 const controlador = require('../controllers/ofertasController');
 const router = Router();
 const { check } = require('express-validator');
+const { validarCampos } = require('../middlewares/validar-campos');
+const { empresaExiste } = require('../helpers/db-validators');
 
 router.get('/', controlador.verListadoOfertas);
 router.get('/:id', controlador.verOferta);
@@ -12,6 +15,8 @@ router.post('/crear',
         check('lugar').not().isEmpty(),
         check('presencial').not().isEmpty(),
         check('jornada').not().isEmpty(),
+        check('id_empresa').custom(empresaExiste),
+        validarCampos
     ]
     ,controlador.crearOferta);
 router.delete('/:id', controlador.eliminarOferta);

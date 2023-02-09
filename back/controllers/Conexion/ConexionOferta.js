@@ -1,3 +1,4 @@
+//Realizado por Khattari
 const Oferta = require('../../models/ofertas');
 const EmpresasOfertas = require('../../models/empresas-ofertas');
 const Empresa = require('../../models/Empresa');
