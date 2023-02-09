@@ -13,7 +13,7 @@ export class CreacionOfertaComponent implements OnInit {
     titulo: '',
     descripcion: '',
     lugar: '',
-    presencial: 0,
+    presencial: '',
     jornada: '',
   }
 
@@ -24,8 +24,16 @@ export class CreacionOfertaComponent implements OnInit {
   }
 
   guardar(){
+    
+    //Validacion
+    if (this.oferta.titulo.trim().length === 0) return;
+    if (this.oferta.descripcion.trim().length === 0) return;
+    if (this.oferta.lugar.trim().length === 0) return;
+    if (this.oferta.presencial.trim().length === 0) return;
+    if (this.oferta.jornada.trim().length === 0) return;
+
     this.restBolsaService.crearOferta(this.oferta)
-      .subscribe( heroe => {
+      .subscribe( response => {
         console.log('creado');
       })
   }

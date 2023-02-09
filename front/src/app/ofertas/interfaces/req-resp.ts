@@ -3,7 +3,7 @@ export interface OfertasResponse {
     titulo:      string;
     descripcion: string;
     lugar:       string;
-    presencial:  number;
+    presencial:  string;
     jornada:     string;
 }
 

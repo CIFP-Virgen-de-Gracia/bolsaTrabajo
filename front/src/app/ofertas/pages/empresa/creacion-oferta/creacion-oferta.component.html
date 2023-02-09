@@ -1,7 +1,7 @@
 <div class="pagina pb-5">
   <h1 class="text-center mb-4 pt-2">Creación de oferta</h1>
   <div class="container p-5 formulario">
-    <form class="row g-3">
+    <form class="row g-3" ngNativeValidate>
       <div class="col-md-4">
         <label for="titulo" class="form-label fw-bold">Titulo</label>
         <input type="text" class="form-control" id="titulo" [(ngModel)]="oferta.titulo" [ngModelOptions]="{standalone: true}"
@@ -19,19 +19,18 @@
       </div>
       <div class="col-md-12">
         <label for="descripcion" class="form-label fw-bold">Descripcion</label>
-        <textarea class="form-control" id="descripcion" rows="3" [(ngModel)]="oferta.descripcion" [ngModelOptions]="{standalone: true}"
-         required></textarea>
+        <textarea class="form-control" ngModel minlength="250" id="descripcion" rows="3" [(ngModel)]="oferta.descripcion" [ngModelOptions]="{standalone: true}"></textarea>
       </div>
       <div class="col-md-4">
         <label for="presencial" class="form-label fw-bold">Presencial</label>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="presencial" [(ngModel)]="oferta.presencial" value="1" id="flexRadioDefault1">
+          <input class="form-check-input" type="radio" name="presencial" required [(ngModel)]="oferta.presencial" value="1" id="flexRadioDefault1">
           <label class="form-check-label" for="flexRadioDefault1">
             Si
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="presencial" [(ngModel)]="oferta.presencial" value="0" id="flexRadioDefault2">
+          <input class="form-check-input" type="radio" name="presencial" required [(ngModel)]="oferta.presencial" value="0" id="flexRadioDefault2">
           <label class="form-check-label" for="flexRadioDefault2">
             No
           </label>

@@ -39,6 +39,14 @@ const getDatosEmpresaAsignada = (req, res = response) => {
                 .then( datos => {
                     res.status(200).json(datos);
                 })
+                .catch( err => {
+                    console.log('No hay registros');
+                    res.status(203).json({'msg':'No se han encontrado registros'});
+                })
+        })
+        .catch( err => {
+            console.log('No hay registros');
+            res.status(203).json({'msg':'No se han encontrado registros'});
         })
 }
 
