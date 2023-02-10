@@ -21,11 +21,15 @@ export class RestBolsaService {
     return this.http.get<OfertasResponse>(this.urlOfertas+'/'+id);
   }
 
-  public getDatosEmpresa(id: string) {
-    return this.http.get<EmpresaResponse>(this.urlOfertasEmpresas+'/datosempresa/'+id);
+  public getDatosEmpresa(nif: string) {
+    return this.http.get<EmpresaResponse>(this.urlOfertasEmpresas+'/datosempresa/'+nif);
   }
 
   public crearOferta(oferta: OfertasResponse) {
     return this.http.post<any>(this.urlOfertas+'/crear', oferta);
+  }
+
+  public getOfertaEmpresa(nif: string) {
+    return this.http.get<OfertasResponse>(this.urlOfertasEmpresas+'/'+nif);
   }
 }

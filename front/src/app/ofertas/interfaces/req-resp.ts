@@ -8,7 +8,7 @@ export interface OfertasResponse {
 }
 
 export interface EmpresaResponse {
-    id?:        number;
+    nif?:        number;
     nombre:     string;
     direccion:  string;
     contacto:   string;

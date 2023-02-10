@@ -13,13 +13,14 @@ export class ListadoOfertasEmpresa implements OnInit {
   constructor(private restBolsaService: RestBolsaService) { }
 
   ngOnInit(): void {
-    this.getOfertas();
+    this.getOfertasEmpresa();
   }
 
-  public getOfertas() {
-    this.restBolsaService.getOfertas().subscribe((response: OfertasResponse) => {
-      this.ofertas = response
-      console.log(response);
+  public getOfertasEmpresa() {
+    this.restBolsaService.getOfertaEmpresa(localStorage.getItem('nif')!)
+      .subscribe((response: OfertasResponse) => {
+        this.ofertas = response
+        console.log(response);
     })
   }
 
