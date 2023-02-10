@@ -5,11 +5,23 @@ const ConexionSequelize = require('./Conexion/ConexionOferta');
 
 const getOfertasEmpresa = (req, res = response) => {
     const conex = new ConexionSequelize();
+    let ofertas = new Array();
 
     conex.getOfertasEmpresa(req.params.nif)
-        .then( msg => {
-            console.log('Listado correcto!');
-            res.status(200).json(msg);
+        .then( async resul => {
+            for (relacion of resul.EmpresasOfertas) {
+                await conex.getOferta(relacion.id_oferta)
+                    .then ( oferta => {
+                        ofertas.push(oferta);
+                        
+                    })
+                    .catch( err => {
+                        console.log('No hay registros');
+                        res.status(203).json({'oferta':'No se han encontrado registros'});
+                    })
+                    
+            }
+            res.status(200).json(ofertas);
         })
         .catch( err => {
             console.log('No hay registros');
