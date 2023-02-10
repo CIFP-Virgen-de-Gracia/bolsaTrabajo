@@ -1,0 +1,19 @@
+<div class="pagina">
+    <h1 class="text-center mb-4 pt-1">Ofertas publicadas</h1>
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col d-flex justify-content-center" *ngFor="let oferta of ofertas; index as i">
+                <div class="card oferta mb-5" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{oferta.titulo}}</h5>
+                        <p class="card-text" style="height: 100px; overflow: hidden;">{{oferta.descripcion}}</p>
+                        <div class="col d-flex justify-content-between">
+                            <button class="btn btn-primary"><a outerLinkActive="active" [routerLink]="[oferta.id]">Editar</a></button>
+                            <a href="#"><img src="../../../../../assets/image/trash-can_38501.png"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,8 +4,8 @@ import { OfertasResponse } from '../../../interfaces/req-resp';
 
 @Component({
   selector: 'app-listado-ofertas-empresa',
-  templateUrl: '../../alumno/ofertas-alumno/ofertas-alumno.component.html',
-  styleUrls: ['../../alumno/ofertas-alumno/ofertas-alumno.component.scss']
+  templateUrl: './listado-ofertas-empresa.component.html',
+  styleUrls: ['./listado-ofertas-empresa.component.scss']
 })
 export class ListadoOfertasEmpresa implements OnInit {
 
@@ -17,7 +17,7 @@ export class ListadoOfertasEmpresa implements OnInit {
   }
 
   public getOfertasEmpresa() {
-    this.restBolsaService.getOfertaEmpresa(localStorage.getItem('nif')!)
+    this.restBolsaService.getOfertaEmpresa('A11111111'!)
       .subscribe((response: OfertasResponse) => {
         this.ofertas = response
         console.log(response);

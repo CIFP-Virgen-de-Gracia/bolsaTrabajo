@@ -28,6 +28,10 @@ const routes: Routes = [
     component: OfertaDetallesComponent
   },
   {
+    path: 'testing/listado/:id',
+    component: OfertaDetallesComponent
+  },
+  {
     path: '**',
     redirectTo: ''
   }

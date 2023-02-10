@@ -29,6 +29,12 @@ a {
     border-radius: 20px;
     transition: 1s;
     border: 1px solid var(--colorOscuro);
+    img {
+        cursor: pointer;
+        float: right;
+        width: 3rem;
+        height: 3rem;
+    }
 }
 
 @media (min-width: 910px) {
