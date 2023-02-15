@@ -1,3 +1,4 @@
+//Realizado por Khattari
 export interface OfertasResponse {
     id?:          number;
     titulo:      string;

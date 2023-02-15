@@ -1,3 +1,4 @@
+//Realizado por Khattari
 import { Component, OnInit } from '@angular/core';
 import { RestBolsaService } from '../../../apiRest/services/rest-bolsa.service';
 import { OfertasResponse } from '../../../interfaces/req-resp';

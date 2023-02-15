@@ -1,3 +1,4 @@
+//Realizado por Khattari
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -19,6 +20,10 @@ export class RestBolsaService {
 
   public getOferta(id: string) {
     return this.http.get<OfertasResponse>(this.urlOfertas+'/'+id);
+  }
+
+  public eliminarOferta(id: string) {
+    return this.http.delete<any>(this.urlOfertas+'/'+id);
   }
 
   public getDatosEmpresa(nif: string) {

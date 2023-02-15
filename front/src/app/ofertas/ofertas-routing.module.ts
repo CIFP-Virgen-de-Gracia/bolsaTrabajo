@@ -1,3 +1,4 @@
+//Realizado por Khattari
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { OfertasAlumnoComponent } from './pages/alumno/ofertas-alumno/ofertas-alumno.component';

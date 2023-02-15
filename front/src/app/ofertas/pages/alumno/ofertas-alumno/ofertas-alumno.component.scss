@@ -31,6 +31,13 @@ a {
     border: 1px solid var(--colorOscuro);
 }
 
+.controles ::ng-deep .ngx-pagination {margin: 0;}
+.controles ::ng-deep .ngx-pagination li:not([class]) a:hover {background-color: var(--colorOscuro); color: white;}
+.controles ::ng-deep .ngx-pagination .current {background: var(--colorOscuro);}
+.controles ::ng-deep .ngx-pagination .disabled {color: rgb(93, 93, 93);}
+.controles ::ng-deep .ngx-pagination .pagination-next a:hover {background-color: var(--colorOscuro); color: white;}
+.controles ::ng-deep .ngx-pagination .pagination-previous a:hover {background-color: var(--colorOscuro); color: white;}
+
 @media (min-width: 910px) {
     .oferta {
         transition: 1s;
