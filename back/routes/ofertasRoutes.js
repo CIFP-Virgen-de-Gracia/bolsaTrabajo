@@ -20,6 +20,14 @@ router.post('/crear',
     ]
     ,controlador.crearOferta);
 router.delete('/:id', controlador.eliminarOferta);
-router.put('/modificar/:id', controlador.actualizarOferta);
+router.put('/modificar/:id', 
+    [
+        check('titulo').not().isEmpty(),
+        check('descripcion').not().isEmpty(),
+        check('lugar').not().isEmpty(),
+        check('presencial').not().isEmpty(),
+        check('jornada').not().isEmpty()
+    ],
+    controlador.actualizarOferta);
 
 module.exports = router;
