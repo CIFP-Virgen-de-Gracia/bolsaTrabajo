@@ -6,6 +6,7 @@ export interface OfertasResponse {
     lugar:       string;
     presencial:  string;
     jornada:     string;
+    nif_empresa: string;
 }
 
 export interface EmpresaResponse {

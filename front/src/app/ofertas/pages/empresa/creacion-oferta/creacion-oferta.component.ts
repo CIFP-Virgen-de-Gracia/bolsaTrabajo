@@ -16,6 +16,7 @@ export class CreacionOfertaComponent implements OnInit {
     lugar: '',
     presencial: '',
     jornada: '',
+    nif_empresa: localStorage.getItem('nif_empresa')!
   }
 
   constructor(private restBolsaService: RestBolsaService) {}
@@ -25,10 +26,9 @@ export class CreacionOfertaComponent implements OnInit {
   }
 
   guardar(){
-    
     //Validacion
     if (this.oferta.titulo.trim().length === 0) return;
-    if (this.oferta.descripcion.trim().length === 0) return;
+    if (this.oferta.descripcion.trim().length < 250) return;
     if (this.oferta.lugar.trim().length === 0) return;
     if (this.oferta.presencial.trim().length === 0) return;
     if (this.oferta.jornada.trim().length === 0) return;
@@ -36,7 +36,19 @@ export class CreacionOfertaComponent implements OnInit {
     this.restBolsaService.crearOferta(this.oferta)
       .subscribe( response => {
         console.log('creado');
+        this.abrir()
       })
   }
 
+  abrir() {
+    let modal = document.getElementById("myModal");
+    modal!.style.display = "block";
+    let body = document.getElementsByTagName("body")[0];
+    body!.style.overflow = "hidden";
+  }
+
+  cerrar() {
+    let modal = document.getElementById("myModal");
+    modal!.style.display = "none";
+  }
 }

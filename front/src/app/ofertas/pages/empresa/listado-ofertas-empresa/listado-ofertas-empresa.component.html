@@ -9,11 +9,20 @@
                         <p class="card-text" style="height: 100px; overflow: hidden;">{{oferta.descripcion}}</p>
                         <div class="col d-flex justify-content-between">
                             <button class="btn btn-primary"><a outerLinkActive="active" [routerLink]="[oferta.id]">Editar</a></button>
-                            <a href="#"><img src="../../../../../assets/image/trash-can_38501.png"></a>
+                            <a (click)="abrir(oferta.id)"><img src="../../../../../assets/image/trash-can_38501.png"></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+          <p>¿Quieres eliminar esta oferta?</p>
+          <div class="pt-5 opciones col d-flex justify-content-around pl-4">
+            <button (click)="eliminarOferta()" class="btn btn-primary mr-4">Si</button>
+            <button (click)="cerrar()" class="btn btn-primary">No</button>
+          </div>
+        </div>
+      </div>
 </div>
