@@ -9,6 +9,7 @@ import { ListadoOfertasEmpresa } from './pages/empresa/listado-ofertas-empresa/l
 import { OfertaDetallesComponent } from './pages/alumno/oferta-detalles/oferta-detalles.component';
 import { FormsModule } from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { EdicionOfertaComponent } from './pages/empresa/edicion-oferta/edicion-oferta.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     OfertasEmpresaComponent,
     CreacionOfertaComponent,
     ListadoOfertasEmpresa,
-    OfertaDetallesComponent
+    OfertaDetallesComponent,
+    EdicionOfertaComponent
   ],
   exports: [
     OfertasAlumnoComponent,

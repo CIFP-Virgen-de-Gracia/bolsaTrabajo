@@ -8,7 +8,7 @@
                         <h5 class="card-title">{{oferta.titulo}}</h5>
                         <p class="card-text" style="height: 100px; overflow: hidden;">{{oferta.descripcion}}</p>
                         <div class="col d-flex justify-content-between">
-                            <button class="btn btn-primary"><a outerLinkActive="active" [routerLink]="[oferta.id]">Editar</a></button>
+                            <button class="btn btn-primary"><a outerLinkActive="active" [routerLink]="'editar/'+[oferta.id]">Editar</a></button>
                             <a (click)="abrir(oferta.id)"><img src="../../../../../assets/image/trash-can_38501.png"></a>
                         </div>
                     </div>
@@ -24,5 +24,5 @@
             <button (click)="cerrar()" class="btn btn-primary">No</button>
           </div>
         </div>
-      </div>
+    </div>
 </div>

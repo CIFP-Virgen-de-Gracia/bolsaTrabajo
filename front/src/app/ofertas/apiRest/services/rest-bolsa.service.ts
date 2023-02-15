@@ -34,6 +34,10 @@ export class RestBolsaService {
     return this.http.post<any>(this.urlOfertas+'/crear', oferta);
   }
 
+  public editarOferta(oferta: OfertasResponse, id: string) {
+    return this.http.put<any>(this.urlOfertas+'/modificar/'+id, oferta);
+  }
+
   public getOfertaEmpresa(nif: string) {
     return this.http.get<OfertasResponse>(this.urlOfertasEmpresas+'/'+nif);
   }
