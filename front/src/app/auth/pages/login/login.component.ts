@@ -1,58 +1,26 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms'
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
-
-  miFormulario: FormGroup = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(4)]]
-  })
-
+export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
   constructor(
-
-    private fb: FormBuilder,
-    private router: Router,
-    private authService: AuthService
-
-  ) { }
-
+    public fb: FormBuilder,
+    public authService: AuthService,
+    public router: Router
+  ) {
+    this.loginForm = this.fb.group({
+      email: [''],
+      password: [''],
+    });
+  }
+  ngOnInit() {}
   login() {
-
-    const { email, password } = this.miFormulario.value;
-
-
-
-    this.authService.login(email, password)
-      .subscribe(ok => {
-        if (ok === true) {
-          this.router.navigateByUrl('/welcome');
-        } else {
-          window.alert("login correcto");
-          this.router.navigateByUrl('/welcome');
-        }
-      });
-
-
-    // .subscribe( resp => {
-    //   if(resp.email, resp.password) {
-    //     this.router.navigate(['./dashboard']);
-    //   } else {
-    //     Swal.fire({
-    //       icon: 'error',
-    //       title: 'Error',
-    //       text: 'Usuario o contraseña incorrectos',
-    //     })
-    //   }
-    // });
-
+    this.authService.login(this.loginForm.value);
   }
 }
-

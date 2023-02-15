@@ -1,50 +1,35 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms'
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent {
-
-  miFormulario: FormGroup = this.fb.group({
-    nif: [ '', [ Validators.required, Validators.minLength(3) ] ],
-    nick: [ '', [ Validators.required, Validators.minLength(2) ] ],
-    email: [ '', [ Validators.required, Validators.email ] ],
-    password: [ '', [ Validators.required, Validators.minLength(4) ] ],
-    // confirmPassword: [ '', [ Validators.required, Validators.minLength(4) ] ],
-  })
-
+export class RegisterComponent implements OnInit {
+  RegisterForm: FormGroup;
   constructor(
-
-    private fb: FormBuilder,
-    private router: Router,
-    private authService: AuthService
-
-  ) { }
-
-  registro () {
-    const { nif, nick, email , password } = this.miFormulario.value;
-
-    this.authService.registro( nif, nick, email, password).subscribe( ok => {
-
-      if ( ok === true ) {
-
-        this.router.navigateByUrl('/welcome');
-
-      } else {
-      this.router.navigateByUrl('/welcome');
-       window.alert("Usuario Registrado");
-
-        }
-
-      });
-
+    public fb: FormBuilder,
+    public authService: AuthService,
+    public router: Router
+  ) {
+    this.RegisterForm = this.fb.group({
+      nif: [''],
+      nick: [''],
+      email: [''],
+      password: [''],
+      // mobile: [''],
+    });
   }
-
-
+  ngOnInit() {}
+  register() {
+    this.authService.register(this.RegisterForm.value).subscribe((res) => {
+      if (res.result) {
+        window.alert('Registro correcto')
+        this.router.navigate(['/']);
+      }
+    });
+  }
 }
+
