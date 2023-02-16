@@ -25,18 +25,22 @@ export class AuthService {
   }
   // Login********************************
   login(user: User) {
-    return this.http
-      .post<any>(`${this.endpoint}/login`, user)
-      .subscribe((res: any) => {
-        console.log(user.Token)
-        localStorage.setItem('Token', res.Token);
-        this.router.navigate(['alumno/inicio']);
+
         // this.getUserProfile(res.nif).subscribe((res) => {
         //   this.currentUser = res;
         //   this.router.navigate(['/alumno/inicio' + res.msg]);
         // });
-      });
-  }
+
+    return this.http.post<any>(`${this.endpoint}/login`, user).pipe(
+      map((res) => {
+        localStorage.setItem('Token', res.token);
+        return res || {};
+      }),
+      catchError(this.handleError)
+    );
+
+      }
+
   getToken() {
     return localStorage.getItem('Token');
   }

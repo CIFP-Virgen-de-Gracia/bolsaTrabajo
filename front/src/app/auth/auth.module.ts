@@ -9,28 +9,30 @@ import { MainComponent } from 'src/app/auth/main/main.component';
 import { RouterModule } from '@angular/router';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AuthInterceptor } from 'src/app/auth/services/auth.config.interceptor';
+import { SharedModule } from "../shared/shared.module";
 @NgModule({
-  declarations: [
-    WelcomeComponent,
-    MainComponent,
-    LoginComponent,
-    RegisterComponent,
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AuthRoutingModule,
-    RouterModule,
-    HttpClientModule,
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    }
-  ],
-  bootstrap: []
+    declarations: [
+        WelcomeComponent,
+        MainComponent,
+        LoginComponent,
+        RegisterComponent,
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true
+        }
+    ],
+    bootstrap: [],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AuthRoutingModule,
+        RouterModule,
+        HttpClientModule,
+        SharedModule
+    ]
 })
 export class AuthModule { }

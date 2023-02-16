@@ -24,12 +24,31 @@ export class RegisterComponent implements OnInit {
   }
   ngOnInit() {}
   register() {
-    this.authService.register(this.RegisterForm.value).subscribe((res) => {
-      if (res.result) {
-        window.alert('Registro correcto')
-        this.router.navigate(['/']);
-      }
-    });
+    // this.authService.register(this.RegisterForm.value).subscribe((res) => {
+    //   if (res.result) {
+    //     window.alert('Registro correcto')
+    //     this.router.navigate(['/alumno/listado']);
+    //   }
+    //   else{
+    //     window.alert('Registro incorrecto')
+    //     this.router.navigate(['/welcome']);
+    //   }
+    // });
+    const { nif, nick, email , password } = this.RegisterForm.value;
+
+    this.authService.register(this.RegisterForm.value).subscribe( res => {
+
+      if (res) {
+        this.router.navigateByUrl('/alumno/inicio');
+
+      } else {
+      this.router.navigateByUrl('/welcome');
+       window.alert("Usuario Registrado");
+
+        }
+
+      });
+
   }
 }
 

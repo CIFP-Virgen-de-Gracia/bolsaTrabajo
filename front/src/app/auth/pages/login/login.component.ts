@@ -21,6 +21,15 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit() {}
   login() {
-    this.authService.login(this.loginForm.value);
+    this.authService.login(this.loginForm.value).subscribe((res) => {
+      if (res) {
+        window.alert('Login correcto')
+        this.router.navigate(['/alumno/inicio']);
+      }
+      else{
+        window.alert('Login incorrecto')
+        this.router.navigate(['/welcome']);
+      }
+    });
   }
 }
