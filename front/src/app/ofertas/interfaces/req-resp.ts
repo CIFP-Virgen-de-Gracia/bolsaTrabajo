@@ -4,7 +4,7 @@ export interface OfertasResponse {
     titulo:      string;
     descripcion: string;
     lugar:       string;
-    presencial:  string;
+    presencial:  number;
     jornada:     string;
     nif_empresa: string;
 }

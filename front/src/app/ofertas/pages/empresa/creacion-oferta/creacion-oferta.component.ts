@@ -14,9 +14,9 @@ export class CreacionOfertaComponent implements OnInit {
     titulo: '',
     descripcion: '',
     lugar: '',
-    presencial: '',
+    presencial: 0,
     jornada: '',
-    nif_empresa: localStorage.getItem('nif_empresa')!
+    nif_empresa: 'A11111111' //localStorage.getItem('nif_empresa')!
   }
 
   constructor(private restBolsaService: RestBolsaService) {}
@@ -30,7 +30,7 @@ export class CreacionOfertaComponent implements OnInit {
     if (this.oferta.titulo.trim().length === 0) return;
     if (this.oferta.descripcion.trim().length < 250) return;
     if (this.oferta.lugar.trim().length === 0) return;
-    if (this.oferta.presencial.trim().length === 0) return;
+    if (this.oferta.presencial === null) return;
     if (this.oferta.jornada.trim().length === 0) return;
 
     this.restBolsaService.crearOferta(this.oferta)

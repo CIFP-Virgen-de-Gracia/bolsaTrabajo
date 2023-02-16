@@ -1,5 +1,5 @@
 <div class="pagina pb-5">
-    <h1 class="text-center mb-4 pt-2">Creación de oferta</h1>
+    <h1 class="text-center mb-4 pt-2">Edición de oferta</h1>
     <div class="container p-5 formulario">
       <form class="row g-3" ngNativeValidate>
         <div class="col-md-4">
@@ -24,20 +24,20 @@
         <div class="col-md-4">
           <label for="presencial" class="form-label fw-bold">Presencial</label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="presencial" required [(ngModel)]="oferta.presencial" value="1" id="flexRadioDefault1">
-            <label class="form-check-label" for="flexRadioDefault1">
+            <input id="opcionSi" class="form-check-input" type="radio" name="presencial" required [(ngModel)]="oferta.presencial" value="1">
+            <label class="form-check-label" for="opcionSi">
               Si
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="presencial" required [(ngModel)]="oferta.presencial" value="0" id="flexRadioDefault2">
-            <label class="form-check-label" for="flexRadioDefault2">
+            <input id="opcionNo" checked class="form-check-input" type="radio" name="presencial" required [(ngModel)]="oferta.presencial" value="0">
+            <label class="form-check-label" for="opcionNo">
               No
             </label>
           </div>
         </div>
         <div class="col-md-12 d-flex justify-content-around">
-          <button type="submit" outerLinkActive="active" routerLink="../.." (click)="guardar()" class="btn btn-primary">Publicar</button>
+          <button type="submit" outerLinkActive="active" routerLink="../.." (click)="guardar()" class="btn btn-primary">Guardar</button>
           <button outerLinkActive="active" routerLink="../.." class="btn btn-primary">Cancelar</button>
         </div>
       </form>

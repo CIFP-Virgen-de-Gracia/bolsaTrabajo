@@ -17,7 +17,7 @@ export class EdicionOfertaComponent implements OnInit {
     titulo: '',
     descripcion: '',
     lugar: '',
-    presencial: '',
+    presencial: 0,
     jornada: '',
     nif_empresa: localStorage.getItem('nif_empresa')!
   }
@@ -31,8 +31,18 @@ export class EdicionOfertaComponent implements OnInit {
     .pipe(switchMap(({id}) => this.restBolsaService.getOferta(id)))
     .subscribe(
       (oferta) => {
-        console.log(oferta);
         this.oferta = oferta;
+        console.log(this.oferta.presencial)
+        let radioNo = document.getElementById('opcionNo') as HTMLInputElement
+        let radioSi = document.getElementById('opcionSi') as HTMLInputElement
+        switch (this.oferta.presencial) {
+          case 0:
+            radioNo.checked = true;
+            break;
+          case 1:
+            radioSi.checked = true;
+            break;
+        }
       }
     )
   }
@@ -42,7 +52,7 @@ export class EdicionOfertaComponent implements OnInit {
     if (this.oferta.titulo.trim().length === 0) return;
     if (this.oferta.descripcion.trim().length < 250) return;
     if (this.oferta.lugar.trim().length === 0) return;
-    if (this.oferta.presencial.trim().length === 0) return;
+    if (this.oferta.presencial === null) return;
     if (this.oferta.jornada.trim().length === 0) return;
 
     this.activatedRoute.params
