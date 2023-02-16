@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 @Component({
@@ -8,18 +8,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
+  public loginForm!: FormGroup;
   constructor(
     public fb: FormBuilder,
     public authService: AuthService,
     public router: Router
   ) {
-    this.loginForm = this.fb.group({
-      email: [''],
-      password: [''],
-    });
+    // this.loginForm = this.fb.group({
+    //   email: [''],
+    //   password: [''],
+    // });
   }
-  ngOnInit() {}
+  ngOnInit() {
+  this.loginForm = this.fb.group({
+    email:new FormControl('',[Validators.required,Validators.pattern('[a-z0-9]+@[a-z]+\.[a-z]{2,3}')]),
+    password:new FormControl('',[Validators.required,Validators.minLength(4)])
+  })
+
+  }
   login() {
     this.authService.login(this.loginForm.value).subscribe((res) => {
       if (res) {

@@ -1,13 +1,13 @@
 /*------------------------------------------------------------------
 [ Button ]*/
 .container-login100-form-btn {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+.d-flex{
+  float:left;
+  width:10px;
 }
 
 .wrap-login100-form-btn {

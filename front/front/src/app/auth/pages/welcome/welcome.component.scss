@@ -15,7 +15,7 @@ margin: 20px;
 border-color: var(--colorSecundarioClaro);
 border-style: solid;
 border-width: 23px;
-box-shadow: 0px 0px 10px var(--colorOscuroSombra);
+box-shadow: 0px 0px 20px var(--colorOscuroSombra);
 width: 50%;
 }
 
@@ -25,7 +25,9 @@ width: 50%;
   font-size: 30pt;
   text-align: center;
 }
-
+#botonW{
+box-shadow:0px 0px 30px var(--colorOscuroSombra);
+}
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
   .datos{

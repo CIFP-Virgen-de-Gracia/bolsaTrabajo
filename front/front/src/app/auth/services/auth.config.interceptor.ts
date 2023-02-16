@@ -5,10 +5,10 @@ import { AuthService } from "./auth.service";
 export class AuthInterceptor implements HttpInterceptor {
     constructor(private authService: AuthService) { }
     intercept(req: HttpRequest<any>, next: HttpHandler) {
-        const authToken = this.authService.getToken();
+        const Token = this.authService.getToken();
         req = req.clone({
             setHeaders: {
-                Authorization: "Bearer " + authToken
+                Authorization: "Bearer " + Token
             }
         });
         return next.handle(req);

@@ -1,0 +1,62 @@
+<div class="inicioS">
+  <div class="d-flex p-1">
+    <button type="button" class="btn btn-light col-sm-1" outerLinkActive="active" routerLink="welcome">VOLVER</button>
+  </div>
+  <div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+  <form class="login100-form" autocomplete="off" [formGroup]="RegisterForm" (ngSubmit)="register()">
+    <h3>Registro</h3>
+    <div>
+      <input type="text" id="inputNif" formControlName="nif" class="form-control border border-dark"
+        [ngClass]="{'is-invalid': (RegisterForm.get('nif')?.touched) && !RegisterForm.get('nif')?.valid}"
+        placeholder="Nif (required)">
+
+      <!-- Mensajes de error -->
+      <span class="invalid-feedback">
+        <span *ngIf="RegisterForm.get('nif')?.errors?.['required']">Por favor introduce tu Nif</span>
+        <span *ngIf="RegisterForm.get('nif')?.errors?.['pattern']">Por favor introduce un Nif válido</span>
+      </span>
+    </div>
+    <div>
+      <input type="text" id="inputNick" formControlName="nick"
+        [ngClass]="{'is-invalid': (RegisterForm.get('nick')?.touched) && !RegisterForm.get('nick')?.valid}"
+        class="form-control border border-dark" placeholder="Nick (required)">
+
+      <!-- Mensajes de error y control -->
+      <span class="invalid-feedback">
+        <span *ngIf="RegisterForm.get('nick')?.errors?.['required']">Por favor introduce tu Nick</span>
+      </span>
+    </div>
+
+    <div>
+      <input type="text" id="inputEmail" formControlName="email" class="form-control border border-dark"
+        [ngClass]="{'is-invalid': (RegisterForm.get('email')?.touched) && !RegisterForm.get('email')?.valid}"
+        placeholder="Email (required)">
+
+      <!-- Mensajes de error -->
+      <span class="invalid-feedback">
+        <span *ngIf="RegisterForm.get('email')?.errors?.['required']">Por favor introduce tu email</span>
+        <span *ngIf="RegisterForm.get('email')?.errors?.['pattern']">Por favor introduce una cuenta válida</span>
+      </span>
+    </div>
+    <div>
+      <input type="password" id="inputPassword" formControlName="password"
+        [ngClass]="{'is-invalid': (RegisterForm.get('password')?.touched) && !RegisterForm.get('password')?.valid}"
+        class="form-control border border-dark" placeholder="Password (required)">
+
+      <!-- Mensajes de error y control -->
+      <span class="invalid-feedback">
+        <span *ngIf="RegisterForm.get('password')?.errors?.['required']">Por favor introduce tu password</span>
+      </span>
+    </div>
+
+    <button type="submit">Registro</button>
+    <div class="social">
+      <div class="go"><i class="fab fa-google"></i>  Google</div>
+    </div>
+  </form>
+
+
+</div>

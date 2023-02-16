@@ -30,7 +30,7 @@ const login = (req, res = response) => {
             usu.rol
           );
           console.log(token);
-          res.status(200).json({ msg: "Login correcto." });
+          res.status(200).json({token});
         }
         // res.status(200).json({'msg':'Login correcto.'});
       })

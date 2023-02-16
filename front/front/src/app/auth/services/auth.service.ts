@@ -16,6 +16,8 @@ export class AuthService {
   endpoint: string = environment.baseUrl + '/api/auth';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
+  afAuth: any;
+  token!: string;
   constructor(private http: HttpClient, public router: Router) {}
 
   // Registro*******************************
@@ -26,14 +28,9 @@ export class AuthService {
   // Login********************************
   login(user: User) {
 
-        // this.getUserProfile(res.nif).subscribe((res) => {
-        //   this.currentUser = res;
-        //   this.router.navigate(['/alumno/inicio' + res.msg]);
-        // });
-
     return this.http.post<any>(`${this.endpoint}/login`, user).pipe(
       map((res) => {
-        localStorage.setItem('Token', res.token);
+        this.setToken(res.token);
         return res || {};
       }),
       catchError(this.handleError)
@@ -44,6 +41,11 @@ export class AuthService {
   getToken() {
     return localStorage.getItem('Token');
   }
+
+  setToken(token: string) {
+    localStorage.setItem('Token', token);
+  }
+
   get isLoggedIn(): boolean {
     let authToken = localStorage.getItem('Token');
     return authToken == null ? true : false;
@@ -54,23 +56,17 @@ export class AuthService {
       this.router.navigate(['/welcome']);
     }
   }
-  validateToken() {
 
-
+verficaToken(): Observable<any> {
+    let api = `${this.endpoint}/verificaToken`;
+    return this.http.get(api, { headers: this.headers }).pipe(
+      map((res) => {
+        return res || {};
+      }),
+      catchError(this.handleError)
+    );
   }
 
-
-  // User profile
-  // getUserProfile(nif: any): Observable<any> {
-  //   let api = `${this.endpoint}/${nif}`;
-  //   return this.http.get(api, { headers: this.headers }).pipe(
-  //     map((res) => {
-  //       return res || {};
-  //     }),
-  //     catchError(this.handleError)
-  //   );
-  // }
-  // Errores
   handleError(error: HttpErrorResponse) {
     let msg = '';
     if (error.error instanceof ErrorEvent) {

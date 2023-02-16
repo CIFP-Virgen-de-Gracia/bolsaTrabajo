@@ -9,7 +9,7 @@ import { MainComponent } from 'src/app/auth/main/main.component';
 import { RouterModule } from '@angular/router';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AuthInterceptor } from 'src/app/auth/services/auth.config.interceptor';
-import { SharedModule } from "../shared/shared.module";
+
 @NgModule({
     declarations: [
         WelcomeComponent,
@@ -31,8 +31,7 @@ import { SharedModule } from "../shared/shared.module";
         ReactiveFormsModule,
         AuthRoutingModule,
         RouterModule,
-        HttpClientModule,
-        SharedModule
+        HttpClientModule
     ]
 })
 export class AuthModule { }
