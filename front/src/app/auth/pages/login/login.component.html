@@ -9,6 +9,9 @@
   <form class="login100-form" autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login()">
     <h3>Login</h3>
     <div>
+      <div class="avatar">
+        <img src="assets/images/verde.png" alt="logo" class="avatar">
+      </div>
       <input type="text" id="inputEmail" formControlName="email" class="form-control border border-dark"
         [ngClass]="{'is-invalid': (loginForm.get('email')?.touched) && !loginForm.get('email')?.valid}"
         placeholder="Email (required)">
@@ -38,4 +41,7 @@
         contraseña?
       </a>
     </div> -->
+    <div class="social">
+      <div class="go"><i class="fab fa-google"></i>  Google</div>
+    </div>
   </form>

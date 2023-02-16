@@ -41,7 +41,7 @@
   }
 
   form {
-    height: 520px;
+    height: 560px;
     width: 400px;
     background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
@@ -66,8 +66,12 @@
   form h3 {
     font-size: 32px;
     font-weight: 500;
-    line-height: 42px;
+    line-height: 12px;
     text-align: center;
+  }
+
+  .avatar{
+    max-width: fit-content;
   }
 
   label {
@@ -121,10 +125,6 @@
 
   .social div:hover {
     background-color: rgba(5, 4, 34, 0.47);
-  }
-
-  .social .fb {
-    margin-left: 25px;
   }
 
   .social .go {
