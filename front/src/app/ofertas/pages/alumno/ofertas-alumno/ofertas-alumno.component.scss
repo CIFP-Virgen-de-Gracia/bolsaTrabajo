@@ -29,14 +29,34 @@ a {
     border-radius: 20px;
     transition: 1s;
     border: 1px solid var(--colorOscuro);
+    .card-text {
+        height: 100px; 
+        overflow: hidden;
+    }
+}
+
+.breadcrumb {
+    position: relative;
+    left: 1rem;
+    width: 90%;
+}
+.breadcrumb-item {
+    &:hover {
+        cursor: pointer;
+    }
+    color: var(--colorSecundario);
+    -webkit-text-stroke: 0.2px var(--colorOscuroSombra);
+}
+.active {
+    color: gray;
 }
 
 .controles ::ng-deep .ngx-pagination {margin: 0;}
 .controles ::ng-deep .ngx-pagination li:not([class]) a:hover {background-color: var(--colorOscuro); color: white;}
 .controles ::ng-deep .ngx-pagination .current {background: var(--colorOscuro);}
 .controles ::ng-deep .ngx-pagination .disabled {color: rgb(93, 93, 93);}
-.controles ::ng-deep .ngx-pagination .pagination-next a:hover {background-color: var(--colorOscuro); color: white;}
-.controles ::ng-deep .ngx-pagination .pagination-previous a:hover {background-color: var(--colorOscuro); color: white;}
+.controles ::ng-deep .ngx-pagination .pagination-next a:hover {background-color: rgba(255, 0, 0, 0);}
+.controles ::ng-deep .ngx-pagination .pagination-previous a:hover {background-color: rgba(255, 0, 0, 0);}
 
 @media (min-width: 910px) {
     .oferta {

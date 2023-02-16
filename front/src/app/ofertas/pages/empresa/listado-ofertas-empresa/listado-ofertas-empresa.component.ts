@@ -12,6 +12,7 @@ export class ListadoOfertasEmpresa implements OnInit {
 
   public ofertas: any = [];
   public id_oferta: string = '';
+  p: number = 1;
   constructor(private restBolsaService: RestBolsaService) { }
 
   ngOnInit(): void {

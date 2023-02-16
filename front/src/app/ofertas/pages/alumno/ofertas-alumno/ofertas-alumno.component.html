@@ -1,4 +1,8 @@
 <div class="pagina pb-3">
+    <ol class="breadcrumb m-0 pt-2 pl-2">
+        <li class="breadcrumb-item"><a>Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Ofertas</li>
+    </ol>
     <h1 class="text-center mb-4 pt-1">Ofertas publicadas</h1>
     <div class="container">
         <div class="row align-items-center justify-content-center">
@@ -6,17 +10,17 @@
                 <div class="card oferta mb-5" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">{{oferta.titulo}}</h5>
-                        <p class="card-text" style="height: 100px; overflow: hidden;">{{oferta.descripcion}}</p>
+                        <p class="card-text">{{oferta.descripcion}}</p>
                         <button class="btn btn-primary"><a outerLinkActive="active" [routerLink]="[oferta.id]">Ver Oferta</a></button>
                     </div>
                 </div>
             </div>
         </div>
-        <pagination-controls ng-change="pageChanged()" (pageChange)="p = $event"
+    </div>
+    <pagination-controls ng-change="pageChanged()" (pageChange)="p = $event"
                       previousLabel="Anterior"
                       nextLabel="Siguiente"
                       class="text-center m-0 controles"
                       >
-        </pagination-controls>
-    </div>
+    </pagination-controls>
 </div>
