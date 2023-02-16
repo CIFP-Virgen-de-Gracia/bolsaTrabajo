@@ -10,8 +10,8 @@
     <h3>Registro</h3>
     <div>
       <input type="text" id="inputNif" formControlName="nif" class="form-control border border-dark"
-      [ngClass]="{'is-invalid': (RegisterForm.get('nif')?.touched) && !RegisterForm.get('nif')?.valid}"
-      placeholder="Nif (required)">
+        [ngClass]="{'is-invalid': (RegisterForm.get('nif')?.touched) && !RegisterForm.get('nif')?.valid}"
+        placeholder="Nif (required)">
 
       <!-- Mensajes de error -->
       <span class="invalid-feedback">
@@ -21,8 +21,8 @@
     </div>
     <div>
       <input type="text" id="inputNick" formControlName="nick"
-      [ngClass]="{'is-invalid': (RegisterForm.get('nick')?.touched) && !RegisterForm.get('nick')?.valid}"
-      class="form-control border border-dark" placeholder="Nick (required)">
+        [ngClass]="{'is-invalid': (RegisterForm.get('nick')?.touched) && !RegisterForm.get('nick')?.valid}"
+        class="form-control border border-dark" placeholder="Nick (required)">
 
       <!-- Mensajes de error y control -->
       <span class="invalid-feedback">
@@ -32,8 +32,8 @@
 
     <div>
       <input type="text" id="inputEmail" formControlName="email" class="form-control border border-dark"
-      [ngClass]="{'is-invalid': (RegisterForm.get('email')?.touched) && !RegisterForm.get('email')?.valid}"
-      placeholder="Email (required)">
+        [ngClass]="{'is-invalid': (RegisterForm.get('email')?.touched) && !RegisterForm.get('email')?.valid}"
+        placeholder="Email (required)">
 
       <!-- Mensajes de error -->
       <span class="invalid-feedback">
@@ -43,8 +43,8 @@
     </div>
     <div>
       <input type="password" id="inputPassword" formControlName="password"
-      [ngClass]="{'is-invalid': (RegisterForm.get('password')?.touched) && !RegisterForm.get('password')?.valid}"
-      class="form-control border border-dark" placeholder="Password (required)">
+        [ngClass]="{'is-invalid': (RegisterForm.get('password')?.touched) && !RegisterForm.get('password')?.valid}"
+        class="form-control border border-dark" placeholder="Password (required)">
 
       <!-- Mensajes de error y control -->
       <span class="invalid-feedback">
@@ -54,18 +54,12 @@
     <div>
       <p>Imagen (opcional)</p>
       <input type="file" id="inputImage" formControlName="image" class="form-control border border-dark"
-      [ngClass]="{'is-invalid': (RegisterForm.get('image')?.touched) && !RegisterForm.get('image')?.valid}"
-      placeholder="Imagen de Perfil (required)">
-      <!-- Mensajes de error -->
-      <span class="invalid-feedback">
-        <span *ngIf="RegisterForm.get('image')?.errors?.['required']">Por favor introduce una imagen</span>
-      </span>
+        [ngClass]="{'is-invalid': (RegisterForm.get('image')?.touched) && !RegisterForm.get('image')?.valid}"
+        placeholder="Imagen de Perfil (opcional)">
     </div>
     <button type="submit">Registro</button>
     <div class="social">
-      <div class="go"><i class="fab fa-google"></i>  Google</div>
+      <div class="go"><i class="fab fa-google"></i>Google</div>
     </div>
   </form>
-
-
 </div>

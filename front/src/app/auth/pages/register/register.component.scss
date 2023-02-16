@@ -28,15 +28,15 @@
   .shape:first-child {
     background: linear-gradient(#1845ad,
         #23a2f6);
-    left: -90px;
-    top: -40px;
+    left: -80px;
+    top: -80px;
   }
 
   .shape:last-child {
     background: linear-gradient(to right, (var(--colorSecundario)),
         var(--colorSecundarioClaro),
       );
-    right: -40px;
+    right: -30px;
     bottom: -80px;
   }
 
