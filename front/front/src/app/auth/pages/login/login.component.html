@@ -1,0 +1,41 @@
+<div class="inicioS">
+  <div class="d-flex p-1">
+    <button type="button" class="btn btn-light col-sm-1" outerLinkActive="active" routerLink="welcome">VOLVER</button>
+  </div>
+  <div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+  <form class="login100-form" autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login()">
+    <h3>Login</h3>
+    <div>
+      <input type="text" id="inputEmail" formControlName="email" class="form-control border border-dark"
+        [ngClass]="{'is-invalid': (loginForm.get('email')?.touched) && !loginForm.get('email')?.valid}"
+        placeholder="Email (required)">
+
+      <!-- Mensajes de error -->
+      <span class="invalid-feedback">
+        <span *ngIf="loginForm.get('email')?.errors?.['required']">Por favor introduce tu email</span>
+        <span *ngIf="loginForm.get('email')?.errors?.['pattern']">Por favor introduce una cuenta válida</span>
+      </span>
+    </div>
+    <div>
+      <input type="password" id="inputPassword" formControlName="password"
+        [ngClass]="{'is-invalid': (loginForm.get('password')?.touched) && !loginForm.get('password')?.valid}"
+        class="form-control border border-dark" placeholder="Password (required)">
+
+      <!-- Mensajes de error y control -->
+      <span class="invalid-feedback">
+        <span *ngIf="loginForm.get('password')?.errors?.['required']">Por favor introduce tu password</span>
+      </span>
+    </div>
+    <button type="submit">Login</button>
+    <!-- <div class="text-center p-t-12">
+      <span class="txt1">
+        ¿Olvidaste tu
+      </span>
+      <a class="txt2" routerLink="/auth/reset-password">
+        contraseña?
+      </a>
+    </div> -->
+  </form>
