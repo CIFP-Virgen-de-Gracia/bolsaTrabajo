@@ -19,7 +19,7 @@ const empresasGet =  (req, res = response) => {
 const empresaGet =  (req, res = response) => {
     const conx = new Conexion();
     
-    conx.getEmpresa(req.params.id)    
+    conx.getEmpresa(req.params.nif)    
         .then( msg => {
             console.log('Listado de empresa correcto!');
             res.status(200).json(msg);
@@ -47,7 +47,7 @@ const empresasPost =  (req = request, res = response) => {
 const empresasPut = (req = request, res = response) => {
     const conx = new Conexion();
 
-    conx.modificarEmpresa(req.params.id, req.body)
+    conx.modificarEmpresa(req.params.nif, req.body)
         .then( msg => {
             console.log("Empresa modificada con exito");
             res.status(202).json(msg);
@@ -61,7 +61,7 @@ const empresasPut = (req = request, res = response) => {
 const empresasDelete =  (req, res = response) => {
     const conx = new Conexion();
     
-    conx.borrarEmpresa(req.params.id)    
+    conx.borrarEmpresa(req.params.nif)    
         .then( msg => {
             console.log('Empresa borrada correctamente!');
             res.status(202).json(msg);

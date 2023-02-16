@@ -16,10 +16,10 @@ class ConexionEmpresa extends ConexionSequelize {
     return resultado;
   }
   
-    getEmpresa = async(id) => {
+    getEmpresa = async(nif) => {
         let resultado = [];
         this.conectar();
-        resultado = await Empresa.findByPk(id);
+        resultado = await Empresa.findByPk(nif);
         this.desconectar();
         if (!resultado){
             throw error;
@@ -36,9 +36,9 @@ class ConexionEmpresa extends ConexionSequelize {
         return resultado;
     }
 
-    modificarEmpresa = async(id, body) => {
+    modificarEmpresa = async(nif, body) => {
         this.conectar();
-        let resultado = await Empresa.findByPk(id);
+        let resultado = await Empresa.findByPk(nif);
         if (!resultado){
             this.desconectar();
             throw error;
@@ -48,9 +48,9 @@ class ConexionEmpresa extends ConexionSequelize {
         return resultado;
     }
 
-    borrarEmpresa = async(id) => {
+    borrarEmpresa = async(nif) => {
         this.conectar();
-        let resultado = await Empresa.findByPk(id);
+        let resultado = await Empresa.findByPk(nif);
         if (!resultado){
             this.desconectar();
             throw error;

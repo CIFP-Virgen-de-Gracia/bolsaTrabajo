@@ -19,8 +19,8 @@ export class EmpresasService {
     return this.http.get<Empresa>(this.urlListado);
   }
 
-  public getEmpresaPorId(id: string): Observable<Empresa>{
-    return this.http.get<Empresa>(`${this.urlListado}/${id}`);
+  public getEmpresaPorId(nif: string): Observable<Empresa>{
+    return this.http.get<Empresa>(`${this.urlListado}/${nif}`);
   }
 
   public AgregarEmpresa(empresa: Empresa): Observable<Empresa>{
@@ -31,7 +31,7 @@ export class EmpresasService {
   //  return this.http.put<Empresa>(`${this.urlListado}/${empresa.id}`);
   //}
 
-  public BorrarEmpresa(id: string): Observable<Empresa>{
-    return this.http.delete<Empresa>(`${this.urlListado}/${id}`);
+  public BorrarEmpresa(nif: string): Observable<Empresa>{
+    return this.http.delete<Empresa>(`${this.urlListado}/${nif}`);
   }
 }

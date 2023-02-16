@@ -5,5 +5,4 @@ export interface Empresa {
   contacto:  string;
   cargo:     string;
   telefono:  string;
-  email:     string;
 }
