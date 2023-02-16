@@ -35,6 +35,9 @@
         border: 2px solid green;
         border-bottom-right-radius: 10px;
     }
+    .aria-label {
+        --bs-breadcrumb-divider: '>';
+    }
     .breadcrumb {
         position: relative;
         left: 1rem;
