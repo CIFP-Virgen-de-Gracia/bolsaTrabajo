@@ -48,12 +48,19 @@
       </div>
     </form>
   </div>
-  <div id="myModal" class="modal">
-    <div class="modal-content">
-      <p>Oferta creada</p>
-      <div class="pt-5 opciones col d-flex justify-content-around pl-4">
-        <button outerLinkActive="active" routerLink=".." (click)="cerrar()" class="btn btn-primary">Aceptar</button>
-      </div>
+  <div id="myModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Creación de oferta</h5>
+        </div>
+        <div class="modal-body">
+            <p>La oferta ha sido creada correctamente</p>
+        </div>
+        <div class="modal-footer ">
+            <button type="button" (click)="cerrar()" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+        </div>
+        </div>
     </div>
-  </div>
+</div>
 </div>

@@ -50,5 +50,6 @@ export class CreacionOfertaComponent implements OnInit {
   cerrar() {
     let modal = document.getElementById("myModal");
     modal!.style.display = "none";
+    location.replace('http://localhost:4200/ofertas/testing/')
   }
 }
