@@ -9,6 +9,8 @@ import { MainComponent } from 'src/app/auth/main/main.component';
 import { RouterModule } from '@angular/router';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AuthInterceptor } from 'src/app/auth/services/auth.config.interceptor';
+import { SocialAuthServiceConfig, GoogleLoginProvider } from '@abacritt/angularx-social-login';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
     declarations: [
@@ -18,12 +20,26 @@ import { AuthInterceptor } from 'src/app/auth/services/auth.config.interceptor';
         RegisterComponent,
     ],
     providers: [
+
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
-            multi: true
-        }
-    ],
+            multi: true,
+        },
+        {
+            provide: 'SocialAuthServiceConfig',
+            useValue: {
+              autoLogin: false,
+              providers: [
+                {
+                  id: GoogleLoginProvider.PROVIDER_ID,
+                  provider: new GoogleLoginProvider(environment.googleClientId)
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    }
+      ],
+
     bootstrap: [],
     imports: [
         CommonModule,

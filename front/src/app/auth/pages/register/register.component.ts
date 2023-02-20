@@ -32,11 +32,12 @@ export class RegisterComponent implements OnInit {
     this.authService.register(this.RegisterForm.value).subscribe( res => {
 
       if (res) {
-        this.router.navigateByUrl('/alumno/inicio');
+        this.router.navigateByUrl('/welcome');
+        window.alert("Usuario Registrado");
 
       } else {
-      this.router.navigateByUrl('/welcome');
-       window.alert("Usuario Registrado");
+      this.router.navigateByUrl('/register');
+       window.alert("Usuario no Registrado");
 
         }
 

@@ -1,3 +1,6 @@
+<head>
+  <meta name="referrer" content="no-referrer-when-downgrade">
+</head>
 <div class="inicioS">
   <div class="d-flex p-1">
     <button type="button" class="btn btn-light col-sm-1" outerLinkActive="active" routerLink="welcome">VOLVER</button>
@@ -33,15 +36,22 @@
       </span>
     </div>
     <button type="submit">Login</button>
-    <!-- <div class="text-center p-t-12">
-      <span class="txt1">
-        ¿Olvidaste tu
-      </span>
-      <a class="txt2" routerLink="/auth/reset-password">
-        contraseña?
-      </a>
-    </div> -->
-    <div class="social">
-      <div class="go"><i class="fab fa-google"></i>  Google</div>
-    </div>
+
+   <!-- login google -->
+   <div id="g_id_onload"
+   data-client_id="566999217560-mcb6k8063fdddr451c8djp0pjlvbvpnn.apps.googleusercontent.com"
+   data-context="signin"
+   data-ux_mode="popup"
+   data-login_uri="http://localhost:9090/api/auth/loginGoogle"
+   data-auto_prompt="false" (ngSubmit)="loginGoogle()">
+</div>
+
+<div class="g_id_signin"
+   data-type="standard"
+   data-shape="pill"
+   data-theme="filled_blue"
+   data-text="signin_with"
+   data-size="medium"
+   data-logo_alignment="left">
+</div>
   </form>

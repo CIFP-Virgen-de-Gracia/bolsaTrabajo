@@ -1,5 +1,5 @@
 .inicioS {
-  background-image: url("../../../../assets/logosemp.jpg");
+
 
   *,
   *:before,
@@ -41,7 +41,7 @@
   }
 
   form {
-    height: 560px;
+    height: auto;
     width: 400px;
     background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
@@ -68,6 +68,12 @@
     font-weight: 500;
     line-height: 12px;
     text-align: center;
+  }
+  .d-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 50%;
   }
 
   .avatar{
@@ -130,7 +136,7 @@
   .social .go {
     width: auto;
     border-radius: 13px;
-    background-color: #0b1091;
+    background-color: #bd2c04;
   }
 
   #password {

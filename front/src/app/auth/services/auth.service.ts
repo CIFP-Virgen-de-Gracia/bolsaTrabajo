@@ -18,7 +18,16 @@ export class AuthService {
   currentUser = {};
   afAuth: any;
   token!: string;
-  constructor(private http: HttpClient, public router: Router) {}
+  usuario: User = {
+    nif: '',
+    nick: '',
+    email: '',
+    password: '',
+    Token: undefined,
+
+  };
+
+  constructor(private http: HttpClient, public router: Router) { }
 
   // Registro*******************************
   register(user: User): Observable<any> {
@@ -36,7 +45,17 @@ export class AuthService {
       catchError(this.handleError)
     );
 
-      }
+  }
+  loginGoogle(usuario: any) {
+    return this.http.post<any>(`${this.endpoint}/loginGoogle`, usuario).pipe(
+      map((res) => {
+        this.setToken(res.token);
+        return res || {};
+      }),
+      catchError(this.handleError)
+    );
+  }
+
 
   getToken() {
     return localStorage.getItem('Token');
@@ -57,7 +76,7 @@ export class AuthService {
     }
   }
 
-verficaToken(): Observable<any> {
+  verficaToken(): Observable<any> {
     let api = `${this.endpoint}/verificaToken`;
     return this.http.get(api, { headers: this.headers }).pipe(
       map((res) => {

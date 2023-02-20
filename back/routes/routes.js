@@ -8,13 +8,14 @@ const midsRoles = require("../middlewares/validarRoles");
 
 const router = Router();
 //----------------------------
-router.post('/login',controladorAuth.login);
-router.post('/google',[midsJWT.validarJWT],controladorAuth.googleSignin);
+router.post('/login',[midsJWT.validarJWT],controladorAuth.login);
+router.post('/loginGoogle',controladorAuth.loginGoogle);
 router.post('/register', controladorAuth.register);
 router.post('/logout', controladorAuth.logout);
 router.post ('/avatar', subirAvatar.subirAvatar);
 router.post('/registerAdmin',[midsRoles.esAdmin], controladorAuth.registerAdmin);
 router.post('/registerEmpresa',[midsRoles.esEmpresa], controladorAuth.registerEmpresa);
+
 //-------------------------
 /* router.get('/roles', userController.rolesGet);
 router.get('/roles/:nif', userController.rolesAsignadosNifGet); */

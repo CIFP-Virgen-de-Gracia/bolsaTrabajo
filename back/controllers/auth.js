@@ -46,6 +46,7 @@ const login = (req, res = response) => {
   }
 };
 
+
 const register = (req, res = response) => {
   const { nif, nick, email, password, status, rol } = req.body;
   try {
@@ -154,68 +155,39 @@ const renewToken = async (req, res = response) => {
   res.json({ token });
 };
 
-const googleSignin = async(req, res = response) => {
-
+const loginGoogle = async(req, res, next) => {
   const { id_token } = req.body;
-
-  //Para probar inicialmente que recibimos el token del front:
-  // res.status(200).json({msg:"Token recibido",id_token});
   
-  //Una vez comprobado que el token se recibe desde el front, instalamos: npm install google-auth-library --save 
-  //Y ya podemos usar el código siguiente para verificar el token.
   try {
-      const { nif, nick, email, password, avatar } = await googleVerify( id_token );
-      //Si seguimos y no salta la excepción estarmos verificados por Google.
-
-      let usuario = await User.findOne({ email });
-      console.log(`Comprobaríamos el usuario: ${email}, ${nick}`);
-      //Verificar si existe el usuario. Además de la verificación del token de Google, vemos si existe en nuestra BD, caso de no existir lo creamos.
+     //Verificar si existe el usuario.
       const conx = new Conexion();
-      u = conx.getUsuarioRegistrado(nif, password)    
-          .then( usu => {
-              console.log('Usuario correcto!  ' + usu[0].nif);
-              const token = generarJWT(usu[0].nif)
-              console.log(usu)
-              console.log(token);
-              res.status(200).json({usu, token});
-          })
-          .catch( err => {
-              console.log('Usuario incorrecto!  ' + err);
-              res.status(500).json({msg: 'Usuario incorrecto!'});
-          });
-
-      if ( !u ) {
-          // Tengo que crearlo
-          const data = {
-              nif,
-              nick,
-              email,
-              password: ':P',
-              avatar: img,
-              google: true
-          };
-          //Crearíamos el usario con Mongoose o con MySQL, según lo que usemos.
-          usuario = new User( data );
-          console.log(`Creando el usuario ${data}`)
-          await usuario.save();        
-      }
-
-
-      const token = generarJWT(email); //Si entramos, podemos generar nuestro propio token de seguridad con el correo del usuario. Ese token será el que usemos para el uso de la API.
-      res.status(200).json({email, token});
-      
+      console.log(id_token);
+      u = conx
+        .getUsuario(id_token)
+        .then((usu) => {
+          console.log("Usuario existente!" + usu);
+          //Generar el JWT.
+          const token = generarJWT(
+            usu.nif,
+            usu.nick,
+            usu.email,
+            usu.password,
+            usu.status,
+            usu.rol
+          );
+          console.log(token);
+          res.status(200).json({token});
+        })
+        .catch((err) => {
+          console.log("Usuario no existente!");
+          res.status(500).json({ msg: "Este usuario no existe en nuestra base." });
+        });
   } catch (error) {
-
-      res.status(400).json({
-          msg: 'Token de Google no es válido'
-      })
-
+    console.log(error);
+    res.status(500).json({ msg: "Error en el servidor." });
+   
   }
-
-
-
-}
-
+};
 
 
 module.exports = {
@@ -225,6 +197,6 @@ module.exports = {
   registerAdmin,
   registerEmpresa,
   renewToken,
-  googleSignin
+  loginGoogle
 
 };
