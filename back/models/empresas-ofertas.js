@@ -1,9 +1,11 @@
+//Realizado por Khattari
 const { Sequelize, DataTypes, Model } = require('sequelize');
 const db = require('../controllers/Conexion/connection');
 
 const EmpresasOfertas = db.define('empresasofertas', {
     ideo: {
         type: DataTypes.BIGINT,
+        autoIncrement: true,
         primaryKey: true
     },
     id_oferta: {

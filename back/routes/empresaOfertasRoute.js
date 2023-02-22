@@ -1,3 +1,4 @@
+//Realizado por Khattari
 const { Router } = require('express');
 const controlador = require('../controllers/empresaOfertasController');
 const router = Router();

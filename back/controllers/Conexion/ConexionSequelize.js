@@ -1,3 +1,4 @@
+//Estructura por herencia realizada por Khattari
 const { Sequelize } = require("sequelize");
 require("dotenv").config();
 

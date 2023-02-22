@@ -1,3 +1,4 @@
+//Realizado por Khattari
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OfertasAlumnoComponent } from './pages/alumno/ofertas-alumno/ofertas-alumno.component';
@@ -7,6 +8,8 @@ import { CreacionOfertaComponent } from './pages/empresa/creacion-oferta/creacio
 import { ListadoOfertasEmpresa } from './pages/empresa/listado-ofertas-empresa/listado-ofertas-empresa.component';
 import { OfertaDetallesComponent } from './pages/alumno/oferta-detalles/oferta-detalles.component';
 import { FormsModule } from '@angular/forms';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { EdicionOfertaComponent } from './pages/empresa/edicion-oferta/edicion-oferta.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,8 @@ import { FormsModule } from '@angular/forms';
     OfertasEmpresaComponent,
     CreacionOfertaComponent,
     ListadoOfertasEmpresa,
-    OfertaDetallesComponent
+    OfertaDetallesComponent,
+    EdicionOfertaComponent
   ],
   exports: [
     OfertasAlumnoComponent,
@@ -25,7 +29,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     OfertasRoutingModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ]
 })
 
