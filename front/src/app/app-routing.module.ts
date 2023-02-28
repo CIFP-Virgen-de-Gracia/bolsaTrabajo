@@ -26,6 +26,14 @@ const routes: Routes = [
   {
     path: 'ofertas',
     loadChildren:() => import('./ofertas/ofertas.module').then((m) => m.OfertasModule),
+  },
+  {
+    path: 'admin',
+    loadChildren:() => import('./administracion/administracion.module').then((m) => m.AdministracionModule),
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];
 
