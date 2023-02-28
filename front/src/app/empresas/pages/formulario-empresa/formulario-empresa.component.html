@@ -11,6 +11,7 @@
             type="text"
             class="form-control"
             id="companyName"
+            [(ngModel)]="empresaActual.nombre" [ngModelOptions]="{standalone: true}"
             placeholder=""
             value=""
             required
@@ -24,6 +25,7 @@
             type="text"
             class="form-control"
             id="companyAddress"
+            [(ngModel)]="empresaActual.direccion" [ngModelOptions]="{standalone: true}"
             placeholder="Calle, num. - Código Postal, Población (Provincia)"
             required
           />
@@ -39,6 +41,7 @@
             type="text"
             class="form-control"
             id="contactPerson"
+            [(ngModel)]="empresaActual.contacto" [ngModelOptions]="{standalone: true}"
             placeholder=""
             value=""
             required
@@ -52,6 +55,7 @@
             type="text"
             class="form-control"
             id="contactCargo"
+            [(ngModel)]="empresaActual.cargo" [ngModelOptions]="{standalone: true}"
             placeholder=""
             value=""
             required
@@ -65,22 +69,9 @@
             type="text"
             class="form-control"
             id="companyPhone"
+            [(ngModel)]="empresaActual.telefono" [ngModelOptions]="{standalone: true}"
             placeholder="926 123 456"
           />
-        </div>
-
-        <div class="col-6">
-          <label for="emailCompany" class="form-label"
-            >Email <span class="text-muted">(Obligatorio)</span></label>
-          <input
-            type="email"
-            class="form-control"
-            id="emailCompany"
-            placeholder="tu@example.com"
-          />
-          <div class="invalid-feedback">
-            Ingresa una dirección de correo electrónico de contacto válida.
-          </div>
         </div>
 
         <div class="col-4">

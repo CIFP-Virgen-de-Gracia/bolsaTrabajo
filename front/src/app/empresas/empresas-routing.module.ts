@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormularioEmpresaComponent } from './components/formulario-empresa/formulario-empresa.component';
-import { ListadoEmpresasComponent } from './components/listado-empresas/listado-empresas.component';
+import { FormularioEmpresaComponent } from './pages/formulario-empresa/formulario-empresa.component';
+import { ListadoEmpresasComponent } from './pages/listado-empresas/listado-empresas.component';
 
 const routes: Routes = [
   {
@@ -18,4 +18,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
+
 export class EmpresasRoutingModule { }
