@@ -1,0 +1,40 @@
+.pagina {
+  background-image: url('../../../../assets/image/fondo.png');
+  background-size: 100% 100%;
+}
+
+.breadcrumb {
+  position: relative;
+  left: 1rem;
+  width: 90%;
+}
+.breadcrumb-item {
+  &:hover {
+      cursor: pointer;
+  }
+  color: var(--colorSecundario);
+  -webkit-text-stroke: 0.2px var(--colorOscuroSombra);
+}
+.active {
+  color: gray;
+}
+
+.container {
+
+  .interfaz-opcion {
+    margin: 3rem auto;
+    width: 20rem;
+    transition: 1s;
+
+    &:hover {
+      transform: scale(1.1);
+      z-index: 2;
+    }
+
+    .card,
+    .btn {
+      box-shadow: 0 0 10px 0 rgba(55, 54, 54, 0.6);
+    }
+
+  }
+}
