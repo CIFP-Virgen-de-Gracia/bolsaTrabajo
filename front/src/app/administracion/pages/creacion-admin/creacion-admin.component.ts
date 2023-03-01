@@ -1,3 +1,4 @@
+//Realizado por Khattari
 import { Component } from '@angular/core';
 
 @Component({

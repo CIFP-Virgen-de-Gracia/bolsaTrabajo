@@ -20,21 +20,8 @@
         border-radius: 1em;
         border-collapse: collapse;
         background-color: white;
-        .ultimo {
-            
-        }
     }
 
-    table tr:last-child td:first-child {
-        border-bottom-left-radius: 10px;
-    }
-        
-    table tr:last-child td:last-child {
-        border-bottom-right-radius: 10px;
-    }
-    .aria-label {
-        --bs-breadcrumb-divider: '>';
-    }
     .breadcrumb {
         position: relative;
         left: 1rem;
