@@ -3,10 +3,10 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb m-0 pt-2 ml-2">
         <li class="breadcrumb-item"><a outerLinkActive="active" routerLink="..">Inicio</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Creacion de usuario</li>
+        <li class="breadcrumb-item active" aria-current="page">Creacion de admin</li>
       </ol>
     </nav>
-    <h1 class="text-center mb-4 pt-2">Creación de usuario</h1>
+    <h1 class="text-center mb-4 pt-2">Creación de administrador</h1>
     <div class="container p-5 formulario">
       <form class="row g-3" ngNativeValidate>
         <div class="col-md-4">
@@ -30,21 +30,6 @@
             required placeholder="contraseña">
         </div>
         <div class="col-md-12">
-          <label for="rol" class="form-label fw-bold">rol</label>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="rol" required value="1" id="flexRadioDefault1">
-            <label class="form-check-label" for="flexRadioDefault1">
-              Empresa
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="rol" required  value="0" id="flexRadioDefault2">
-            <label class="form-check-label" for="flexRadioDefault2">
-              Alumno
-            </label>
-          </div>
-        </div>
-        <div class="col-md-12">
           <button type="submit" class="btn btn-primary">Crear</button>
         </div>
       </form>
@@ -53,10 +38,10 @@
       <div class="modal-dialog" role="document">
           <div class="modal-content">
           <div class="modal-header">
-              <h5 class="modal-title">Creación de usuario</h5>
+              <h5 class="modal-title">Creación de administrador</h5>
           </div>
           <div class="modal-body">
-              <p>El usuario ha sido creado correctamente</p>
+              <p>El administrador ha sido creado correctamente</p>
           </div>
           <div class="modal-footer ">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -66,3 +51,4 @@
   </div>
   </div>
   <app-footer></app-footer>
+<app-footer></app-footer>

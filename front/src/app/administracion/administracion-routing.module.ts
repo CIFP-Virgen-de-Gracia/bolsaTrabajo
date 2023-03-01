@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { OpcionesComponent } from './pages/opciones/opciones.component';
 import { CreacionUsuariosComponent } from './pages/creacion-usuarios/creacion-usuarios.component';
 import { GestionUsuariosComponent } from './pages/gestion-usuarios/gestion-usuarios.component';
+import { CreacionAdminComponent } from './pages/creacion-admin/creacion-admin.component';
 
 const routes: Routes = [
     {
@@ -17,6 +18,10 @@ const routes: Routes = [
     {
       path: 'gestion',
       component: GestionUsuariosComponent
+    },
+    {
+      path: 'creacionadmin',
+      component: CreacionAdminComponent
     },
     {
       path: '**',

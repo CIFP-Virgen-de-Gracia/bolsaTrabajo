@@ -28,7 +28,7 @@ const routes: Routes = [
     loadChildren:() => import('./ofertas/ofertas.module').then((m) => m.OfertasModule),
   },
   {
-    path: 'admin',
+    path: 'administracion',
     loadChildren:() => import('./administracion/administracion.module').then((m) => m.AdministracionModule),
   },
   {

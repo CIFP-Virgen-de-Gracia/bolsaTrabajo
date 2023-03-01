@@ -10,6 +10,7 @@ import { OfertaDetallesComponent } from './pages/alumno/oferta-detalles/oferta-d
 import { FormsModule } from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { EdicionOfertaComponent } from './pages/empresa/edicion-oferta/edicion-oferta.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { EdicionOfertaComponent } from './pages/empresa/edicion-oferta/edicion-o
     CommonModule,
     OfertasRoutingModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    SharedModule
   ]
 })
 
