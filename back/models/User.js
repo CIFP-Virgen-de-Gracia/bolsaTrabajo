@@ -62,6 +62,13 @@ const User = db.define('users', {
             max: 3
         }
 
+    },
+    telefono: {//----->>>> Inés, añado teléfono, que lo necesito para formularioEmpresa y no lo tenias añadido.
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
     }
 },
 

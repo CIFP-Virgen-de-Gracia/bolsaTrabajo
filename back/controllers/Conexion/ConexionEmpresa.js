@@ -3,18 +3,18 @@ const ConexionSequelize = require('./ConexionSequelize');
 
 class ConexionEmpresa extends ConexionSequelize {
   
-  constructor() {
-    super();
-  };
+    constructor() {
+        super();
+    };
 
   //Métodos CRUD Empresas -------------------------------------------------------------
-  getEmpresaListado = async() => {
-    let resultado = [];
-    this.conectar();
-    resultado = await Empresa.findAll();
-    this.desconectar();
-    return resultado;
-  }
+    getEmpresaListado = async() => {
+        let resultado = [];
+        this.conectar();
+        resultado = await Empresa.findAll();
+        this.desconectar();
+        return resultado;
+    }
   
     getEmpresa = async(nif) => {
         let resultado = [];
@@ -30,7 +30,7 @@ class ConexionEmpresa extends ConexionSequelize {
     registrarEmpresa = async(body) => {
         let resultado = 0;
         this.conectar();
-        const empresaNueva = new Empresa(body); //Con esto añade los timeStamps.
+        const empresaNueva = new Empresa(body);
         await empresaNueva.save();
         this.desconectar();
         return resultado;

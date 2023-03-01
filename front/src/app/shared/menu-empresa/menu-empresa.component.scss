@@ -1,3 +1,78 @@
+nav{
+  background-color: var(--colorSecundario);
+  div{
+    div{
+      .logo-menu{
+        width: 28%;
+        img{
+          width: 100%;
+        }
+      }
+      div{
+        h5{
+          color: var(--colorOscuro);
+          font-size: 12pt;
+          font-family: var(--tipoNomenclatura);
+        }
+        h6{
+          color: var(--colorOscuro);
+          font-size: 10pt;
+          font-family: var(--tipoNomenclatura);
+          margin: 0;
+        }
+      }
+    }
+  }
+  button{
+    &.navbar-toggler{
+      color: var(--colorOscuro);
+      border: none;
+      &:focus{
+        box-shadow: none;
+      }
+    }
+  }
+  .contenedor-menu{
+    width: 100%;
+  }
+}
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 992px) {
+  nav{
+    .contenedor-menu{
+      width: auto;
+    }
+    .desaparecepequenio{
+      display: block;
+    }
+    div{
+      .aparecepequenio{
+        display: none;
+      }
+      div{
+        .logo-menu{
+          width: 28%;
+          img{
+            width: 100%;
+          }
+        }
+        div{
+          h5{
+            color: var(--colorOscuro);
+          }
+          h6{
+            color: var(--colorOscuro);
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
 .menu{
   background-color: var(--colorOscuro);
   .info-perfil{

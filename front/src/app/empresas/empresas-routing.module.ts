@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'listado',
     component: ListadoEmpresasComponent
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];
 

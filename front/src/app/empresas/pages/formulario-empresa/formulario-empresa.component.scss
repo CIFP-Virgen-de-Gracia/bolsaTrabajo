@@ -18,3 +18,28 @@
 .active {
   color: gray;
 }
+
+.formulario {
+  margin-top: 1em;
+  background-color: rgba($color: #fff, $alpha: 0.7);
+  border-radius: 8px;
+  box-shadow: 0 0 10px 0 rgba(55, 54, 54, 0.6);
+
+  label {
+    padding-left: 1em;
+  }
+
+  .btn {
+    padding-left: 2em;
+    padding-right: 2em;
+    font-weight: bold;
+    border: 1px solid var(--colorOscuro);
+    box-shadow: 0 0 10px 0 rgba(55, 54, 54, 0.6);
+  }
+
+  .btn-primary {
+    color: var(--colorOscuro);
+    background-color: var(--colorSecundario);
+  }
+
+}

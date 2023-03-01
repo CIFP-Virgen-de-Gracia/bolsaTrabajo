@@ -4,5 +4,15 @@ export interface Empresa {
   direccion: string;
   contacto:  string;
   cargo:     string;
-  telefono:  string;
+}
+
+export interface UsuarioEmpresa {
+  nif:string;
+  nick:string;
+  email:string;
+  password:string;
+  status:number;
+  rol: number;
+  //¿token?
+  telefono: string;
 }

@@ -1,5 +1,4 @@
 const {response,request} = require('express');
-// const Conexion = require('./Conexion');
 const Conexion = require('./Conexion/ConexionEmpresa');
 
 const empresasGet =  (req, res = response) => {

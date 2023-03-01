@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Empresa } from '../../interfaces/empresas.interface';
+import { Empresa, UsuarioEmpresa } from '../../interfaces/empresas.interface';
 import { EmpresasService } from '../../services/empresas.service';
 
 
@@ -12,16 +12,28 @@ import { EmpresasService } from '../../services/empresas.service';
 export class FormularioEmpresaComponent implements OnInit {
 
   empresaActual: Empresa = {
-  nif: '',
-  nombre: '',
-  direccion: '',
-  contacto: '',
-  cargo: '',
-  telefono: ''
+    nif: '',
+    nombre: '',
+    direccion: '',
+    contacto: '',
+    cargo: ''
+  }
+
+  usuarioActual: UsuarioEmpresa = {
+    nif: '',
+    nick: '',
+    email: '',
+    password: '',
+    status: 0,
+    rol: 0,
+    telefono: ''
   }
 
   constructor(private empresasService: EmpresasService) {
 
+    //A la espera del LocalStorage, paso en nif por argumento a pelo para poder desarrollar
+    //Modificar cuando tengamos el LocalStorage funcionando
+    this.getUsuarioPorId('A11111111');
     this.getEmpresaPorId('A11111111');
   }
 
@@ -29,7 +41,14 @@ export class FormularioEmpresaComponent implements OnInit {
 
   }
 
-  public getEmpresaPorId (nif: string) {
+  public getUsuarioPorId(nif: string) {
+    this.empresasService.getUsuarioPorId(nif).subscribe((response) => {
+      this.usuarioActual = response;
+      console.log(this.usuarioActual);
+    })
+  }
+
+  public getEmpresaPorId(nif: string) {
     this.empresasService.getEmpresaPorId(nif).subscribe((response) => {
       this.empresaActual = response;
       console.log(this.empresaActual);
@@ -37,9 +56,8 @@ export class FormularioEmpresaComponent implements OnInit {
     });
   }
 
-
-  formularioEnviado() { //Ver luego otro nombre mas pensado
-    console.log("El formulario se envió y la empresa es ", this.empresaActual);
+  public guardar() {
+    //TODO
   }
 
 }
