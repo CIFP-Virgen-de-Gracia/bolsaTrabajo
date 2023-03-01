@@ -2,10 +2,10 @@ const { OAuth2Client } = require('google-auth-library');
 
 const client = new OAuth2Client( process.env.GOOGLE_CLIENT_ID );
 
-const googleVerify = async( idToken = '' ) => {
+const googleVerify = async( idToken) => {
 
   const ticket = await client.verifyIdToken({
-      idToken,
+      idToken: idToken,
       audience: process.env.GOOGLE_CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
       // Or, if multiple clients access the backend:
       //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
@@ -13,12 +13,12 @@ const googleVerify = async( idToken = '' ) => {
 
   console.log(ticket); //Aquí podemos ver el payload que nos devuelve Google con la información del usuario.
   
-  const { name: nombre, 
-          picture: img, 
-          email: correo
+  const { name: nick, 
+          picture: avatar, 
+          email: email
         } = ticket.getPayload();
   
-  return { nombre, img, correo };
+  return { nick, avatar, email};
 
 }
 

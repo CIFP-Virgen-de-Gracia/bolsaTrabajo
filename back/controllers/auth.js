@@ -157,36 +157,36 @@ const renewToken = async (req, res = response) => {
 
 const loginGoogle = async(req, res, next) => {
   const { id_token } = req.body;
-  
   try {
-     //Verificar si existe el usuario.
-      const conx = new Conexion();
-      console.log(id_token);
-      u = conx
-        .getUsuario(id_token)
-        .then((usu) => {
-          console.log("Usuario existente!" + usu);
-          //Generar el JWT.
-          const token = generarJWT(
-            usu.nif,
-            usu.nick,
-            usu.email,
-            usu.password,
-            usu.status,
-            usu.rol
-          );
-          console.log(token);
-          res.status(200).json({token});
-        })
-        .catch((err) => {
-          console.log("Usuario no existente!");
-          res.status(500).json({ msg: "Este usuario no existe en nuestra base." });
-        });
+    const { correo, nombre, img } = await googleVerify(id_token);
+    let usuario = await User.findOne({ correo });
+    if (!usuario) {
+      const data = {
+        nombre,
+        correo,
+        password: ':P',
+        img,
+        google: true
+      };
+      usuario = new User(data);
+      await usuario.save();
+    }
+    if (!usuario.status) {
+      return res.status(401).json({
+        msg: 'Hable con el administrador, usuario bloqueado'
+      });
+    }
+    const token = await generarJWT(usuario.id);
+    res.json({
+      usuario,
+      token
+    });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ msg: "Error en el servidor." });
-   
+    res.status(400).json({
+      msg: 'Token de Google no es válido'
+    });
   }
+  
 };
 
 
