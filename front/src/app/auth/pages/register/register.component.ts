@@ -1,44 +1,43 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms'
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent {
-
-  miFormulario: FormGroup = this.fb.group({
-    nif: [ '', [ Validators.required, Validators.minLength(3) ] ],
-    nick: [ '', [ Validators.required, Validators.minLength(2) ] ],
-    email: [ '', [ Validators.required, Validators.email ] ],
-    password: [ '', [ Validators.required, Validators.minLength(4) ] ],
-    // confirmPassword: [ '', [ Validators.required, Validators.minLength(4) ] ],
-  })
-
+export class RegisterComponent implements OnInit {
+  getLocalStorage: any;
+  Usuario: any;
+  RegisterForm!: FormGroup;
   constructor(
-
     private fb: FormBuilder,
-    private router: Router,
-    private authService: AuthService
+    public authService: AuthService,
+    public router: Router
+    ) {}
+  ngOnInit() {
+    this.RegisterForm =this.fb.group({
+      nif:['',[Validators.required, Validators.pattern('[0-9]{8}[A-Z]' || '[0-9]{8}')]],
+      nick: new FormControl('', Validators.required),
+      email: ['', [Validators.required, Validators.pattern('[a-z0-9]+@[a-z]+\.[a-z]{2,3}')]],
+      password: new FormControl('', Validators.required),
+    },
+    );
+  }
 
-  ) { }
+  register() {
+    const { nif, nick, email , password } = this.RegisterForm.value;
 
-  registro () {
-    const { nif, nick, email , password } = this.miFormulario.value;
+    this.authService.register(this.RegisterForm.value).subscribe( res => {
 
-    this.authService.registro( nif, nick, email, password).subscribe( ok => {
-
-      if ( ok === true ) {
-
+      if (res) {
         this.router.navigateByUrl('/welcome');
+        window.alert("Usuario Registrado");
 
       } else {
-      this.router.navigateByUrl('/welcome');
-       window.alert("Usuario Registrado");
+      this.router.navigateByUrl('/register');
+       window.alert("Usuario no Registrado");
 
         }
 
@@ -46,5 +45,26 @@ export class RegisterComponent {
 
   }
 
+  passwordIguales(pass1Name: string, pass2Name: string) {
 
+      return (formGroup: FormGroup) => {
+
+        const pass1Control = formGroup.controls[pass1Name];
+
+        const pass2Control = formGroup.controls[pass2Name];
+
+        if (pass1Control.value === pass2Control.value) {
+
+          pass2Control.setErrors(null);
+
+        } else {
+
+          pass2Control.setErrors({ noEsIgual: true });
+
+        }
+
+      };
+
+    }
 }
+
