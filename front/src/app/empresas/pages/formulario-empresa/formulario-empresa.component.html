@@ -1,98 +1,85 @@
-<div class="row g-5">
-  <div class="col-md-2"></div>
-  <div class="col-md-10 col-lg-8">
-    <h4 class="my-3">Datos de la empresa</h4>
-    <form class="needs-validation" novalidate>
-      <div class="row g-3">
+<div class="pagina pb-3">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb m-0 pt-2 ml-2">
+      <li class="breadcrumb-item"><a>Inicio</a></li>
+      <li class="breadcrumb-item"><a>Empresa</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Datos empresa</li>
+    </ol>
+  </nav>
 
-        <div class="col-12">
-          <label for="companyName" class="form-label">Nombre / Razón social</label>
-          <input
-            type="text"
-            class="form-control"
-            id="companyName"
-            [(ngModel)]="empresaActual.nombre" [ngModelOptions]="{standalone: true}"
-            placeholder=""
-            value=""
-            required
-          />
-          <div class="invalid-feedback">Se requiere un nombre válido.</div>
-        </div>
+  <div class="container">
 
-        <div class="col-12">
-          <label for="companyAddress" class="form-label">Dirección postal completa</label>
-          <input
-            type="text"
-            class="form-control"
-            id="companyAddress"
-            [(ngModel)]="empresaActual.direccion" [ngModelOptions]="{standalone: true}"
-            placeholder="Calle, num. - Código Postal, Población (Provincia)"
-            required
-          />
-          <div class="invalid-feedback">
-            Por favor introduzca la dirección de la empresa. Please enter the
-            address of the company.
+    <div class="row align-items-center justify-content-evenly">
+      <div class="col-md-10 col-lg-8">
+        <h4 class="my-3">Datos de la empresa</h4>
+        <form class="needs-validation" novalidate>
+          <div class="row g-3">
+
+            <div class="col-12">
+              <label for="companyName" class="form-label">Nombre / Razón social</label>
+              <input type="text" class="form-control" id="companyName" [(ngModel)]="empresaActual.nombre"
+                [ngModelOptions]="{standalone: true}" placeholder="" value="" required />
+              <div class="invalid-feedback">Se requiere un nombre válido.</div>
+            </div>
+
+            <div class="col-12">
+              <label for="companyAddress" class="form-label">Dirección postal completa</label>
+              <input type="text" class="form-control" id="companyAddress" [(ngModel)]="empresaActual.direccion"
+                [ngModelOptions]="{standalone: true}" placeholder="Calle, num. - Código Postal, Población (Provincia)"
+                required />
+              <div class="invalid-feedback">
+                Por favor introduzca la dirección de la empresa. Please enter the
+                address of the company.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="contactPerson" class="form-label">Persona de contacto</label>
+              <input type="text" class="form-control" id="contactPerson" [(ngModel)]="empresaActual.contacto"
+                [ngModelOptions]="{standalone: true}" placeholder="" value="" required />
+              <div class="invalid-feedback">Se requiere un nombre válido.</div>
+            </div>
+
+            <div class="col-12">
+              <label for="contactCargo" class="form-label">Cargo que ocupa en la empresa</label>
+              <input type="text" class="form-control" id="contactCargo" [(ngModel)]="empresaActual.cargo"
+                [ngModelOptions]="{standalone: true}" placeholder="" value="" required />
+
+            </div>
+            <div class="col-6">
+              <label for="companyPhone" class="form-label">
+                Teléfono de contacto<span class="text-muted">(Opcional)</span></label>
+              <input type="text" class="form-control" id="companyPhone" [(ngModel)]="empresaActual.telefono"
+                [ngModelOptions]="{standalone: true}" placeholder="926 123 456" />
+            </div>
+
+            <div class="col-4">
+              <button class="btn btn-primary btn-lg" type="submit">
+                Registrarse
+              </button>
+            </div>
+
           </div>
-        </div>
-
-        <div class="col-12">
-          <label for="contactPerson" class="form-label">Persona de contacto</label>
-          <input
-            type="text"
-            class="form-control"
-            id="contactPerson"
-            [(ngModel)]="empresaActual.contacto" [ngModelOptions]="{standalone: true}"
-            placeholder=""
-            value=""
-            required
-          />
-          <div class="invalid-feedback">Se requiere un nombre válido.</div>
-        </div>
-
-        <div class="col-12">
-          <label for="contactCargo" class="form-label">Cargo que ocupa en la empresa</label>
-          <input
-            type="text"
-            class="form-control"
-            id="contactCargo"
-            [(ngModel)]="empresaActual.cargo" [ngModelOptions]="{standalone: true}"
-            placeholder=""
-            value=""
-            required
-          />
-
-        </div>
-        <div class="col-6">
-          <label for="companyPhone" class="form-label">
-            Teléfono de contacto<span class="text-muted">(Opcional)</span></label>
-          <input
-            type="text"
-            class="form-control"
-            id="companyPhone"
-            [(ngModel)]="empresaActual.telefono" [ngModelOptions]="{standalone: true}"
-            placeholder="926 123 456"
-          />
-        </div>
-
-        <div class="col-4">
-          <button class="btn btn-primary btn-lg" type="submit">
-            Registrarse
-          </button>
-        </div>
-
+          <hr class="my-4" />
+          <div class="proteccionDatos">
+            <p>
+              <small>Con carácter general, los datos personales proporcionados se conservarán mientras el interesado no
+                solicite su supresión o cancelación y siempre que resulten adecuados, pertinentes y limitados a lo
+                necesario para los fines para los que sean tratados. Igualmente serán conservados durante el tiempo
+                necesario para cumplir con la finalidad para la que se recaban y para determinar las posibles
+                responsabilidades que se pudieran derivar de la finalidad, además de los períodos establecidos en la
+                normativa de archivos y documentación. De manera genérica, los datos pasarán al sistema de gestión
+                archivística a los 5 años desde que termine la finalidad para la que fueron registrados.</small>
+            </p>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="okDatos" />
+            <label class="form-check-label" for="okDatos">
+              Acepto la política de protección de datos</label>
+          </div>
+          <hr class="my-4" />
+        </form>
       </div>
-      <hr class="my-4"/>
-      <div class="proteccionDatos">
-        <p>
-          <small>Con carácter general, los datos personales proporcionados se conservarán mientras el interesado no solicite su supresión o cancelación y siempre que resulten adecuados, pertinentes y limitados a lo necesario para los fines para los que sean tratados. Igualmente serán conservados durante el tiempo necesario para cumplir con la finalidad para la que se recaban y para determinar las posibles responsabilidades que se pudieran derivar de la finalidad, además de los períodos establecidos en la normativa de archivos y documentación.  De manera genérica, los datos pasarán al sistema de gestión archivística a los 5 años desde que termine la finalidad para la que fueron registrados.</small>
-        </p>
-      </div>
-      <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="okDatos" />
-        <label class="form-check-label" for="okDatos">
-          Acepto la política de protección de datos</label>
-      </div>
-      <hr class="my-4" />
-    </form>
+    </div>
   </div>
 </div>

@@ -1,0 +1,20 @@
+.pagina {
+  background-image: url('../../../../assets/image/fondo.png');
+  background-size: 100% 100%;
+}
+
+.breadcrumb {
+  position: relative;
+  left: 1rem;
+  width: 90%;
+}
+.breadcrumb-item {
+  &:hover {
+      cursor: pointer;
+  }
+  color: var(--colorSecundario);
+  -webkit-text-stroke: 0.2px var(--colorOscuroSombra);
+}
+.active {
+  color: gray;
+}
