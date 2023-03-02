@@ -10,5 +10,5 @@ import { MenuAdministradorComponent } from '../menu-administrador/menu-administr
 })
 
  export class MenuComponent {
-  rol: number = 2;
+  rol: number = 3;
 }
