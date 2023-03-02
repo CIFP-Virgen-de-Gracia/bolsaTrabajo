@@ -64,6 +64,11 @@ export class FormularioEmpresaComponent implements OnInit {
     this.empresasService.modificarEmpresa(this.empresaActual).subscribe((response) => {
       console.log(response);
     })
+    location.reload();
+  }
+
+  public recargar() {
+    location.reload();
   }
 
 }
