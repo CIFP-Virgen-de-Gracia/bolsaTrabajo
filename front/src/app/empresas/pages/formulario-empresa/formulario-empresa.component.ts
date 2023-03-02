@@ -57,7 +57,13 @@ export class FormularioEmpresaComponent implements OnInit {
   }
 
   public guardar() {
-    //TODO
+    //TODO Falta poner un alert que pregunte si se quieren confirmar los cambios
+    this.empresasService.modificarUsuario(this.usuarioActual).subscribe((response) => {
+      console.log(response);
+    })
+    this.empresasService.modificarEmpresa(this.empresaActual).subscribe((response) => {
+      console.log(response);
+    })
   }
 
 }

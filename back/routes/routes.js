@@ -31,6 +31,7 @@ router.get('/', controlador.verListado);
 //Inés: Creo aquí la ruta para usuarioEmpresaGet, que necesito 
 //para formularioEmpresa. No quiero tocarte lo tuyo por si te lo estropeo.
 router.get('/:nif', userController.usuarioEmpresaGet);
+router.put('/:nif', userController.usuariosPut);
 //********************** */
 
 

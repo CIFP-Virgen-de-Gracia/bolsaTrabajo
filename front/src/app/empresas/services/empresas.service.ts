@@ -28,15 +28,19 @@ export class EmpresasService {
     return this.http.get<Empresa>(`${this.urlListado}/${nif}`);
   }
 
-  public AgregarEmpresa(empresa: Empresa): Observable<Empresa>{
+  public agregarEmpresa(empresa: Empresa): Observable<Empresa>{
     return this.http.post<Empresa>(this.urlListado, empresa);
   }
-  
-  public ModificarEmpresa(empresa: Empresa): Observable<Empresa>{
+
+  public modificarUsuario(usuario: UsuarioEmpresa): Observable<UsuarioEmpresa>{
+    return this.http.put<UsuarioEmpresa>(`${this.urlListadoUser}/${usuario.nif}`,usuario);
+  }
+
+  public modificarEmpresa(empresa: Empresa): Observable<Empresa>{
     return this.http.put<Empresa>(`${this.urlListado}/${empresa.nif}`,empresa);
   }
 
-  public BorrarEmpresa(nif: string): Observable<Empresa>{
+  public borrarEmpresa(nif: string): Observable<Empresa>{
     return this.http.delete<Empresa>(`${this.urlListado}/${nif}`);
   }
 }

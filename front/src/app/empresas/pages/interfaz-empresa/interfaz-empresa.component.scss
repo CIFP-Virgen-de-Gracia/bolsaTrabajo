@@ -36,6 +36,10 @@
       box-shadow: 0 0 10px 0 rgba(55, 54, 54, 0.6);
     }
 
+    .btn:active {
+      transform: scale(0.9);
+    }
+
     .btn-primary {
       background-color: var(--colorSecundario);
       border: 1px solid var(--colorOscuro);
