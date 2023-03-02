@@ -8,6 +8,7 @@ import { FormularioEmpresaComponent } from './pages/formulario-empresa/formulari
 import { InterfazEmpresaComponent } from './pages/interfaz-empresa/interfaz-empresa.component';
 import { FormContactoEmpresaComponent } from './pages/form-contacto-empresa/form-contacto-empresa.component';
 import { ListadoEmpresasComponent } from './pages/listado-empresas/listado-empresas.component';
+import { InicioEmpresaComponent } from './pages/inicio-empresa/inicio-empresa.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ListadoEmpresasComponent } from './pages/listado-empresas/listado-empre
     FormularioEmpresaComponent,
     ListadoEmpresasComponent,
     FormContactoEmpresaComponent,
-    InterfazEmpresaComponent
+    InterfazEmpresaComponent,
+    InicioEmpresaComponent
   ],
   imports: [
     FormsModule,

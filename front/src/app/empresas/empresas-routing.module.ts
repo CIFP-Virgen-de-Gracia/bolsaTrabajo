@@ -1,15 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { InterfazEmpresaComponent } from './pages/interfaz-empresa/interfaz-empresa.component';
+//import { InterfazEmpresaComponent } from './pages/interfaz-empresa/interfaz-empresa.component';
 import { FormularioEmpresaComponent } from './pages/formulario-empresa/formulario-empresa.component';
 import { FormContactoEmpresaComponent } from './pages/form-contacto-empresa/form-contacto-empresa.component';
 import { ListadoEmpresasComponent } from './pages/listado-empresas/listado-empresas.component';
+import { InicioEmpresaComponent } from './pages/inicio-empresa/inicio-empresa.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: InterfazEmpresaComponent
+    component: InicioEmpresaComponent
+  },
+  {
+    path: 'inicio',
+    component: InicioEmpresaComponent
   },
   {
     path: 'formularioempresa',
