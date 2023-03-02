@@ -30,7 +30,7 @@ const login = (req, res = response) => {
             usu.rol
           );
           console.log(token);
-          res.status(200).json({ msg: "Login correcto." });
+          res.status(200).json({token});
         }
         // res.status(200).json({'msg':'Login correcto.'});
       })
@@ -45,6 +45,7 @@ const login = (req, res = response) => {
     res.status(500).json({ msg: "Error en el servidor." });
   }
 };
+
 
 const register = (req, res = response) => {
   const { nif, nick, email, password, status, rol } = req.body;
@@ -141,11 +142,61 @@ const logout = (req, res = response) => {
   res.status(200).json({ msg: "Logout correcto." });
 };
 
+const renewToken = async (req, res = response) => {
+  const { nif, nick, email, password, status, rol } = req.body;
+  const token = await generarJWT(
+    nif,
+    nick,
+    email,
+    password,
+    status,
+    rol
+  );
+  res.json({ token });
+};
+
+const loginGoogle = async(req, res, next) => {
+  const { id_token } = req.body;
+  try {
+    const { correo, nombre, img } = await googleVerify(id_token);
+    let usuario = await User.findOne({ correo });
+    if (!usuario) {
+      const data = {
+        nombre,
+        correo,
+        password: ':P',
+        img,
+        google: true
+      };
+      usuario = new User(data);
+      await usuario.save();
+    }
+    if (!usuario.status) {
+      return res.status(401).json({
+        msg: 'Hable con el administrador, usuario bloqueado'
+      });
+    }
+    const token = await generarJWT(usuario.id);
+    res.json({
+      usuario,
+      token
+    });
+  } catch (error) {
+    res.status(400).json({
+      msg: 'Token de Google no es válido'
+    });
+  }
+  
+};
+
+
 module.exports = {
   login,
   register,
   logout,
   registerAdmin,
-  registerEmpresa
+  registerEmpresa,
+  renewToken,
+  loginGoogle
 
 };

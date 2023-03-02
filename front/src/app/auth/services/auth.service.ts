@@ -1,111 +1,100 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, of, tap, Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { AuthResponse, User } from '../interface/interfaces';
+import { User } from '../interface/interfaces';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpErrorResponse,
+} from '@angular/common/http';
 import { Router } from '@angular/router';
-
+import { environment } from 'src/environments/environment';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  endpoint: string = environment.baseUrl + '/api/auth';
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
+  currentUser = {};
+  afAuth: any;
+  token!: string;
+  usuario: User = {
+    nif: '',
+    nick: '',
+    email: '',
+    password: '',
+    Token: undefined,
 
-  private _usuario!: User;
+  };
 
-  private baseUrl: string = environment.baseUrl;
+  constructor(private http: HttpClient, public router: Router) { }
 
-  get usuario() {
-
-    return { ...this._usuario };
-
+  // Registro*******************************
+  register(user: User): Observable<any> {
+    let api = `${this.endpoint}/register`;
+    return this.http.post(api, user).pipe(catchError(this.handleError));
   }
+  // Login********************************
+  login(user: User) {
 
-  constructor(
-
-    private http: HttpClient,
-    private router: Router,
-
-  ) { }
-
-  registro( nif:string, nick:string, email: string, password: string ) {
-
-    const url = this.baseUrl + '/api/auth/register';
-
-    const body = { nif, nick, email, password };
-
-    return this.http.post<AuthResponse>( url, body ).pipe(
-      tap( resp => {
-
-        if ( resp.ok ) {
-
-          localStorage.setItem('token', resp.token! );
-
-        }
-
+    return this.http.post<any>(`${this.endpoint}/login`, user).pipe(
+      map((res) => {
+        this.setToken(res.token);
+        return res || {};
       }),
-      map( resp => resp.ok ),
-      catchError( err => of( err.error.msg ) )
-    )
+      catchError(this.handleError)
+    );
 
   }
-
-  login( email: string, password: string ) {
-
-    const url = this.baseUrl + '/api/auth/login';
-
-    const body = { email, password };
-
-    return this.http.post<AuthResponse>( url, body ).pipe(
-      tap( resp => {
-
-        if ( resp.ok ) {
-
-          localStorage.setItem('token', resp.token! );
-
-        }
-
+  loginGoogle(usuario: any) {
+    return this.http.post<any>(`${this.endpoint}/loginGoogle`, usuario).pipe(
+      map((res) => {
+        this.setToken(res.token);
+        return res || {};
       }),
-      map( resp => resp.ok ),
-      catchError( err => of( err.error.msg ) )
-    )
-
+      catchError(this.handleError)
+    );
   }
 
-  validarToken(): Observable<boolean> {
 
-    const url = this.baseUrl + '/auth/renew';
+  getToken() {
+    return localStorage.getItem('Token');
+  }
 
-    const headers = new HttpHeaders().set( 'lc-token', localStorage.getItem('token') || '' )
+  setToken(token: string) {
+    localStorage.setItem('Token', token);
+  }
 
-    return this.http.get<AuthResponse>( url, { headers } ).pipe(
-      map( resp => {
+  get isLoggedIn(): boolean {
+    let authToken = localStorage.getItem('Token');
+    return authToken == null ? true : false;
+  }
+  doLogout() {
+    let removeToken = localStorage.removeItem('Token');
+    if (removeToken == null) {
+      this.router.navigate(['/welcome']);
+    }
+  }
 
-        localStorage.setItem('token', resp.token! );
-
-        this._usuario = {
-          nif: resp.nif!,
-          nick: resp.nick!,
-          email: resp.email!,
-          password: ''
-
-        }
-
-        return resp.ok;
+  verficaToken(): Observable<any> {
+    let api = `${this.endpoint}/verificaToken`;
+    return this.http.get(api, { headers: this.headers }).pipe(
+      map((res) => {
+        return res || {};
       }),
-      catchError( err => of(false) )
-    )
-
+      catchError(this.handleError)
+    );
   }
 
-  logout() {
-
-    // Comentar si deseamos converar otros datos
-    localStorage.clear();
-
-    localStorage.removeItem('token');
-
-    // this.router.navigateByUrl('/auth/login')
-
+  handleError(error: HttpErrorResponse) {
+    let msg = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      msg = error.error.message;
+    } else {
+      // server-side error
+      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return throwError(msg);
   }
-
 }
