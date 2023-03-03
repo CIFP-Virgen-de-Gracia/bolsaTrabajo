@@ -8,7 +8,7 @@ export interface Empresa {
 
 export interface UsuarioEmpresa {
   nif:string;
-  nick:string;
+  nombre:string;
   email:string;
   password:string;
   status:number;

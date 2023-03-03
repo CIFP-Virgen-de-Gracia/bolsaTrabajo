@@ -1,4 +1,3 @@
-<app-menu-empresa></app-menu-empresa>
 
 <div class="pagina pb-3">
 
@@ -26,7 +25,7 @@
 
             <div class="col-lg-6 col-md-12">
               <label for="nickUsuario" class="form-label">Nick</label>
-              <input type="text" class="form-control" id="nickUsuario" [(ngModel)]="usuarioActual.nick"
+              <input type="text" class="form-control" id="nombreUsuario" [(ngModel)]="usuarioActual.nombre"
                 [ngModelOptions]="{standalone: true}" placeholder="" value="" required />
               <div class="invalid-feedback">Se requiere un nick de usuario.</div>
             </div>
@@ -112,4 +111,3 @@
 </div>
 </div>
 
-<app-footer></app-footer>

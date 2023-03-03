@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-//import { InterfazEmpresaComponent } from './pages/interfaz-empresa/interfaz-empresa.component';
+import { InterfazEmpresaComponent } from './pages/interfaz-empresa/interfaz-empresa.component';
 import { FormularioEmpresaComponent } from './pages/formulario-empresa/formulario-empresa.component';
 import { FormContactoEmpresaComponent } from './pages/form-contacto-empresa/form-contacto-empresa.component';
 import { ListadoEmpresasComponent } from './pages/listado-empresas/listado-empresas.component';
@@ -13,8 +13,12 @@ const routes: Routes = [
     component: InicioEmpresaComponent
   },
   {
-    path: 'inicio',
+    path: 'inicioempresa',
     component: InicioEmpresaComponent
+  },
+  {
+    path: 'interfazempresa',
+    component: InterfazEmpresaComponent
   },
   {
     path: 'formularioempresa',

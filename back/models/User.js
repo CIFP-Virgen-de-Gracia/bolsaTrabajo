@@ -15,7 +15,7 @@ const User = db.define('users', {
             is: /^[0-9]{8}[A-Z]$/i
         }
     },
-    nick: {
+    nombre: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,

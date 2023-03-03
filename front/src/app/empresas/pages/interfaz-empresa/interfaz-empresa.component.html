@@ -1,4 +1,3 @@
-<app-menu-empresa></app-menu-empresa>
 
 <div class="pagina pb-3">
 
@@ -21,7 +20,9 @@
             <p class="card-text">
               Formulario para consultar y modificar los datos de la empresa.
             </p>
-            <a outerLinkActive="active" routerLink="formularioempresa" class="btn btn-primary d-grid">Acceder</a>
+            <!-- <a class="btn btn-primary d-grid" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+            routerLink="formularioempresa">Acceder</a> -->
+            <a class="btn btn-primary d-grid" routerLink="/formularioempresa" >Acceder</a>
           </div>
         </div>
       </div>
@@ -35,7 +36,7 @@
             <p class="card-text">
               Acceso al módulo de gestión de ofertas. Crear, modificar y consultar.
             </p>
-            <a outerLinkActive="active" routerLink="../ofertas/testing" class="btn btn-primary d-grid">Acceder</a>
+            <a routerLink="../ofertas/testing" class="btn btn-primary d-grid">Acceder</a>
           </div>
         </div>
       </div>
@@ -49,7 +50,8 @@
             <p class="card-text">
               Formulario para contactar con el administrador del sistema.
             </p>
-            <a outerLinkActive="active" routerLink="formulariocontacto" class="btn btn-primary d-grid">Acceder</a>
+            <!-- <a routerLinkActive="active" routerLink="formulariocontacto" class="btn btn-primary d-grid">Acceder</a> -->
+            <a class="btn btn-primary d-grid" routerLink="/formulariocontacto">Acceder</a>
           </div>
         </div>
       </div>
@@ -57,4 +59,3 @@
     </div>
   </div>
 </div>
-<app-footer></app-footer>

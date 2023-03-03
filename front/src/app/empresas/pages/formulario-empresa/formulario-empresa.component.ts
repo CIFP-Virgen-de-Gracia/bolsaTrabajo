@@ -21,7 +21,7 @@ export class FormularioEmpresaComponent implements OnInit {
 
   usuarioActual: UsuarioEmpresa = {
     nif: '',
-    nick: '',
+    nombre: '',
     email: '',
     password: '',
     status: 0,

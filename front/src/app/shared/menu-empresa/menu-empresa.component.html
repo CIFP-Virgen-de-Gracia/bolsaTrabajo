@@ -1,20 +1,3 @@
-<nav class="navbar">
-  <div class="p-0 ps-lg-5 pe-lg-5 d-flex justify-content-between align-items-center contenedor-menu">
-    <div class="justify-content-start d-flex align-items-center ms-3">
-      <div class="logo-menu me-2">
-        <img src="../../../assets/image/logo.png">
-      </div>
-      <div>
-        <h5 class="mb-1">CIFP Virgen de Gracia</h5>
-        <h6>Bolsa de empleo</h6>
-      </div>
-    </div>
-    <button class="navbar-toggler collapsed me-3 aparecepequenio" type="button" data-bs-toggle="collapse"
-      data-bs-target="#navbarExample04" aria-controls="navbarExample04" aria-expanded="false"
-      aria-label="Toggle navigation">
-      <i class="fa-solid fa-bars"></i>
-    </button>
-  </div>
   <div class="navbar-collapse collapse menu mt-2 aparecepequenio" id="navbarExample04" style>
     <div class="info-perfil justify-content-start d-flex align-items-center ms-5 me-5 pb-4 pt-4 mb-4">
       <div>
@@ -27,30 +10,30 @@
     <ul class="navbar-nav me-auto mb-md-0">
       <li class="nav-item pt-1 pb-1 ps-5 pe-3">
         <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-          routerLink="interfaz"><i class="fa-solid fa-house me-3"></i>&nbsp;&nbsp;&nbsp;Inicio</a>
+          routerLink="inicioempresa"><i class="fa-solid fa-house me-3"></i>&nbsp;&nbsp;&nbsp;Inicio</a>
       </li>
+      <!-- <li class="nav-item pt-1 pb-1 ps-5 pe-3">
+        <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+        routerLink="formularioempresa"><i class="fa-solid fa-building me-3"></i>&nbsp;&nbsp;&nbsp;Mis datos</a>
+      </li> -->
       <li class="nav-item pt-1 pb-1 ps-5 pe-3">
         <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-        routerLink="formularioempresa"><i class="fa-solid fa-building me-3"></i>&nbsp;&nbsp;&nbsp;Datos Empresa</a>
+        routerLink="interfazempresa"><i class="fa-solid fa-briefcase me-3"></i>&nbsp;&nbsp;&nbsp;Gestion</a>
       </li>
-      <li class="nav-item pt-1 pb-1 ps-5 pe-3">
-        <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-        routerLink="../ofertas/testing"><i class="fa-solid fa-briefcase me-3"></i>&nbsp;&nbsp;&nbsp;Publicar ofertas</a>
-      </li>
-      <li class="nav-item pt-1 pb-1 ps-5 pe-3">
+      <!-- <li class="nav-item pt-1 pb-1 ps-5 pe-3">
         <a class="nav-link"><i class="fa-solid fa-file me-3"></i>&nbsp;&nbsp;&nbsp;Buscar candidatos</a>
-      </li>
+      </li> -->
       <li class="nav-item dropdown-toggle pestania-submenu pt-1 pb-1 ps-5 pe-3 d-flex align-items-center"
         data-bs-toggle="dropdown" aria-expanded="false"><a class="nav-link"><i
             class="fa-solid fa-user me-3"></i>&nbsp;&nbsp;&nbsp;Mi perfil</a>&nbsp;&nbsp;</li>
       <ul class="submenu p-0 m-0 mt-md-4 dropdown-menu border-end-0 border-start-0 box-shadow-sm"
         data-bs-popper="static">
         <li class="p-2 ps-5"><a class="p-1 ps-5 ms-4 text-decoration-none" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-          routerLink="formularioempresa">Mis datos</a></li>
-        <li class="p-2 ps-5"><a class="p-1 ps-5 ms-4 text-decoration-none" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+          routerLink="formularioempresa">Datos empresa</a></li>
+        <!-- <li class="p-2 ps-5"><a class="p-1 ps-5 ms-4 text-decoration-none" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
           routerLink="../ofertas/testing">Mis ofertas</a></li>
         <li class="p-2 ps-5"><a class="p-1 ps-5 ms-4 text-decoration-none" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-          routerLink="formulariocontacto">Contacto</a></li>
+          routerLink="formulariocontacto">Contacto</a></li> -->
       </ul>
       <li class="nav-item pt-1 pb-1 ps-5 pe-3">
         <a href="#" class="nav-link"><i class="fa-solid fa-right-to-bracket  me-3"></i>&nbsp;&nbsp;&nbsp;Cerrar Sesión</a>
@@ -61,19 +44,19 @@
     <ul class="navbar text-decoration-none d-flex justify-content-end m-0 pe-lg-5">
       <li class="nav-item p-1">
         <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-          routerLink="interfaz">Inicio</a>
+          routerLink="inicioempresa">Inicio</a>
       </li>
-      <li class="nav-item p-1 m-2">
+      <!-- <li class="nav-item p-1 m-2">
         <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
         routerLink="formularioempresa">Mis datos</a>
-      </li>
+      </li> -->
       <li class="nav-item p-1 m-2">
         <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-        routerLink="../ofertas/testing">Publicar ofertas</a>
+        routerLink="interfazempresa">Gestion</a>
       </li>
-      <li class="nav-item p-1 m-2">
-        <a class="nav-link" href="#">Buscar candidatos</a><!-- ¿Quitar? -->
-      </li>
+      <!-- <li class="nav-item p-1 m-2">
+        <a class="nav-link" href="#">Buscar candidatos</a>
+      </li> -->
       <li class="nav-item p-1 m-2">
         <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
         routerLink="formulariocontacto">Contacto</a>
@@ -88,13 +71,12 @@
           data-bs-popper="static">
           <li class="p-lg-1"><a class="text-decoration-none" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
             routerLink="formularioempresa">Datos Empresa</a></li>
-          <li class="p-lg-1"><a class="text-decoration-none" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+          <!-- <li class="p-lg-1"><a class="text-decoration-none" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
             routerLink="../ofertas/testing">Mis ofertas</a></li>
           <li class="p-lg-1"><a class="text-decoration-none" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-            routerLink="formulariocontacto">Contacto</a></li>
+            routerLink="formulariocontacto">Contacto</a></li>-->
           <li class="p-lg-1"><a href="#" class="text-decoration-none">Cerrar Sesión</a></li>
         </ul>
       </li>
     </ul>
   </div>
-</nav>
