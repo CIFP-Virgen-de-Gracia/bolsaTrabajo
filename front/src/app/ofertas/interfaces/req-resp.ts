@@ -1,3 +1,4 @@
+//Realizado por Khattari
 export interface OfertasResponse {
     id?:          number;
     titulo:      string;
@@ -5,4 +6,14 @@ export interface OfertasResponse {
     lugar:       string;
     presencial:  number;
     jornada:     string;
+    nif_empresa: string;
+}
+
+export interface EmpresaResponse {
+    nif?:        number;
+    nombre:     string;
+    direccion:  string;
+    contacto:   string;
+    cargo:      string;
+    telefono:   string;
 }

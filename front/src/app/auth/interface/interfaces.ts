@@ -1,18 +1,7 @@
 export interface User {
-    nif:string;
-    nick: string;
-    email: string;
-    password: string;
-    // confirmPassword: string;
+  nif: string;
+  nick: string;
+  email: string;
+  password: string;
+  Token: any;
 }
-
-export interface AuthResponse{
-nif?: string;
-email?: string;
-token?: string;
-msg?: string;
-nick?: string;
-ok: boolean;
-}
-
-// Path: register.ts

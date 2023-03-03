@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ValidarTokenGuard } from './guards/validar-token.guard';
 
 const routes: Routes = [
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule )
+    loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule ),
   },
   {
     path: 'welcome',
@@ -14,6 +13,7 @@ const routes: Routes = [
   {
     path: 'alumno',
     loadChildren: () => import('./alumno/alumno.module').then( m => m.AlumnoModule )
+
   },
   {
     path: 'empresas',

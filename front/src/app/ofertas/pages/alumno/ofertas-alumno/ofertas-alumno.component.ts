@@ -1,3 +1,4 @@
+//Realizado por Khattari
 import { Component, OnInit } from '@angular/core';
 import { RestBolsaService } from '../../../apiRest/services/rest-bolsa.service';
 import { OfertasResponse } from '../../../interfaces/req-resp';
@@ -10,6 +11,7 @@ import { OfertasResponse } from '../../../interfaces/req-resp';
 export class OfertasAlumnoComponent implements OnInit {
 
   public ofertas: any = [];
+  p: number = 1;
   constructor(private restBolsaService: RestBolsaService) { }
 
   ngOnInit(): void {
