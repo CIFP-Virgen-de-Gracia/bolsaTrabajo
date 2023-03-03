@@ -12,6 +12,7 @@ class Server {
         this.empresasPath = '/api/empresa';
         this.ofertasPath = '/ofertas';
         this.empresaOFertaPath = '/empresaoferta';
+        this.adminPath = '/admin';
 
         //Middlewares
         this.middlewares();
@@ -36,6 +37,7 @@ class Server {
         this.app.use(this.rolesAsignados, require('../routes/rolesAsignadosRoutes'));
         this.app.use(this.empresaOFertaPath, require('../routes/empresaOfertasRoute'));
         this.app.use(this.alumnosPath , require('../routes/alumnoRoutes'));
+        this.app.use(this.adminPath, require('../routes/adminRoutes'));
     }
 
     listen() {

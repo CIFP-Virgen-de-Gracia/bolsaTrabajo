@@ -3,6 +3,8 @@ const db = require('../controllers/Conexion/connection');
 const RolesAsignados = require('./RolesAsignados');
 const Roles = require('./Roles');
 
+const Empresa = require('./Empresa');
+const Alumno = require('./Alumno');
 
 const User = db.define('users', {
     nif: {
@@ -15,7 +17,7 @@ const User = db.define('users', {
             is: /^[0-9]{8}[A-Z]$/i
         }
     },
-    nick: {
+    nombre: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
@@ -75,5 +77,9 @@ const User = db.define('users', {
 
 
 User.hasOne(RolesAsignados, { as: 'RolesAsignados', foreignKey: 'userNif' });
+
+//Parte realizada por Khattari
+User.hasMany(Empresa, {as: 'EmpresaUser', foreignKey: 'nif'});
+User.hasMany(Alumno, {as: 'AlumnoUser', foreignKey: 'nif'});
 
 module.exports = User;
