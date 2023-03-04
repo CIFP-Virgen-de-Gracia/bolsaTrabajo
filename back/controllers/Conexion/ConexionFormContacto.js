@@ -1,25 +1,25 @@
-const Empresa = require('../../models/Empresa');
+const FormContacto = require('../../models/FormContacto');
 const ConexionSequelize = require('./ConexionSequelize');
 
-class ConexionEmpresa extends ConexionSequelize {
+class ConexionFormContacto extends ConexionSequelize {
   
     constructor() {
         super();
     };
 
-  //Métodos CRUD Empresas -------------------------------------------------------------
-    getEmpresaListado = async() => {
+  //Métodos CRUD Formulario de contacto -------------------------------------------------------------
+    getFormContactoListado = async() => {
         let resultado = [];
         this.conectar();
-        resultado = await Empresa.findAll();
+        resultado = await FormContacto.findAll();
         this.desconectar();
         return resultado;
     }
   
-    getEmpresa = async(nif) => {
+    getFormContacto = async(id) => {
         let resultado = [];
         this.conectar();
-        resultado = await Empresa.findByPk(nif);
+        resultado = await FormContacto.findByPk(id);
         this.desconectar();
         if (!resultado){
             throw error;
@@ -27,18 +27,18 @@ class ConexionEmpresa extends ConexionSequelize {
         return resultado;
     }
 
-    registrarEmpresa = async(body) => {
+    registrarFormContacto = async(body) => {
         let resultado = 0;
         this.conectar();
-        const empresaNueva = new Empresa(body);
-        await empresaNueva.save();
+        const formContactoNuevo = new FormContacto(body);
+        await formContactoNuevo.save();
         this.desconectar();
         return resultado;
     }
 
-    modificarEmpresa = async(nif, body) => {
+    modificarFormContacto = async(id, body) => {
         this.conectar();
-        let resultado = await Empresa.findByPk(nif);
+        let resultado = await FormContacto.findByPk(id);
         if (!resultado){
             this.desconectar();
             throw error;
@@ -48,9 +48,9 @@ class ConexionEmpresa extends ConexionSequelize {
         return resultado;
     }
 
-    borrarEmpresa = async(nif) => {
+    borrarFormContacto = async(id) => {
         this.conectar();
-        let resultado = await Empresa.findByPk(nif);
+        let resultado = await FormContacto.findByPk(id);
         if (!resultado){
             this.desconectar();
             throw error;
@@ -62,4 +62,4 @@ class ConexionEmpresa extends ConexionSequelize {
 
 }
 
-module.exports = ConexionEmpresa;
+module.exports = ConexionFormContacto;

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Empresa } from '../interfaces/empresas.interface';
+import { Empresa, FormularioContacto, UsuarioEmpresa } from '../interfaces/empresas.interface';
 
 
 @Injectable({
@@ -12,26 +12,57 @@ import { Empresa } from '../interfaces/empresas.interface';
 export class EmpresasService {
 
   public urlListado: string = "http://localhost:9090/api/empresa";
+  public urlListadoUser: string = "http://localhost:9090/api/auth";
+  public urlListadoFormContacto: string = 'http://localhost:9090/api/formContacto';
 
   constructor(private http: HttpClient) { }
 
+  //Datos empresa ------------------------------------
+  public getUsuarioPorId(nif: string): Observable<UsuarioEmpresa>{
+    return this.http.get<UsuarioEmpresa>(`${this.urlListadoUser}/${nif}`);
+  }
+
+  public getEmpresaPorId(nif: string): Observable<Empresa>{
+    return this.http.get<Empresa>(`${this.urlListado}/${nif}`);
+  }
+
+  public modificarUsuario(usuario: UsuarioEmpresa): Observable<UsuarioEmpresa>{
+    return this.http.put<UsuarioEmpresa>(`${this.urlListadoUser}/${usuario.nif}`,usuario);
+  }
+
+  public modificarEmpresa(empresa: Empresa): Observable<Empresa>{
+    return this.http.put<Empresa>(`${this.urlListado}/${empresa.nif}`,empresa);
+  }
+
+  //Listado empresas -------------------------------------
   public getListado() : Observable<Empresa> {
     return this.http.get<Empresa>(this.urlListado);
   }
 
-  public getEmpresaPorId(id: string): Observable<Empresa>{
-    return this.http.get<Empresa>(`${this.urlListado}/${id}`);
+  //Formulario contacto ------------------------------------
+  public crearFormularioContacto(formulario: FormularioContacto): Observable<FormularioContacto> {
+    return this.http.post<FormularioContacto>(this.urlListadoFormContacto, formulario);
   }
 
-  public AgregarEmpresa(empresa: Empresa): Observable<Empresa>{
+  //Listado de formularios de contactos ------------------------
+  public getListadoFormContacto(): Observable<FormularioContacto> {
+    return this.http.get<FormularioContacto>(this.urlListadoFormContacto);
+  }
+
+
+
+  //Metodos extras disponibles ------------------------------------
+  public agregarEmpresa(empresa: Empresa): Observable<Empresa>{
     return this.http.post<Empresa>(this.urlListado, empresa);
   }
-  //Revisar el siguiente método:
-  //public ModificarEmpresa(empresa: Empresa): Observable<Empresa>{
-  //  return this.http.put<Empresa>(`${this.urlListado}/${empresa.id}`);
-  //}
 
-  public BorrarEmpresa(id: string): Observable<Empresa>{
-    return this.http.delete<Empresa>(`${this.urlListado}/${id}`);
+  public borrarEmpresa(nif: string): Observable<Empresa>{
+    return this.http.delete<Empresa>(`${this.urlListado}/${nif}`);
   }
+
+
+  public getFormContactoPorId(id: number): Observable<FormularioContacto> {
+    return this.http.get<FormularioContacto>(`${this.urlListadoFormContacto}/${id}`);
+  }
+
 }

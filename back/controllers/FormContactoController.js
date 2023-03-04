@@ -1,12 +1,12 @@
 const {response,request} = require('express');
-const Conexion = require('./Conexion/ConexionEmpresa');
+const Conexion = require('./Conexion/ConexionFormContacto');
 
-const empresasGet =  (req, res = response) => {
+const formContactosGet =  (req, res = response) => {
     const conx = new Conexion();
 
-    conx.getEmpresaListado()    
+    conx.getFormContactoListado()    
         .then( msg => {
-            console.log('Listado de empresas correcto!');
+            console.log('Listado de Formularios correcto!');
             res.status(200).json(msg);
         })
         .catch( err => {
@@ -15,40 +15,40 @@ const empresasGet =  (req, res = response) => {
         });
 }
 
-const empresaGet =  (req, res = response) => {
+const formContactoGet =  (req, res = response) => {
     const conx = new Conexion();
     
-    conx.getEmpresa(req.params.nif)    
+    conx.getFormContacto(req.params.id)    
         .then( msg => {
-            console.log('Listado de empresa correcto!');
+            console.log('Listado de formulario correcto!');
             res.status(200).json(msg);
         })
         .catch( err => {
             console.log('No hay registro!');
-            res.status(203).json({'msg':'No se ha encontrado el registro'});
+            res.status(203).json({'msg':'No se ha encontrado el formulario'});
         });
 }
 
-const empresasPost =  (req = request, res = response) => {
+const formContactoPost =  (req = request, res = response) => {
     const conx = new Conexion();
     
-    conx.registrarEmpresa(req.body)    
+    conx.registrarFormContacto(req.body)    
         .then( msg => {
-            console.log('Empresa insertada correctamente!');
+            console.log('Formulario insertado correctamente!');
             res.status(201).json(msg);
         })
         .catch( err => {
-            console.log('Fallo en el registro de empresa!');
+            console.log('Fallo en la inserción del formulario!');
             res.status(203).json(err);
         });
 }
 
-const empresasPut = (req = request, res = response) => {
+const formContactoPut = (req = request, res = response) => {
     const conx = new Conexion();
 
-    conx.modificarEmpresa(req.params.nif, req.body)
+    conx.modificarFormContacto(req.params.id, req.body)
         .then( msg => {
-            console.log("Empresa modificada con exito");
+            console.log("Formulario modificado con exito");
             res.status(202).json(msg);
         })
         .catch( err => {
@@ -57,12 +57,12 @@ const empresasPut = (req = request, res = response) => {
         });
 }
 
-const empresasDelete =  (req, res = response) => {
+const formContactoDelete =  (req, res = response) => {
     const conx = new Conexion();
     
-    conx.borrarEmpresa(req.params.nif)    
+    conx.borrarFormContacto(req.params.id)    
         .then( msg => {
-            console.log('Empresa borrada correctamente!');
+            console.log('Formulario borrado correctamente!');
             res.status(202).json(msg);
         })
         .catch( err => {
@@ -73,9 +73,9 @@ const empresasDelete =  (req, res = response) => {
 
 
 module.exports = {
-    empresasGet,
-    empresaGet,
-    empresasPost,
-    empresasPut,
-    empresasDelete
+    formContactosGet,
+    formContactoGet,
+    formContactoPost,
+    formContactoPut,
+    formContactoDelete
 }
