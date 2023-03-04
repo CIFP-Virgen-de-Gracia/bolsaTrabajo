@@ -23,9 +23,10 @@ const login = (req, res = response) => {
           //Generar el JWT.
           const token = generarJWT(
             usu.nif,
-            usu.nick,
+            usu.nombre,
             usu.email,
             usu.password,
+            usu.telefono,
             usu.status,
             usu.rol
           );
@@ -48,14 +49,14 @@ const login = (req, res = response) => {
 
 
 const register = (req, res = response) => {
-  const { nif, nick, email, password, status, rol } = req.body;
+  const { nif, nombre, email, password, telefono,status, rol } = req.body;
   try {
     //Verificar si existe el usuario.
     const conx = new Conexion();
     u = conx
       .getUsuario(email)
       .then((usu) => {
-        console.log("Usuario existente!" + usu);
+        // console.log("Usuario existente!" + usu);
         res
           .status(500)
           .json({ msg: "Este usuario ya existe en nuestra base." });
@@ -65,7 +66,7 @@ const register = (req, res = response) => {
         //Registrar usuario.
         const conx = new Conexion();
         u = conx.registrarUsuario(req.body).then((usu) => {
-          console.log("Usuario registrado!");
+          // console.log("Usuario registrado!");
           res.status(200).json({ msg: "Usuario registrado." });
         });
       });
@@ -74,68 +75,17 @@ const register = (req, res = response) => {
     res.status(500).json({ msg: "Error en el servidor." });
   }
 };
-const registerAdmin = (req, res = response) => {
-  const { nif, nick, email, password, status, rol } = req.body;
+
+const loginGoogleCallback = async (req, res = response) => {
+  const { id_token } = req.body;
   try {
-    //Verificar si existe el usuario.
-    const conx = new Conexion();
-    u = conx
-      .getUsuario(email)
+    const { correo, nombre, img } = await googleVerify(id_token);
 
-      .then((usu) => {
-        console.log("Usuario existente!" + usu);
-        res
-          .status(500)
-          .json({ msg: "Este usuario ya existe en nuestra base." });
-      })
-      .catch((err) => {
-        console.log("Usuario nuevo, correcto!");
-        //Registrar usuario.
-        const conx = new Conexion();
-        u = conx
-          .registrarUsuario(req.body)
-
-          .then((usu) => {
-            console.log("Usuario registrado!");
-            res.status(200).json({ msg: "Usuario registrado." });
-          });
-      });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ msg: "Error en el servidor." });
+    res.status(400).json({ msg: "Token de Google no es válido." });
   }
 };
-const registerEmpresa = (req, res = response) => {
-  const { nif, nick, email, password, status, rol } = req.body;
-  try {
-    //Verificar si existe el usuario.
-    const conx = new Conexion();
-    u = conx
-      .getUsuario(email)
 
-      .then((usu) => {
-        console.log("Usuario existente!" + usu);
-        res
-          .status(500)
-          .json({ msg: "Este usuario ya existe en nuestra base." });
-      })
-      .catch((err) => {
-        console.log("Usuario nuevo, correcto!");
-        //Registrar usuario.
-        const conx = new Conexion();
-        u = conx
-          .registrarUsuario(req.body)
-
-          .then((usu) => {
-            console.log("Usuario registrado!");
-            res.status(200).json({ msg: "Usuario registrado." });
-          });
-      });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ msg: "Error en el servidor." });
-  }
-};
 const logout = (req, res = response) => {
   const conx = new Conexion();
   conx.desconectar();
@@ -143,10 +93,10 @@ const logout = (req, res = response) => {
 };
 
 const renewToken = async (req, res = response) => {
-  const { nif, nick, email, password, status, rol } = req.body;
+  const { nif, nombre, email, password, status, rol } = req.body;
   const token = await generarJWT(
     nif,
-    nick,
+    nombre,
     email,
     password,
     status,
@@ -155,12 +105,13 @@ const renewToken = async (req, res = response) => {
   res.json({ token });
 };
 
-const loginGoogle = async(req, res, next) => {
+const loginGoogle = async(req, res) => {
   const { id_token } = req.body;
   try {
     const { correo, nombre, img } = await googleVerify(id_token);
     let usuario = await User.findOne({ correo });
     if (!usuario) {
+      //Tengo que crearlo
       const data = {
         nombre,
         correo,
@@ -171,21 +122,25 @@ const loginGoogle = async(req, res, next) => {
       usuario = new User(data);
       await usuario.save();
     }
-    if (!usuario.status) {
+    //Si el usuario en DB
+    if (!usuario.estado) {
       return res.status(401).json({
         msg: 'Hable con el administrador, usuario bloqueado'
       });
     }
+    //Generar el JWT
     const token = await generarJWT(usuario.id);
     res.json({
       usuario,
       token
     });
+
   } catch (error) {
     res.status(400).json({
       msg: 'Token de Google no es válido'
     });
   }
+ 
   
 };
 
@@ -194,9 +149,8 @@ module.exports = {
   login,
   register,
   logout,
-  registerAdmin,
-  registerEmpresa,
   renewToken,
-  loginGoogle
+  loginGoogle,
+  loginGoogleCallback,
 
 };

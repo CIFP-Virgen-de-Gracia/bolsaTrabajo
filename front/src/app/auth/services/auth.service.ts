@@ -16,16 +16,20 @@ export class AuthService {
   endpoint: string = environment.baseUrl + '/api/auth';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
+  imagenes: any=[];
   afAuth: any;
   token!: string;
   usuario: User = {
     nif: '',
-    nick: '',
+    nombre: '',
     email: '',
     password: '',
+    telefono: '',
+    role: 2,
     Token: undefined,
-
+    token: '',
   };
+
 
   constructor(private http: HttpClient, public router: Router) { }
 
@@ -97,4 +101,11 @@ export class AuthService {
     }
     return throwError(msg);
   }
+
+  // Subir Imagen
+  subirImagen(imagen: any) {
+    let api = `${this.endpoint}/upload`;
+    return this.http.post(api, imagen).pipe(catchError(this.handleError));
+  }
+
 }

@@ -2,7 +2,7 @@ const { Sequelize, DataTypes, Model } = require('sequelize');
 const db = require('../controllers/Conexion/connection');
 const RolesAsignados = require('./RolesAsignados');
 const Roles = require('./Roles');
-
+const Avatar = require('./Files');
 
 const User = db.define('users', {
     nif: {
@@ -15,7 +15,7 @@ const User = db.define('users', {
             is: /^[0-9]{8}[A-Z]$/i
         }
     },
-    nick: {
+    nombre: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
@@ -42,6 +42,10 @@ const User = db.define('users', {
         }
 
     },
+    telefono: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        },                                 
     status: {
         type: DataTypes.INTEGER,
         allowNull: true,
@@ -56,13 +60,18 @@ const User = db.define('users', {
         type: DataTypes.INTEGER,
         allowNull: true,
         validate: {
-            notEmpty: true,
+            notEmpty: false,
             isInt: true,
             min: 1,
             max: 3
         }
 
+    },
+    avatar:{
+        type: DataTypes.STRING,
+        allowNull: true
     }
+
 },
 
     {
@@ -75,5 +84,6 @@ const User = db.define('users', {
 
 
 User.hasOne(RolesAsignados, { as: 'RolesAsignados', foreignKey: 'userNif' });
+Avatar.belongsTo(User, { as: 'User', foreignKey: 'userNif' });
 
 module.exports = User;

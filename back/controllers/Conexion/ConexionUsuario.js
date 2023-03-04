@@ -1,12 +1,15 @@
 const User = require("../../models/User");
 const RolAsignado = require("../../models/RolesAsignados");
 const Roles = require("../../models/Roles");
-const concatenate = require('../../helpers/concatenate'); 
 const bycript = require("bcryptjs");
 const ConexionSequelize = require('./ConexionSequelize');
+const File = require('../../models/Files');
+const path = require('path');
+const { v4: uuidv4 } = require('uuid');
+const fs = require('fs');
 
 class ConexionUsuario extends ConexionSequelize {
-  
+
   constructor() {
     super();
   };
@@ -29,29 +32,40 @@ class ConexionUsuario extends ConexionSequelize {
     return resultado;
   };
 
-  //TODO:hecho...falta frontend
   registrarUsuario = async (body) => {
     let resultado = 0;
+    let avatar = '';
     this.conectar();
     const usuarioNuevo = new User(body); //Con esto añade los timeStamps.
+    // resultado =
     await usuarioNuevo.save();
     resultado = await usuarioNuevo.save();
     this.AsignarRol({      //Asigna el rol de usuario por defecto o el que se le pase por el body
       userNif: body.nif,
       roleId: body.rol,
     });
-    this.desconectar();
-    return resultado;
-  };
+    if (body.file !=="") {
+      this.AsignarAvatar({
+        userNif: usuarioNuevo.nif,
+        file: body.file,
+      });
+      this.desconectar();
+      return resultado;
+    }else{
+      this.desconectar();
+      return resultado;
+    }
+    }
+    
 
-  modificarUsuario = async (nif, body) => {
+  modificarAvatar = async (nif, avatar) => {
     this.conectar();
-    let resultado = await User.findByPk(nif);
-    if (!resultado) {
+    let user = await User.findByPk(nif);
+    if (!user) {
       this.desconectar();
       throw error;
     }
-    await resultado.update(body);
+    await user.update(avatar);
     this.desconectar();
     return resultado;
   };
@@ -97,7 +111,7 @@ class ConexionUsuario extends ConexionSequelize {
     this.desconectar();
     return resultado;
   };
-  
+
   getUsuarioRegistrado = async (email, password) => {
     let Npassword = bycript.hashSync(password, 10);
     let resultado = [];
@@ -123,13 +137,41 @@ class ConexionUsuario extends ConexionSequelize {
   AsignarRol = async (body) => {
     let resultado = 0;
     this.conectar();
-    const rolNuevo = new RolAsignado(body); 
+    const rolNuevo = new RolAsignado(body);
     await rolNuevo.save();
     resultado = await rolNuevo.save();
     this.desconectar();
     return resultado;
   }
 
+  AsignarAvatar = async (body) => {
+    let resultado = 0;
+    let nombreArchivo = uuidv4() + '.jpg';
+    this.conectar();
+    const file = {
+      userNif: body.userNif,
+      file: nombreArchivo,
+    }
+    const avatarNuevo = new File(file);
+    await avatarNuevo.save();
+    resultado = await avatarNuevo.save();
+    this.desconectar();
+    return resultado;
+  }
+
+  getAvatar = async (nif) => {
+    let resultado = [];
+    this.conectar();
+    resultado = await File.findOne({ where: { userNif: nif } });
+    this.desconectar();
+    if (!resultado) {
+      throw error;
+    }
+    return resultado;
+  };
+
+
 }
+
 
 module.exports = ConexionUsuario;

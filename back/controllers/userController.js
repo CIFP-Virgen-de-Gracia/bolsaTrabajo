@@ -122,6 +122,24 @@ const rolesGet = (req, res = response) => {
     });
 };
 
+const getAvatar = (req, res = response) => {
+  const conx = new Conexion();
+
+  conx
+    .getAvatar(req.params.nif)
+    .then((file) => {
+      // console.log("Listado correcto!");
+      res.status(200).json(file);
+    })
+    .catch((err) => {
+      console.log("No hay registros");
+      res.status(203).json({ msg: "No se han encontrado registros" });
+    });
+};
+
+
+
+
 module.exports = {
   usuariosGet,
   usuariosDelete,
@@ -131,4 +149,5 @@ module.exports = {
   rolesGet,
   rolesAsignadosGet,
   rolesAsignadosNifGet,
+  getAvatar,
 };
