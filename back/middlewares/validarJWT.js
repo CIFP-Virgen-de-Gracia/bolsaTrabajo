@@ -1,3 +1,5 @@
+//Ines
+//Validar JWT, que se encarga de validar el token de JWT y devolver los datos del usuario.
 const jwt = require('jsonwebtoken');
 const {response, request} = require('express')  
 

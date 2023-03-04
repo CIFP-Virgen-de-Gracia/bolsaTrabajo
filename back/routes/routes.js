@@ -1,3 +1,5 @@
+//Ines
+//Descripcion: rutas de la api de usuarios y acceso
 const {Router } = require('express');
 // const controlador = require('../controllers/bdController');
 const userController=require('../controllers/userController');
@@ -7,7 +9,7 @@ const midsRoles = require("../middlewares/validarRoles");
 const uploads = require('../controllers/uploads');
 const router = Router();
 //----------------------------
-router.post('/login',[midsJWT.validarJWT],controladorAuth.login);
+router.post('/login',[midsRoles.esAdmin, midsRoles.esEmpresa, midsRoles.esEstudiante],[midsJWT.validarJWT],controladorAuth.login);
 router.post('/loginGoogle',controladorAuth.loginGoogle);
 router.post('/register', controladorAuth.register);
 router.post('/logout', controladorAuth.logout);

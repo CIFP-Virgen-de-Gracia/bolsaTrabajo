@@ -1,3 +1,5 @@
+//Ines
+//Descripción: Este archivo contiene los métodos de auth, login, logout, renew... etc.
 const { response, request } = require("express");
 const Conexion = require("./Conexion/ConexionUsuario");
 const { generarJWT } = require("../helpers/generate_jwt");

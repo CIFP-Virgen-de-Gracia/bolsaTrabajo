@@ -1,3 +1,5 @@
+//Ines
+//Descripcion:modelo RolesAsignados
 const { Sequelize, DataTypes, Model }= require('sequelize');
 const db = require('../controllers/Conexion/connection');
 // const User = require('./User');

@@ -1,3 +1,5 @@
+//Ines
+//Descripcion:controlador de usuarios
 const User = require("../../models/User");
 const RolAsignado = require("../../models/RolesAsignados");
 const Roles = require("../../models/Roles");
@@ -44,19 +46,14 @@ class ConexionUsuario extends ConexionSequelize {
       userNif: body.nif,
       roleId: body.rol,
     });
-    if (body.file !=="") {
-      this.AsignarAvatar({
-        userNif: usuarioNuevo.nif,
-        file: body.file,
-      });
-      this.desconectar();
-      return resultado;
-    }else{
-      this.desconectar();
-      return resultado;
-    }
-    }
-    
+    this.AsignarAvatar({
+      userNif: usuarioNuevo.nif,
+      file: body.file,
+    });
+    this.desconectar();
+    return resultado;
+  }
+
 
   modificarAvatar = async (nif, avatar) => {
     this.conectar();
@@ -67,7 +64,7 @@ class ConexionUsuario extends ConexionSequelize {
     }
     await user.update(avatar);
     this.desconectar();
-    return resultado;
+    return user;
   };
 
   borrarUsuario = async (nif) => {

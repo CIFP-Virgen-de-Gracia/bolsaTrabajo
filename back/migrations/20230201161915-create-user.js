@@ -1,35 +1,49 @@
+//Ines
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('users', {
-      dni: {
-        type: Sequelize.STRING,
-        primaryKey: true,
+      nif: {
+        type: Sequelize.STRING(9),
         allowNull: false,
-        unique: true
+        primaryKey: true
       },
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      password: {
-        type: Sequelize.STRING,
+      nombre: {
+        type: Sequelize.STRING(50),
         allowNull: false
       },
-      status: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        defultValue: 0
+      email: {
+        type: Sequelize.STRING(50),
+        allowNull: false
+      },
+      password: {
+        type: Sequelize.STRING(100),
+        allowNull: false
+      },
+      avatar: {
+        type: Sequelize.STRING(100),
+        allowNull: true
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
       },
+      telefono: {
+        type: Sequelize.STRING(9),
+        allowNull: true
+      },
+
+      rol: {
+        type: Sequelize.STRING(50),
+        allowNull: true
+      },
+
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
       }
+
     });
   },
   async down(queryInterface, Sequelize) {

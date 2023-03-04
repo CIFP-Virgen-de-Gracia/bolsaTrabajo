@@ -1,3 +1,5 @@
+//Ines
+//Descripcion:modelo User
 const { Sequelize, DataTypes, Model } = require('sequelize');
 const db = require('../controllers/Conexion/connection');
 const RolesAsignados = require('./RolesAsignados');
@@ -66,10 +68,6 @@ const User = db.define('users', {
             max: 3
         }
 
-    },
-    avatar:{
-        type: DataTypes.STRING,
-        allowNull: true
     }
 
 },
