@@ -7,16 +7,23 @@
   position: relative;
   left: 1rem;
   width: 90%;
-}
-.breadcrumb-item {
-  &:hover {
+
+  .breadcrumb-item {
+    a {
+      all: unset;
+    }
+
+    &:hover {
       cursor: pointer;
+    }
+    color: var(--colorSecundario);
+    -webkit-text-stroke: 0.2px var(--colorOscuroSombra);
   }
-  color: var(--colorSecundario);
-  -webkit-text-stroke: 0.2px var(--colorOscuroSombra);
-}
-.active {
-  color: gray;
+
+  .active {
+    color: gray;
+  }
+
 }
 
 .container {

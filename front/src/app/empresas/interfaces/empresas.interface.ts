@@ -16,3 +16,12 @@ export interface UsuarioEmpresa {
   //¿token?
   telefono: string;
 }
+
+export interface FormularioContacto {
+  id: number;
+  nif: string;
+  nombre: string;
+  email: string;
+  telefono: string;
+  observaciones: string;
+}

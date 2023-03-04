@@ -3,8 +3,8 @@
 
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb m-0 pt-2 ml-2">
-      <li class="breadcrumb-item"><a>Inicio</a></li>
-      <li class="breadcrumb-item"><a>Empresa</a></li>
+      <li class="breadcrumb-item"><a outerLinkActive="active" routerLink="../inicioempresa">Inicio</a></li>
+      <li class="breadcrumb-item"><a outerLinkActive="active" routerLink="../interfazempresa">Empresa</a></li>
       <li class="breadcrumb-item active" aria-current="page">Datos empresa</li>
     </ol>
   </nav>
@@ -23,12 +23,12 @@
                 [ngModelOptions]="{standalone: true}" readonly/>
             </div>
 
-            <div class="col-lg-6 col-md-12">
+            <!-- <div class="col-lg-6 col-md-12">
               <label for="nickUsuario" class="form-label">Nick</label>
               <input type="text" class="form-control" id="nombreUsuario" [(ngModel)]="usuarioActual.nombre"
                 [ngModelOptions]="{standalone: true}" placeholder="" value="" required />
               <div class="invalid-feedback">Se requiere un nick de usuario.</div>
-            </div>
+            </div> -->
 
             <div class="col-12">
               <label for="companyName" class="form-label">Nombre / Razón social</label>
@@ -75,7 +75,7 @@
 
             <div class="col-lg-6 col-md-12">
               <label for="companyPhone" class="form-label">
-                Teléfono de contacto<span class="text-muted">(Opcional)</span></label>
+                Teléfono de contacto<span class="text-muted"></span></label>
               <input type="text" class="form-control" id="companyPhone" [(ngModel)]="usuarioActual.telefono"
                 [ngModelOptions]="{standalone: true}" placeholder="926 123 456" />
             </div>
