@@ -34,7 +34,7 @@ const routes: Routes = [
     component: ListadoEmpresasComponent
   },
   {
-    path: 'listaFormulariosContacto',
+    path: 'listaformularioscontacto',
     component: ListadoFormContactoComponent
   },
   {

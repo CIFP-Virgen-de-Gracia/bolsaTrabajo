@@ -23,13 +23,14 @@ router.get('/roles/:nif', userController.rolesAsignadosNifGet); */
 const controlador = require('../controllers/bdController');
 const mid = require('../middlewares/pruebaMiddleware');
 
-router.get('/', controlador.verListado);
+//router.get('/', controlador.verListado);
 
 
 //********************** */
 //Inés: Creo aquí la ruta para usuarioEmpresaGet, que necesito 
 //para formularioEmpresa. No quiero tocarte lo tuyo por si te lo estropeo.
 router.get('/:nif', userController.usuarioEmpresaGet);
+router.get('/', userController.usuariosGet);
 router.put('/:nif', userController.usuariosPut);
 //********************** */
 

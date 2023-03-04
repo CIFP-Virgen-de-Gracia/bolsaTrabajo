@@ -25,3 +25,12 @@ export interface FormularioContacto {
   telefono: string;
   observaciones: string;
 }
+
+export interface LineaListadoEmpresa {
+  nif: string,
+  nombre: string,
+  email: string,
+  contacto: string,
+  cargo: string,
+  telefono: string
+}

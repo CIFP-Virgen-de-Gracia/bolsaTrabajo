@@ -15,6 +15,13 @@ export class EmpresasService {
   public urlListadoUser: string = "http://localhost:9090/api/auth";
   public urlListadoFormContacto: string = 'http://localhost:9090/api/formContacto';
 
+
+
+  //Prueba para pasar los datos del listado al formulario de contacto
+  private formContactoCompartido: any;
+
+
+
   constructor(private http: HttpClient) { }
 
   //Datos empresa ------------------------------------
@@ -34,9 +41,13 @@ export class EmpresasService {
     return this.http.put<Empresa>(`${this.urlListado}/${empresa.nif}`,empresa);
   }
 
-  //Listado empresas -------------------------------------
+  //Listado empresas y usuarios ----------------------------
   public getListado() : Observable<Empresa> {
     return this.http.get<Empresa>(this.urlListado);
+  }
+
+  public getListadoUsers(): Observable<UsuarioEmpresa> {
+    return this.http.get<UsuarioEmpresa>(this.urlListadoUser);
   }
 
   //Formulario contacto ------------------------------------
@@ -50,7 +61,6 @@ export class EmpresasService {
   }
 
 
-
   //Metodos extras disponibles ------------------------------------
   public agregarEmpresa(empresa: Empresa): Observable<Empresa>{
     return this.http.post<Empresa>(this.urlListado, empresa);
@@ -60,9 +70,18 @@ export class EmpresasService {
     return this.http.delete<Empresa>(`${this.urlListado}/${nif}`);
   }
 
-
   public getFormContactoPorId(id: number): Observable<FormularioContacto> {
     return this.http.get<FormularioContacto>(`${this.urlListadoFormContacto}/${id}`);
   }
+
+
+
+  //Probando llevar datos del listado de formularios de contacto al componente
+  //del propio formulario de contacto
+  public mostrarFormContacto(datos: any) {
+    this.formContactoCompartido = datos;
+    console.log(datos);
+  }
+
 
 }
