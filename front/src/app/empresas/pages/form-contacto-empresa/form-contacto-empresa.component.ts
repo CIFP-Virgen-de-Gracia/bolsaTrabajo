@@ -48,6 +48,10 @@ export class FormContactoEmpresaComponent implements OnInit {
     this.limpiar();
   }
 
+  public mostrar(detalleFormContacto: FormularioContacto) {
+
+  }
+
   public limpiar() {
     location.reload();
   }

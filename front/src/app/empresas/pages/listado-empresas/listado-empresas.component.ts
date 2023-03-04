@@ -9,11 +9,13 @@ import { EmpresasService } from '../../services/empresas.service';
 export class ListadoEmpresasComponent implements OnInit {
 
   public empresas: any = [];
+  public usuarios: any = [];
 
   constructor(private empresasService: EmpresasService) { }
 
   ngOnInit(): void {
     this.getListado();
+    this.getListadoUsers();
   }
 
   public getListado() {
@@ -21,6 +23,12 @@ export class ListadoEmpresasComponent implements OnInit {
     this.empresasService.getListado().subscribe((response) => {
         this.empresas = response;
       });
+  }
+
+  public getListadoUsers() {
+    this.empresasService.getListadoUsers().subscribe((response) => {
+      this.usuarios = response;
+    })
   }
 
 }

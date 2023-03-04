@@ -23,4 +23,16 @@ export class ListadoFormContactoComponent implements OnInit {
     });
   }
 
+
+
+  
+  //Para enviar info al componente del formulario
+  public detalleFormContacto (formulariosContacto: any) {
+
+    //console.log(formulariosContacto);
+
+    this.empresasService.mostrarFormContacto(formulariosContacto);
+
+  }
+
 }

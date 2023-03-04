@@ -1,3 +1,43 @@
 <app-menu></app-menu>
-<p>listado-form-contacto works!</p>
+
+<div class="pagina pb-3">
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb m-0 pt-2 ml-2">
+      <li class="breadcrumb-item"><a outerLinkActive="active" routerLink="../inicioempresa">Inicio</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Listado de contactos</li>
+    </ol>
+  </nav>
+
+  <div class="container">
+
+    <h1>Listado de contactos</h1>
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nif</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Email</th>
+          <th scope="col">Teléfono</th>
+          <th scope="col">Observaciones</th>
+          <th scope="col">Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let formcontacto of formulariosContacto; index as i">
+          <th scope="row">{{ formcontacto.id }}</th>
+          <td>{{ formcontacto.nif }}</td>
+          <td>{{ formcontacto.nombre }}</td>
+          <td>{{ formcontacto.email }}</td>
+          <td>{{ formcontacto.telefono }}</td>
+          <td>{{ formcontacto.observaciones }}</td>
+          <td class="celda-icono"><a (click)="detalleFormContacto(formcontacto)"><i class="fas fa-search"></i></a></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
 <app-footer></app-footer>

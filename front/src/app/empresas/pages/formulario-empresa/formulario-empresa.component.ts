@@ -44,15 +44,15 @@ export class FormularioEmpresaComponent implements OnInit {
   public getUsuarioPorId(nif: string) {
     this.empresasService.getUsuarioPorId(nif).subscribe((response) => {
       this.usuarioActual = response;
-      console.log(this.usuarioActual);
+      //console.log(this.usuarioActual);
     })
   }
 
   public getEmpresaPorId(nif: string) {
     this.empresasService.getEmpresaPorId(nif).subscribe((response) => {
       this.empresaActual = response;
-      console.log(this.empresaActual);
-      console.log(this.empresaActual.nombre);
+      //console.log(this.empresaActual);
+      //console.log(this.empresaActual.nombre);
     });
   }
 
