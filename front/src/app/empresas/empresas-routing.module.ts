@@ -6,6 +6,7 @@ import { FormularioEmpresaComponent } from './pages/formulario-empresa/formulari
 import { FormContactoEmpresaComponent } from './pages/form-contacto-empresa/form-contacto-empresa.component';
 import { ListadoEmpresasComponent } from './pages/listado-empresas/listado-empresas.component';
 import { InicioEmpresaComponent } from './pages/inicio-empresa/inicio-empresa.component';
+import { ListadoFormContactoComponent } from './pages/listado-form-contacto/listado-form-contacto.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'listado',
     component: ListadoEmpresasComponent
+  },
+  {
+    path: 'listaFormulariosContacto',
+    component: ListadoFormContactoComponent
   },
   {
     path: '**',
