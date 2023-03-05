@@ -1,7 +1,7 @@
 //Realizado por Khattari
 const esEsmpresa = (req, res, next) => {
     const body = req.body
-    if (body.rol != 'empresa') {
+    if (body.rol != 3) {
         return res.status(403).json({
             message: "No autorizado"
         })
@@ -11,7 +11,7 @@ const esEsmpresa = (req, res, next) => {
 
 const esAlumno = (req, res, next) => {
     const body = req.body
-    if (body.rol != 'alumno') {
+    if (body.rol != 2) {
         return res.status(403).json({
             message: "No autorizado"
         })
@@ -21,7 +21,7 @@ const esAlumno = (req, res, next) => {
 
 const esAdmin = (req, res, next) => {
     const body = req.body
-    if (body.rol != 'admin') {
+    if (body.rol != 1) {
         return res.status(403).json({
             message: "No autorizado"
         })
@@ -37,4 +37,10 @@ const puedeCrear = (req, res, next) => {
         })
     }
     next()
+}
+
+module.exports = {
+    esAdmin,
+    esAlumno,
+    esEsmpresa
 }

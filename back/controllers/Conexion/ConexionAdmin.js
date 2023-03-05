@@ -3,6 +3,7 @@
 const User = require('../../models/User');
 const ConexionSequelize = require('./ConexionSequelize');
 const Empresa = require('../../models/Empresa');
+const Alumno = require('../../models/Alumno');
 
 class ConexionAdmin extends ConexionSequelize {
 
@@ -18,6 +19,7 @@ class ConexionAdmin extends ConexionSequelize {
         return resultado;
     }
 
+    //CRUD Empresas
     getEmpresas = async() => {
         let resultado = [];
         this.conectar();
@@ -44,6 +46,30 @@ class ConexionAdmin extends ConexionSequelize {
         return resultado;
     }
 
+    modificarEmpresa = async(nif, body) => {
+        this.conectar();
+        let resultado = await User.findByPk(nif);
+        if (!resultado) {
+          this.desconectar();
+          throw error;
+        }
+        await resultado.update(body);
+        this.desconectar();
+        return ;
+    }
+
+    eliminarEmpresa = async(nif) => {
+        this.conectar();
+        let resultado = await User.findByPk(nif);
+        if (!resultado) {
+            this.desconectar();
+            throw error;
+        }
+        await resultado.destroy();
+        return resultado;
+    }
+
+    //CRUD Alumnos
     getAlumnos = async() => {
         let resultado = [];
         this.conectar();
@@ -58,6 +84,81 @@ class ConexionAdmin extends ConexionSequelize {
         resultado = await User.findAll({where: {nif: nif}, include: ['AlumnoUser'] });
         this.desconectar();
         return resultado;
+    }
+
+    crearAlumno = async(body) => {
+        let resultado = 0;
+        this.conectar();
+        const nuevoUser = new User(body);
+        const nuevoAlumno = new Alumno(body);
+        await nuevoUser.save();
+        await nuevoAlumno.save();
+        return resultado;
+    }
+
+    modificarAlumno = async(nif, body) => {
+        this.conectar();
+        let resultado = await User.findByPk(nif);
+        if (!resultado) {
+          this.desconectar();
+          throw error;
+        }
+        await resultado.update(body);
+        this.desconectar();
+        return ;
+    }
+
+    //Funciones generales
+    eliminarAlumno = async(nif) => {
+        this.conectar();
+        let resultado = await User.findByPk(nif);
+        if (!resultado) {
+            this.desconectar();
+            throw error;
+        }
+        await resultado.destroy();
+        return resultado;
+    }
+
+    activarUser = async(nif) =>  {
+        this.conectar();
+        let resultado = await User.findByPk(nif);
+        if (!resultado){
+            this.desconectar();
+            throw error;
+        }
+        await resultado.update({status: '1'});
+        this.desconectar();
+        return;
+    }
+
+    //CRUD Admin
+    getAdmins = async() => {
+        let resultado = [];
+        this.conectar();
+        resultado = await User.findAll({where: {rol: 1}});
+        this.desconectar();
+        return resultado;
+    }
+
+    crearAdmin = async(body) => {
+        let resultado = 0;
+        this.conectar();
+        const nuevoUser = new User(body);
+        await nuevoUser.save();
+        return resultado;
+    }
+
+    modificarAdmin = async(nif, body) => {
+        this.conectar();
+        let resultado = await User.findByPk(nif);
+        if (!resultado) {
+          this.desconectar();
+          throw error;
+        }
+        await resultado.update(body);
+        this.desconectar();
+        return ;
     }
 }
 
