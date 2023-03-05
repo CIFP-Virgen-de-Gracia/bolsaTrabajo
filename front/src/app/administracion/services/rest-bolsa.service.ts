@@ -17,6 +17,10 @@ export class RestBolsaService {
         return this.http.get<UserResponse>(this.urlAdmin);
     }
 
+    public getUser(nif: string) {
+        return this.http.get<UserResponse>(this.urlAdmin+'/'+nif);
+    }
+
     public getDatosEmpresa(nif: string) {
         return this.http.get<EmpresaResponse>(this.urlAdmin+'/empresas/datos'+nif);
     }
@@ -59,5 +63,9 @@ export class RestBolsaService {
 
     public eliminarUser(nif: string) {
         return this.http.delete<any>(this.urlAdmin+'/eliminar/'+nif);
+    }
+
+    public editarUser(user:UserResponse, nif: string) {
+        return this.http.put<any>(this.urlAdmin+'/admins/modificar/'+nif, user);
     }
 }

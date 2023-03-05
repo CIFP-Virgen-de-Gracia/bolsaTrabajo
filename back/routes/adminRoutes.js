@@ -55,6 +55,7 @@ router.post('/admins/crear', /**[mids.esAdmin],*/
 router.put('/admins/modificar/:nif', /**[mids.esAdmin],*/ controlador.actualizarAdmin);
 
 router.get('/', /**[mids.esAdmin],*/ controlador.verListadoUsers);
+router.get('/:nif', controlador.verUser);
 router.delete('/eliminar/:nif', /**[mids.esAdmin],*/ controlador.eliminarUser);
 router.put('/activar/:nif', /**[mids.esAdmin],*/ controlador.activarUser);
 

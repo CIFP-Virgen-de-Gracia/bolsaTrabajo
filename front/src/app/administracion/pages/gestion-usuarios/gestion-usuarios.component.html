@@ -43,7 +43,7 @@
                         <td>{{dato.AlumnoUser[0].apellido2}}</td>
                         <td><a (click)="activarUser(dato.nif)"><span class="fa fa-user-check"></span></a></td>
                         <td><a (click)="eliminarUser(dato.nif)"><span class="fa fa-trash"></span></a></td>
-                        <td><span class="fa fa-pencil"></span></td>
+                        <td><a outerLinkActive="active" routerLink="editaralumno/dato.nif"><span class="fa fa-pencil"></span></a></td>
                       </tr>
                     </tbody>
                 </table>
@@ -80,7 +80,7 @@
                     <td>{{dato.EmpresaUser[0].cargo}}</td>
                     <td><a (click)="activarUser(dato.nif)"><span class="fa fa-user-check"></span></a></td>
                     <td><a (click)="eliminarUser(dato.nif)"><span class="fa fa-trash"></span></a></td>
-                    <td><span class="fa fa-pencil"></span></td>
+                    <td><a outerLinkActive="active" routerLink="editarempresa/dato.nif"><span class="fa fa-pencil"></span></a></td>
                   </tr>
                 </tbody>
             </table>
@@ -111,7 +111,7 @@
                     <td *ngIf="dato.status === 0">No Activo</td>
                     <td><a (click)="activarUser(dato.nif)"><span class="fa fa-user-check"></span></a></td>
                     <td><a (click)="eliminarUser(dato.nif)"><span class="fa fa-trash"></span></a></td>
-                    <td><span class="fa fa-pencil"></span></td>
+                    <td><a outerLinkActive="active" routerLink="editaradmin/{{dato.nif}}"><span class="fa fa-pencil"></span></a></td>
                   </tr>
                 </tbody>
             </table>

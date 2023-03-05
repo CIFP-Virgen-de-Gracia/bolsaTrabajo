@@ -20,7 +20,7 @@ export class EdicionOfertaComponent implements OnInit {
     lugar: '',
     presencial: 0,
     jornada: '',
-    nif_empresa: localStorage.getItem('nif_empresa')!
+    nif_empresa: 'A11111111'
   }
 
   constructor(private activatedRoute: ActivatedRoute,

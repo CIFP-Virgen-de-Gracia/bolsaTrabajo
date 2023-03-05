@@ -19,6 +19,14 @@ class ConexionAdmin extends ConexionSequelize {
         return resultado;
     }
 
+    getUser = async(nif) => {
+        let resultado = [];
+        this.conectar();
+        resultado = await User.findByPk(nif);
+        this.desconectar();
+        return resultado;
+    }
+
     //CRUD Empresas
     getEmpresas = async() => {
         let resultado = [];
