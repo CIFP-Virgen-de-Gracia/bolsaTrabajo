@@ -49,13 +49,13 @@ class ConexionUsuario extends ConexionSequelize {
       userNif: body.nif,
       roleId: body.rol,
     });
-    if (roleId === 2) {
+    if(body.rol==2){
       await estudianteNuevo.save();
       resultado = await estudianteNuevo.save();
-    }else{
+    }else if(body.rol==3){
       await empresaNueva.save();
       resultado = await empresaNueva.save();
-    }
+      }
     if (body.file !=="") {
       this.AsignarAvatar({
         userNif: usuarioNuevo.nif,

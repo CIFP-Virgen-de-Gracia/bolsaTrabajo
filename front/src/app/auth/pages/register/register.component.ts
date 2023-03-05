@@ -30,6 +30,7 @@ export class RegisterComponent implements OnInit {
       email: ['', [Validators.required, Validators.pattern('[a-z0-9]+@[a-z]+\.[a-z]{2,3}')]],
       password: new FormControl('', Validators.required),
       telefono: new FormControl('', Validators.required),
+      rol: new FormControl('', Validators.pattern('[0-3]{1,2}')),
     },
     );
 

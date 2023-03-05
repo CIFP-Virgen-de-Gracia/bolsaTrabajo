@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Empresa } from '../../models/empresa';
-
+import { EmpresasService } from '../../services/empresas.service';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-formulario-empresa',
@@ -11,16 +13,25 @@ export class FormularioEmpresaComponent implements OnInit {
 
   empresaActual = new Empresa ('','','','','','')
 
-  constructor() { }
+  constructor(
+    private empresasService: EmpresasService,
+    private router: Router,
+
+  )
+  { }
 
   ngOnInit(): void {
 
   }
 
-  formularioEnviado() { //Ver luego otro nombre mas pensado
-
-    console.log("El formulario se envió y la empresa es ", this.empresaActual);
-
+  guardarEmpresa(){
+    console.log(this.empresaActual);
+    Swal.fire({
+      icon: 'success',
+      title: 'Empresa Registrada',
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
 
 }

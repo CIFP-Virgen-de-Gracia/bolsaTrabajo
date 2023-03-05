@@ -67,6 +67,17 @@
         </span>
       </div>
       <br>
+      <!-- TODO SI ES EMPRESA O ALUMNO -->
+      <div class="">
+      <p>Empresa o Estudiante</p>
+      <select id="inputRol" formControlName="rol" class="form-control border border-dark" placeholder="Elige">
+        <option value="2">Estudiante</option>
+        <option value="3">Empresa</option>
+      </select>
+      <span class="invalid-feedback">
+        <span *ngIf="RegisterForm.get('rol')?.errors?.['required']">Indica si eres Empresa o Alumno</span>
+      </span>
+    </div>
       <p>Imagen (opcional)</p>
       <!-- TODO subir imágenes en angular-->
       <input type="file" id="inputImagen" class="form-control border border-dark"
