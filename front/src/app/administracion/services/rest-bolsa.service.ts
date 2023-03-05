@@ -44,4 +44,8 @@ export class RestBolsaService {
     public activarUser(nif: string) {
         return this.http.put<any>(this.urlAdmin+'/activar/'+nif, '');
     }
+
+    public crearAdmin(user: UserResponse) {
+        return this.http.post<any>(this.urlAdmin+'/admins/crear', user);
+    }
 }

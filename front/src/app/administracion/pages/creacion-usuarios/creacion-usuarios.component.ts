@@ -52,6 +52,7 @@ export class CreacionUsuariosComponent implements OnInit {
   }
 
   guardarEmpresa() {
+    //Validacion
     if (this.userEmpresa.nif?.trim().length === 0) return;
     if (this.userEmpresa.nombre.trim().length === 0) return;
     if (this.userEmpresa.email.trim().length === 0) return;
@@ -68,6 +69,7 @@ export class CreacionUsuariosComponent implements OnInit {
   }
 
   guardarAlumno() {
+    //Validacion
     if (this.userAlumno.nif?.trim().length === 0) return;
     if (this.userAlumno.nombre.trim().length === 0) return;
     if (this.userAlumno.email.trim().length === 0) return;
