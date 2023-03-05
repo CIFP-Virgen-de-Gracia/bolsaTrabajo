@@ -34,7 +34,8 @@ export class RestBolsaService {
     }
 
     public getDatosAlumno(nif: string) {
-        return this.http.get<AlumnoResponse>(this.urlAdmin+'/alumnos/datos'+nif);
+        console.log(this.urlAdmin+'/alumnos/datos'+nif)
+        return this.http.get<AlumnoResponse>(this.urlAdmin+'/alumnos/datos/'+nif);
     }
 
     public crearAlumno(alumno: UserAlumnoResponse) {
@@ -42,7 +43,8 @@ export class RestBolsaService {
     }
 
     public editarAlumno(alumno: UserAlumnoResponse, nif: string) {
-        return this.http.put<any>(this.urlAdmin+'/empresas/modificar/'+nif, alumno);
+        console.log(this.urlAdmin+'/alumnos/modificar/'+nif, alumno)
+        return this.http.put<any>(this.urlAdmin+'/alumnos/modificar/'+nif, alumno);
     }
 
     public activarUser(nif: string) {
@@ -59,6 +61,10 @@ export class RestBolsaService {
 
     public getAlumnos() {
         return this.http.get<UserAlumno2Response>(this.urlAdmin+'/alumnos');
+    }
+
+    public getAlumno(nif: string) {
+        return this.http.get<UserAlumno2Response>(this.urlAdmin+'/alumnos/'+nif);
     }
 
     public eliminarUser(nif: string) {
