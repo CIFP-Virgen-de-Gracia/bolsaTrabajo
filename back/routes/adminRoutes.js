@@ -54,6 +54,6 @@ router.put('/admins/modificar/:nif', [mids.esAdmin], controlador.actualizarAdmin
 
 router.get('/', [mids.esAdmin], controlador.verListadoUsers);
 router.delete('/eliminar/:nif', [mids.esAdmin], controlador.eliminarUser);
-router.put('/activar/:nif', [mids.esAdmin], controlador.activarUser);
+router.get('/activar/:nif', [mids.esAdmin], controlador.activarUser);
 
 module.exports = router;
