@@ -19,6 +19,7 @@ export class GestionUsuariosComponent implements OnInit {
   ngOnInit(): void {
     this.getAlumnos();
     this.getEmpresas();
+    this.getDatosUser();
   }
 
   public getDatosUser() {
@@ -42,6 +43,8 @@ export class GestionUsuariosComponent implements OnInit {
   cambioEmpresa() {
     let table_alumno = document.getElementById("table-alumnos");
     table_alumno!.style.display = "none";
+    let table_admins = document.getElementById("table-admins");
+    table_admins!.style.display = "none";
     let table_empresa = document.getElementById("table-empresa");
     table_empresa!.style.display = "block";
   }
@@ -49,8 +52,19 @@ export class GestionUsuariosComponent implements OnInit {
   cambioAlumnos() {
     let table_empresa = document.getElementById("table-empresa");
     table_empresa!.style.display = "none";
+    let table_admins = document.getElementById("table-admins");
+    table_admins!.style.display = "none";
     let table_alumno = document.getElementById("table-alumnos");
     table_alumno!.style.display = "block";
+  }
+
+  cambioAdmins() {
+    let table_alumno = document.getElementById("table-alumnos");
+    table_alumno!.style.display = "none";
+    let table_empresa = document.getElementById("table-empresa");
+    table_empresa!.style.display = "none";
+    let table_admins = document.getElementById("table-admins");
+    table_admins!.style.display = "block";
   }
 
   activarUser(nif: string) {

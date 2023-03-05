@@ -12,6 +12,7 @@
       <div class="col d-flex justify-content-around mb-3">
         <button class="btn btn-primary" (click)="cambioAlumnos()">Alumnos</button>
         <button class="btn btn-primary" (click)="cambioEmpresa()">Empresas</button>
+        <button class="btn btn-primary" (click)="cambioAdmins()">Administradores</button>
       </div>
         <div class="row justify-content-center tabla-container">
             <div class="col-auto" id="table-alumnos">
@@ -77,6 +78,37 @@
                     <td>{{dato.EmpresaUser[0].direccion}}</td>
                     <td>{{dato.EmpresaUser[0].contacto}}</td>
                     <td>{{dato.EmpresaUser[0].cargo}}</td>
+                    <td><a (click)="activarUser(dato.nif)"><span class="fa fa-user-check"></span></a></td>
+                    <td><a (click)="eliminarUser(dato.nif)"><span class="fa fa-trash"></span></a></td>
+                    <td><span class="fa fa-pencil"></span></td>
+                  </tr>
+                </tbody>
+            </table>
+            </div>
+            <div class="col-auto container-table" id="table-admins">
+              <table class="table table-responsive">
+                <thead class="text-center">
+                  <tr>
+                    <td class="fw-bold">Nombre</td>
+                    <td class="fw-bold">NIF</td>
+                    <td class="fw-bold">Email</td>
+                    <td class="fw-bold">Telefono</td>
+                    <td class="fw-bold">Rol</td>
+                    <td class="fw-bold">Verificado</td>
+                    <td class="fw-bold">Activar</td>
+                    <td class="fw-bold">Eliminar</td>
+                    <td class="fw-bold">Editar</td>
+                  </tr>
+                </thead>
+                <tbody class="text-center" *ngFor="let dato of datosUser; index as i">
+                  <tr  *ngIf="dato.rol === 1">
+                    <td>{{dato.nombre}}</td>
+                    <td>{{dato.nif}}</td>
+                    <td>{{dato.email}}</td>
+                    <td>{{dato.telefono}}</td>
+                    <td>{{dato.rol}}</td>
+                    <td *ngIf="dato.status === 1">Activo</td>
+                    <td *ngIf="dato.status === 0">No Activo</td>
                     <td><a (click)="activarUser(dato.nif)"><span class="fa fa-user-check"></span></a></td>
                     <td><a (click)="eliminarUser(dato.nif)"><span class="fa fa-trash"></span></a></td>
                     <td><span class="fa fa-pencil"></span></td>

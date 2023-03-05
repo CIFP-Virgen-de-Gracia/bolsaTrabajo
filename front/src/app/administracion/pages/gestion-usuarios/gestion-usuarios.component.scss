@@ -1,5 +1,6 @@
 //Realizado por Khattari
 .pagina {
+    min-height: 50vh;
     a {
         all: unset;
     }    
@@ -57,7 +58,7 @@
         }
     }
     
-    #table-empresa {
+    #table-empresa, #table-admins {
         display: none;
     }
 
