@@ -7,6 +7,7 @@ import { GestionUsuariosComponent } from './pages/gestion-usuarios/gestion-usuar
 import { AdministracionRoutingModule } from './administracion-routing.module';
 import { CreacionAdminComponent } from './pages/creacion-admin/creacion-admin.component';
 import { SharedModule } from '../shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     AdministracionRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ]
 })
 export class AdministracionModule { }

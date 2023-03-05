@@ -42,6 +42,6 @@ export class RestBolsaService {
     }
 
     public activarUser(nif: string) {
-        return this.http.get<any>(this.urlAdmin+'/activar/'+nif);
+        return this.http.put<any>(this.urlAdmin+'/activar/'+nif, '');
     }
 }

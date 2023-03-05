@@ -1,6 +1,6 @@
 //Realizado por Khattari
 export interface UserResponse {
-    nif?:        number;
+    nif?:        string;
     nombre:      string;
     email:       string;
     password:    string;
@@ -21,7 +21,7 @@ export interface AlumnoResponse {
 }
 
 export interface UserEmpresaResponse {
-    nif?:        number;
+    nif?:        string;
     nombre:      string;
     email:       string;
     password:    string;
@@ -34,7 +34,7 @@ export interface UserEmpresaResponse {
 }
 
 export interface UserAlumnoResponse {
-    nif?:        number;
+    nif?:        string;
     nombre:      string;
     email:       string;
     password:    string;
