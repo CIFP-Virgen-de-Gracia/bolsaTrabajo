@@ -1,32 +1,32 @@
-//Ines
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('RolesAsignados', {
-
-      nif: {
-        type: Sequelize.STRING(9),
+      id: {
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
-        references: {
-          model: 'User',
-          key: 'nif'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        type: Sequelize.INTEGER
       },
-      idRol: {
+      userDni: {
+        type: Sequelize.STRING,
+        primaryKey: true,
+    //     references:{
+    //       model: 'users',
+    //       key: 'dni'
+    // },
+    // onDelete: 'CASCADE',
+    },
+      roleId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         primaryKey: true,
-        references: {
-          model: 'Roles',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
-      },
+      //   references:{
+      //     model: 'roles',
+      //     key: 'id'
+      // },
+      // onDelete: 'CASCADE',
+    },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -37,8 +37,6 @@ module.exports = {
       }
     });
   },
-
-
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('RolesAsignados');
   }

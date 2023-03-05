@@ -1,50 +1,81 @@
-//Ines
-//Descripción: Este archivo contiene los middlewares que se encargan de validar los roles de los usuarios.
-const {validarJWT} = require('../helpers/generate_jwt');
+//Ines**************
+const {verifyToken} = require('../helpers/generate_jwt');
+
+const esAdmin = (req, res, next) => {
+  const token = req.header('x-token');
+  if (!token) {
+    return res.status(401).json({
+      msg: 'No hay token en la petición',
+    });
+  }
+  try {
+    const {uid, rol} = verifyToken(token);
+    if (rol !== 1) {
+      return res.status(401).json({
+        msg: 'No tiene privilegios para realizar esta acción',
+      });
+    }
+    req.uid = uid;
+    req.rol = rol;
+    next();
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({
+      msg: 'Token no válido',
+    });
+  }
+
+};
 
 const esEstudiante = (req, res, next) => {
-  const nifToken=req.headers.authorization.split(' ').pop();
-  const tokenData = validarJWT(nifToken); //Validamos el token y obtenemos el uid del usuario.
-  if (!tokenData._id) {
-    //Hacemos una comprobación rutinaria de si se ha establecido.
-    return res
-      .status(500)
-      .json({ msg: "No es posible el acceso como estudiante." });
-  }else{
+  const token = req.header('x-token');
+  if (!token) {
+    return res.status(401).json({
+      msg: 'No hay token en la petición',
+    });
+  }
+  try {
+    const {uid, rol} = verifyToken(token);
+    if (rol !== 2) {
+      return res.status(401).json({
+        msg: 'No tiene privilegios para realizar esta acción',
+      });
+    }
+    req.uid = uid;
+    req.rol = rol;
     next();
-    res.send({msg:"Acceso permitido"})
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({
+      msg: 'Token no válido',
+    });
   }
 };
 
 const esEmpresa = (req, res, next) => {
-  const nifToken=req.headers.authorization.split(' ').pop();
-  const tokenData = validarJWT(nifToken); //Validamos el token y obtenemos el uid del usuario.
-  if (!tokenData._id) {
-  
-    return res
-      .status(500)
-      .json({ msg: "No es posible el acceso como empresa." });
-  }else{
+  const token = req.header('x-token');
+  if (!token) {
+    return res.status(401).json({
+      msg: 'No hay token en la petición',
+    });
+  }
+  try {
+    const {uid, rol} = verifyToken(token);
+    if (rol !== 3) {
+      return res.status(401).json({
+        msg: 'No tiene privilegios para realizar esta acción',
+      });
+    }
+    req.uid = uid;
+    req.rol = rol;
     next();
-    res.send({msg:"Acceso permitido"})
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({
+      msg: 'Token no válido',
+    });
   }
 };
-
-const esAdmin = (req, res, next) => {
-  const nifToken=req.headers.authorization.split(' ').pop();
-  const tokenData = validarJWT(nifToken); //Validamos el token y obtenemos el uid del usuario.
-  if (!tokenData._id) {
-
-    return res
-      .status(500)
-      .json({ msg: "No es posible el acceso como administrador." });
-  }else{
-    next();
-    res.send({msg:"Acceso permitido"})
-  }
-};
-
-
 
 module.exports = {
   esAdmin,

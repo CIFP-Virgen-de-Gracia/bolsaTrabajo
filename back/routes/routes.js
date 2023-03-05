@@ -1,5 +1,4 @@
-//Ines
-//Descripcion: rutas de la api de usuarios y acceso
+//Ines Rutas
 const {Router } = require('express');
 // const controlador = require('../controllers/bdController');
 const userController=require('../controllers/userController');
@@ -9,16 +8,17 @@ const midsRoles = require("../middlewares/validarRoles");
 const uploads = require('../controllers/uploads');
 const router = Router();
 //----------------------------
-router.post('/login',[midsRoles.esAdmin, midsRoles.esEmpresa, midsRoles.esEstudiante],[midsJWT.validarJWT],controladorAuth.login);
+router.post('/login',[midsJWT.validarJWT],[midsRoles.esEstudiante, midsRoles.esEmpresa, midsRoles.esAdmin],controladorAuth.login);
 router.post('/loginGoogle',controladorAuth.loginGoogle);
 router.post('/register', controladorAuth.register);
 router.post('/logout', controladorAuth.logout);
 router.get('/loginGoogle/callback', controladorAuth.loginGoogleCallback);
 router.get('/renew', controladorAuth.renewToken);
+router.get('/rolesGet/:nif', userController.rolesAsignadosNifGet);
 router.post('/upload', uploads.uploadFile, uploads.upload);
 router.get('/upload', uploads.uploadFile);
 router.get('/upload/:id', uploads.uploadFile);
-router.get('/getAvatar/:nif', userController.getAvatar);
+router.get('/getAvatar/:nif',userController.getAvatar);
 
 //-------------------------
 /* router.get('/roles', userController.rolesGet);

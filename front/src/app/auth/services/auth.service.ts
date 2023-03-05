@@ -108,4 +108,8 @@ export class AuthService {
     return this.http.post(api, imagen).pipe(catchError(this.handleError));
   }
 
+  getRoles() {
+    let api = `${this.endpoint}/getRoles`;
+    return this.http.get(api).pipe(catchError(this.handleError));
+  }
 }

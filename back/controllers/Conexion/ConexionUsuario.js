@@ -1,6 +1,6 @@
-//Ines
-//Descripcion:controlador de usuarios
 const User = require("../../models/User");
+const Empresa = require("../../models/Empresa");
+const Alumno = require("../../models/Alumno");
 const RolAsignado = require("../../models/RolesAsignados");
 const Roles = require("../../models/Roles");
 const bycript = require("bcryptjs");
@@ -38,7 +38,10 @@ class ConexionUsuario extends ConexionSequelize {
     let resultado = 0;
     let avatar = '';
     this.conectar();
+    const empresaNueva = new Empresa(body);
+    const estudianteNuevo=new Alumno(body);
     const usuarioNuevo = new User(body); //Con esto añade los timeStamps.
+    const roleId = usuarioNuevo.rol;
     // resultado =
     await usuarioNuevo.save();
     resultado = await usuarioNuevo.save();
@@ -46,15 +49,26 @@ class ConexionUsuario extends ConexionSequelize {
       userNif: body.nif,
       roleId: body.rol,
     });
-    this.AsignarAvatar({
-      userNif: usuarioNuevo.nif,
-      file: body.file,
-    });
-    this.desconectar();
-    return resultado;
-  }
-
-
+    if (roleId === 2) {
+      await estudianteNuevo.save();
+      resultado = await estudianteNuevo.save();
+    }else{
+      await empresaNueva.save();
+      resultado = await empresaNueva.save();
+    }
+    if (body.file !=="") {
+      this.AsignarAvatar({
+        userNif: usuarioNuevo.nif,
+        file: body.file,
+      });
+      this.desconectar();
+      return resultado;
+    }else{
+      this.desconectar();
+      return resultado;
+    }
+    }
+    
   modificarAvatar = async (nif, avatar) => {
     this.conectar();
     let user = await User.findByPk(nif);
@@ -64,7 +78,7 @@ class ConexionUsuario extends ConexionSequelize {
     }
     await user.update(avatar);
     this.desconectar();
-    return user;
+    return resultado;
   };
 
   borrarUsuario = async (nif) => {
@@ -98,17 +112,15 @@ class ConexionUsuario extends ConexionSequelize {
     return resultado;
   };
 
-  getRolesAsignadosNif = async (nf) => {
+  getRolesAsignadosNif = async (nif) => {
     let resultado = [];
     this.conectar();
-    resultado = await User.findOne({
-      where: { nif: nf },
-      include: ["RolesAsignados"],
+    resultado = await RolAsignado.findOne({
+      where: { userNif: nif },
     });
     this.desconectar();
     return resultado;
   };
-
   getUsuarioRegistrado = async (email, password) => {
     let Npassword = bycript.hashSync(password, 10);
     let resultado = [];
@@ -130,7 +142,6 @@ class ConexionUsuario extends ConexionSequelize {
     // console.log(resultado.dataValues)funciona!!!!;
     return resultado;
   };
-
   AsignarRol = async (body) => {
     let resultado = 0;
     this.conectar();
@@ -167,7 +178,21 @@ class ConexionUsuario extends ConexionSequelize {
     return resultado;
   };
 
-
+  registrarEmpresa = async (body) => {
+    let resultado = 0;
+    this.conectar();
+    const usuarioNuevo = new User(body); //Con esto añade los timeStamps.
+    // resultado =
+    await usuarioNuevo.save();
+    resultado = await usuarioNuevo.save();
+    this.AsignarRol({      //Asigna el rol de usuario por defecto o el que se le pase por el body
+      userNif: body.nif,
+      roleId: 3,
+    });
+    this.desconectar();
+    return resultado;
+  }
+ 
 }
 
 

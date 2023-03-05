@@ -96,9 +96,9 @@ const rolesAsignadosNifGet = (req, res = response) => {
 
   conx
     .getRolesAsignadosNif(req.params.nif)
-    .then((msg) => {
+    .then((roleId) => {
       console.log("Listado correcto!");
-      res.status(200).json(msg);
+      res.status(200).json(roleId);
     })
     .catch((err) => {
       console.log("No hay registros");
@@ -133,13 +133,12 @@ const getAvatar = (req, res = response) => {
     })
     .catch((err) => {
       console.log("No hay registros");
-      res.status(203).json({ msg: "No se han encontrado registros" });
+      res.status(203).json({ msg: "No hay ningún avatar en esta cuenta" });
     });
+
+   
+
 };
-
-
-
-
 module.exports = {
   usuariosGet,
   usuariosDelete,

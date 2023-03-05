@@ -108,7 +108,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/alumno/inicio']);
         }
     const  xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:9090/api/auth/lofinGoogleCallback');
+    xhr.open('POST', 'http://localhost:9090/api/auth/loginGoogle/callback');
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = function() {
       console.log('Signed in as: ' + xhr.responseText);
