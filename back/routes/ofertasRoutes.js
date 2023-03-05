@@ -15,6 +15,7 @@ router.post('/crear',
         check('lugar').not().isEmpty(),
         check('presencial').not().isEmpty(),
         check('jornada').not().isEmpty(),
+        check('nif_empresa').not().isEmpty(),
         check('nif_empresa').custom(empresaExiste),
         validarCampos
     ]

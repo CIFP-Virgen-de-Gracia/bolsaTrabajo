@@ -1,3 +1,4 @@
+//Realizado por Khattari
 import { Component, OnInit } from '@angular/core';
 import { OfertasResponse } from 'src/app/ofertas/interfaces/req-resp';
 import { RestBolsaService } from '../../../apiRest/services/rest-bolsa.service';
@@ -19,7 +20,7 @@ export class EdicionOfertaComponent implements OnInit {
     lugar: '',
     presencial: 0,
     jornada: '',
-    nif_empresa: localStorage.getItem('nif_empresa')!
+    nif_empresa: 'A11111111'
   }
 
   constructor(private activatedRoute: ActivatedRoute,

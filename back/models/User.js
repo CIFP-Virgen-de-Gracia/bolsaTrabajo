@@ -3,6 +3,8 @@ const db = require('../controllers/Conexion/connection');
 const RolesAsignados = require('./RolesAsignados');
 const Roles = require('./Roles');
 
+const Empresa = require('./Empresa');
+const Alumno = require('./Alumno');
 
 const User = db.define('users', {
     nif: {
@@ -63,12 +65,9 @@ const User = db.define('users', {
         }
 
     },
-    telefono: {//----->>>> Inés, añado teléfono, que lo necesito para formularioEmpresa y no lo tenias añadido.
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            notEmpty: true
-        }
+    telefono: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
     }
 },
 
@@ -82,5 +81,9 @@ const User = db.define('users', {
 
 
 User.hasOne(RolesAsignados, { as: 'RolesAsignados', foreignKey: 'userNif' });
+
+//Parte realizada por Khattari
+User.hasMany(Empresa, {as: 'EmpresaUser', foreignKey: 'nif'});
+User.hasMany(Alumno, {as: 'AlumnoUser', foreignKey: 'nif'});
 
 module.exports = User;

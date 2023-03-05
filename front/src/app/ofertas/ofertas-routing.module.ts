@@ -14,15 +14,15 @@ const routes: Routes = [
     component: OfertasAlumnoComponent
   },
   {
-    path: 'testing',
+    path: 'empresa',
     component: OfertasEmpresaComponent
   },
   {
-    path: 'testing/creacion',
+    path: 'empresa/creacion',
     component: CreacionOfertaComponent
   },
   {
-    path: 'testing/listado',
+    path: 'empresa/listado',
     component: ListadoOfertasEmpresa
   },
   {
@@ -30,11 +30,11 @@ const routes: Routes = [
     component: OfertaDetallesComponent
   },
   {
-    path: 'testing/listado/:id',
+    path: 'empresa/listado/:id',
     component: OfertaDetallesComponent
   },
   {
-    path: 'testing/listado/editar/:id',
+    path: 'empresa/listado/editar/:id',
     component: EdicionOfertaComponent
   },
   {

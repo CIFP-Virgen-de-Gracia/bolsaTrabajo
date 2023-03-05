@@ -1,0 +1,61 @@
+<!-- Realizado por Khattari -->
+<app-menu></app-menu>
+<div class="pagina pb-5">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb m-0 pt-2 ml-2">
+        <li class="breadcrumb-item"><a outerLinkActive="active" routerLink="..">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Creacion de admin</li>
+      </ol>
+    </nav>
+    <h1 class="text-center mb-4 pt-2">Creación de administrador</h1>
+    <div class="container p-5 formulario">
+      <form class="row g-3" ngNativeValidate>
+        <div class="col-md-4">
+          <label for="nif" class="form-label fw-bold">nif</label>
+          <input type="text" class="form-control" id="nif" [(ngModel)]="user.nif" [ngModelOptions]="{standalone: true}"
+           required placeholder="nif" pattern="^[0-9]{8}[A-Z]">
+           
+        </div>
+        <div class="col-md-4">
+          <label for="nombre" class="form-label fw-bold">nombre</label>
+          <input type="text" class="form-control" id="nombre" [(ngModel)]="user.nombre" [ngModelOptions]="{standalone: true}"
+           required placeholder="nombre">
+        </div>
+        <div class="col-md-4">
+          <label for="correo" class="form-label fw-bold">correo</label>
+          <input type="email" class="form-control" id="correo" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}"
+          required placeholder="correo">
+        </div>
+        <div class="col-md-4">
+            <label for="contraseña" class="form-label fw-bold">contraseña</label>
+            <input type="password" class="form-control" id="contraseña" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}"
+            required placeholder="contraseña">
+        </div>
+        <div class="col-md-4">
+          <label for="telefono" class="form-label fw-bold">telefono</label>
+          <input type="text" class="form-control" id="telefono" [(ngModel)]="user.telefono" [ngModelOptions]="{standalone: true}"
+          required placeholder="telefono">
+      </div>
+        <div class="col-md-12">
+          <button (click)="guardarUser()" type="submit" class="btn btn-primary">Crear</button>
+        </div>
+      </form>
+    </div>
+    <div id="myModal" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Creación de administrador</h5>
+          </div>
+          <div class="modal-body">
+              <p>El administrador ha sido creado correctamente</p>
+          </div>
+          <div class="modal-footer ">
+              <button type="button" (click)="cerrar()" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+          </div>
+          </div>
+      </div>
+  </div>
+  </div>
+  <app-footer></app-footer>
+<app-footer></app-footer>
