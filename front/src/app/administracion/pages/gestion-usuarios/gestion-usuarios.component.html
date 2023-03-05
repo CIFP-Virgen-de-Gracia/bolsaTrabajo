@@ -40,7 +40,7 @@
                         <td *ngIf="dato.status === 0">No Activo</td>
                         <td>{{dato.AlumnoUser[0].apellido1}}</td>
                         <td>{{dato.AlumnoUser[0].apellido2}}</td>
-                        <td><span class="fa fa-user-check"></span></td>
+                        <td><a (click)="activarUser(dato.nif)"><span class="fa fa-user-check"></span></a></td>
                         <td><span class="fa fa-trash"></span></td>
                         <td><span class="fa fa-pencil"></span></td>
                       </tr>
@@ -77,7 +77,7 @@
                     <td>{{dato.EmpresaUser[0].direccion}}</td>
                     <td>{{dato.EmpresaUser[0].contacto}}</td>
                     <td>{{dato.EmpresaUser[0].cargo}}</td>
-                    <td><span class="fa fa-user-check"></span></td>
+                    <td><a (click)="activarUser(dato.nif)"><span class="fa fa-user-check"></span></a></td>
                     <td><span class="fa fa-trash"></span></td>
                     <td><span class="fa fa-pencil"></span></td>
                   </tr>

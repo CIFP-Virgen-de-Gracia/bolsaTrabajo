@@ -53,4 +53,10 @@ export class GestionUsuariosComponent implements OnInit {
     table_alumno!.style.display = "block";
   }
 
+  activarUser(nif: string) {
+    this.restBolsaService.activarUser(nif).subscribe((response: any) => {
+      location.reload();
+    })
+  }
+  
 }
