@@ -64,6 +64,10 @@ const User = db.define('users', {
             max: 3
         }
 
+    },
+    telefono: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
     }
 },
 

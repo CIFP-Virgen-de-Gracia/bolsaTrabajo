@@ -2,7 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserResponse, EmpresaResponse, AlumnoResponse, } from '../interfaces/req-resp';
-import { UserEmpresaResponse, UserAlumnoResponse } from '../interfaces/req-resp';
+import { UserEmpresaResponse, UserAlumnoResponse, UserEmpresa2Response, UserAlumno2Response } from '../interfaces/req-resp';
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +13,7 @@ export class RestBolsaService {
 
     constructor(private http: HttpClient) { }
 
-    public getUsers(user: UserResponse) {
+    public getUsers() {
         return this.http.get<UserResponse>(this.urlAdmin);
     }
 
@@ -47,5 +47,13 @@ export class RestBolsaService {
 
     public crearAdmin(user: UserResponse) {
         return this.http.post<any>(this.urlAdmin+'/admins/crear', user);
+    }
+
+    public getEmpresas() {
+        return this.http.get<UserEmpresa2Response>(this.urlAdmin+'/empresas');
+    }
+
+    public getAlumnos() {
+        return this.http.get<UserAlumno2Response>(this.urlAdmin+'/alumnos');
     }
 }

@@ -44,3 +44,25 @@ export interface UserAlumnoResponse {
     apellido1:   string;
     apellido2:   string;
 }
+
+export interface UserEmpresa2Response {
+    nif?:        string;
+    nombre:      string;
+    email:       string;
+    password:    string;
+    status:      number;
+    rol:         number;
+    telefono:    string;
+    EmpresaUser: [];
+}
+
+export interface UserAlumno2Response {
+    nif?:        string;
+    nombre:      string;
+    email:       string;
+    password:    string;
+    status:      number;
+    rol:         number;
+    telefono:    string;
+    AlumnoUser:  [];
+}

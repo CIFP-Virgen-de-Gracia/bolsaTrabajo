@@ -29,7 +29,7 @@ export class CreacionUsuariosComponent implements OnInit {
     email:       '',
     password:    '',
     status:      1,
-    rol:         3,
+    rol:         2,
     telefono:    '',
     apellido1:   '',
     apellido2:   '',
