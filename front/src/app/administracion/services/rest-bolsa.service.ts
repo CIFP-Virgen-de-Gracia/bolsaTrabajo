@@ -22,7 +22,7 @@ export class RestBolsaService {
     }
 
     public getDatosEmpresa(nif: string) {
-        return this.http.get<EmpresaResponse>(this.urlAdmin+'/empresas/datos'+nif);
+        return this.http.get<EmpresaResponse>(this.urlAdmin+'/empresas/datos/'+nif);
     }
 
     public crearEmpresa(empresa: UserEmpresaResponse) {
@@ -30,11 +30,11 @@ export class RestBolsaService {
     }
 
     public editarEmpresa(empresa: UserEmpresaResponse, nif: string) {
+        console.log(this.urlAdmin+'/empresas/modificar/'+nif, empresa)
         return this.http.put<any>(this.urlAdmin+'/empresas/modificar/'+nif, empresa);
     }
 
     public getDatosAlumno(nif: string) {
-        console.log(this.urlAdmin+'/alumnos/datos'+nif)
         return this.http.get<AlumnoResponse>(this.urlAdmin+'/alumnos/datos/'+nif);
     }
 

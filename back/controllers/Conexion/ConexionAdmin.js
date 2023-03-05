@@ -63,6 +63,15 @@ class ConexionAdmin extends ConexionSequelize {
         }
         await resultado.update(body);
         this.desconectar();
+
+        this.conectar();
+        resultado = await Empresa.findByPk(nif);
+        if (!resultado) {
+          this.desconectar();
+          throw error;
+        }
+        await resultado.update(body);
+        this.desconectar();
         return ;
     }
 

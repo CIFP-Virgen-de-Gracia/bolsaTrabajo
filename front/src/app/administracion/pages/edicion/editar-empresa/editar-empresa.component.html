@@ -1,1 +1,56 @@
-<p>editar-empresa works!</p>
+<!-- Realizado por Khattari -->
+<app-menu></app-menu>
+<div class="pagina pb-5">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb m-0 pt-2 pl-2">
+      <li class="breadcrumb-item"><a outerLinkActive="active" routerLink="../../..">Inicio</a></li>
+      <li class="breadcrumb-item"><a outerLinkActive="active" routerLink="../..">Gestión</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Edición</li>
+    </ol>
+  </nav>
+    <h1 class="text-center mb-4 pt-2">Edición de usuario</h1>
+    <div class="container p-5 formulario">
+      <form class="row g-3" ngNativeValidate>
+        <div class="col-md-4">
+          <label for="nif" class="form-label fw-bold">NIF</label>
+          <input type="text" class="form-control" id="nif" name="nif" [(ngModel)]="empresaSend.nif" [ngModelOptions]="{standalone: true}"
+           required value={{empresaSend.nif}}>
+        </div>
+        <div class="col-md-4">
+          <label for="nombre" class="form-label fw-bold">Nombre</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="empresaSend.nombre" [ngModelOptions]="{standalone: true}"
+           required value={{empresaSend.nombre}}>
+        </div>
+        <div class="col-md-4">
+          <label for="email" class="form-label fw-bold">Correo</label>
+          <input type="text" class="form-control" id="email" [(ngModel)]="empresaSend.email" [ngModelOptions]="{standalone: true}"
+          required value={{empresaSend.email}}>
+        </div>
+        <div class="col-md-4">
+            <label for="password" class="form-label fw-bold">Contraseña</label>
+            <input type="text" class="form-control" id="password" [(ngModel)]="empresaSend.password" [ngModelOptions]="{standalone: true}"
+            required value={{empresaSend.password}}>
+        </div>
+        <div class="col-md-4">
+            <label for="direccion" class="form-label fw-bold">Direccion</label>
+            <input type="text" class="form-control" id="direccion" [(ngModel)]="empresaSend.direccion" [ngModelOptions]="{standalone: true}"
+            required value={{empresaSend.direccion}}>
+        </div>
+        <div class="col-md-4">
+            <label for="contacto" class="form-label fw-bold">Contacto</label>
+            <input type="text" class="form-control" id="contacto" [(ngModel)]="empresaSend.contacto" [ngModelOptions]="{standalone: true}"
+            required value={{empresaSend.contacto}}>
+        </div>
+        <div class="col-md-4">
+            <label for="cargo" class="form-label fw-bold">Cargo</label>
+            <input type="text" class="form-control" id="cargo" [(ngModel)]="empresaSend.cargo" [ngModelOptions]="{standalone: true}"
+            required value={{empresaSend.cargo}}>
+        </div>
+        <div class="col-md-12 d-flex justify-content-around">
+          <button type="submit" outerLinkActive="active" routerLink="../.." (click)="guardar()" class="btn btn-primary">Guardar</button>
+          <button outerLinkActive="active" routerLink="../.." class="btn btn-danger">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <app-footer></app-footer>

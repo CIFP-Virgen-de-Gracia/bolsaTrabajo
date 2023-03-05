@@ -1,3 +1,4 @@
+//Realizado por Khattari
 import { Component, OnInit } from '@angular/core';
 import { UserAlumno2Response, UserAlumnoResponse } from 'src/app/administracion/interfaces/req-resp';
 import { RestBolsaService } from 'src/app/administracion/services/rest-bolsa.service';
