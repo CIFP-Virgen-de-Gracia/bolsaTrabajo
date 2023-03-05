@@ -132,7 +132,7 @@ const actualizarAlumno = (req = request, res = response) => {
 const eliminarUser = (req = request, res = response) => {
     const conex = new ConexionSequelize();
 
-    conex.eliminarOferta(req.params.nif)
+    conex.eliminarUser(req.params.nif)
         .then( msg => {
             console.log('Eliminado correctamente!');
             res.status(201).json({'success':true});

@@ -56,4 +56,8 @@ export class RestBolsaService {
     public getAlumnos() {
         return this.http.get<UserAlumno2Response>(this.urlAdmin+'/alumnos');
     }
+
+    public eliminarUser(nif: string) {
+        return this.http.delete<any>(this.urlAdmin+'/eliminar/'+nif);
+    }
 }

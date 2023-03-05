@@ -41,7 +41,7 @@
                         <td>{{dato.AlumnoUser[0].apellido1}}</td>
                         <td>{{dato.AlumnoUser[0].apellido2}}</td>
                         <td><a (click)="activarUser(dato.nif)"><span class="fa fa-user-check"></span></a></td>
-                        <td><span class="fa fa-trash"></span></td>
+                        <td><a (click)="eliminarUser(dato.nif)"><span class="fa fa-trash"></span></a></td>
                         <td><span class="fa fa-pencil"></span></td>
                       </tr>
                     </tbody>
@@ -78,7 +78,7 @@
                     <td>{{dato.EmpresaUser[0].contacto}}</td>
                     <td>{{dato.EmpresaUser[0].cargo}}</td>
                     <td><a (click)="activarUser(dato.nif)"><span class="fa fa-user-check"></span></a></td>
-                    <td><span class="fa fa-trash"></span></td>
+                    <td><a (click)="eliminarUser(dato.nif)"><span class="fa fa-trash"></span></a></td>
                     <td><span class="fa fa-pencil"></span></td>
                   </tr>
                 </tbody>

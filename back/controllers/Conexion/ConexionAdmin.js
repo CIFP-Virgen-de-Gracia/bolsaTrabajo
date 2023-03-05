@@ -146,6 +146,17 @@ class ConexionAdmin extends ConexionSequelize {
         return resultado;
     }
 
+    eliminarUser = async(nif) => {
+        this.conectar();
+        let resultado = await User.findByPk(nif);
+        if (!resultado) {
+            this.desconectar();
+            throw error;
+        }
+        await resultado.destroy();
+        return resultado;
+    }
+
     //CRUD Admin
     getAdmins = async() => {
         let resultado = [];

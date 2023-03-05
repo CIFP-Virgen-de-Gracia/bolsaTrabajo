@@ -58,5 +58,11 @@ export class GestionUsuariosComponent implements OnInit {
       location.reload();
     })
   }
+
+  eliminarUser(nif: string) {
+    this.restBolsaService.eliminarUser(nif).subscribe((response: any) => {
+      location.reload();
+    })
+  }
   
 }
