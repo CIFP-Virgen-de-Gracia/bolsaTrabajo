@@ -13,7 +13,8 @@
         <div class="col-md-4">
           <label for="nif" class="form-label fw-bold">nif</label>
           <input type="text" class="form-control" id="nif" [(ngModel)]="user.nif" [ngModelOptions]="{standalone: true}"
-           required placeholder="nif">
+           required placeholder="nif" pattern="^[0-9]{8}[A-Z]">
+           
         </div>
         <div class="col-md-4">
           <label for="nombre" class="form-label fw-bold">nombre</label>

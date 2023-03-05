@@ -17,7 +17,7 @@
             padding-bottom: 1.5%;
         }
         padding: 23rem;
-        border-radius: 1em;
+        border: solid black;
         border-collapse: collapse;
         background-color: white;
     }
@@ -37,4 +37,12 @@
     .active {
         color: gray;
     }
+
+    .btn-primary {
+        background-color: var(--colorSecundario);
+        border: 2px solid var(--colorOscuro);
+        color: var(--colorOscuro);
+        font-weight: bold;
+    }
+
 }

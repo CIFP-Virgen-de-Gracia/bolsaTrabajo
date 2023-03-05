@@ -18,7 +18,7 @@ export class RestBolsaService {
     }
 
     public getDatosEmpresa(nif: string) {
-        return this.http.get<EmpresaResponse>(this.urlAdmin+'/empresas/'+nif);
+        return this.http.get<EmpresaResponse>(this.urlAdmin+'/empresas/datos'+nif);
     }
 
     public crearEmpresa(empresa: UserEmpresaResponse) {
@@ -30,7 +30,7 @@ export class RestBolsaService {
     }
 
     public getDatosAlumno(nif: string) {
-        return this.http.get<AlumnoResponse>(this.urlAdmin+'/alumnos/'+nif);
+        return this.http.get<AlumnoResponse>(this.urlAdmin+'/alumnos/datos'+nif);
     }
 
     public crearAlumno(alumno: UserAlumnoResponse) {

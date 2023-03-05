@@ -12,7 +12,7 @@
       <form ngNativeValidate>
         <h1 class="mb-4">Registrar Empresa</h1>
         <input class="form-control" type="text" placeholder="NIF" required
-        [(ngModel)]="userEmpresa.nif" [ngModelOptions]="{standalone: true}" />
+        [(ngModel)]="userEmpresa.nif" [ngModelOptions]="{standalone: true}" pattern="^[0-9]{8}[A-Z]"/>
 
         <input class="form-control" type="email" placeholder="Email" required
         [(ngModel)]="userEmpresa.email" [ngModelOptions]="{standalone: true}" />
@@ -42,7 +42,7 @@
       <form ngNativeValidate>
         <h1 class="mb-4">Registrar alumno</h1>
         <input class="form-control" type="text" placeholder="NIF" required
-        [(ngModel)]="userAlumno.nif" [ngModelOptions]="{standalone: true}" />
+        [(ngModel)]="userAlumno.nif" [ngModelOptions]="{standalone: true}" pattern="^[0-9]{8}[A-Z]"/>
 
         <input class="form-control" type="email" placeholder="Email" required
         [(ngModel)]="userAlumno.email" [ngModelOptions]="{standalone: true}" />
@@ -62,7 +62,7 @@
         <input class="form-control" type="text" placeholder="Telefono" required
         [(ngModel)]="userAlumno.telefono" [ngModelOptions]="{standalone: true}" />
 
-        <button class="mt-3">Crear usuario</button>
+        <button (click)="guardarAlumno()" class="mt-3">Crear usuario</button>
       </form>
     </div>
     <div class="overlay-container">
