@@ -6,9 +6,10 @@ const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validar-campos');
 const mids = require('../middlewares/ofertasMiddleware');
 
-router.get('/empresas', [mids.esAdmin], controlador.verListadoEmpresas);
-router.get('/empresas/:nif', [mids.esAdmin], controlador.verEmpresa);
-router.post('/empresas/crear', [mids.esAdmin],
+router.get('/empresas', /**[mids.esAdmin],*/ controlador.verListadoEmpresas);
+router.get('/empresas/:nif', /**[mids.esAdmin],*/ controlador.verEmpresa);
+router.get('/empresas/datos/:nif', controlador.verDatosEmpresa);
+router.post('/empresas/crear', /**[mids.esAdmin],*/
     [
         check('nif').not().isEmpty(),
         check('nombre').not().isEmpty(),
@@ -21,11 +22,12 @@ router.post('/empresas/crear', [mids.esAdmin],
         validarCampos
     ]
     , controlador.crearEmpresa);
-router.put('/empresas/modificar/:nif', [mids.esAdmin], controlador.actualizarEmpresa);
+router.put('/empresas/modificar/:nif', /**[mids.esAdmin],*/ controlador.actualizarEmpresa);
 
-router.get('/alumnos', [mids.esAdmin], controlador.verListadoAlumnos);
-router.get('/alumnos/:nif', [mids.esAdmin], controlador.verAlumno);
-router.post('/alumnos/crear', [mids.esAdmin],
+router.get('/alumnos', /**[mids.esAdmin],*/ controlador.verListadoAlumnos);
+router.get('/alumnos/:nif', /**[mids.esAdmin],*/ controlador.verAlumno);
+router.get('/alumnos/datos/:nif', controlador.verDatosAlumno);
+router.post('/alumnos/crear', /**[mids.esAdmin],*/
     [
         check('nif').not().isEmpty(),
         check('nombre').not().isEmpty(),
@@ -37,10 +39,10 @@ router.post('/alumnos/crear', [mids.esAdmin],
         validarCampos
     ]
     , controlador.crearAlumno);
-router.put('/alumnos/modificar/:nif', [mids.esAdmin], controlador.actualizarAlumno);
+router.put('/alumnos/modificar/:nif', /**[mids.esAdmin],*/ controlador.actualizarAlumno);
 
-router.get('/admins', [mids.esAdmin], controlador.verListadoAdmins);
-router.post('/admins/crear', [mids.esAdmin],
+router.get('/admins', /**[mids.esAdmin],*/ controlador.verListadoAdmins);
+router.post('/admins/crear', /**[mids.esAdmin],*/
     [
         check('nif').not().isEmpty(),
         check('nombre').not().isEmpty(),
@@ -50,10 +52,10 @@ router.post('/admins/crear', [mids.esAdmin],
         validarCampos
     ]
     , controlador.crearAdmin);
-router.put('/admins/modificar/:nif', [mids.esAdmin], controlador.actualizarAdmin);
+router.put('/admins/modificar/:nif', /**[mids.esAdmin],*/ controlador.actualizarAdmin);
 
-router.get('/', [mids.esAdmin], controlador.verListadoUsers);
-router.delete('/eliminar/:nif', [mids.esAdmin], controlador.eliminarUser);
-router.put('/activar/:nif', [mids.esAdmin], controlador.activarUser);
+router.get('/', /**[mids.esAdmin],*/ controlador.verListadoUsers);
+router.delete('/eliminar/:nif', /**[mids.esAdmin],*/ controlador.eliminarUser);
+router.put('/activar/:nif', /**[mids.esAdmin],*/ controlador.activarUser);
 
 module.exports = router;

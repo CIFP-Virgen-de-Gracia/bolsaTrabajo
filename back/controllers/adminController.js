@@ -199,6 +199,34 @@ const actualizarAdmin = (req = request, res = response) => {
         })
 }
 
+const verDatosEmpresa = (req, res = response) => {
+    const conex = new ConexionSequelize();
+
+    conex.getDatosEmpresa(req.params.nif)
+        .then( msg => {
+            console.log('Listado correcto!');
+            res.status(200).json(msg);
+        })
+        .catch( err => {
+            console.log('No hay registro');
+            res.status(203).json({'msg':'No se han encontrado registros'});
+        })
+}
+
+const verDatosAlumno = (req, res = response) => {
+    const conex = new ConexionSequelize();
+
+    conex.getDatosAlumno(req.params.nif)
+        .then( msg => {
+            console.log('Listado correcto!');
+            res.status(200).json(msg);
+        })
+        .catch( err => {
+            console.log('No hay registro');
+            res.status(203).json({'msg':'No se han encontrado registros'});
+        })
+}
+
 module.exports = {
     verListadoUsers,
     verListadoEmpresas,
@@ -213,5 +241,7 @@ module.exports = {
     activarUser,
     verListadoAdmins,
     crearAdmin,
-    actualizarAdmin
+    actualizarAdmin,
+    verDatosEmpresa,
+    verDatosAlumno
 }
