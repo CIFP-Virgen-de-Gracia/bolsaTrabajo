@@ -1,0 +1,69 @@
+<!-- Realizado por Khattari -->
+<app-menu></app-menu>
+<div class="pagina pb-5">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb m-0 pt-2 ml-2">
+      <li class="breadcrumb-item"><a>Inicio</a></li>
+      <li class="breadcrumb-item"><a outerLinkActive="active" routerLink="..">Ofertas</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Creacion</li>
+    </ol>
+  </nav>
+  <h1 class="text-center mb-4 pt-2">Creación de oferta</h1>
+  <div class="container p-5 formulario">
+    <form class="row g-3" ngNativeValidate>
+      <div class="col-md-4">
+        <label for="titulo" class="form-label fw-bold">Titulo</label>
+        <input type="text" class="form-control" id="titulo" [(ngModel)]="oferta.titulo" [ngModelOptions]="{standalone: true}"
+         required placeholder="Titulo">
+      </div>
+      <div class="col-md-4">
+        <label for="direccion" class="form-label fw-bold">Dirección</label>
+        <input type="text" class="form-control" id="direccion" [(ngModel)]="oferta.lugar" [ngModelOptions]="{standalone: true}"
+         required placeholder="Calle, Numero, Localidad">
+      </div>
+      <div class="col-md-4">
+        <label for="jornada" class="form-label fw-bold">Jornada</label>
+        <input type="text" class="form-control" id="jornada" [(ngModel)]="oferta.jornada" [ngModelOptions]="{standalone: true}"
+        required placeholder="Tipo de jornada">
+      </div>
+      <div class="col-md-12">
+        <label for="descripcion" class="form-label fw-bold">Descripcion</label>
+        <textarea class="form-control" ngModel minlength="250" id="descripcion" rows="3" [(ngModel)]="oferta.descripcion" [ngModelOptions]="{standalone: true}"></textarea>
+      </div>
+      <div class="col-md-4">
+        <label for="presencial" class="form-label fw-bold">Presencial</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="presencial" required [(ngModel)]="oferta.presencial" value="1" id="flexRadioDefault1">
+          <label class="form-check-label" for="flexRadioDefault1">
+            Si
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="presencial" required [(ngModel)]="oferta.presencial" value="0" id="flexRadioDefault2">
+          <label class="form-check-label" for="flexRadioDefault2">
+            No
+          </label>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <button type="submit" (click)="guardar()" class="btn btn-primary">Publicar</button>
+      </div>
+    </form>
+  </div>
+  <div id="myModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Creación de oferta</h5>
+        </div>
+        <div class="modal-body">
+            <p>La oferta ha sido creada correctamente</p>
+        </div>
+        <div class="modal-footer ">
+            <button type="button" (click)="cerrar()" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

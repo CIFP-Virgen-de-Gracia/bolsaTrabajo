@@ -1,0 +1,43 @@
+.pagina {
+  background-image: url('../../../../assets/image/fondo.png');
+  background-size: 100% 100%;
+}
+
+.breadcrumb {
+  position: relative;
+  left: 1rem;
+  width: 90%;
+
+  .breadcrumb-item {
+    a {
+      all: unset;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    color: var(--colorSecundario);
+    -webkit-text-stroke: 0.2px var(--colorOscuroSombra);
+  }
+
+  .active {
+    color: gray;
+  }
+
+}
+
+.container {
+  margin-top: 1em;
+  background-color: rgba($color: #fff, $alpha: 0.7);
+  border-radius: 8px;
+  box-shadow: 0 0 10px 0 rgba(55, 54, 54, 0.6);
+
+  .celda-icono {
+    text-align: center;
+    i {
+      cursor: pointer;
+    }
+  }
+
+}

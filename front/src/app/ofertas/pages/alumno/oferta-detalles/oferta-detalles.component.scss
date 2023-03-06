@@ -1,0 +1,57 @@
+//Realizado por Khattari
+.pagina {
+    a {
+        all: unset;
+    }    
+    background-image: url('../../../../../assets/image/fondo.png');
+    background-size: 100% 100%;
+    h1 {
+        -webkit-text-stroke: 1.3px var(--colorOscuroSombra);
+        color: var(--colorSecundario);
+    }
+    .table {
+        margin-bottom: 2em;
+        td {
+            padding-top: 1.5%;
+            padding-bottom: 1.5%;
+        }
+        padding: 23rem;
+        border-radius: 1em;
+        border-collapse: collapse;
+        background-color: white;
+        border-left: 2px solid var(--colorOscuro);
+        border-right: 2px solid var(--colorSecundario);
+        border-top: 2px solid var(--colorSecundario);
+        .ultimo {
+            border-bottom: 2px solid var(--colorOscuro);
+        }
+    }
+
+    table tr:last-child td:first-child {
+        border: 2px solid orange;
+        border-bottom-left-radius: 10px;
+    }
+        
+    table tr:last-child td:last-child {
+        border: 2px solid green;
+        border-bottom-right-radius: 10px;
+    }
+    .aria-label {
+        --bs-breadcrumb-divider: '>';
+    }
+    .breadcrumb {
+        position: relative;
+        left: 1rem;
+        width: 90%;
+    }
+    .breadcrumb-item {
+        &:hover {
+            cursor: pointer;
+        }
+        color: var(--colorSecundario);
+        -webkit-text-stroke: 0.2px var(--colorOscuroSombra);
+    }
+    .active {
+        color: gray;
+    }
+}

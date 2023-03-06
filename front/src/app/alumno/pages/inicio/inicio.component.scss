@@ -1,0 +1,106 @@
+
+.color-carousel{
+  position: relative;
+  font-family: var(--tipoTitulo);
+  .color-multiplicar{
+    position: absolute;
+    background-color: var(--colorOscuro);
+    filter: opacity(0.6);
+    width: 100%;
+    height: 100%;
+  }
+}
+.info-alumno{
+  .pc{
+    display: block;
+  }
+  .movil{
+    display: none;
+  }
+  svg{
+    position: absolute;
+    width: 100%;
+    z-index: -2;
+  }
+  div{
+    .destacado-alumno{
+      .entradilla{
+        font-size: 30pt;
+        margin: 3rem 6rem 3rem 3rem;
+        font-family: var(--tipoTextoMedium);
+        i{
+          color: var(--colorSecundario);
+        }
+      }
+      .contenedor-texto, h5{
+        margin: 3rem 8rem 3rem 3rem;
+        font-family: var(--tipoTextoRegular);
+      }
+      h5{
+        font-family: var(--tipoTextoMedium);
+        position: relative;
+        display: inline;
+	      z-index: 1;
+        &:after{
+          position: absolute;
+          content: '';
+          display: block;
+          z-index: -1;
+          background: var(--colorSecundarioClaro);
+          width: calc(100% + 12px);
+          height: 12px;
+          bottom: 1px;
+          left: calc(12px / -2);
+          transition: 0.3s cubic-bezier(.03,.3,.4,.96);
+          transform: skew(-10deg);
+        }
+      }
+    }
+  }
+}
+.recuadro-imagen{
+  width: 100%;
+  height: 700px;
+  .image-alumno{
+    border: 6px solid var(--colorClaro);
+    border-radius: 30rem;
+    width: 80%;
+    object-fit: cover;
+    z-index: -1;
+  }
+}
+
+@media (max-width: 992px) {
+  .info-alumno{
+    .movil{
+      display: block;
+      width: 100%;
+    }
+    .pc{
+      display: none;
+    }
+    div{
+      .destacado-alumno{
+        .entradilla{
+          font-size: 30pt;
+          margin: 3rem 3rem 3rem 3rem;
+        }
+        .contenedor-texto, h5{
+          margin: 3rem 3rem 3rem 3rem;
+        }
+      }
+    }
+  }
+  .recuadro-imagen{
+    width: 100%;
+    height: auto;
+    .image-alumno{
+      border: 6px solid var(--colorClaro);
+      border-radius: 30rem;
+      width: 60%;
+      margin: auto;
+      object-fit: cover;
+      z-index: -1;
+    }
+  }
+}
