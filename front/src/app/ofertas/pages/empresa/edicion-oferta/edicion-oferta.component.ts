@@ -33,7 +33,6 @@ export class EdicionOfertaComponent implements OnInit {
     .subscribe(
       (oferta) => {
         this.oferta = oferta;
-        console.log(this.oferta.presencial)
         let radioNo = document.getElementById('opcionNo') as HTMLInputElement
         let radioSi = document.getElementById('opcionSi') as HTMLInputElement
         switch (this.oferta.presencial) {
@@ -59,7 +58,6 @@ export class EdicionOfertaComponent implements OnInit {
     this.activatedRoute.params
     .pipe(switchMap(({id}) => this.restBolsaService.editarOferta(this.oferta, id)))
     .subscribe( response => {
-      console.log('editado');
       location.reload();
     }
     )

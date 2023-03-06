@@ -23,7 +23,6 @@ export class OfertaDetallesComponent implements OnInit {
     .pipe(switchMap(({id}) => this.restBolsaService.getOferta(id)))
     .subscribe(
       (oferta) => {
-        console.log(oferta);
         this.oferta = oferta;
       }
     )
@@ -32,7 +31,6 @@ export class OfertaDetallesComponent implements OnInit {
     .pipe(switchMap(({id}) => this.restBolsaService.getDatosEmpresa(id)))
     .subscribe(
       (datos) => {
-        console.log(datos);
         this.datos = datos;
       }
     )

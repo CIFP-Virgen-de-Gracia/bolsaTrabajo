@@ -23,7 +23,6 @@ export class ListadoOfertasEmpresa implements OnInit {
     this.restBolsaService.getOfertaEmpresa('A11111111'!) //localStorage.getItem('nif_empresa')!
       .subscribe((response: OfertasResponse) => {
         this.ofertas = response
-        console.log(response);
     })
   }
 

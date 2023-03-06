@@ -30,7 +30,6 @@ export class RestBolsaService {
     }
 
     public editarEmpresa(empresa: UserEmpresaResponse, nif: string) {
-        console.log(this.urlAdmin+'/empresas/modificar/'+nif, empresa)
         return this.http.put<any>(this.urlAdmin+'/empresas/modificar/'+nif, empresa);
     }
 
@@ -43,7 +42,6 @@ export class RestBolsaService {
     }
 
     public editarAlumno(alumno: UserAlumnoResponse, nif: string) {
-        console.log(this.urlAdmin+'/alumnos/modificar/'+nif, alumno)
         return this.http.put<any>(this.urlAdmin+'/alumnos/modificar/'+nif, alumno);
     }
 

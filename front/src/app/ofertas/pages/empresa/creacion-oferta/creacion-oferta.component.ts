@@ -38,7 +38,6 @@ export class CreacionOfertaComponent implements OnInit {
 
     this.restBolsaService.crearOferta(this.oferta)
       .subscribe( response => {
-        console.log('creado');
         this.abrir()
         this.socketService.mandarNotificacion(this.oferta)
       })
