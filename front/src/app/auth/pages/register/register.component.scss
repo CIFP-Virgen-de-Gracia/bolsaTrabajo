@@ -27,7 +27,7 @@
   .shape:first-child {
     background: linear-gradient(#1845ad,
         #23a2f6);
-    left: -80px;
+    left: -150px;
     top: -50px;
   }
 
@@ -35,7 +35,7 @@
     background: linear-gradient(to right, (var(--colorSecundario)),
         var(--colorSecundarioClaro),
       );
-    right: -80px;
+    right: -150px;
     bottom: -80px;
   }
 
@@ -99,7 +99,7 @@
   }
 
   button {
-    margin-top: 50px;
+    margin-top: 20px;
     width: 100%;
     background-color: var(--colorSecundario);
     color: var(--colorOscuroSombra);
@@ -136,4 +136,34 @@
 
 .d-flex{
   display: block;
+}
+.eleccion{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 50%;
+  background-color: var(--colorOscuroSombra);
+  border-radius: 5px;
+  border-color: var(--colorSecundarioClaro);
+  box-shadow: rgba(15, 46, 104, 0.544);
+  padding: 10px;
+}
+.eleccion:hover{
+  background-color: var(--colorSecundario);
+  color: var(--colorOscuroSombra);
+}
+.subirImg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 60%;
+  background-color: var(--colorOscuroSombra);
+  border-radius: 5px;
+  border-color: var(--colorSecundarioClaro);
+  padding: 10px;
+  box-shadow: 0 0 40px rgba(15, 46, 104, 0.544);
+}
+.subirImg:hover{
+  background-color: var(--colorSecundario);
+  color: var(--colorOscuroSombra);
 }

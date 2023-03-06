@@ -1,4 +1,3 @@
-
 <head>
   <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 </head>
@@ -68,23 +67,25 @@
       </div>
       <br>
       <!-- TODO SI ES EMPRESA O ALUMNO -->
-      <div class="">
-      <p>Empresa o Estudiante</p>
-      <select id="inputRol" formControlName="rol" class="form-control border border-dark" placeholder="Elige">
-        <option value="2">Estudiante</option>
-        <option value="3">Empresa</option>
-      </select>
-      <span class="invalid-feedback">
-        <span *ngIf="RegisterForm.get('rol')?.errors?.['required']">Indica si eres Empresa o Alumno</span>
-      </span>
-    </div>
-      <p>Imagen (opcional)</p>
-      <!-- TODO subir imágenes en angular-->
-      <input type="file" id="inputImagen" class="form-control border border-dark"
-        placeholder="Imagen (opcional)" (change)="getFile($event)">
-
+      <div class="eleccion">
+        <p class="text-warning">Selecciona</p>
+        <select id="inputRol" formControlName="rol" class="form-control border border-dark" placeholder="Selecciona">
+          <option value="2">Estudiante</option>
+          <option value="3">Empresa</option>
+        </select>
+        <span class="invalid-feedback">
+          <span *ngIf="RegisterForm.get('rol')?.errors?.['required']">Indica si eres Empresa o Alumno</span>
+        </span>
+      </div>
+      <br>
+      <div class="subirImg">
+      <p class="text-warning">Imagen (opcional)</p>
+      <input type="file" id="inputImagen" class="form-control border border-dark" placeholder="Imagen (opcional)"
+        (change)="getFile($event)">
+      </div>
       <div class="d-flex justify-content-center">
-        <button type="submit" class="btn btn-primary" [disabled]="RegisterForm.invalid" (click)="sendFile()">Registrarse</button>
-        </div>
-       </div>
+        <button type="submit" class="btn btn-primary" [disabled]="RegisterForm.invalid"
+          (click)="sendFile()">Registrarse</button>
+      </div>
+    </div>
   </form>
