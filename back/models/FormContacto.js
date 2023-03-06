@@ -1,3 +1,6 @@
+/**
+ * Hecho por Manuel
+ */
 const { DataTypes }= require('sequelize');
 const db = require('../controllers/Conexion/connection');
 

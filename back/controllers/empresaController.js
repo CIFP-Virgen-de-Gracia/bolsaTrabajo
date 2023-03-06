@@ -1,3 +1,6 @@
+/**
+ * Hecho por Manuel
+ */
 const {response,request} = require('express');
 const Conexion = require('./Conexion/ConexionEmpresa');
 

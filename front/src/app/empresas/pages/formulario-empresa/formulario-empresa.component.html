@@ -31,14 +31,14 @@
             </div> -->
 
             <div class="col-12">
-              <label for="companyName" class="form-label">Nombre / Razón social</label>
+              <label for="companyName" class="form-label"><span class="text-muted">(*) </span>Nombre / Razón social</label>
               <input type="text" class="form-control" id="companyName" [(ngModel)]="empresaActual.nombre"
               [ngModelOptions]="{standalone: true}" placeholder="" value="" required />
               <div class="invalid-feedback">Se requiere el nombre de la empresa.</div>
             </div>
 
             <div class="col-12">
-            <label for="companyAddress" class="form-label">Dirección postal completa</label>
+            <label for="companyAddress" class="form-label"><span class="text-muted">(*) </span>Dirección postal completa</label>
               <input type="text" class="form-control" id="companyAddress" [(ngModel)]="empresaActual.direccion"
                 [ngModelOptions]="{standalone: true}" placeholder="Calle, num. - Código Postal, Población (Provincia)"
                 required />
@@ -46,21 +46,21 @@
             </div>
 
             <div class="col-lg-6 col-md-12">
-              <label for="emailUsuario" class="form-label">Email</label>
+              <label for="emailUsuario" class="form-label"><span class="text-muted">(*) </span>Email</label>
               <input type="email" class="form-control" id="emailUsuario" [(ngModel)]="usuarioActual.email"
                 [ngModelOptions]="{standalone: true}" placeholder="direccion@correo.com" required/>
               <div class="invalid-feedback">Por favor introduzca un email válido.</div>
             </div>
 
             <div class="col-lg-6 col-md-12">
-              <label for="passUsuario" class="form-label">Password</label>
+              <label for="passUsuario" class="form-label"><span class="text-muted">(*) </span>Password</label>
               <input type="text" class="form-control" id="passUsuario" [(ngModel)]="usuarioActual.password"
                 [ngModelOptions]="{standalone: true}" required/>
             </div>
 
 
             <div class="col-lg-6 col-md-12">
-              <label for="contactPerson" class="form-label">Persona de contacto</label>
+              <label for="contactPerson" class="form-label"><span class="text-muted">(*) </span>Persona de contacto</label>
               <input type="text" class="form-control" id="contactPerson" [(ngModel)]="empresaActual.contacto"
               [ngModelOptions]="{standalone: true}" placeholder="" value="" required />
               <div class="invalid-feedback">Se requiere un nombre válido.</div>
@@ -74,7 +74,7 @@
             </div>
 
             <div class="col-lg-6 col-md-12">
-              <label for="companyPhone" class="form-label">
+              <label for="companyPhone" class="form-label"><span class="text-muted">(*) </span>
                 Teléfono de contacto<span class="text-muted"></span></label>
               <input type="text" class="form-control" id="companyPhone" [(ngModel)]="usuarioActual.telefono"
                 [ngModelOptions]="{standalone: true}" placeholder="926 123 456" />
@@ -85,9 +85,10 @@
                 <button class="btn btn-danger" type="button" (click)="recargar()" >Cancelar</button>
 
             </div>
+            <div class="obligatorio mt-0 mb-3"><span class="text-muted">(*) Campos obligatorios</span></div>
           </div>
 
-      <hr class="my-4" />
+      <hr class="mb-4" />
       <div class="proteccionDatos">
         <p>
           <small>Con carácter general, los datos personales proporcionados se conservarán mientras el interesado no
