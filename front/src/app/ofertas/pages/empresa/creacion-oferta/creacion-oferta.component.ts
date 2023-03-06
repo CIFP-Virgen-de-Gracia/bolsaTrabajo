@@ -40,6 +40,7 @@ export class CreacionOfertaComponent implements OnInit {
       .subscribe( response => {
         console.log('creado');
         this.abrir()
+        this.socketService.mandarNotificacion(this.oferta)
       })
   }
 
@@ -55,4 +56,5 @@ export class CreacionOfertaComponent implements OnInit {
     modal!.style.display = "none";
     location.replace('http://localhost:4200/ofertas/empresa/')
   }
+
 }

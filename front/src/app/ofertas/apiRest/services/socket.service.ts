@@ -20,5 +20,17 @@ export class SocketService {
       console.log("Desconectado");
   });
   }
+
+  mandarNotificacion(payload: any) {
+    this.socket.emit('enviar-notificacion', payload, (msg_conf: any) => {
+      console.log('enviado')
+    });
+  }
+
+  recibirNotificacion() {
+    this.socket.on('recibir-notificacion', (payload: any) => {
+      console.log('Recibido de server: ', payload)
+    })
+  }
   
 }
