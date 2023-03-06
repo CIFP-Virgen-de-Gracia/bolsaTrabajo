@@ -28,4 +28,16 @@ export class OfertasAlumnoComponent implements OnInit {
     })
   }
 
+  public abrir() {
+    let modal = document.getElementById("myModal");
+    modal!.style.display = "block";
+    let body = document.getElementsByTagName("body")[0];
+    body!.style.overflow = "hidden";
+  }
+
+  cerrar() {
+    let modal = document.getElementById("myModal");
+    modal!.style.display = "none";
+  }
+
 }
