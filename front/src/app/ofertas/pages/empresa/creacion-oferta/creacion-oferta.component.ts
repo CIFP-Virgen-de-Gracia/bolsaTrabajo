@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OfertasResponse } from 'src/app/ofertas/interfaces/req-resp';
 import { RestBolsaService } from '../../../apiRest/services/rest-bolsa.service';
+import { SocketService } from 'src/app/ofertas/apiRest/services/socket.service';
 
 @Component({
   selector: 'app-creacion-oferta',
@@ -19,10 +20,12 @@ export class CreacionOfertaComponent implements OnInit {
     nif_empresa: 'A11111111' //localStorage.getItem('nif_empresa')!
   }
 
-  constructor(private restBolsaService: RestBolsaService) {}
+  constructor(private restBolsaService: RestBolsaService,
+              private socketService: SocketService) {}
 
   ngOnInit(): void {
-
+    this.socketService.conectar();
+    this.socketService.desconectar();
   }
 
   guardar(){
@@ -35,8 +38,8 @@ export class CreacionOfertaComponent implements OnInit {
 
     this.restBolsaService.crearOferta(this.oferta)
       .subscribe( response => {
-        console.log('creado');
         this.abrir()
+        this.socketService.mandarNotificacion(this.oferta)
       })
   }
 
@@ -52,4 +55,5 @@ export class CreacionOfertaComponent implements OnInit {
     modal!.style.display = "none";
     location.replace('http://localhost:4200/ofertas/empresa/')
   }
+
 }

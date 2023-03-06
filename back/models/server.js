@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const { socketController } = require('../controllers/websocketController');
 class Server {
 
     constructor() {
@@ -15,10 +16,16 @@ class Server {
         this.formContactoPath = '/api/formContacto';
         this.adminPath = '/admin';
 
+        this.server = require('http').createServer(this.app);
+        this.io = require('socket.io')(this.server);
+
         //Middlewares
         this.middlewares();
 
         this.routes();
+
+        //Websockets.
+        this.sockets();
         
     }
 
@@ -42,8 +49,12 @@ class Server {
         this.app.use(this.formContactoPath, require('../routes/formContactoRoutes'));
     }
 
+    sockets(){
+        this.io.on('connection', socketController);
+    }
+
     listen() {
-        this.app.listen(process.env.PORT, () => {
+        this.server.listen(process.env.PORT, () => {
             console.log(`Servidor escuchando en: ${process.env.PORT}`);
         })
     }

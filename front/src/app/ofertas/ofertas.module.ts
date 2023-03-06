@@ -11,6 +11,15 @@ import { FormsModule } from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { EdicionOfertaComponent } from './pages/empresa/edicion-oferta/edicion-oferta.component';
 import { SharedModule } from '../shared/shared.module';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { environment } from 'src/environments/environment';
+
+const config: SocketIoConfig = {
+	url: environment.socketUrl, // socket server url;
+	options: {
+		transports: ['websocket']
+	}
+}
 
 @NgModule({
   declarations: [
@@ -32,7 +41,8 @@ import { SharedModule } from '../shared/shared.module';
     OfertasRoutingModule,
     FormsModule,
     NgxPaginationModule,
-    SharedModule
+    SharedModule,
+    SocketIoModule.forRoot(config), 
   ]
 })
 

@@ -25,5 +25,21 @@
                       class="text-center m-0 controles"
                       >
     </pagination-controls>
+    <div id="myModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nueva oferta</h5>
+            </div>
+            <div class="modal-body">
+                <p>Una nueva oferta ha sido publicada</p>
+            </div>
+            <div class="modal-footer d-flex justify-content-around">
+                <button type="button" (click)="cerrar()" class="btn btn-primary" data-dismiss="modal">Ver oferta</button>
+                <button type="button" (click)="cerrar()" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+            </div>
+        </div>
+      </div>
 </div>
 <app-footer></app-footer>
