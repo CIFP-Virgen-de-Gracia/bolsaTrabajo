@@ -31,7 +31,7 @@ const usuarioGet = (req, res = response) => {
     });
 };
 
-//********************** */
+//************************************************** */  ---->>>> Este método hecho por Manuel
   //Inés: Creo otro usuarioEmpresaGet distinto, que necesito 
   //para formularioEmpresa. No quiero tocarte el tuyo que no me sirve,
   //por si te estropeo algo de lo tuyo.

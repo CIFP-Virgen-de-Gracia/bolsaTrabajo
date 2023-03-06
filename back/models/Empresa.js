@@ -1,3 +1,6 @@
+/**
+ * Hecho por Manuel
+ */
 const { Sequelize, DataTypes, Model }= require('sequelize');
 const db = require('../controllers/Conexion/connection');
 const EmpresasOfertas = require('./empresas-ofertas');
