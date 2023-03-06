@@ -1,3 +1,5 @@
+//Ines
+//descripcion: este middleware valida el token que se envia en el header de la peticion
 const jwt = require('jsonwebtoken');
 const {response, request} = require('express')  
 

@@ -29,7 +29,7 @@
     background: linear-gradient(#1845ad,
         #23a2f6);
     left: -80px;
-    top: -80px;
+    top: -50px;
   }
 
   .shape:last-child {
@@ -91,8 +91,8 @@
     display: block;
     height: 50px;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.07);
-    border-radius: 3px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.13);
     padding: 0 10px;
     margin-top: 8px;
     font-size: 14px;
@@ -100,7 +100,7 @@
   }
 
   ::placeholder {
-    color: #4298d6;
+    color: var(--colorOscuroSombra);
   }
 
   button {
@@ -108,42 +108,27 @@
     width: 100%;
     background-color: var(--colorSecundario);
     color: var(--colorOscuroSombra);
+    box-shadow: 0 0 40px rgba(15, 46, 104, 0.544);
     padding: 15px 0;
     font-size: 18px;
     font-weight: 600;
     border-radius: 5px;
     cursor: pointer;
   }
-
-  .social {
-    margin-top: 30px;
-    display: flex;
-  }
-
-  .social div {
-    background: var(--colorSecundarioClaro);
-    width: 150px;
-    border-radius: 3px;
-    padding: 5px 10px 10px 5px;
-    color: #eaf0fb;
-    text-align: center;
-  }
-
-  .social div:hover {
-    background-color: rgba(5, 4, 34, 0.47);
-  }
-
-  .social .go {
-    width: auto;
-    border-radius: 13px;
-    background-color: #bd2c04;
+  button:hover {
+    background-color: var(--colorOscuroSombra);
+    color: var(--colorSecundario);
   }
 
   #password {
-    color: var(--colorAzul);
+    color: var(--colorOscuroSombra);
   }
 
   #username {
-    color: var(--colorAzul);
+    color: var(--colorOscuroSombra);
+  }
+  body.swal2-shown > [aria-hidden="true"] {
+    transition: 0.1s filter;
+    filter: blur(10px);
   }
 }

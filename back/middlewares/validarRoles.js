@@ -1,86 +1,80 @@
+//Ines**************
+// Path: back\middlewares\validarRoles.js
+const {verifyToken} = require('../helpers/generate_jwt');
+
 const esAdmin = (req, res, next) => {
-  if (!req.nifToken) {
-    //Hacemos una comprobación rutinaria de si se ha establecido.
-    return res
-      .status(500)
-      .json({ msg: "No es posible el acceso como administrador." });
+  const token = req.header('x-token');
+  if (!token) {
+    return res.status(401).json({
+      msg: 'No hay token en la petición',
+    });
   }
-
-  //Aquí iría la consulta a la bd para ver los roles del usuario. O si se sacó toda la información en el middleware anterior, podríamos hacer algo como esto:
-  getUsuario = async (nif) => {
-    let resultado = [];
-    try {
-      resultado = await this.query(
-        'SELECT * FROM personas WHERE nif=nif AND rol = "admin"',
-        [nif]
-      );
-    } catch (error) {
-      throw error;
+  try {
+    const {uid, rol} = verifyToken(token);
+    if (rol !== 1) {
+      return res.status(401).json({
+        msg: 'No tiene privilegios para realizar esta acción',
+      });
     }
-    return resultado;
-  };
-
-  if (req.rol == 1) {
-    console.log(req.nifToken + " accediendo como administrador.");
+    req.uid = uid;
+    req.rol = rol;
     next();
-  } else {
-    return res
-      .status(500)
-      .json({ msg: "No es posible el acceso como administrador." });
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({
+      msg: 'Token no válido',
+    });
   }
+
 };
 
 const esEstudiante = (req, res, next) => {
-  if (!req.nifToken) {
-    //Hacemos una comprobación rutinaria de si se ha establecido.
-    return res
-      .status(500)
-      .json({ msg: "No es posible el acceso como usuario." });
+  const token = req.header('x-token');
+  if (!token) {
+    return res.status(401).json({
+      msg: 'No hay token en la petición',
+    });
   }
-  getUsuario = async (nif) => {
-    let resultado = [];
-    try {
-      resultado = await this.query(
-        'SELECT * FROM personas WHERE nif=nif AND rol = "usuario"',
-        [nif]
-      );
-    } catch (error) {
-      throw error;
+  try {
+    const {uid, rol} = verifyToken(token);
+    if (rol !== 2) {
+      return res.status(401).json({
+        msg: 'No tiene privilegios para realizar esta acción',
+      });
     }
-    return resultado;
-  };
-  if (req.rol == 1) {
-    console.log(req.nifToken + " accediendo como usuario.");
+    req.uid = uid;
+    req.rol = rol;
     next();
-  } else {
-    return res.status(500).json({ msg: "No estás en la base de datos." });
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({
+      msg: 'Token no válido',
+    });
   }
 };
 
 const esEmpresa = (req, res, next) => {
-  if (!req.nifToken) {
-    //Hacemos una comprobación rutinaria de si se ha establecido.
-    return res
-      .status(500)
-      .json({ msg: "No es posible el acceso como empresa." });
+  const token = req.header('x-token');
+  if (!token) {
+    return res.status(401).json({
+      msg: 'No hay token en la petición',
+    });
   }
-  getUsuario = async (nif) => {
-    let resultado = [];
-    try {
-      resultado = await this.query(
-        'SELECT * FROM personas WHERE nif=nif AND rol = "empresa"',
-        [nif]
-      );
-    } catch (error) {
-      throw error;
+  try {
+    const {uid, rol} = verifyToken(token);
+    if (rol !== 3) {
+      return res.status(401).json({
+        msg: 'No tiene privilegios para realizar esta acción',
+      });
     }
-    return resultado;
-  };
-  if (req.rol == 1) {
-    console.log(req.nifToken + " accediendo como empresa.");
+    req.uid = uid;
+    req.rol = rol;
     next();
-  } else {
-    return res.status(500).json({ msg: "No estás en la base de datos." });
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({
+      msg: 'Token no válido',
+    });
   }
 };
 

@@ -1,7 +1,17 @@
+//Ines
 export interface User {
   nif: string;
-  nick: string;
+  nombre: string;
   email: string;
   password: string;
-  Token: any;
+  telefono: string;
+  role: number;
+  token: string;
+  Token:any;
+}
+
+export interface file {
+  userNif: string;
+  id: number;
+  file: string;
 }

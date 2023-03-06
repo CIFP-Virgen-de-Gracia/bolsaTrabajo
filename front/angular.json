@@ -20,6 +20,13 @@
             "outputPath": "dist/front",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "login.component",
+              "register.component",
+              "home.component",
+              "sweetalert2"
+           ],
             "polyfills": [
               "zone.js"
             ],

@@ -15,8 +15,14 @@ margin: 20px;
 border-color: var(--colorSecundarioClaro);
 border-style: solid;
 border-width: 23px;
-box-shadow: 0px 0px 20px var(--colorOscuroSombra);
-width: 50%;
+box-shadow: 0px 0px 20px var(--colorSecundarioClaro);
+width: 100%;
+.truncate {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 }
 
 .datos h1{
@@ -26,9 +32,30 @@ width: 50%;
   text-align: center;
 }
 #botonW{
-box-shadow:0px 0px 30px var(--colorOscuroSombra);
+box-shadow:0px 0px 30px var(--colorSecundarioClaro);
 }
-// Small devices (landscape phones, 576px and up)
+button{
+  background-color: var(--colorOscuroSombra);
+  color: var(--colorSecundarioClaro);
+  font-family: var(--tipoNombre);
+  font-size: 20pt;
+  border-radius: 10px;
+  border-color: var(--colorSecundarioClaro);
+  border-style: solid;
+  border-width: 5px;
+  padding: 10px;
+  margin: 10px;
+  width: 50%;
+  box-shadow: 0px 0px 20px var(--colorOscuroSombra);
+
+}
+button:hover{
+  background-color: var(--colorSecundarioClaro);
+  color: var(--colorOscuroSombra);
+  box-shadow: 0px 0px 20px var(--colorSecundarioClaro);
+}
+
+// móviles (telefono, 576px y más grande)
 @media (min-width: 576px) {
   .datos{
     width: 100%;

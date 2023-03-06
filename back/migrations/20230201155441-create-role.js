@@ -1,3 +1,5 @@
+//Ines
+//descripcion: migración roles
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -7,9 +9,6 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      id: {
         type: Sequelize.INTEGER
       },
       descripcion: {

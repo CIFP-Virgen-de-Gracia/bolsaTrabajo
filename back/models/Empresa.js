@@ -21,6 +21,9 @@ const Empresas = db.define('empresas', {
     },
     cargo: {
         type: DataTypes.INTEGER
+    },
+    telefono: {
+        type: DataTypes.STRING
     }
 },
 { 

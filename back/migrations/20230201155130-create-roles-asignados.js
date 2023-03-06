@@ -1,3 +1,5 @@
+//Ines
+//descripcion: migración roles asignados, tabla intermedia
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -9,7 +11,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userDni: {
+      userNif: {
         type: Sequelize.STRING,
         primaryKey: true,
     //     references:{

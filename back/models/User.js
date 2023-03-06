@@ -1,8 +1,10 @@
+//Ines
+//descripción: User model, tabla usuarios general
 const { Sequelize, DataTypes, Model } = require('sequelize');
 const db = require('../controllers/Conexion/connection');
 const RolesAsignados = require('./RolesAsignados');
 const Roles = require('./Roles');
-
+const Avatar = require('./Files');
 const Empresa = require('./Empresa');
 const Alumno = require('./Alumno');
 
@@ -44,6 +46,10 @@ const User = db.define('users', {
         }
 
     },
+    telefono: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        },                                 
     status: {
         type: DataTypes.INTEGER,
         allowNull: true,
@@ -58,7 +64,7 @@ const User = db.define('users', {
         type: DataTypes.INTEGER,
         allowNull: true,
         validate: {
-            notEmpty: true,
+            notEmpty: false,
             isInt: true,
             min: 1,
             max: 3
@@ -69,6 +75,7 @@ const User = db.define('users', {
         type: DataTypes.INTEGER,
         allowNull: true,
     }
+
 },
 
     {
@@ -81,6 +88,7 @@ const User = db.define('users', {
 
 
 User.hasOne(RolesAsignados, { as: 'RolesAsignados', foreignKey: 'userNif' });
+Avatar.belongsTo(User, { as: 'User', foreignKey: 'userNif' });
 
 //Parte realizada por Khattari
 User.hasMany(Empresa, {as: 'EmpresaUser', foreignKey: 'nif'});
