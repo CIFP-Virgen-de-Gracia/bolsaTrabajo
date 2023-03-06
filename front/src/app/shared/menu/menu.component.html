@@ -13,13 +13,13 @@
       <i class="fa-solid fa-bars"></i>
     </button>
   </div>
-  <ng-container *ngIf="rol == 0">
+  <ng-container *ngIf="rol == 2">
     <app-menu-alumno class="contenedor-menu"></app-menu-alumno>
   </ng-container>
-  <ng-container *ngIf="rol == 1">
+  <ng-container *ngIf="rol == 3">
     <app-menu-empresa class="contenedor-menu"></app-menu-empresa>
   </ng-container>
-  <ng-container *ngIf="rol == 2">
+  <ng-container *ngIf="rol == 1">
     <app-menu-administrador class="contenedor-menu"></app-menu-administrador>
   </ng-container>
 </nav>

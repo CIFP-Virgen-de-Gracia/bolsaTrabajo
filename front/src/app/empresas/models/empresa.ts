@@ -1,3 +1,4 @@
+/* ¿Usar solo la interfaz?????
 export class Empresa {
 
   constructor(
@@ -10,3 +11,4 @@ export class Empresa {
     ) {}
 
 }
+*/

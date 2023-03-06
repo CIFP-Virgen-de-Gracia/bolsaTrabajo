@@ -4,6 +4,33 @@ export interface Empresa {
   direccion: string;
   contacto:  string;
   cargo:     string;
-  telefono:  string;
-  email:     string;
+}
+
+export interface UsuarioEmpresa {
+  nif:string;
+  nombre:string;
+  email:string;
+  password:string;
+  status:number;
+  rol: number;
+  //¿token?
+  telefono: string;
+}
+
+export interface FormularioContacto {
+  id: number;
+  nif: string;
+  nombre: string;
+  email: string;
+  telefono: string;
+  observaciones: string;
+}
+
+export interface LineaListadoEmpresa {
+  nif: string,
+  nombre: string,
+  email: string,
+  contacto: string,
+  cargo: string,
+  telefono: string
 }

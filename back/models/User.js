@@ -3,6 +3,8 @@ const db = require('../controllers/Conexion/connection');
 const RolesAsignados = require('./RolesAsignados');
 const Roles = require('./Roles');
 const Avatar = require('./Files');
+const Empresa = require('./Empresa');
+const Alumno = require('./Alumno');
 
 const User = db.define('users', {
     nif: {
@@ -66,6 +68,10 @@ const User = db.define('users', {
             max: 3
         }
 
+    },
+    telefono: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
     }
 
 },
@@ -81,5 +87,9 @@ const User = db.define('users', {
 
 User.hasOne(RolesAsignados, { as: 'RolesAsignados', foreignKey: 'userNif' });
 Avatar.belongsTo(User, { as: 'User', foreignKey: 'userNif' });
+
+//Parte realizada por Khattari
+User.hasMany(Empresa, {as: 'EmpresaUser', foreignKey: 'nif'});
+User.hasMany(Alumno, {as: 'AlumnoUser', foreignKey: 'nif'});
 
 module.exports = User;

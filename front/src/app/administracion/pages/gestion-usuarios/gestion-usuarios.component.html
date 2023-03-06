@@ -1,0 +1,122 @@
+<!-- Realizado por Khattari -->
+<app-menu></app-menu>
+<div class="pagina">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb m-0 pt-2 pl-2">
+        <li class="breadcrumb-item"><a outerLinkActive="active" routerLink="..">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Gestión</li>
+      </ol>
+    </nav>
+    <h1 class="text-center mb-4 pt-2">Gestión de usuarios</h1>
+    <div class="container">
+      <div class="col d-flex justify-content-around mb-3">
+        <button class="btn btn-primary" (click)="cambioAlumnos()">Alumnos</button>
+        <button class="btn btn-primary" (click)="cambioEmpresa()">Empresas</button>
+        <button class="btn btn-primary" (click)="cambioAdmins()">Administradores</button>
+      </div>
+        <div class="row justify-content-center tabla-container">
+            <div class="col-auto" id="table-alumnos">
+                <table class="table table-responsive">
+                    <thead class="text-center">
+                      <tr>
+                        <td class="fw-bold">Nombre</td>
+                        <td class="fw-bold">NIF</td>
+                        <td class="fw-bold">Email</td>
+                        <td class="fw-bold">Rol</td>
+                        <td class="fw-bold">Verificado</td>
+                        <td class="fw-bold">Apellido 1</td>
+                        <td class="fw-bold">Apellido 2</td>
+                        <td class="fw-bold">Activar</td>
+                        <td class="fw-bold">Eliminar</td>
+                        <td class="fw-bold">Editar</td>
+                      </tr>
+                    </thead>
+                    <tbody class="text-center" *ngFor="let dato of datosAlumno; index as i">
+                      <tr *ngIf="dato.rol === 2 && dato.AlumnoUser.length != 0">
+                        <td>{{dato.nombre}}</td>
+                        <td>{{dato.nif}}</td>
+                        <td>{{dato.email}}</td>
+                        <td>{{dato.rol}}</td>
+                        <td *ngIf="dato.status === 1">Activo</td>
+                        <td *ngIf="dato.status === 0">No Activo</td>
+                        <td>{{dato.AlumnoUser[0].apellido1}}</td>
+                        <td>{{dato.AlumnoUser[0].apellido2}}</td>
+                        <td><a (click)="activarUser(dato.nif)"><span class="fa fa-user-check"></span></a></td>
+                        <td><a (click)="eliminarUser(dato.nif)"><span class="fa fa-trash"></span></a></td>
+                        <td><a outerLinkActive="active" routerLink="editaralumno/{{dato.nif}}"><span class="fa fa-pencil"></span></a></td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div> 
+            <div class="col-auto container-table" id="table-empresa">
+              <table class="table table-responsive">
+                <thead class="text-center">
+                  <tr>
+                    <td class="fw-bold">Nombre</td>
+                    <td class="fw-bold">NIF</td>
+                    <td class="fw-bold">Email</td>
+                    <td class="fw-bold">Telefono</td>
+                    <td class="fw-bold">Rol</td>
+                    <td class="fw-bold">Verificado</td>
+                    <td class="fw-bold">Direccion</td>
+                    <td class="fw-bold">Contacto</td>
+                    <td class="fw-bold">Cargo</td>
+                    <td class="fw-bold">Activar</td>
+                    <td class="fw-bold">Eliminar</td>
+                    <td class="fw-bold">Editar</td>
+                  </tr>
+                </thead>
+                <tbody class="text-center" *ngFor="let dato of datosEmpresa; index as i">
+                  <tr  *ngIf="dato.rol === 3 && dato.EmpresaUser.length != 0">
+                    <td>{{dato.nombre}}</td>
+                    <td>{{dato.nif}}</td>
+                    <td>{{dato.email}}</td>
+                    <td>{{dato.telefono}}</td>
+                    <td>{{dato.rol}}</td>
+                    <td *ngIf="dato.status === 1">Activo</td>
+                    <td *ngIf="dato.status === 0">No Activo</td>
+                    <td>{{dato.EmpresaUser[0].direccion}}</td>
+                    <td>{{dato.EmpresaUser[0].contacto}}</td>
+                    <td>{{dato.EmpresaUser[0].cargo}}</td>
+                    <td><a (click)="activarUser(dato.nif)"><span class="fa fa-user-check"></span></a></td>
+                    <td><a (click)="eliminarUser(dato.nif)"><span class="fa fa-trash"></span></a></td>
+                    <td><a outerLinkActive="active" routerLink="editarempresa/{{dato.nif}}"><span class="fa fa-pencil"></span></a></td>
+                  </tr>
+                </tbody>
+            </table>
+            </div>
+            <div class="col-auto container-table" id="table-admins">
+              <table class="table table-responsive">
+                <thead class="text-center">
+                  <tr>
+                    <td class="fw-bold">Nombre</td>
+                    <td class="fw-bold">NIF</td>
+                    <td class="fw-bold">Email</td>
+                    <td class="fw-bold">Telefono</td>
+                    <td class="fw-bold">Rol</td>
+                    <td class="fw-bold">Verificado</td>
+                    <td class="fw-bold">Activar</td>
+                    <td class="fw-bold">Eliminar</td>
+                    <td class="fw-bold">Editar</td>
+                  </tr>
+                </thead>
+                <tbody class="text-center" *ngFor="let dato of datosUser; index as i">
+                  <tr  *ngIf="dato.rol === 1">
+                    <td>{{dato.nombre}}</td>
+                    <td>{{dato.nif}}</td>
+                    <td>{{dato.email}}</td>
+                    <td>{{dato.telefono}}</td>
+                    <td>{{dato.rol}}</td>
+                    <td *ngIf="dato.status === 1">Activo</td>
+                    <td *ngIf="dato.status === 0">No Activo</td>
+                    <td><a (click)="activarUser(dato.nif)"><span class="fa fa-user-check"></span></a></td>
+                    <td><a (click)="eliminarUser(dato.nif)"><span class="fa fa-trash"></span></a></td>
+                    <td><a outerLinkActive="active" routerLink="editaradmin/{{dato.nif}}"><span class="fa fa-pencil"></span></a></td>
+                  </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+  </div>
+  <app-footer></app-footer>

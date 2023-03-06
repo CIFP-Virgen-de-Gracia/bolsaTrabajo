@@ -20,12 +20,16 @@ const routes: Routes = [
     loadChildren:() => import('./empresas/empresas.module').then((m) => m.EmpresasModule),
   },
   {
-    path: 'listado',
-    loadChildren:() => import('./empresas/empresas.module').then((m) => m.EmpresasModule),
-  },
-  {
     path: 'ofertas',
     loadChildren:() => import('./ofertas/ofertas.module').then((m) => m.OfertasModule),
+  },
+  {
+    path: 'administracion',
+    loadChildren:() => import('./administracion/administracion.module').then((m) => m.AdministracionModule),
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];
 

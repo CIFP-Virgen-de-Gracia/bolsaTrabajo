@@ -1,6 +1,6 @@
 //Realizado por Khattari
 export interface OfertasResponse {
-    id?:          number;
+    id?:         number;
     titulo:      string;
     descripcion: string;
     lugar:       string;
@@ -10,7 +10,7 @@ export interface OfertasResponse {
 }
 
 export interface EmpresaResponse {
-    nif?:        number;
+    nif?:       number;
     nombre:     string;
     direccion:  string;
     contacto:   string;

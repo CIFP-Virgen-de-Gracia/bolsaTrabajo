@@ -3,23 +3,23 @@ const ConexionSequelize = require('./ConexionSequelize');
 
 class ConexionEmpresa extends ConexionSequelize {
   
-  constructor() {
-    super();
-  };
+    constructor() {
+        super();
+    };
 
   //Métodos CRUD Empresas -------------------------------------------------------------
-  getEmpresaListado = async() => {
-    let resultado = [];
-    this.conectar();
-    resultado = await Empresa.findAll();
-    this.desconectar();
-    return resultado;
-  }
-  
-    getEmpresa = async(id) => {
+    getEmpresaListado = async() => {
         let resultado = [];
         this.conectar();
-        resultado = await Empresa.findByPk(id);
+        resultado = await Empresa.findAll();
+        this.desconectar();
+        return resultado;
+    }
+  
+    getEmpresa = async(nif) => {
+        let resultado = [];
+        this.conectar();
+        resultado = await Empresa.findByPk(nif);
         this.desconectar();
         if (!resultado){
             throw error;
@@ -30,15 +30,15 @@ class ConexionEmpresa extends ConexionSequelize {
     registrarEmpresa = async(body) => {
         let resultado = 0;
         this.conectar();
-        const empresaNueva = new Empresa(body); //Con esto añade los timeStamps.
+        const empresaNueva = new Empresa(body);
         await empresaNueva.save();
         this.desconectar();
         return resultado;
     }
 
-    modificarEmpresa = async(id, body) => {
+    modificarEmpresa = async(nif, body) => {
         this.conectar();
-        let resultado = await Empresa.findByPk(id);
+        let resultado = await Empresa.findByPk(nif);
         if (!resultado){
             this.desconectar();
             throw error;
@@ -48,9 +48,9 @@ class ConexionEmpresa extends ConexionSequelize {
         return resultado;
     }
 
-    borrarEmpresa = async(id) => {
+    borrarEmpresa = async(nif) => {
         this.conectar();
-        let resultado = await Empresa.findByPk(id);
+        let resultado = await Empresa.findByPk(nif);
         if (!resultado){
             this.desconectar();
             throw error;

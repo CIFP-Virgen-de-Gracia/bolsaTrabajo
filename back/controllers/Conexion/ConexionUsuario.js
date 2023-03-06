@@ -23,6 +23,7 @@ class ConexionUsuario extends ConexionSequelize {
     this.desconectar();
     return resultado;
   };
+
   getUsuario = async (email) => {
     let resultado = [];
     this.conectar();
@@ -33,6 +34,21 @@ class ConexionUsuario extends ConexionSequelize {
     }
     return resultado;
   };
+
+  //********************** */
+  //Inés: Creo otro getUsuario distinto, que necesito para formularioEmpresa.
+  //No quiero tocarte el tuyo que no me sirve, por si te estropeo algo
+  getUsuarioEmpresa = async(nif) => {
+    let resultado = [];
+    this.conectar();
+    resultado = await User.findByPk(nif);
+    this.desconectar();
+    if (!resultado) {
+      throw error;
+    }
+    return resultado;
+  };  
+  //********************** */
 
   registrarUsuario = async (body) => {
     let resultado = 0;

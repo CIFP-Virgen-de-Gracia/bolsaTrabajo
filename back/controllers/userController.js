@@ -31,6 +31,25 @@ const usuarioGet = (req, res = response) => {
     });
 };
 
+//********************** */
+  //Inés: Creo otro usuarioEmpresaGet distinto, que necesito 
+  //para formularioEmpresa. No quiero tocarte el tuyo que no me sirve,
+  //por si te estropeo algo de lo tuyo.
+  const usuarioEmpresaGet = (req, res = response) => {
+    const conx = new Conexion();
+  
+    conx.getUsuarioEmpresa(req.params.nif)
+      .then((msg) => {
+        console.log("Listado correcto!");
+        res.status(200).json(msg);
+      })
+      .catch((err) => {
+        console.log("No hay registro!");
+        res.status(203).json({ msg: "No se ha encontrado el registro" });
+      });
+  };
+//********************** */
+
 const usuariosPost = (req = request, res = response) => {
   const conx = new Conexion();
 
@@ -141,6 +160,7 @@ const getAvatar = (req, res = response) => {
 };
 module.exports = {
   usuariosGet,
+  usuarioEmpresaGet,
   usuariosDelete,
   usuariosPost,
   usuariosPut,
