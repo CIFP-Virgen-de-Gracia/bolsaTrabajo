@@ -6,6 +6,7 @@ const midsJWT = require("../middlewares/validarJWT");
 const midsRoles = require("../middlewares/validarRoles");
 const uploads = require('../controllers/uploads');
 const router = Router();
+const userController=require('../controllers/userController');
 //----------------------------
 router.post('/login',[midsJWT.validarJWT],[midsRoles.esEstudiante, midsRoles.esEmpresa, midsRoles.esAdmin],controladorAuth.login);
 router.post('/loginGoogle',controladorAuth.loginGoogle);
@@ -34,7 +35,6 @@ const mid = require('../middlewares/pruebaMiddleware');
 
 // ---->>>>>Añadido por Manuel
 //Constantes para las rutas y validar 
-const userController=require('../controllers/userController');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validar-campos');
 //********************************************************** */
