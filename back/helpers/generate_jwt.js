@@ -1,6 +1,5 @@
+//Ines
 const jwt = require('jsonwebtoken')
-
-
 const generarJWT = (uid = '') => {
 
     //En el token podemos hacer que viaje (en el payload) el id de ese usuario. No supone un gran fallo de seguridad y nos permite sacar la información del mismo en los middleware.
@@ -12,6 +11,31 @@ const generarJWT = (uid = '') => {
     return token;
 }
 
+const validarJWT = (token) => {
+
+    try {
+        const { uid } = jwt.verify(token, process.env.SECRETORPRIVATEKEY);
+        return [true, uid];
+    } catch (error) {
+        return [false, null];
+    }
+
+}
+
+const decodeJWT = (token = '') => {
+
+    try {
+        const { uid } = jwt.decode(token, process.env.SECRETORPRIVATEKEY);
+        return [true, uid];
+    } catch (error) {
+        return [false, null];
+    }
+
+}
+
+
 module.exports = {
-    generarJWT
+    generarJWT,
+    validarJWT,
+    decodeJWT
 }

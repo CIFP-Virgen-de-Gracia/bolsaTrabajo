@@ -4,6 +4,7 @@ const { generarJWT } = require("../helpers/generate_jwt");
 const jwt = require("jsonwebtoken");
 const { User } = require("../models/User");
 const RolesAsignados = require("../models/RolesAsignados");
+const googleVerify = require("../helpers/google.verify");
 
 const login = (req, res = response) => {
   const { email, password } = req.body;
@@ -23,9 +24,10 @@ const login = (req, res = response) => {
           //Generar el JWT.
           const token = generarJWT(
             usu.nif,
-            usu.nick,
+            usu.nombre,
             usu.email,
             usu.password,
+            usu.telefono,
             usu.status,
             usu.rol
           );
@@ -48,14 +50,14 @@ const login = (req, res = response) => {
 
 
 const register = (req, res = response) => {
-  const { nif, nick, email, password, status, rol } = req.body;
+  const { nif, nombre, email, password, telefono,status, rol } = req.body;
   try {
     //Verificar si existe el usuario.
     const conx = new Conexion();
     u = conx
       .getUsuario(email)
       .then((usu) => {
-        console.log("Usuario existente!" + usu);
+        // console.log("Usuario existente!" + usu);
         res
           .status(500)
           .json({ msg: "Este usuario ya existe en nuestra base." });
@@ -65,7 +67,7 @@ const register = (req, res = response) => {
         //Registrar usuario.
         const conx = new Conexion();
         u = conx.registrarUsuario(req.body).then((usu) => {
-          console.log("Usuario registrado!");
+          // console.log("Usuario registrado!");
           res.status(200).json({ msg: "Usuario registrado." });
         });
       });
@@ -74,68 +76,17 @@ const register = (req, res = response) => {
     res.status(500).json({ msg: "Error en el servidor." });
   }
 };
-const registerAdmin = (req, res = response) => {
-  const { nif, nick, email, password, status, rol } = req.body;
+
+const loginGoogleCallback = async (req, res = response) => {
+  const { id_token } = req.body;
   try {
-    //Verificar si existe el usuario.
-    const conx = new Conexion();
-    u = conx
-      .getUsuario(email)
+    const { correo, nombre, img } = await googleVerify(id_token);
 
-      .then((usu) => {
-        console.log("Usuario existente!" + usu);
-        res
-          .status(500)
-          .json({ msg: "Este usuario ya existe en nuestra base." });
-      })
-      .catch((err) => {
-        console.log("Usuario nuevo, correcto!");
-        //Registrar usuario.
-        const conx = new Conexion();
-        u = conx
-          .registrarUsuario(req.body)
-
-          .then((usu) => {
-            console.log("Usuario registrado!");
-            res.status(200).json({ msg: "Usuario registrado." });
-          });
-      });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ msg: "Error en el servidor." });
+    res.status(400).json({ msg: "Token de Google no es válido." });
   }
 };
-const registerEmpresa = (req, res = response) => {
-  const { nif, nick, email, password, status, rol } = req.body;
-  try {
-    //Verificar si existe el usuario.
-    const conx = new Conexion();
-    u = conx
-      .getUsuario(email)
 
-      .then((usu) => {
-        console.log("Usuario existente!" + usu);
-        res
-          .status(500)
-          .json({ msg: "Este usuario ya existe en nuestra base." });
-      })
-      .catch((err) => {
-        console.log("Usuario nuevo, correcto!");
-        //Registrar usuario.
-        const conx = new Conexion();
-        u = conx
-          .registrarUsuario(req.body)
-
-          .then((usu) => {
-            console.log("Usuario registrado!");
-            res.status(200).json({ msg: "Usuario registrado." });
-          });
-      });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ msg: "Error en el servidor." });
-  }
-};
 const logout = (req, res = response) => {
   const conx = new Conexion();
   conx.desconectar();
@@ -143,10 +94,10 @@ const logout = (req, res = response) => {
 };
 
 const renewToken = async (req, res = response) => {
-  const { nif, nick, email, password, status, rol } = req.body;
+  const { nif, nombre, email, password, status, rol } = req.body;
   const token = await generarJWT(
     nif,
-    nick,
+    nombre,
     email,
     password,
     status,
@@ -155,48 +106,62 @@ const renewToken = async (req, res = response) => {
   res.json({ token });
 };
 
-const loginGoogle = async(req, res, next) => {
+const loginGoogle = async(req, res) => {
   const { id_token } = req.body;
+
   try {
-    const { correo, nombre, img } = await googleVerify(id_token);
-    let usuario = await User.findOne({ correo });
-    if (!usuario) {
-      const data = {
-        nombre,
-        correo,
-        password: ':P',
-        img,
-        google: true
-      };
-      usuario = new User(data);
-      await usuario.save();
-    }
-    if (!usuario.status) {
-      return res.status(401).json({
-        msg: 'Hable con el administrador, usuario bloqueado'
-      });
-    }
-    const token = await generarJWT(usuario.id);
-    res.json({
-      usuario,
-      token
-    });
+
+      const { nombre, email, avatar } = await googleVerify(id_token);
+
+      let user = await User.findOne({ email });
+
+      if (!user) {
+          //crear el usuario
+          const data = {
+              nombre,
+              email,
+              avatar,
+              password: ':P',
+              rol: 'USER_ROLE',
+              google: true
+          }
+          user = new User(data);
+          await user.save();
+      }
+      //verificar que la cuenta del usuario este activa
+      if (!user.status) {
+          return res.status(401).json({
+              success: false,
+              response: 'Usuario bloqueado - status: false',
+          })
+      }
+
+      //generar el JWT una vez guardado el nuevo usuario
+      const token = await generarJWT(user.id);
+
+      return res.status(200).json({
+          success: true,
+          response: token,
+          user
+      })
+
   } catch (error) {
-    res.status(400).json({
-      msg: 'Token de Google no es válido'
-    });
+
+      return res.status(500).json({
+          success: false,
+          response: error
+      })
   }
-  
-};
+}
+
 
 
 module.exports = {
   login,
   register,
   logout,
-  registerAdmin,
-  registerEmpresa,
   renewToken,
-  loginGoogle
+  loginGoogle,
+  loginGoogleCallback,
 
 };

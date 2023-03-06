@@ -1,3 +1,6 @@
+<head>
+  <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+</head>
 <div class="inicioS">
   <div class="d-flex p-1">
     <button type="button" class="btn btn-light col-sm-1" outerLinkActive="active" routerLink="welcome">VOLVER</button>
@@ -20,13 +23,13 @@
       </span>
     </div>
     <div>
-      <input type="text" id="inputNick" formControlName="nick"
-        [ngClass]="{'is-invalid': (RegisterForm.get('nick')?.touched) && !RegisterForm.get('nick')?.valid}"
-        class="form-control border border-dark" placeholder="Nick (required)">
+      <input type="text" id="inputnombre" formControlName="nombre"
+        [ngClass]="{'is-invalid': (RegisterForm.get('nombre')?.touched) && !RegisterForm.get('nombre')?.valid}"
+        class="form-control border border-dark" placeholder="Nombre (required)">
 
       <!-- Mensajes de error y control -->
       <span class="invalid-feedback">
-        <span *ngIf="RegisterForm.get('nick')?.errors?.['required']">Por favor introduce tu Nick</span>
+        <span *ngIf="RegisterForm.get('nombre')?.errors?.['required']">Por favor introduce tu nombre</span>
       </span>
     </div>
 
@@ -52,14 +55,37 @@
       </span>
     </div>
     <div>
-      <p>Imagen (opcional)</p>
-      <input type="file" id="inputImage" formControlName="image" class="form-control border border-dark"
-        [ngClass]="{'is-invalid': (RegisterForm.get('image')?.touched) && !RegisterForm.get('image')?.valid}"
-        placeholder="Imagen de Perfil (opcional)">
-    </div>
-    <button type="submit">Registro</button>
-    <div class="social">
-      <div class="go"><i class="fab fa-google"></i>Google</div>
+      <div>
+        <input type="text" id="inputTelefono" formControlName="telefono"
+          [ngClass]="{'is-invalid': (RegisterForm.get('telefono')?.touched) && !RegisterForm.get('telefono')?.valid}"
+          class="form-control border border-dark" placeholder="Teléfono (required)">
+
+        <!-- Mensajes de error y control -->
+        <span class="invalid-feedback">
+          <span *ngIf="RegisterForm.get('telefono')?.errors?.['required']">Por favor introduce tu teléfono</span>
+        </span>
+      </div>
+      <br>
+      <!-- TODO SI ES EMPRESA O ALUMNO -->
+      <div class="eleccion">
+        <p class="text-warning">Selecciona</p>
+        <select id="inputRol" formControlName="rol" class="form-control border border-dark" placeholder="Selecciona">
+          <option value="2">Estudiante</option>
+          <option value="3">Empresa</option>
+        </select>
+        <span class="invalid-feedback">
+          <span *ngIf="RegisterForm.get('rol')?.errors?.['required']">Indica si eres Empresa o Alumno</span>
+        </span>
+      </div>
+      <br>
+      <div class="subirImg">
+      <p class="text-warning">Imagen (opcional)</p>
+      <input type="file" id="inputImagen" class="form-control border border-dark" placeholder="Imagen (opcional)"
+        (change)="getFile($event)">
+      </div>
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary" [disabled]="RegisterForm.invalid"
+          (click)="sendFile()">Registrarse</button>
+      </div>
     </div>
   </form>
-</div>

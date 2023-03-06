@@ -1,5 +1,6 @@
 <head>
   <meta name="referrer" content="no-referrer-when-downgrade">
+  <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 </head>
 <div class="inicioS">
   <div class="d-flex p-1">
@@ -35,15 +36,17 @@
         <span *ngIf="loginForm.get('password')?.errors?.['required']">Por favor introduce tu password</span>
       </span>
     </div>
-    <button type="submit">Login</button>
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary btn-block col-sm-4" [disabled]="!loginForm.valid">Login</button>
+    </div>
 
    <!-- login google -->
    <div id="g_id_onload"
    data-client_id="566999217560-mcb6k8063fdddr451c8djp0pjlvbvpnn.apps.googleusercontent.com"
    data-context="signin"
    data-ux_mode="popup"
-   data-login_uri="http://localhost:9090/api/auth/loginGoogle"
-   data-auto_prompt="false" (ngSubmit)="loginGoogle()">
+   data-callback="handleCredentialResponse"
+   data-auto_prompt="true">
 </div>
 
 <div class="g_id_signin"
@@ -54,4 +57,45 @@
    data-size="medium"
    data-logo_alignment="left">
 </div>
-  </form>
+</form>
+</div>
+<script>
+
+globalThis.handleCredentialResponse=async(response)=> {
+
+      //Para probar inicialmente.
+      console.log('id_token', response.credential); //Este token tendremos que enviarlo al backend.
+
+      const body = { id_token: response.credential }
+      fetch('http://localhost:9090/api/auth/loginGoogle/callback', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(body)
+      })
+      .then( r=> r.json() )
+      .then( resp =>{
+          console.log(resp )
+          localStorage.setItem('email', resp.nombre )
+      })
+      .catch( console.warn )
+  }
+
+
+  const button = document.getElementById('g_id_signout');
+  button.onclick = async() => {
+
+      console.log(google.accounts.id)
+      google.accounts.id.disableAutoSelect()
+      google.accounts.id.revoke(localStorage.getItem('email'), done => {
+          console.log('consent revoked');
+          localStorage.clear()
+          location.reload()
+      });
+  }
+
+
+  </script>
+
+

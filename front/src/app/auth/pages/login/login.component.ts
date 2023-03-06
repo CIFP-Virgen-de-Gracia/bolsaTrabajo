@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import {User}from '../../interface/interfaces'
 import {SocialAuthService, GoogleLoginProvider } from '@abacritt/angularx-social-login';
+import Swall from 'sweetalert2';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,9 +13,12 @@ import {SocialAuthService, GoogleLoginProvider } from '@abacritt/angularx-social
 export class LoginComponent implements OnInit {
   user:User={
     nif: '',
-    nick: '',
+    nombre: '',
     email: '',
     password: '',
+    telefono: '',
+    role: 2,
+    token: '',
     Token: undefined
   }
   public loginForm!: FormGroup;
@@ -38,32 +42,80 @@ export class LoginComponent implements OnInit {
 
   }
   login() {
-    this.authService.login(this.loginForm.value).subscribe((res) => {
-      if (res) {
-        window.alert('Login correcto')
+    this.authService.login(this.loginForm.value).subscribe((response) => {
+      if (response) {
+       Swall.fire({
+          icon: 'success',
+          title: 'Login correcto',
+          showConfirmButton: false,
+          timer: 1500
+        })
         this.router.navigate(['/alumno/inicio']);
       }
+      else if(response==undefined){
+        Swall.fire({
+          icon: 'error',
+          title: 'Esta cuenta no existe',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.router.navigate(['/welcome']);
+
+      }else if(response==false){
+        Swall.fire({
+          icon: 'error',
+          title: 'Contraseña incorrecta',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.router.navigate(['/welcome']);
+      }
+      else if(response='unknown'){
+        Swall.fire({
+          icon: 'error',
+          title: 'Hay un error en el servidor',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.router.navigate(['/welcome']);
+      }
       else{
-        window.alert('Login incorrecto')
+        Swall.fire({
+          icon: 'error',
+          title: 'Login incorrecto',
+          showConfirmButton: false,
+          timer: 1500
+        })
         this.router.navigate(['/welcome']);
       }
     });
   }
   loginGoogle() {
+    const id_token = localStorage.getItem('id_token');
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then((userData) => {
-     this.socialAuthService.authState.subscribe((user) => {
-        return this.authService.loginGoogle(user).subscribe((res: any) => {
-         if (res) {
-           window.alert('Login correcto');
-           this.router.navigate(['/alumno/inicio']);
-         }
-         else {
-           window.alert('Login incorrecto');
-           this.router.navigate(['/welcome']);
-         }
-       });
-      });
-    });
+      this.user.email=userData.email;
+      this.user.nombre=userData.name;
+      this.user.password=userData.id;
+      this.authService.loginGoogle(this.user).subscribe((response) => {
 
-}
+        if (response) {
+          Swall.fire({
+            icon: 'success',
+            title: 'Login correcto',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          this.router.navigate(['/alumno/inicio']);
+        }
+    const  xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost:9090/api/auth/loginGoogle/callback');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+      console.log('Signed in as: ' + xhr.responseText);
+    };
+    xhr.send('idtoken=' + id_token);
+
+  });
+    });
+  }
 }

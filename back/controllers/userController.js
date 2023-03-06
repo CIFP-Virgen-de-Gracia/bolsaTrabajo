@@ -115,9 +115,9 @@ const rolesAsignadosNifGet = (req, res = response) => {
 
   conx
     .getRolesAsignadosNif(req.params.nif)
-    .then((msg) => {
+    .then((roleId) => {
       console.log("Listado correcto!");
-      res.status(200).json(msg);
+      res.status(200).json(roleId);
     })
     .catch((err) => {
       console.log("No hay registros");
@@ -141,6 +141,23 @@ const rolesGet = (req, res = response) => {
     });
 };
 
+const getAvatar = (req, res = response) => {
+  const conx = new Conexion();
+
+  conx
+    .getAvatar(req.params.nif)
+    .then((file) => {
+      // console.log("Listado correcto!");
+      res.status(200).json(file);
+    })
+    .catch((err) => {
+      console.log("No hay registros");
+      res.status(203).json({ msg: "No hay ningún avatar en esta cuenta" });
+    });
+
+   
+
+};
 module.exports = {
   usuariosGet,
   usuarioEmpresaGet,
@@ -151,4 +168,5 @@ module.exports = {
   rolesGet,
   rolesAsignadosGet,
   rolesAsignadosNifGet,
+  getAvatar,
 };
