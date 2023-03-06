@@ -1,3 +1,8 @@
+//Ines
+// usuariosGet, usuarioGet, usuariosPost, usuariosPut, usuariosDelete, 
+//usuarioEmpresaGet, usuarioPost, usuarioPut, usuarioEmpresaDelete
+// rolesGet,rolesAsignadosGet,rolesAsignadosNifGet,getAvatar,
+
 const { response, request } = require("express");
 const Conexion = require("./Conexion/ConexionUsuario");
 

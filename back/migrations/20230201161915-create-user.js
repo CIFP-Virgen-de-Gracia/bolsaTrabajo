@@ -1,9 +1,11 @@
+//Ines
+//descripcion: modelo USUARIOS
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('users', {
-      dni: {
+      nif: {
         type: Sequelize.STRING,
         primaryKey: true,
         allowNull: false,
@@ -13,9 +15,19 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defultValue: 0
+      },
       password: {
         type: Sequelize.STRING,
         allowNull: false
+      },
+      telefono: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defultValue: 0
       },
       status: {
         type: Sequelize.INTEGER,

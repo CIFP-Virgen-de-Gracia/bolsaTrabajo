@@ -1,3 +1,5 @@
+//Ines
+//Modelo files, para la subida de archivos
 const { Sequelize, DataTypes, Model }= require('sequelize');
 const db = require('../controllers/Conexion/connection');
 // const User = require('./User');
