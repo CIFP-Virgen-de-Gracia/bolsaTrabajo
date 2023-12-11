@@ -1,8 +1,9 @@
 Intrucciones para el montaje del entorno
+
 	- Requisitos
 		1. Angular +15.2.1
 		2. NodeJS +16.18.0
-
+  
 	- Base de datos
 		1. importar el fichero myDb.sql, dentro de 'bolsatrabajo', en el gestor de bases de datos que utilices
 
