@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: db
--- Tiempo de generación: 06-03-2023 a las 17:36:05
--- Versión del servidor: 8.0.32
--- Versión de PHP: 8.0.19
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 11-12-2023 a las 01:45:59
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 8.1.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `myDb`
+-- Base de datos: `mydb`
 --
 
 -- --------------------------------------------------------
@@ -28,21 +28,36 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `alumnos` (
-  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `apellido1` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `apellido2` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `nif` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `nombre` varchar(50) NOT NULL,
+  `apellido1` varchar(50) DEFAULT NULL,
+  `apellido2` varchar(50) DEFAULT NULL,
+  `nif` varchar(255) NOT NULL,
+  `image` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `alumnos`
 --
 
-INSERT INTO `alumnos` (`nombre`, `apellido1`, `apellido2`, `nif`) VALUES
-('alumno', NULL, NULL, '00338811S'),
-('alumno3', 'asdasd', 'asdasd', '01234567K'),
-('estudiante77', NULL, NULL, '88221177W'),
-('user name', 'priapellido', 'segapellido', '987654321E');
+INSERT INTO `alumnos` (`nombre`, `apellido1`, `apellido2`, `nif`, `image`) VALUES
+('alumno', NULL, NULL, '00338811S', NULL),
+('alumno3', 'asdasd', 'asdasd', '01234567K', 'http://localhost:9090/auth/upload/file-1702254381664.jpg'),
+('fsadfasf', 'fasfAF', 'fszfaGSGDsg', '12312312B', NULL),
+('asdasdasd', 'qfsadfasdfsd', 'QFSADASFA', '12312312C', NULL),
+('asdasf', '342wt2qw3', 'sgdgds', '12312312D', NULL),
+('sdfsd', 'fsdf', 'fsdffsd', '12312312G', NULL),
+('asdasdas', 'qsdfsadf', 'qsdfsdgf', '12312312H', NULL),
+('sadfasf', 'qgdsgsd', 'qghsdgQGSDDG', '12312312L', NULL),
+('asdasdasd', 'fqwfd', 'fwef1', '12312312W', NULL),
+('asdasdsa', '123123', '123123', '12312332B', NULL),
+('asdasdas', 'sadfsdf', 'sadfsdf12', '12312345J', NULL),
+('23543sg', '3r4wsdf', '23rsdf', '12312376L', NULL),
+('asdeawfr', 'gsefgsd', 'qfsedfdfg', '12356464F', NULL),
+('asddsagfn', 'ksdgnsdk', 'hsddlkhmndsfklñ', '23523487Z', NULL),
+('asdsyhedr', '1e2twse', '124ev', '54687912X', NULL),
+('asdasd', 'asdasd', 'asdasd', '77777777V', NULL),
+('asdasd', 'asdasd', 'asdasd', '88888888V', NULL),
+('user name', 'priapellido', 'segapellido', '987654321E', NULL);
 
 -- --------------------------------------------------------
 
@@ -51,9 +66,9 @@ INSERT INTO `alumnos` (`nombre`, `apellido1`, `apellido2`, `nif`) VALUES
 --
 
 CREATE TABLE `alumno_ciclos` (
-  `nif_alumno` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `id_ciclos` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `nif_alumno` varchar(255) NOT NULL,
+  `id_ciclos` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `alumno_ciclos`
@@ -69,12 +84,12 @@ INSERT INTO `alumno_ciclos` (`nif_alumno`, `id_ciclos`) VALUES
 --
 
 CREATE TABLE `ciclos` (
-  `id` int NOT NULL,
-  `sigla` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `nombre` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `id` int(11) NOT NULL,
+  `sigla` varchar(20) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
   `fecha` date DEFAULT NULL,
-  `grado` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `grado` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `ciclos`
@@ -92,12 +107,12 @@ INSERT INTO `ciclos` (`id`, `sigla`, `nombre`, `fecha`, `grado`) VALUES
 --
 
 CREATE TABLE `curriculums` (
-  `title` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `body` text COLLATE utf8mb4_general_ci,
-  `nif_alumno` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `body` text DEFAULT NULL,
+  `nif_alumno` varchar(255) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -106,13 +121,13 @@ CREATE TABLE `curriculums` (
 --
 
 CREATE TABLE `empresas` (
-  `nif` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `nombre` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `direccion` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `contacto` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `cargo` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `telefono` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `nif` varchar(255) NOT NULL,
+  `nombre` varchar(120) NOT NULL,
+  `direccion` varchar(250) DEFAULT NULL,
+  `contacto` varchar(120) DEFAULT NULL,
+  `cargo` varchar(120) DEFAULT NULL,
+  `telefono` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `empresas`
@@ -136,10 +151,10 @@ INSERT INTO `empresas` (`nif`, `nombre`, `direccion`, `contacto`, `cargo`, `tele
 --
 
 CREATE TABLE `empresasofertas` (
-  `ideo` int NOT NULL,
-  `id_oferta` int NOT NULL,
-  `nif_empresa` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `ideo` int(11) NOT NULL,
+  `id_oferta` int(11) NOT NULL,
+  `nif_empresa` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `empresasofertas`
@@ -153,7 +168,6 @@ INSERT INTO `empresasofertas` (`ideo`, `id_oferta`, `nif_empresa`) VALUES
 (19, 100, 'A11111111'),
 (20, 101, 'A11111111'),
 (22, 103, 'A11111111'),
-(23, 104, 'A11111111'),
 (24, 105, 'A11111111'),
 (25, 106, 'A11111111'),
 (26, 107, 'A11111111'),
@@ -163,7 +177,20 @@ INSERT INTO `empresasofertas` (`ideo`, `id_oferta`, `nif_empresa`) VALUES
 (33, 114, 'A11111111'),
 (34, 115, 'A11111111'),
 (35, 116, 'A11111111'),
-(36, 117, 'A11111111');
+(36, 117, 'A11111111'),
+(37, 118, 'A11111111'),
+(38, 119, 'A22222222'),
+(39, 120, 'A11111111'),
+(40, 121, 'A11111111'),
+(41, 122, 'A11111111'),
+(42, 123, 'A11111111'),
+(43, 124, 'A11111111'),
+(44, 125, 'A11111111'),
+(45, 126, 'A11111111'),
+(46, 127, 'A11111111'),
+(47, 128, 'A11111111'),
+(48, 129, 'A11111111'),
+(49, 130, 'A11111111');
 
 -- --------------------------------------------------------
 
@@ -172,12 +199,12 @@ INSERT INTO `empresasofertas` (`ideo`, `id_oferta`, `nif_empresa`) VALUES
 --
 
 CREATE TABLE `files` (
-  `id` bigint NOT NULL,
-  `userNif` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id` bigint(20) NOT NULL,
+  `userNif` varchar(255) NOT NULL,
+  `file` varchar(255) DEFAULT NULL,
   `createdAt` date DEFAULT NULL,
   `updatedAt` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `files`
@@ -188,8 +215,7 @@ INSERT INTO `files` (`id`, `userNif`, `file`, `createdAt`, `updatedAt`) VALUES
 (67, '01234567K', 'b8c0cba7-d524-4043-a15f-e1db25c9a0f8.jpg', '2023-03-06', '2023-03-06'),
 (68, '99224455U', 'ee2f5b75-d464-4790-84f2-3e0da0828f7e.jpg', '2023-03-06', '2023-03-06'),
 (69, '11110000A', '346a0752-48cf-4821-aa71-d2db4616153d.jpg', '2023-03-06', '2023-03-06'),
-(70, '00225566Y', 'fca92434-ab18-4930-9eec-f417017c0fd2.jpg', '2023-03-06', '2023-03-06'),
-(71, '88221177W', 'e7dbc439-9ad5-4c0e-b9c0-6f0bfab22d3c.jpg', '2023-03-06', '2023-03-06');
+(70, '00225566Y', 'fca92434-ab18-4930-9eec-f417017c0fd2.jpg', '2023-03-06', '2023-03-06');
 
 -- --------------------------------------------------------
 
@@ -198,13 +224,13 @@ INSERT INTO `files` (`id`, `userNif`, `file`, `createdAt`, `updatedAt`) VALUES
 --
 
 CREATE TABLE `form_contacto` (
-  `id` bigint NOT NULL,
-  `nif` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `nombre` varchar(120) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `telefono` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `observaciones` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` bigint(20) NOT NULL,
+  `nif` varchar(255) NOT NULL,
+  `nombre` varchar(120) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `telefono` varchar(255) NOT NULL,
+  `observaciones` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `form_contacto`
@@ -228,20 +254,20 @@ INSERT INTO `form_contacto` (`id`, `nif`, `nombre`, `email`, `telefono`, `observ
 --
 
 CREATE TABLE `ofertas` (
-  `id` int NOT NULL,
-  `titulo` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
-  `descripcion` varchar(15000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `lugar` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `presencial` int NOT NULL,
-  `jornada` varchar(30) COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` int(11) NOT NULL,
+  `titulo` varchar(30) NOT NULL,
+  `descripcion` varchar(15000) NOT NULL,
+  `lugar` varchar(50) NOT NULL,
+  `presencial` int(11) NOT NULL,
+  `jornada` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `ofertas`
 --
 
 INSERT INTO `ofertas` (`id`, `titulo`, `descripcion`, `lugar`, `presencial`, `jornada`) VALUES
-(9, 'Lorem ipsum 2', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\r\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'Avenida Oporto, 25, Madrid', 0, 'completa'),
+(9, 'Lorem ipsum 2', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'Avenida Oporto, 25, Madrid', 0, 'completa'),
 (10, 'Lorem ipsum 3', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\r\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'Avenida Oporto, 25, Madrid', 0, 'completa'),
 (11, 'Lorem ipsum 4', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\r\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'Avenida Oporto, 25, Madrid', 0, 'completa'),
 (12, 'Lorem ipsum 5', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\r\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'Avenida Oporto, 25, Madrid', 0, 'completa'),
@@ -269,14 +295,13 @@ INSERT INTO `ofertas` (`id`, `titulo`, `descripcion`, `lugar`, `presencial`, `jo
 (75, 'Lorem ipsum 28', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\r\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'Avenida Oporto, 25, Madrid', 0, 'completa'),
 (76, 'Lorem ipsum 29', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\r\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'Avenida Oporto, 25, Madrid', 0, 'completa'),
 (86, 'asdasd', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'asdas', 1, 'Completa'),
-(91, 'Prueba11111111', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'Probando77777', 1, 'Completa'),
+(91, 'Prueba1212122222', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'Probando77777', 1, 'Completa'),
 (93, 'Prueba111111', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'werwer', 1, 'Completa'),
 (95, 'Prueba7777', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'Probando77777', 0, 'completa'),
 (99, 'Prueba2323', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'Probando77777', 1, 'Completa'),
 (100, 'Prueba7777', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'Probando77777', 0, 'Completa'),
 (101, 'Prueba2323', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'Probando77777', 0, 'Completa'),
 (103, 'Prueba7777', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'Probando77777', 0, 'Completa'),
-(104, 'Prueba8888888888', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'Probando77777', 0, 'Completa'),
 (105, 'Prueba7777', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'Probando77777', 0, 'Completa'),
 (106, 'asdasd', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'Probando77777', 1, 'Completa'),
 (107, 'Prueba7777', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'Probando77777', 1, 'Completa'),
@@ -286,7 +311,20 @@ INSERT INTO `ofertas` (`id`, `titulo`, `descripcion`, `lugar`, `presencial`, `jo
 (114, 'Prueba7777', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae? Deserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'Probando', 1, 'asdasd'),
 (115, 'Prueba1787787', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae? Deserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'Probando77777', 1, 'sdfsdfds'),
 (116, 'fsdsd', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae? Deserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'Probando77777', 1, 'Completa'),
-(117, 'Prueba111111', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae? Deserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'Probando77777', 1, 'Completa');
+(117, 'Prueba111111', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae? Deserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'Probando77777', 1, 'Completa'),
+(118, 'Prueba111111', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nLorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nLorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nLorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nLorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\n', 'Probando77777', 1, 'completa'),
+(119, 'Probando', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'prueba', 1, 'asdasdas'),
+(120, 'prueba oferta', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'asdasdasdas', 1, 'asdasdasdas'),
+(121, 'asasasas', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'assasaas', 1, 'asassaassa'),
+(122, 'dasdas', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'adsdasd', 1, 'asdasd'),
+(123, 'asdasdas', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'dasdasd', 1, 'asdasdasd'),
+(124, 'Oferta Prueba', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem quo, qui nulla quas quos provident dicta nisi, officia id velit totam modi autem eligendi, ipsa sapiente alias illum recusandae?\nDeserunt minima in aspernatur cupiditate vel reprehenderit aliquam. Amet aut inventore sint laudantium, ab cumque odit blanditiis numquam minus voluptate, necessitatibus voluptatem, consequatur rerum', 'asdasd', 0, 'qsdfsdfsdf'),
+(125, 'Oferta de prueba', 'asfasfafsdgs', 'asdasfdkn', 1, 'qasfklasnfd'),
+(126, 'prueba de oferta', 'ñmsdñlfgmñlmgñldfmhñldmglñd', 'asdasdaosn', 1, 'sdkfjsdñklgj'),
+(127, 'probando', 'asdhgdfahdfsh', 'asdsfhdfh', 1, 'sdgdshsdah'),
+(128, 'xxxxxx', 'fasgsadrehdfjhdf', 'asdfasfasf', 1, 'asfasfas'),
+(129, 'saas', 'gtyhkfthdfhd', 'asdasgas', 1, 'gsdhd'),
+(130, 'zzzzxxx', 'ahfsjehdsfh', 'asgfdgsd', 1, 'hdfhsdhsd');
 
 -- --------------------------------------------------------
 
@@ -295,11 +333,11 @@ INSERT INTO `ofertas` (`id`, `titulo`, `descripcion`, `lugar`, `presencial`, `jo
 --
 
 CREATE TABLE `roles` (
-  `id` bigint NOT NULL,
-  `descripcion` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id` bigint(20) NOT NULL,
+  `descripcion` varchar(11) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -317,20 +355,19 @@ INSERT INTO `roles` (`id`, `descripcion`, `createdAt`, `updatedAt`) VALUES
 --
 
 CREATE TABLE `rolesasignados` (
-  `userNif` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `roleId` bigint NOT NULL DEFAULT '2'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `userNif` varchar(255) NOT NULL,
+  `roleId` bigint(20) NOT NULL DEFAULT 2
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `rolesasignados`
 --
 
 INSERT INTO `rolesasignados` (`userNif`, `roleId`) VALUES
-('00001111S', 2),
-('01234567K', 2),
-('88221177W', 2),
 ('00000001A', 3),
+('00001111S', 2),
 ('00225566Y', 3),
+('01234567K', 2),
 ('11110000A', 3),
 ('99224455U', 3);
 
@@ -341,8 +378,8 @@ INSERT INTO `rolesasignados` (`userNif`, `roleId`) VALUES
 --
 
 CREATE TABLE `sequelizemeta` (
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `sequelizemeta`
@@ -361,17 +398,17 @@ INSERT INTO `sequelizemeta` (`name`) VALUES
 --
 
 CREATE TABLE `users` (
-  `nif` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `status` int DEFAULT '0',
-  `verificatedAt` datetime DEFAULT CURRENT_TIMESTAMP,
-  `rol` int DEFAULT '2',
-  `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updatedAt` datetime DEFAULT CURRENT_TIMESTAMP,
-  `telefono` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `nif` varchar(255) NOT NULL,
+  `nombre` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `status` int(11) DEFAULT 0,
+  `verificatedAt` datetime DEFAULT current_timestamp(),
+  `rol` int(11) DEFAULT 2,
+  `createdAt` datetime DEFAULT current_timestamp(),
+  `updatedAt` datetime DEFAULT current_timestamp(),
+  `telefono` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `users`
@@ -383,9 +420,23 @@ INSERT INTO `users` (`nif`, `nombre`, `email`, `password`, `status`, `verificate
 ('00225566Y', 'Empresa2', 'empresa2@gmail.com', '1234', 0, '2023-03-06 09:54:07', 3, '2023-03-06 09:54:07', '2023-03-06 09:54:07', '1234567'),
 ('01234567K', 'alumno3', 'alumno3@correo.es', '1234', 1, '2023-03-06 09:36:40', 2, '2023-03-06 09:36:40', '2023-03-06 09:36:40', '65432199'),
 ('11110000A', 'empresaManu', 'empresamanu@gmail.com', '1234', 0, '2023-03-06 09:38:17', 3, '2023-03-06 09:38:17', '2023-03-06 09:38:17', '12345678'),
-('88221177W', 'estudiante77', 'estudiante77@corre.es', '1234', 0, '2023-03-06 09:55:16', 2, '2023-03-06 09:55:16', '2023-03-06 09:55:16', '1234'),
+('12312312B', 'fsadfasf', 'asfaf@gmail.comk', 'fassfa', 0, '2023-12-06 23:35:37', 2, '2023-12-06 23:35:37', '2023-12-06 23:35:37', 'szds'),
+('12312312C', 'asdasdasd', 'asdasdasd@gmail.com', 'sadffdasdfa', 0, '2023-12-06 23:26:10', 2, '2023-12-06 23:26:10', '2023-12-06 23:26:10', '23r42q34'),
+('12312312D', 'asdasf', 'asdfasdasf@gmail.com', 'QWEFSDF', 0, '2023-12-06 22:57:04', 2, '2023-12-06 22:57:04', '2023-12-06 22:57:04', '23423423423'),
+('12312312G', 'sdfsd', 'asrwerwfsdf32@asdasdsa.com', 'sdfsdf', 1, '2023-12-06 23:15:28', 2, '2023-12-06 23:15:28', '2023-12-06 23:15:28', 'sdfsfd'),
+('12312312H', 'asdasdas', '2qeasdasgdsfg@gmasil.asdom', 'qfasdfasf', 0, '2023-12-06 23:20:49', 2, '2023-12-06 23:20:49', '2023-12-06 23:20:49', 'QSDFSDF'),
+('12312312L', 'sadfasf', 'asdafasfa@gmail.com', 'gsdgfsd', 0, '2023-12-06 23:30:09', 2, '2023-12-06 23:30:09', '2023-12-06 23:30:09', 'GSDGF21'),
+('12312312W', 'asdasdasd', 'aasdasdas2@asdas.com', '123e12321', 0, '2023-12-06 22:38:15', 2, '2023-12-06 22:38:15', '2023-12-06 22:38:15', '122312312312'),
+('12312332B', 'asdasdsa', 'pspspsps@gmail.com', '123123', 0, '2023-12-06 22:42:30', 2, '2023-12-06 22:42:30', '2023-12-06 22:42:30', '123123'),
+('12312345J', 'asdasdas', 'asdasd@fdmdmf.we', 'asfsdf', 0, '2023-12-06 21:49:10', 2, '2023-12-06 21:49:10', '2023-12-06 21:49:10', '123421312'),
+('12312376L', '23543sg', 'adasdasd@gmail.com', '234234', 0, '2023-12-06 22:45:25', 2, '2023-12-06 22:45:25', '2023-12-06 22:45:25', '123124123'),
+('12356464F', 'asdeawfr', '2sdfsdfsd@gmail.com', 'asdfefasf', 0, '2023-12-06 22:47:05', 2, '2023-12-06 22:47:05', '2023-12-06 22:47:05', '12412412421'),
+('23523487Z', 'asddsagfn', 'asdfasdfgs@gmail.com', 'asrfsdgewks', 0, '2023-12-06 22:48:06', 2, '2023-12-06 22:48:06', '2023-12-06 22:48:06', '1231312asf'),
+('54687912X', 'asdsyhedr', 'asdasd@dfghdf.sdfsd', 'asfsdgfs', 0, '2023-12-06 21:44:16', 2, '2023-12-06 21:44:16', '2023-12-06 21:44:16', '123123123'),
+('77777777V', 'asdasd', 'def@gmail.com', 'asdasd', 0, '2023-12-07 01:09:19', 2, '2023-12-07 01:09:19', '2023-12-07 01:09:19', '123123123'),
 ('88888888S', 'Maria7', '7777@gmail.com', '12345', 1, '2023-03-06 10:06:40', 1, '2023-03-06 10:06:40', '2023-03-06 10:06:40', '123123123123213'),
 ('88888888S', 'prueba', 'prueba@gmail.com', '1234', 1, '2023-03-06 10:04:05', 3, '2023-03-06 10:04:05', '2023-03-06 10:04:05', '123123123123'),
+('88888888V', 'asdasd', 'defsdasd@gmail.com', 'asdasd', 0, '2023-12-07 01:10:59', 2, '2023-12-07 01:10:59', '2023-12-07 01:10:59', '123123123'),
 ('99224455U', 'empresa1', 'empresa1@correo.es', '1234', 0, '2023-03-06 09:37:16', 3, '2023-03-06 09:37:16', '2023-03-06 09:37:16', '12345678'),
 ('A11111111', 'empresa01', 'as@fffff.com', '1234', 1, '2023-03-06 09:15:55', 3, '2023-03-06 09:15:55', '2023-03-06 09:15:55', ''),
 ('A22222222', 'empresa02', 'empresa02@gmail.com', '12345', 1, '2023-03-04 19:07:37', 3, '2023-03-04 19:07:37', '2023-03-04 19:07:37', '967 - 140000');
@@ -487,37 +538,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `ciclos`
 --
 ALTER TABLE `ciclos`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `empresasofertas`
 --
 ALTER TABLE `empresasofertas`
-  MODIFY `ideo` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `ideo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT de la tabla `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT de la tabla `form_contacto`
 --
 ALTER TABLE `form_contacto`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `ofertas`
 --
 ALTER TABLE `ofertas`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
