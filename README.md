@@ -1,4 +1,4 @@
-Intrucciones para el montaje del entorno
+# Intrucciones para el montaje del entorno
 
 	- Requisitos
 		1. Angular +15.2.1
