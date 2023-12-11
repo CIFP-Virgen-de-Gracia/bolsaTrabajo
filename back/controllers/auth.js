@@ -1,6 +1,3 @@
-//Ines
-//descripción, conexion sequelize, login, registro, roles, asignar roles, google login, google callaback, logout, renew token
-//logout, renew token
 const { response, request } = require("express");
 const Conexion = require("./Conexion/ConexionUsuario");
 const { generarJWT } = require("../helpers/generate_jwt");

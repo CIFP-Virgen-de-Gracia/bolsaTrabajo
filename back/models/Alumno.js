@@ -22,6 +22,9 @@ const Alumno = db.define('alumnos', {
     apellido2: {
         type: DataTypes.STRING
     },
+    image: {
+        type: DataTypes.STRING
+    },
 },
 { 
     timestamps: false 

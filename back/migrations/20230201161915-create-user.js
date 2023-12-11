@@ -1,4 +1,3 @@
-//Ines
 //descripcion: modelo USUARIOS
 'use strict';
 /** @type {import('sequelize-cli').Migration} */

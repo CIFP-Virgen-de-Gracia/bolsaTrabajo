@@ -1,6 +1,3 @@
-/**
- * Hecho por Manuel
- */
 const {Router } = require('express');
 const controlador = require('../controllers/empresaController');
 const { check } = require('express-validator');

@@ -1,4 +1,3 @@
-//Ines
 //descripcion: migración roles asignados, tabla intermedia
 'use strict';
 /** @type {import('sequelize-cli').Migration} */

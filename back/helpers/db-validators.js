@@ -1,4 +1,3 @@
-//Realizado por Khattari
 const Empresa = require('../models/Empresa');
 
 const empresaExiste = async(nif = '') => {

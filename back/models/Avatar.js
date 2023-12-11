@@ -1,4 +1,3 @@
-//Ines, 
 //descripción : avatar, modelo para poder diferenciar en un futuro el tipo de archivos a subir
 const { Sequelize, DataTypes, Model } = require('sequelize');
 const db = require('../controllers/Conexion/connection');

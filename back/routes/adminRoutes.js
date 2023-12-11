@@ -1,4 +1,3 @@
-//Realizado por Khattari
 const { Router } = require('express');
 const controlador = require('../controllers/adminController');
 const router = Router();
@@ -23,6 +22,7 @@ router.post('/empresas/crear', /**[mids.esAdmin],*/
     ]
     , controlador.crearEmpresa);
 router.put('/empresas/modificar/:nif', /**[mids.esAdmin],*/ controlador.actualizarEmpresa);
+router.delete('/empresas/eliminar/:nif', /**[mids.esAdmin],*/ controlador.eliminarAlumno);
 
 router.get('/alumnos', /**[mids.esAdmin],*/ controlador.verListadoAlumnos);
 router.get('/alumnos/:nif', /**[mids.esAdmin],*/ controlador.verAlumno);
@@ -40,6 +40,7 @@ router.post('/alumnos/crear', /**[mids.esAdmin],*/
     ]
     , controlador.crearAlumno);
 router.put('/alumnos/modificar/:nif', /**[mids.esAdmin],*/ controlador.actualizarAlumno);
+router.delete('/alumnos/eliminar/:nif', /**[mids.esAdmin],*/ controlador.eliminarAlumno);
 
 router.get('/admins', /**[mids.esAdmin],*/ controlador.verListadoAdmins);
 router.post('/admins/crear', /**[mids.esAdmin],*/

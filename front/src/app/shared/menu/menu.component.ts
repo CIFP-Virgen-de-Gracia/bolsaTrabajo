@@ -10,5 +10,7 @@ import { MenuAdministradorComponent } from '../menu-administrador/menu-administr
 })
 
  export class MenuComponent {
-  rol: number = 3;
+  constructor() { }
+  
+  public rol: number = Number(localStorage.getItem('rol'));
 }

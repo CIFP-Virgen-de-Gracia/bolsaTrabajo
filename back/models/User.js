@@ -1,4 +1,3 @@
-//Ines
 //descripción: User model, tabla usuarios general
 const { Sequelize, DataTypes, Model } = require('sequelize');
 const db = require('../controllers/Conexion/connection');

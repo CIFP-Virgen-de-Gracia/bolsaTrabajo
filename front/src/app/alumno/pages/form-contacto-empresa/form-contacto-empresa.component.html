@@ -1,0 +1,71 @@
+<app-menu></app-menu>
+<div class="pagina pb-3">
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb m-0 pt-2 ml-2">
+      <li class="breadcrumb-item"><a outerLinkActive="active" routerLink="../inicioempresa">Inicio</a></li>
+      <li class="breadcrumb-item"><a outerLinkActive="active" routerLink="../interfazempresa">Empresa</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Formulario de contacto</li>
+    </ol>
+  </nav>
+
+  <div class="container">
+
+    <div class="row align-items-center justify-content-evenly">
+      <div class="formulario col-md-10 col-lg-8">
+        <h4 class="my-3">Formulario de Contacto</h4>
+        <form class="needs-validation" novalidate  autocomplete="off">
+          <div class="row g-3">
+
+            <div class="col-lg-6 col-md-12">
+              <label for="nif" class="form-label">N.I.F.</label>
+              <input type="text" class="form-control" id="nif"/>
+            </div>
+
+            <div class="col-lg-6 col-md-12">
+              <label for="nombre" class="form-label"><span class="text-muted">(*) </span>Nombre</label>
+              <input type="text" class="form-control" id="nombre" placeholder="" value="" required />
+            </div>
+
+            <div class="col-lg-6 col-md-12">
+              <label for="email" class="form-label"><span class="text-muted">(*) </span>Email</label>
+              <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId" placeholder="abc@mail.com">
+            </div>
+
+            <div class="col-lg-6 col-md-12">
+              <label for="telefono" class="form-label"><span class="text-muted">(*) </span>Telefono</label>
+              <input type="text" class="form-control" id="telefono" placeholder="" value="" required />
+            </div>
+
+            <div class="">
+              <label for="observaciones" class="form-label"><span class="text-muted">(*) </span>Observaciones</label>
+              <textarea class="form-control" name="" id="observaciones" rows="7"></textarea>
+            </div>
+
+            <div class="obligarorio mt-0 mb-3"><span class="text-muted">(*) Campos obligatorios</span></div>
+
+            <div class="grupoBotones col-12 d-grid gap-3 mb-4 d-md-flex justify-content-md-evenly align-items-end">
+              <button class="btn btn-primary" type="button" (click)="crear()">Guardar</button>
+              <button class="btn btn-danger" type="button"  (click)="limpiar()">Limpiar</button>
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-footer></app-footer>
+
+
+<!-- export interface FormularioContacto {
+  id: number;
+  nif: string;
+  nombre: string;
+  email: string;
+  telefono: string;
+  observaciones: string;
+}
+ -->

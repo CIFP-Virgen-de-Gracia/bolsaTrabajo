@@ -1,4 +1,3 @@
-//Realizado por Khattari
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OpcionesComponent } from './pages/opciones/opciones.component';

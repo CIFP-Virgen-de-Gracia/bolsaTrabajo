@@ -1,4 +1,3 @@
-//Realizado por Khattari
 const esEsmpresa = (req, res, next) => {
     const body = req.body
     if (body.rol != 3) {

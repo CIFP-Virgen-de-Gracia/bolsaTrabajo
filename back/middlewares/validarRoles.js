@@ -1,4 +1,3 @@
-//Ines**************
 // Path: back\middlewares\validarRoles.js
 const {verifyToken} = require('../helpers/generate_jwt');
 

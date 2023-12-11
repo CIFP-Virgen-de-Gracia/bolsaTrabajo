@@ -1,4 +1,3 @@
-//Ines
 //descripcion: JSON WEB TOKEN, hay uno adicional en helpers pero he utilizado este para hacer pruebas
 const jwt = require('jsonwebtoken')
 const generarJWT = (uid = '') => {

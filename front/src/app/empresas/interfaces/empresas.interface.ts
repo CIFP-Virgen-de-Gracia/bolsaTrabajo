@@ -13,7 +13,6 @@ export interface UsuarioEmpresa {
   password:string;
   status:number;
   rol: number;
-  //¿token?
   telefono: string;
 }
 

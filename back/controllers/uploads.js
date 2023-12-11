@@ -51,10 +51,23 @@ const uploadFile= async (req, res) => {
     }
    
 }
+
+const mostrarImagen = async(req, res = response ) => {
+    if (req.params.path) {
+        const pathImagen = path.join( __dirname, '../uploads', 'imgs', req.params.path );
+        if ( fs.existsSync( pathImagen ) ) {
+            return res.sendFile( pathImagen )
+        }
+    }
+
+    const pathImagen = path.join( __dirname, '../assets/no-image.jpg');
+    res.sendFile( pathImagen );
+}
    
 
 
 module.exports = {
     uploadFile,
-    upload
+    upload,
+    mostrarImagen
 }
