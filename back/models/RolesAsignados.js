@@ -1,4 +1,3 @@
-//Ines
 //descripción: roles asignados, tabla intermedia entre roles y usuarios
 const { Sequelize, DataTypes, Model }= require('sequelize');
 const db = require('../controllers/Conexion/connection');

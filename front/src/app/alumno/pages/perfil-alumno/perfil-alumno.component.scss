@@ -1,3 +1,43 @@
+#myFile {
+  width: 150px;
+  height: 150px;
+  background-size: contain;
+  input {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+a {
+  all: unset;
+}
+
+.breadcrumb {
+  position: relative;
+  left: 1rem;
+  width: 90%;
+}
+.breadcrumb-item {
+  &:hover {
+      cursor: pointer;
+  }
+  color: var(--colorSecundario);
+  -webkit-text-stroke: 0.2px var(--colorOscuroSombra);
+}
+.active {
+  color: gray;
+}
+
+.pagina {
+  background-image: url('../../../../assets/image/fondo.png');
+  background-size: 100% 100%;
+  height: 70vh;
+}
+
 svg{
   position: absolute;
   z-index: -1;

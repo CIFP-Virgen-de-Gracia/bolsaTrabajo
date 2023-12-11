@@ -1,4 +1,3 @@
-//Realizado por Khattari
 import { Component, OnInit } from '@angular/core';
 import { UserResponse, UserAlumno2Response, UserEmpresa2Response } from '../../interfaces/req-resp';
 import { RestBolsaService } from '../../services/rest-bolsa.service';
@@ -75,6 +74,18 @@ export class GestionUsuariosComponent implements OnInit {
 
   eliminarUser(nif: string) {
     this.restBolsaService.eliminarUser(nif).subscribe((response: any) => {
+      location.reload();
+    })
+  }
+
+  eliminarAlumno(nif: string) {
+    this.restBolsaService.eliminarAlumno(nif).subscribe((response: any) => {
+      location.reload();
+    })
+  }
+
+  eliminarEmpresa(nif: string) {
+    this.restBolsaService.eliminarEmpresa(nif).subscribe((response: any) => {
       location.reload();
     })
   }

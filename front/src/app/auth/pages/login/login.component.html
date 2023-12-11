@@ -1,101 +1,49 @@
-<head>
-  <meta name="referrer" content="no-referrer-when-downgrade">
-  <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
-</head>
-<div class="inicioS">
-  <div class="d-flex p-1">
-    <button type="button" class="btn btn-light col-sm-1" outerLinkActive="active" routerLink="welcome">VOLVER</button>
-  </div>
-  <div class="background">
-    <div class="shape"></div>
-    <div class="shape"></div>
-  </div>
-  <form class="login100-form" autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login()">
-    <h3>Login</h3>
-    <div>
-      <div class="avatar">
-        <img src="assets/images/verde.png" alt="logo" class="avatar">
+<app-menu></app-menu>
+<div class="pagina pb-5">
+  <h1 class="text-center mb-4 pt-2">Bienvenido</h1>
+  <div class="container col-md-4 p-5 mb-5 formulario">
+    <form class="row g-3 d-flex justify-content-center" ngNativeValidate autocomplete="off">
+
+      <div class="col-md-12">
+        <label for="email" class="form-label fw-bold">Correo</label>
+        <input [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="email">
       </div>
-      <input type="text" id="inputEmail" formControlName="email" class="form-control border border-dark"
-        [ngClass]="{'is-invalid': (loginForm.get('email')?.touched) && !loginForm.get('email')?.valid}"
-        placeholder="Email (required)">
+      
+      <div class="col-md-12">
+        <label for="password" class="form-label fw-bold">Contraseña</label>
+        <input [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}" type="password" class="form-control" id="password">
+      </div>
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-4">
+        <button type="submit" (click)="login()" class="btn btn-primary">Iniciar Sesión</button>
+      </div>
 
-      <!-- Mensajes de error -->
-      <span class="invalid-feedback">
-        <span *ngIf="loginForm.get('email')?.errors?.['required']">Por favor introduce tu email</span>
-        <span *ngIf="loginForm.get('email')?.errors?.['pattern']">Por favor introduce una cuenta válida</span>
-      </span>
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-4">
+        <a outerLinkActive="active" routerLink="register"><button class="btn btn-primary">Regístrate</button></a>
+      </div>
+
+    </form>
+  </div>
+
+  <div id="myModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title">Inicio de sesión</h5>
+      </div>
+      <div class="modal-body">
+          <p>{{response.msg}}</p>
+      </div>
+      <div class="modal-footer ">
+          <button type="button" (click)="cerrar()" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+      </div>
+      </div>
     </div>
-    <div>
-      <input type="password" id="inputPassword" formControlName="password"
-        [ngClass]="{'is-invalid': (loginForm.get('password')?.touched) && !loginForm.get('password')?.valid}"
-        class="form-control border border-dark" placeholder="Password (required)">
+  </div> 
 
-      <!-- Mensajes de error y control -->
-      <span class="invalid-feedback">
-        <span *ngIf="loginForm.get('password')?.errors?.['required']">Por favor introduce tu password</span>
-      </span>
-    </div>
-    <div class="d-flex justify-content-center">
-      <button type="submit" class="btn btn-primary btn-block col-sm-4" [disabled]="!loginForm.valid">Login</button>
-    </div>
-
-   <!-- login google -->
-   <div id="g_id_onload"
-   data-client_id="566999217560-mcb6k8063fdddr451c8djp0pjlvbvpnn.apps.googleusercontent.com"
-   data-context="signin"
-   data-ux_mode="popup"
-   data-callback="handleCredentialResponse"
-   data-auto_prompt="true">
 </div>
-
-<div class="g_id_signin"
-   data-type="standard"
-   data-shape="pill"
-   data-theme="filled_blue"
-   data-text="signin_with"
-   data-size="medium"
-   data-logo_alignment="left">
-</div>
-</form>
-</div>
-<script>
-
-globalThis.handleCredentialResponse=async(response)=> {
-
-      //Para probar inicialmente.
-      console.log('id_token', response.credential); //Este token tendremos que enviarlo al backend.
-
-      const body = { id_token: response.credential }
-      fetch('http://localhost:9090/api/auth/loginGoogle/callback', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(body)
-      })
-      .then( r=> r.json() )
-      .then( resp =>{
-          console.log(resp )
-          localStorage.setItem('email', resp.nombre )
-      })
-      .catch( console.warn )
-  }
-
-
-  const button = document.getElementById('g_id_signout');
-  button.onclick = async() => {
-
-      console.log(google.accounts.id)
-      google.accounts.id.disableAutoSelect()
-      google.accounts.id.revoke(localStorage.getItem('email'), done => {
-          console.log('consent revoked');
-          localStorage.clear()
-          location.reload()
-      });
-  }
-
-
-  </script>
-
-
+<app-footer></app-footer>

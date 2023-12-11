@@ -1,4 +1,3 @@
-//Realizado por Khattari
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { OpcionesComponent } from './pages/opciones/opciones.component';

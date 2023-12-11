@@ -4,7 +4,7 @@
       <img>
     </div>
     <div>
-      <h5 class="mb-1">Company name</h5>
+      <h5 class="mb-1">{{user[0].nombre}}</h5>
     </div>
   </div>
   <ul class="navbar-nav me-auto mb-md-0">
@@ -36,7 +36,7 @@
         routerLink="formulariocontacto">Contacto</a></li> -->
     </ul>
     <li class="nav-item pt-1 pb-1 ps-5 pe-3">
-      <a href="#" class="nav-link"><i class="fa-solid fa-right-to-bracket  me-3"></i>&nbsp;&nbsp;&nbsp;Cerrar Sesión</a>
+      <a (click)="cerrarSesion()" class="nav-link"><i class="fa-solid fa-right-to-bracket  me-3"></i>&nbsp;&nbsp;&nbsp;Cerrar Sesión</a>
     </li>
   </ul>
 </div>
@@ -65,7 +65,7 @@
       class="nav-item dropdown rounded-4 text-center pestania-submenu pt-1 pb-1 ps-3 pe-3 m-2 d-flex align-items-center">
       <a class="nav-link dropdown-toggle rounded-4 ps-lg-2 pe-lg-2" role="button" data-bs-toggle="dropdown"
         aria-expanded="false">
-        <i class="fa-solid fa-user me-2"></i>User Name
+        <i class="fa-solid fa-user me-2"></i>{{user[0].nombre}}
       </a>
       <ul class="submenu pt-lg-5 pb-lg-3 box-shadow-sm text-center text-decoration-none dropdown-menu"
         data-bs-popper="static">
@@ -75,7 +75,7 @@
           routerLink="../ofertas/testing">Mis ofertas</a></li>
         <li class="p-lg-1"><a class="text-decoration-none" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
           routerLink="formulariocontacto">Contacto</a></li>-->
-        <li class="p-lg-1"><a href="#" class="text-decoration-none">Cerrar Sesión</a></li>
+        <li class="p-lg-1"><a (click)="cerrarSesion()" class="text-decoration-none">Cerrar Sesión</a></li>
       </ul>
     </li>
   </ul>

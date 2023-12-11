@@ -1,122 +1,126 @@
-//Ines
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
+import { UserEmpresaResponse, UserAlumnoResponse } from '../../interface/req-resp';
+import { RestBolsaService } from '../../services/rest-bolsa.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  private fileTemp: any;
 
-  RegisterForm!: FormGroup;
-  title = 'fileUpload';
-  images = "";
-  imagenes: any = [];
-  constructor(
-    private fb: FormBuilder,
-    public authService: AuthService,
-    public router: Router,
-
-  ) { }
-  ngOnInit() {
-    this.RegisterForm = this.fb.group({
-      nif: ['', [Validators.required, Validators.pattern('[0-9]{8}[A-Z]' || '[0-9]{8}')]],
-      nombre: new FormControl('', Validators.required),
-      email: ['', [Validators.required, Validators.pattern('[a-z0-9]+@[a-z]+\.[a-z]{2,3}')]],
-      password: new FormControl('', Validators.required),
-      telefono: new FormControl('', Validators.required),
-      rol: new FormControl('', Validators.pattern('[0-3]{1,2}')),
-    },
-    );
-
+  userEmpresa: UserEmpresaResponse = {
+    nif:         '',
+    nombre:      '',
+    email:       '',
+    password:    '',
+    status:      0,
+    rol:         3,
+    telefono:    '',
+    direccion:   '',
+    contacto:    '',
+    cargo:       '',
   }
-  register() {
-    const { nif, nombre, email, password, telefono, rol, avatar } = this.RegisterForm.value;
 
-    this.authService.register(this.RegisterForm.value).subscribe(res => {
+  userAlumno: UserAlumnoResponse = {
+    nif:         '',
+    nombre:      '',
+    email:       '',
+    password:    '',
+    status:      0,
+    rol:         2,
+    telefono:    '',
+    apellido1:   '',
+    apellido2:   '',
+  } 
+  
 
-      if (res) {
-        this.router.navigateByUrl('/welcome');
-        Swal.fire({
-          icon: 'success',
-          title: 'Usuario Registrado',
-          showConfirmButton: false,
-          timer: 1500
-        })
-      }
-      else if (res == undefined) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Este usuario ya existe',
-          showConfirmButton: false,
-          timer: 1500
-        })
+  constructor(private restBolsaService: RestBolsaService) {
+  }
 
+  ngOnInit(): void {
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
 
-      } else {
-        this.router.navigateByUrl('/register');
-        Swal.fire({
-          icon: 'error',
-          title: 'Este usuario ya existe',
-          showConfirmButton: false,
-          timer: 1500
-        })
-
-      }
-
+    signUpButton!.addEventListener('click', () => {
+        container!.classList.add('right-panel-active');
     });
 
-  }
-
-  passwordIguales(pass1Name: string, pass2Name: string) {
-
-    return (formGroup: FormGroup) => {
-
-      const pass1Control = formGroup.controls[pass1Name];
-
-      const pass2Control = formGroup.controls[pass2Name];
-
-      if (pass1Control.value === pass2Control.value) {
-
-        pass2Control.setErrors(null);
-
-      } else {
-
-        pass2Control.setErrors({ noEsIgual: true });
-
-      }
-
-    };
-
-  }
-  //funciones para subir y mostrar imágenes u otros archivos*************************
-  getFile($event: any): void {
-    this.fileTemp = $event.target.files[0];
-    console.log(this.fileTemp);
-
-  }
-
-  sendFile(): void {
-    const formData = new FormData();
-    formData.append('file', this.fileTemp);
-    this.authService.subirImagen(formData).subscribe(res => {
-      console.log(res);
-      this.RegisterForm.patchValue({
-        imagen: res
-      });
+    signInButton!.addEventListener('click', () => {
+        container!.classList.remove('right-panel-active');
     });
   }
 
-  //Roles
-  getRoles() {
-    return this.authService.getRoles();
+  guardarEmpresa() {
+    //Validacion
+    if (this.userEmpresa.nif?.trim().length === 0) return;
+    if (this.userEmpresa.nombre.trim().length === 0) return;
+    if (this.userEmpresa.email.trim().length === 0) return;
+    if (this.userEmpresa.password.trim().length === 0) return;
+    if (this.userEmpresa.telefono.trim().length === 0) return;
+    if (this.userEmpresa.direccion.trim().length === 0) return;
+    if (this.userEmpresa.contacto.trim().length === 0) return;
+    if (this.userEmpresa.cargo.trim().length === 0) return;
+
+    this.restBolsaService.crearEmpresa(this.userEmpresa)
+      .subscribe(response => {
+        if (response.success) {
+          this.abrir()
+        }
+        else {
+          this.abrirFalse()
+        }
+      })
   }
 
+  guardarAlumno() {
+    //Validacion
+    var nifRegex: RegExp = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$/i
+    if (this.userAlumno.nif?.trim().length === 0 && nifRegex.exec(this.userAlumno.nif)) return;
+    if (this.userAlumno.nombre.trim().length === 0) return;
+    if (this.userAlumno.email.trim().length === 0) return;
+    if (this.userAlumno.password.trim().length === 0) return;
+    if (this.userAlumno.telefono.trim().length === 0) return;
+    if (this.userAlumno.apellido1.trim().length === 0) return;
+    if (this.userAlumno.apellido2.trim().length === 0) return;
+
+    this.userAlumno.password  
+
+    this.restBolsaService.crearAlumno(this.userAlumno)
+      .subscribe(response => {
+        if (response.success) {
+          this.abrir()
+        }
+        else {
+          this.abrirFalse()
+        }
+      })
+  }
+
+  abrir() {
+    let modal = document.getElementById("myModal");
+    modal!.style.display = "block";
+    let body = document.getElementsByTagName("body")[0];
+    body!.style.overflow = "hidden";
+  }
+
+  abrirFalse() {
+    let modal = document.getElementById("myModalFalse");
+    modal!.style.display = "block";
+    let body = document.getElementsByTagName("body")[0];
+    body!.style.overflow = "hidden";
+  }
+
+  cerrar() {
+    let modal = document.getElementById("myModal");
+    modal!.style.display = "none";
+    location.replace('http://localhost:4200/')
+  }
+
+  cerrarFalse() {
+    let modal = document.getElementById("myModalFalse");
+    modal!.style.display = "none";
+  }
 
 }
-

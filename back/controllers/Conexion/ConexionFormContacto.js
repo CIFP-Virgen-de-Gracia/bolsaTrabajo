@@ -1,7 +1,3 @@
-/**
- * Hecho por Manuel
- */
-
 const FormContacto = require('../../models/FormContacto');
 const ConexionSequelize = require('./ConexionSequelize');
 

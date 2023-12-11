@@ -1,122 +1,66 @@
-//Ines
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import {User}from '../../interface/interfaces'
-import {SocialAuthService, GoogleLoginProvider } from '@abacritt/angularx-social-login';
-import Swall from 'sweetalert2';
+import { RestBolsaService } from '../../services/rest-bolsa.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  user:User={
-    nif: '',
-    nombre: '',
+
+  user = {
     email: '',
-    password: '',
-    telefono: '',
-    role: 2,
-    token: '',
-    Token: undefined
+    password: ''
   }
-  public loginForm!: FormGroup;
+
+  response: any = 'ghj';
+
   constructor(
-    public fb: FormBuilder,
-    public authService: AuthService,
     public router: Router,
-    private socialAuthService: SocialAuthService,
+    private restBolsaService: RestBolsaService
+  ) { }
 
-  ) {
-    this.loginForm = this.fb.group({
-      email: [''],
-      password: [''],
-    });
-  }
-  ngOnInit() {
-  this.loginForm = this.fb.group({
-    email:new FormControl('',[Validators.required,Validators.pattern('[a-z0-9]+@[a-z]+\.[a-z]{2,3}')]),
-    password:new FormControl('',[Validators.required,Validators.minLength(4)])
-  })
+  ngOnInit() {}
 
-  }
   login() {
-    this.authService.login(this.loginForm.value).subscribe((response) => {
-      if (response) {
-       Swall.fire({
-          icon: 'success',
-          title: 'Login correcto',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        this.router.navigate(['/alumno/inicio']);
-      }
-      else if(response==undefined){
-        Swall.fire({
-          icon: 'error',
-          title: 'Esta cuenta no existe',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        this.router.navigate(['/welcome']);
+    if (this.user.email.trim().length === 0) return;
+    if (this.user.password.trim().length === 0) return;
 
-      }else if(response==false){
-        Swall.fire({
-          icon: 'error',
-          title: 'Contraseña incorrecta',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        this.router.navigate(['/welcome']);
+    this.restBolsaService.login(this.user)
+    .subscribe(response => {
+      this.response = response
+      if (!response.success) {
+        this.abrir();
       }
-      else if(response='unknown'){
-        Swall.fire({
-          icon: 'error',
-          title: 'Hay un error en el servidor',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        this.router.navigate(['/welcome']);
-      }
-      else{
-        Swall.fire({
-          icon: 'error',
-          title: 'Login incorrecto',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        this.router.navigate(['/welcome']);
-      }
-    });
-  }
-  loginGoogle() {
-    const id_token = localStorage.getItem('id_token');
-    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then((userData) => {
-      this.user.email=userData.email;
-      this.user.nombre=userData.name;
-      this.user.password=userData.id;
-      this.authService.loginGoogle(this.user).subscribe((response) => {
-
-        if (response) {
-          Swall.fire({
-            icon: 'success',
-            title: 'Login correcto',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          this.router.navigate(['/alumno/inicio']);
+      else {
+        localStorage.setItem('rol', response.data[0].rol);
+        localStorage.setItem('user', JSON.stringify(response.data));
+        switch (localStorage.getItem('rol')) {
+          case '1':
+            location.replace('http://localhost:4200/administracion')
+            break;
+          case '2':
+            location.replace('http://localhost:4200/alumno')
+          break;
+          case '3':
+            location.replace('http://localhost:4200/empresas')
+            break;
         }
-    const  xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:9090/api/auth/loginGoogle/callback');
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onload = function() {
-      console.log('Signed in as: ' + xhr.responseText);
-    };
-    xhr.send('idtoken=' + id_token);
-
-  });
-    });
+      }
+    })
   }
+
+  abrir() {
+    let modal = document.getElementById("myModal");
+    modal!.style.display = "block";
+    let body = document.getElementsByTagName("body")[0];
+    body!.style.overflow = "hidden";
+  }
+
+  cerrar() {
+    let modal = document.getElementById("myModal");
+    modal!.style.display = "none";
+  }
+  
 }

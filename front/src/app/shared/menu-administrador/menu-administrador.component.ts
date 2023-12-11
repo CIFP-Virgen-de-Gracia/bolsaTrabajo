@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class MenuAdministradorComponent {
 
+  user = JSON.parse(localStorage.getItem('user') || '{}')
+
+  cerrarSesion() {
+    localStorage.clear()
+    location.replace('http://localhost:4200/')
+  }
+  
 }

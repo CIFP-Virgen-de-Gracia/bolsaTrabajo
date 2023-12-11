@@ -1,32 +1,22 @@
-//Ines
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {AuthRoutingModule} from 'src/app/auth/auth-routing.module';
 import { LoginComponent } from 'src/app/auth/pages/login/login.component';
 import { RegisterComponent } from 'src/app/auth/pages/register/register.component';
+import { ActivatedComponent } from 'src/app/auth/pages/activated/activated.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { WelcomeComponent } from 'src/app/auth/pages/welcome/welcome.component';
-import { MainComponent } from 'src/app/auth/main/main.component';
 import { RouterModule } from '@angular/router';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import { AuthInterceptor } from 'src/app/auth/services/auth.config.interceptor';
 import { SocialAuthServiceConfig, GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { environment } from 'src/environments/environment';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     declarations: [
-        WelcomeComponent,
-        MainComponent,
         LoginComponent,
         RegisterComponent,
+        ActivatedComponent
     ],
     providers: [
-
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthInterceptor,
-            multi: true,
-        },
         {
             provide: 'SocialAuthServiceConfig',
             useValue: {
@@ -48,7 +38,7 @@ import { environment } from 'src/environments/environment';
         ReactiveFormsModule,
         AuthRoutingModule,
         RouterModule,
-        HttpClientModule
+        SharedModule,
     ]
 })
 export class AuthModule { }

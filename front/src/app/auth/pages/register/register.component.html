@@ -1,91 +1,115 @@
-<head>
-  <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
-</head>
-<div class="inicioS">
-  <div class="d-flex p-1">
-    <button type="button" class="btn btn-light col-sm-1" outerLinkActive="active" routerLink="welcome">VOLVER</button>
+<app-menu></app-menu>
+<div class="pagina">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb m-0 pt-2 ml-2">
+      <li class="breadcrumb-item"><a outerLinkActive="active" routerLink="..">Login</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Registro</li>
+    </ol>
+  </nav>
+  <div class="container mt-5" id="container">
+    <div class="form-container sign-up-container">
+      <form ngNativeValidate>
+        <h1 class="mb-4">Registrar de empresa</h1>
+        <input class="form-control" type="text" placeholder="NIF" required
+        [(ngModel)]="userEmpresa.nif" [ngModelOptions]="{standalone: true}" pattern="^[0-9]{8}[A-Z]"/>
+
+        <input class="form-control" type="email" placeholder="Email" required
+        [(ngModel)]="userEmpresa.email" [ngModelOptions]="{standalone: true}" />
+
+        <input class="form-control" type="password" placeholder="Password" required
+        [(ngModel)]="userEmpresa.password" [ngModelOptions]="{standalone: true}" />
+
+        <input class="form-control" type="text" placeholder="Nombre" required
+        [(ngModel)]="userEmpresa.nombre" [ngModelOptions]="{standalone: true}" />
+
+        <input class="form-control" type="text" placeholder="Direccion" required
+        [(ngModel)]="userEmpresa.direccion" [ngModelOptions]="{standalone: true}" />
+
+        <input class="form-control" type="text" placeholder="Contacto" required
+        [(ngModel)]="userEmpresa.contacto" [ngModelOptions]="{standalone: true}" />
+
+        <input class="form-control" type="text" placeholder="Cargo" required
+        [(ngModel)]="userEmpresa.cargo" [ngModelOptions]="{standalone: true}" />
+
+        <input class="form-control" type="text" placeholder="Telefono" required
+        [(ngModel)]="userEmpresa.telefono" [ngModelOptions]="{standalone: true}" />
+
+        <button (click)="guardarEmpresa()" class="mt-3">Crear cuenta</button>
+      </form>
+    </div>
+    <div class="form-container sign-in-container">
+      <form ngNativeValidate>
+        <h1 class="mb-4">Registro de alumno</h1>
+        <input class="form-control" type="text" placeholder="NIF" required
+        [(ngModel)]="userAlumno.nif" [ngModelOptions]="{standalone: true}" pattern="/^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$/i"/>
+
+        <input class="form-control" type="email" placeholder="Email" required
+        [(ngModel)]="userAlumno.email" [ngModelOptions]="{standalone: true}" />
+
+        <input class="form-control" type="text" placeholder="Nombre" required
+        [(ngModel)]="userAlumno.nombre" [ngModelOptions]="{standalone: true}" />
+
+        <input class="form-control" type="password" placeholder="Password" required
+        [(ngModel)]="userAlumno.password" [ngModelOptions]="{standalone: true}" />
+
+        <input class="form-control" type="text" placeholder="Apellido 1" required
+        [(ngModel)]="userAlumno.apellido1" [ngModelOptions]="{standalone: true}" />
+
+        <input class="form-control" type="text" placeholder="Apellido 2" required
+        [(ngModel)]="userAlumno.apellido2" [ngModelOptions]="{standalone: true}" />
+
+        <input class="form-control" type="text" placeholder="Telefono" required
+        [(ngModel)]="userAlumno.telefono" [ngModelOptions]="{standalone: true}" />
+
+        <button type="submit" (click)="guardarAlumno()" class="mt-3">Crear cuenta</button>
+      </form>
+    </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+            <h1>¿Eres un alumno?</h1>
+            <p>
+              Pulsa aquí para registrarte como alumno
+            </p>
+            <button class="ghost" id="signIn">Registrar</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+            <h1>¿Eres una empresa?</h1>
+            <p>Pulsa aquí para registrarte como empresa</p>
+            <button class="ghost" id="signUp">Registrar</button>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="background">
-    <div class="shape"></div>
-    <div class="shape"></div>
-  </div>
-  <form class="login100-form" autocomplete="off" [formGroup]="RegisterForm" (ngSubmit)="register()">
-    <h3>Registro</h3>
-    <div>
-      <input type="text" id="inputNif" formControlName="nif" class="form-control border border-dark"
-        [ngClass]="{'is-invalid': (RegisterForm.get('nif')?.touched) && !RegisterForm.get('nif')?.valid}"
-        placeholder="Nif (required)">
-
-      <!-- Mensajes de error -->
-      <span class="invalid-feedback">
-        <span *ngIf="RegisterForm.get('nif')?.errors?.['required']">Por favor introduce tu Nif</span>
-        <span *ngIf="RegisterForm.get('nif')?.errors?.['pattern']">Por favor introduce un Nif válido</span>
-      </span>
-    </div>
-    <div>
-      <input type="text" id="inputnombre" formControlName="nombre"
-        [ngClass]="{'is-invalid': (RegisterForm.get('nombre')?.touched) && !RegisterForm.get('nombre')?.valid}"
-        class="form-control border border-dark" placeholder="Nombre (required)">
-
-      <!-- Mensajes de error y control -->
-      <span class="invalid-feedback">
-        <span *ngIf="RegisterForm.get('nombre')?.errors?.['required']">Por favor introduce tu nombre</span>
-      </span>
-    </div>
-
-    <div>
-      <input type="text" id="inputEmail" formControlName="email" class="form-control border border-dark"
-        [ngClass]="{'is-invalid': (RegisterForm.get('email')?.touched) && !RegisterForm.get('email')?.valid}"
-        placeholder="Email (required)">
-
-      <!-- Mensajes de error -->
-      <span class="invalid-feedback">
-        <span *ngIf="RegisterForm.get('email')?.errors?.['required']">Por favor introduce tu email</span>
-        <span *ngIf="RegisterForm.get('email')?.errors?.['pattern']">Por favor introduce una cuenta válida</span>
-      </span>
-    </div>
-    <div>
-      <input type="password" id="inputPassword" formControlName="password"
-        [ngClass]="{'is-invalid': (RegisterForm.get('password')?.touched) && !RegisterForm.get('password')?.valid}"
-        class="form-control border border-dark" placeholder="Password (required)">
-
-      <!-- Mensajes de error y control -->
-      <span class="invalid-feedback">
-        <span *ngIf="RegisterForm.get('password')?.errors?.['required']">Por favor introduce tu password</span>
-      </span>
-    </div>
-    <div>
-      <div>
-        <input type="text" id="inputTelefono" formControlName="telefono"
-          [ngClass]="{'is-invalid': (RegisterForm.get('telefono')?.touched) && !RegisterForm.get('telefono')?.valid}"
-          class="form-control border border-dark" placeholder="Teléfono (required)">
-
-        <!-- Mensajes de error y control -->
-        <span class="invalid-feedback">
-          <span *ngIf="RegisterForm.get('telefono')?.errors?.['required']">Por favor introduce tu teléfono</span>
-        </span>
+  <div id="myModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title">Crear cuenta</h5>
       </div>
-      <br>
-      <!-- TODO SI ES EMPRESA O ALUMNO -->
-      <div class="eleccion">
-        <p class="text-warning">Selecciona</p>
-        <select id="inputRol" formControlName="rol" class="form-control border border-dark" placeholder="Selecciona">
-          <option value="2">Estudiante</option>
-          <option value="3">Empresa</option>
-        </select>
-        <span class="invalid-feedback">
-          <span *ngIf="RegisterForm.get('rol')?.errors?.['required']">Indica si eres Empresa o Alumno</span>
-        </span>
+      <div class="modal-body">
+          <p>Te has registrado correctamente, revisa tu correo</p>
       </div>
-      <br>
-      <div class="subirImg">
-      <p class="text-warning">Imagen (opcional)</p>
-      <input type="file" id="inputImagen" class="form-control border border-dark" placeholder="Imagen (opcional)"
-        (change)="getFile($event)">
+      <div class="modal-footer ">
+          <button type="button" (click)="cerrar()" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
       </div>
-      <div class="d-flex justify-content-center">
-        <button type="submit" class="btn btn-primary" [disabled]="RegisterForm.invalid"
-          (click)="sendFile()">Registrarse</button>
       </div>
     </div>
-  </form>
+  </div> 
+  <div id="myModalFalse" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title">Crear cuenta</h5>
+      </div>
+      <div class="modal-body">
+          <p>Ha ocurrido un fallo comprueba tus datos</p>
+      </div>
+      <div class="modal-footer ">
+          <button type="button" (click)="cerrarFalse()" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+      </div>
+      </div>
+    </div>
+  </div>  
+</div>
+<app-footer></app-footer>

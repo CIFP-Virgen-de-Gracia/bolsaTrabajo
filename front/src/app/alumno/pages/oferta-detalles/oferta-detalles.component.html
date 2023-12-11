@@ -1,0 +1,62 @@
+<app-menu></app-menu>
+<div class="pagina pb-5">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb m-0 pt-2 pl-2">
+      <li class="breadcrumb-item"><a>Inicio</a></li>
+      <li class="breadcrumb-item"><a outerLinkActive="active" routerLink="..">Ofertas</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Detalles</li>
+    </ol>
+  </nav>
+  <h1 class="text-center mb-4 pt-2">{{oferta.titulo}}</h1>
+  <div class="container p-5 formulario">
+    <form class="row g-3" ngNativeValidate>
+      <div class="col-md-4">
+        <label for="empresa" class="form-label fw-bold">Empresa</label>
+        <input type="text" class="form-control" id="empresa"
+         readonly value={{datos.nombre}} disabled>
+      </div>
+      <div class="col-md-4">
+        <label for="direccion" class="form-label fw-bold">Direccion</label>
+        <input type="text" class="form-control" id="direccion"
+        readonly value={{oferta.lugar}} disabled>
+      </div>
+      <div class="col-md-4">
+        <label for="telefono" class="form-label fw-bold">Telefono</label>
+        <input type="text" class="form-control" id="telefono"
+        readonly value={{datos.telefono}} disabled>
+      </div>
+      <div class="col-md-12">
+        <label for="descripcion" class="form-label fw-bold">Descripcion</label>
+        <textarea class="form-control"  disabled readonly id="descripcion" rows="5">{{oferta.descripcion}}</textarea>
+      </div>
+      <div class="col-md-4">
+        <label for="contacto" class="form-label fw-bold">Contacto</label>
+        <input type="text" class="form-control" id="contacto"
+         readonly value={{datos.contacto}} disabled>
+      </div> 
+      <div class="col-md-4">
+      </div> 
+      <div class="col-md-4">
+        <label for="jornada" class="form-label fw-bold">Jornada</label>
+        <input type="text" class="form-control" id="jornada"
+         readonly value={{oferta.titulo}} disabled>
+      </div>
+    </form>
+  </div>
+  <div id="myModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Nueva oferta</h5>
+        </div>
+        <div class="modal-body">
+            <p>Una nueva oferta ha sido publicada</p>
+        </div>
+        <div class="modal-footer d-flex justify-content-around">
+            <button type="button" (click)="cerrar()" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

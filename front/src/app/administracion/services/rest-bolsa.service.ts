@@ -1,4 +1,3 @@
-//Realizado por Khattari
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserResponse, EmpresaResponse, AlumnoResponse, } from '../interfaces/req-resp';
@@ -68,6 +67,15 @@ export class RestBolsaService {
     public eliminarUser(nif: string) {
         return this.http.delete<any>(this.urlAdmin+'/eliminar/'+nif);
     }
+
+    public eliminarAlumno(nif: string) {
+        return this.http.delete<any>(this.urlAdmin+'/alumnos/eliminar/'+nif);
+    }
+
+    public eliminarEmpresa(nif: string) {
+        return this.http.delete<any>(this.urlAdmin+'/empresas/eliminar/'+nif);
+    }
+
 
     public editarUser(user:UserResponse, nif: string) {
         return this.http.put<any>(this.urlAdmin+'/admins/modificar/'+nif, user);
