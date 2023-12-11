@@ -1,4 +1,3 @@
-//Ines
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');  //Este paquete nos permitirá crear un archivo con nombre único.
 

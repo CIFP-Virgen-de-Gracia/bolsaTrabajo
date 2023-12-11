@@ -1,7 +1,3 @@
-/**
- * Hecho por Manuel
- */
-
 const Empresa = require('../../models/Empresa');
 const ConexionSequelize = require('./ConexionSequelize');
 

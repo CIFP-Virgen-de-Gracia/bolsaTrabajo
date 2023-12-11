@@ -1,4 +1,3 @@
-//Realizado por Khattari
 const {response,request} = require('express');
 const Conexion = require('./Conexion/Conexion');
 const ConexionSequelize = require('./Conexion/ConexionAdmin');
@@ -157,6 +156,34 @@ const eliminarUser = (req = request, res = response) => {
         })
 }
 
+const eliminarAlumno = (req = request, res = response) => {
+    const conex = new ConexionSequelize();
+
+    conex.eliminarAlumno(req.params.nif)
+        .then( msg => {
+            console.log('Eliminado correctamente!');
+            res.status(201).json({'success':true});
+        })
+        .catch( err => {
+            console.log('Fallo en el registro!');
+            res.status(203).json({'success':false});
+        })
+}
+
+const eliminarEmpresa = (req = request, res = response) => {
+    const conex = new ConexionSequelize();
+
+    conex.eliminarEmpresa(req.params.nif)
+        .then( msg => {
+            console.log('Eliminado correctamente!');
+            res.status(201).json({'success':true});
+        })
+        .catch( err => {
+            console.log('Fallo en el registro!');
+            res.status(203).json({'success':false});
+        })
+}
+
 const activarUser = (req, res = response) => {
     const conex = new ConexionSequelize();
 
@@ -258,5 +285,7 @@ module.exports = {
     actualizarAdmin,
     verDatosEmpresa,
     verDatosAlumno,
-    verUser
+    verUser,
+    eliminarAlumno,
+    eliminarEmpresa
 }

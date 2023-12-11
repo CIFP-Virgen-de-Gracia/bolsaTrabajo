@@ -1,0 +1,44 @@
+<app-menu></app-menu>
+<div class="pagina pb-3">
+    <ol class="breadcrumb m-0 pt-2 pl-2">
+        <li class="breadcrumb-item"><a outerLinkActive="active" routerLink="..">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Ofertas</li>
+    </ol>
+    <h1 class="text-center mb-4 pt-1">Ofertas publicadas</h1>
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col d-flex justify-content-center" *ngFor="let oferta of ofertas | paginate: {itemsPerPage: 9, currentPage: p}">
+                <div class="card oferta mb-5" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{oferta.titulo}}</h5>
+                        <p class="card-text">{{oferta.descripcion}}</p>
+                        <a routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                            routerLink="/alumno/ofertas/{{oferta.id}}"><button class="btn btn-primary">Ver Oferta</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <pagination-controls ng-change="pageChanged()" (pageChange)="p = $event"
+                      previousLabel="Anterior"
+                      nextLabel="Siguiente"
+                      class="text-center m-0 controles"
+                      >
+    </pagination-controls>
+    <div id="myModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nueva oferta</h5>
+            </div>
+            <div class="modal-body">
+                <p>Una nueva oferta ha sido publicada</p>
+            </div>
+            <div class="modal-footer d-flex justify-content-around">
+                <button type="button" (click)="cerrar()" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+            </div>
+        </div>
+      </div>
+</div>
+<app-footer></app-footer>

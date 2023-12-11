@@ -1,9 +1,8 @@
-//Realizado por Khattari
-//Estructura por herencia realizada por Khattari
 const User = require('../../models/User');
 const ConexionSequelize = require('./ConexionSequelize');
 const Empresa = require('../../models/Empresa');
 const Alumno = require('../../models/Alumno');
+const Ciclo = require('../../models/Ciclo');
 
 class ConexionAdmin extends ConexionSequelize {
 
@@ -23,6 +22,34 @@ class ConexionAdmin extends ConexionSequelize {
         let resultado = [];
         this.conectar();
         resultado = await User.findByPk(nif);
+        this.desconectar();
+        return resultado;
+    }
+
+    getUserMail = async(email) => {
+        let datosUser = [];
+        let resultado = [];
+        this.conectar();
+        datosUser = await User.findOne({where: {email: email}});
+        switch (datosUser.rol) {
+            case 3:
+                let datosEmpresa = [];
+                datosEmpresa = await Empresa.findByPk(datosUser.nif);
+                resultado = [datosUser, datosEmpresa];
+                break;
+            case 1:
+                resultado = [datosUser];
+                break;
+            case 2:
+                let datosAlumno = [];
+                let datosCiclo = [];
+                datosAlumno = await Alumno.findByPk(datosUser.nif);
+                datosCiclo = await Ciclo.findOne()
+                resultado = [datosUser, datosAlumno];
+                break;
+            default:
+                break;
+        }
         this.desconectar();
         return resultado;
     }
@@ -144,6 +171,33 @@ class ConexionAdmin extends ConexionSequelize {
             throw error;
         }
         await resultado.destroy();
+
+        resultado = await Alumno.findByPk(nif);
+        console.log(resultado)
+        if (!resultado) {
+            this.desconectar();
+            throw error;
+        }
+        await resultado.destroy();
+        return resultado;
+    }
+
+    eliminarEmpresa = async(nif) => {
+        this.conectar();
+        let resultado = await User.findByPk(nif);
+        if (!resultado) {
+            this.desconectar();
+            throw error;
+        }
+        await resultado.destroy();
+
+        resultado = await Empresa.findByPk(nif);
+        console.log(resultado)
+        if (!resultado) {
+            this.desconectar();
+            throw error;
+        }
+        await resultado.destroy();
         return resultado;
     }
 
@@ -210,6 +264,19 @@ class ConexionAdmin extends ConexionSequelize {
         }
         await resultado.update(body);
         this.desconectar();
+        return ;
+    }
+
+    modificarImage = async(nif, image) => {
+        this.conectar();
+        let resultado = await Alumno.findByPk(nif);
+        if (!resultado) {
+          this.desconectar();
+          throw error;
+        }
+        await resultado.update({image: image});
+        this.desconectar();
+
         return ;
     }
 }

@@ -35,9 +35,6 @@ class ConexionUsuario extends ConexionSequelize {
     return resultado;
   };
 
-  //******************++++++++++++++++++++++**** */ --->>> Este método hecho por Manuel
-  //Inés: Creo otro getUsuario distinto, que necesito para formularioEmpresa.
-  //No quiero tocarte el tuyo que no me sirve, por si te estropeo algo
   getUsuarioEmpresa = async(nif) => {
     let resultado = [];
     this.conectar();

@@ -1,0 +1,52 @@
+<app-menu></app-menu>
+<div class="pagina pb-3">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0 pt-2 pl-2">
+          <li class="breadcrumb-item"><a>Inicio</a></li>
+          <li class="breadcrumb-item"><a outerLinkActive="active" routerLink="../interfazempresa">Empresa</a></li>
+          <li class="breadcrumb-item"><a outerLinkActive="active" routerLink="..">Ofertas</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Mis Ofertas</li>
+        </ol>
+    </nav>
+    <h1 class="text-center mb-4 pt-1">Ofertas publicadas</h1>
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col d-flex justify-content-center" *ngFor="let oferta of ofertas | paginate: {itemsPerPage: 9, currentPage: p}">
+                <div class="card oferta mb-5" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{oferta.titulo}}</h5>
+                        <p class="card-text">{{oferta.descripcion}}</p>
+                        <div class="col d-flex justify-content-between">
+                            <button class="btn btn-primary"><a routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                                routerLink="/empresas/ofertas/listado/editar/{{oferta.id}}">Editar</a></button>
+                            <a (click)="abrir(oferta.id)"><img src="../../../../assets/image/trash-can_38501.png"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <pagination-controls ng-change="pageChanged()" (pageChange)="p = $event"
+                      previousLabel="Anterior"
+                      nextLabel="Siguiente"
+                      class="text-center m-0 controles"
+                      >
+    </pagination-controls>
+    <div id="myModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Eliminación de oferta</h5>
+            </div>
+            <div class="modal-body">
+                <p>¿Quieres eliminar esta oferta?</p>
+            </div>
+            <div class="modal-footer ">
+                <button type="button" (click)="eliminarOferta()" class="btn btn-danger">Eliminar</button>
+                <button type="button" (click)="cerrar()" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

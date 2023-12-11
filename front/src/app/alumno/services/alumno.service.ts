@@ -19,4 +19,16 @@ export class AlumnoService {
     return this.http.get<Alumno>(`${this.baseURL}/alumnos/${nif}`);
   }
 
+  subirImagen(imagen: any) {
+    return this.http.post<any>('http://localhost:9090/auth/upload', imagen);
+  }
+
+  getImage(file: string) {
+    return this.http.get<any>('http://localhost:9090/auth/upload/' + file);
+  }
+
+  modificarImagen(body: any, nif: string) {
+    return this.http.post<any>('http://localhost:9090/auth/image/' + nif, body);
+  }
+
 }

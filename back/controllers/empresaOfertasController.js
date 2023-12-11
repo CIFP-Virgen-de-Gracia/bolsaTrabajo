@@ -1,4 +1,3 @@
-//Realizado por Khattari
 const {response,request} = require('express');
 const Conexion = require('./Conexion/Conexion');
 const ConexionSequelize = require('./Conexion/ConexionOferta');

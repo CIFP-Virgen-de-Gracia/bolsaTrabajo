@@ -5,9 +5,7 @@ class Server {
 
     constructor() {
         this.app = express();
-        this.authPath = '/';
         this.alumnosPath = '/alumnos';
-        this.authPath= '/api/auth';
         this.rolesPath = '/api/roles';
         this.rolesAsignados = '/api/rolesasignados';
         this.empresasPath = '/api/empresa';
@@ -15,6 +13,7 @@ class Server {
         this.empresaOFertaPath = '/empresaoferta';
         this.formContactoPath = '/api/formContacto';
         this.adminPath = '/admin';
+        this.authPath = '/auth';
 
         this.server = require('http').createServer(this.app);
         this.io = require('socket.io')(this.server);
@@ -37,8 +36,7 @@ class Server {
     }
 
     routes(){
-        this.app.use(this.authPath , require('../routes/auth'));
-        this.app.use(this.authPath , require('../routes/routes'));
+        this.app.use(this.authPath , require('../routes/authRoutes'));
         this.app.use(this.empresasPath , require('../routes/empresaroutes'));
         this.app.use(this.ofertasPath, require('../routes/ofertasRoutes'));
         this.app.use(this.rolesPath , require('../routes/rolesRoutes'));

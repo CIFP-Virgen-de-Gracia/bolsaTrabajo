@@ -1,37 +1,30 @@
+<app-menu></app-menu>
+<div class="pagina pb-3">
+  <ol class="breadcrumb m-0 pt-2 pl-2">
+    <li class="breadcrumb-item"><a outerLinkActive="active" routerLink="..">Inicio</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Perfil</li>
+</ol>
 <div>
-  <svg id="visual" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg"
-    xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
-    <g transform="translate(900, 0)">
-      <path
-        d="M0 486.7C-44.9 463.9 -89.7 441.1 -139.7 429.9C-189.6 418.6 -244.6 418.9 -286.1 393.8C-327.6 368.7 -355.5 318.3 -373 271C-390.4 223.6 -397.4 179.4 -414.7 134.7C-431.9 90.1 -459.3 45 -486.7 0L0 0Z"
-        fill="#140740"></path>
-    </g>
-  </svg>
-  <svg id="visual" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg"
-    xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
-    <g transform="translate(0, 600)">
-      <path
-        d="M0 -486.7C52.7 -484.5 105.3 -482.2 150.4 -462.9C195.5 -443.7 233.1 -407.4 272.7 -375.4C312.4 -343.4 354.1 -315.7 381.9 -277.4C409.6 -239.2 423.3 -190.4 438.4 -142.5C453.6 -94.5 470.2 -47.2 486.7 0L0 0Z"
-        fill="#FCB541"></path>
-    </g>
-  </svg>
   <div class="container p-5">
     <div class="row d-flex justify-content-center">
       <div class="card mb-3 rounded-3 shadow mb-5 bg-body">
         <div class="row tarjeta">
           <div class="col-md-4  ps-4 text-center contenedor-foto"
             style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-              class="img-thumbnail m-auto mt-5 mb-3 rounded-4">
-            <h4>{{alumno.nick}}</h4>
-            <h6 class="mt-3">{{alumno.email}}</h6>
+            <div style="background-image: url({{user[1].image}});" id="myFile" class="img-thumbnail m-auto mt-5 mb-3 rounded-4"><input type="file" id="inputImagen" class="form-control border border-dark" placeholder="Imagen (opcional)"
+              (change)="getFile($event)"></div>
+            
+            <div class="subirImg">
+              
+              </div>
+              <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary"
+                  (click)="sendFile()">Subir Imagen</button>
+              </div>
+
+            <h4>{{user[0].nombre}}</h4>
+            <h6 class="mt-3">{{user[0].email}}</h6>
             <div class="d-grid gap-3 col-6 mx-auto mt-5">
-              <button type="button" class="btn">
-                Editar cuenta
-              </button>
-              <button type="button" class="btn">
-                Habilitar
-              </button>
             </div>
           </div>
           <div class="col-md-8 p-0">
@@ -44,34 +37,16 @@
                   <div class="pt-1">
                     <div class="mb-3">
                       <h6>Nombre</h6>
-                      <p class="text-muted">{{alumno.nombre}}</p>
+                      <p class="text-muted">{{user[0].nombre}}</p>
                     </div>
                     <div class="mb-3">
                       <h6>Apellidos</h6>
-                      <p class="text-muted">{{alumno.apellido1}} {{alumno.apellido2}}</p>
+                      <p class="text-muted">{{user[1].apellido1}} {{user[1].apellido2}}</p>
                     </div>
                     <div class="mb-3">
                       <h6>DNI</h6>
-                      <p class="text-muted">{{alumno.nif}}</p>
+                      <p class="text-muted">{{user[0].nif}}</p>
                     </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body p-0 mb-2 shadow-sm mt-4 bg-body rounded-2">
-                <div class="card-body p-4 ps-5 rounded-top etiqueta">
-                  <h5 class="m-0">FORMACIÓN</h5>
-                </div>
-                <div class="ps-5 mb-4 card-body rounded-2">
-                  <div class="row pt-1 ps-2">
-                    <ul class="timeline">
-                      <li *ngFor = "let ciclo of alumno.ciclos;" class="timeline-item mb-5 ps-2" >
-                        <h6 class="fw-bold">{{ciclo.sigla}}</h6>
-                        <p class="text-muted mb-2 fw-bold">{{ciclo.fecha}}</p>
-                        <p class="text-muted">
-                          {{ciclo.nombre}}
-                        </p>
-                      </li>
-                    </ul>
                   </div>
                 </div>
               </div>
@@ -81,4 +56,21 @@
       </div>
     </div>
   </div>
+  <div id="myModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Nueva oferta</h5>
+        </div>
+        <div class="modal-body">
+            <p>Una nueva oferta ha sido publicada</p>
+        </div>
+        <div class="modal-footer d-flex justify-content-around">
+            <button type="button" (click)="cerrar()" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        </div>
+        </div>
+    </div>
+  </div>
 </div>
+</div>
+<app-footer></app-footer>

@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./menu-alumno.component.scss']
 })
 export class MenuAlumnoComponent {
+  
+  public user = JSON.parse(localStorage.getItem('user') || '{}')
 
+  cerrarSesion() {
+    localStorage.clear()
+    location.replace('http://localhost:4200/')
+  }
 }

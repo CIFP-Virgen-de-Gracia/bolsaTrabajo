@@ -1,4 +1,3 @@
-//Realizado por Khattari
 const socketController = (socket) => {
     console.log("Cliente conectado: ", socket.id);
 

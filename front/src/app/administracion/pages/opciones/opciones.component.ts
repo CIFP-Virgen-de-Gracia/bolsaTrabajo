@@ -1,4 +1,3 @@
-//Realizado por Khattari
 import { Component, OnInit } from '@angular/core';
 
 @Component({
